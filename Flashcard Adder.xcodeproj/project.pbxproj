@@ -24,15 +24,12 @@
 		E359182225106E3D002F1A35 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E359182125106E3D002F1A35 /* AppDelegate.swift */; };
 		E359182425106E3D002F1A35 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E359182325106E3D002F1A35 /* SceneDelegate.swift */; };
 		E359182925106E3D002F1A35 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E359182725106E3D002F1A35 /* Main.storyboard */; };
-		E359182B25106E3D002F1A35 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E359182A25106E3D002F1A35 /* ContentView.swift */; };
 		E359182D25106E3D002F1A35 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E359182C25106E3D002F1A35 /* Assets.xcassets */; };
 		E359183025106E3D002F1A35 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E359182E25106E3D002F1A35 /* LaunchScreen.storyboard */; };
 		E3591851251070D0002F1A35 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3591850251070D0002F1A35 /* ShareViewController.swift */; };
 		E3591854251070D0002F1A35 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3591852251070D0002F1A35 /* MainInterface.storyboard */; };
 		E3591858251070D0002F1A35 /* Create Flashcard Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = E359184E251070D0002F1A35 /* Create Flashcard Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		E359185F25117872002F1A35 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E359185E25117871002F1A35 /* Assets.xcassets */; };
-		E369F8F92515B69700A51A0D /* Create.swift in Sources */ = {isa = PBXBuildFile; fileRef = E369F8F72515B69700A51A0D /* Create.swift */; };
-		E369F8FA2515B69700A51A0D /* Create.swift in Sources */ = {isa = PBXBuildFile; fileRef = E369F8F72515B69700A51A0D /* Create.swift */; };
 		E369F9022515B6D600A51A0D /* CreateFlashcard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E369F9012515B6D600A51A0D /* CreateFlashcard.storyboard */; };
 		E369F9032515B6D600A51A0D /* CreateFlashcard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E369F9012515B6D600A51A0D /* CreateFlashcard.storyboard */; };
 		E369F92A2515B71100A51A0D /* NoteType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E369F9222515B71000A51A0D /* NoteType.swift */; };
@@ -92,7 +89,6 @@
 		E359182125106E3D002F1A35 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E359182325106E3D002F1A35 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		E359182825106E3D002F1A35 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		E359182A25106E3D002F1A35 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		E359182C25106E3D002F1A35 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E359182F25106E3D002F1A35 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E359183125106E3D002F1A35 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -101,7 +97,6 @@
 		E3591853251070D0002F1A35 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		E3591855251070D0002F1A35 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E359185E25117871002F1A35 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		E369F8F72515B69700A51A0D /* Create.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Create.swift; sourceTree = "<group>"; };
 		E369F9012515B6D600A51A0D /* CreateFlashcard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = CreateFlashcard.storyboard; path = "../../../.Trash/Create 23-46-51-451/Sources/Create/CreateFlashcard.storyboard"; sourceTree = "<group>"; };
 		E369F9222515B71000A51A0D /* NoteType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoteType.swift; sourceTree = "<group>"; };
 		E369F9232515B71000A51A0D /* Field.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Field.swift; sourceTree = "<group>"; };
@@ -170,11 +165,9 @@
 				E369F93C2515B94F00A51A0D /* Custom Views */,
 				E369F9262515B71000A51A0D /* FlashcardSettings.swift */,
 				E369F9012515B6D600A51A0D /* CreateFlashcard.storyboard */,
-				E369F8F72515B69700A51A0D /* Create.swift */,
 				E359182125106E3D002F1A35 /* AppDelegate.swift */,
 				E359182325106E3D002F1A35 /* SceneDelegate.swift */,
 				E359182725106E3D002F1A35 /* Main.storyboard */,
-				E359182A25106E3D002F1A35 /* ContentView.swift */,
 				E359182C25106E3D002F1A35 /* Assets.xcassets */,
 				E359182E25106E3D002F1A35 /* LaunchScreen.storyboard */,
 				E359183125106E3D002F1A35 /* Info.plist */,
@@ -339,12 +332,10 @@
 				E369F92C2515B71100A51A0D /* Field.swift in Sources */,
 				E369F9362515B71100A51A0D /* BigButton.swift in Sources */,
 				E359182225106E3D002F1A35 /* AppDelegate.swift in Sources */,
-				E359182B25106E3D002F1A35 /* ContentView.swift in Sources */,
 				E369F92E2515B71100A51A0D /* Profile.swift in Sources */,
 				E359182425106E3D002F1A35 /* SceneDelegate.swift in Sources */,
 				E369F9302515B71100A51A0D /* Deck.swift in Sources */,
 				E357B366251D2FB500354BCA /* SelectDeckTypeTableViewController.swift in Sources */,
-				E369F8F92515B69700A51A0D /* Create.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -368,7 +359,6 @@
 				E369F9372515B71100A51A0D /* BigButton.swift in Sources */,
 				E369F92B2515B71100A51A0D /* NoteType.swift in Sources */,
 				E369F9352515B71100A51A0D /* EditFieldTextView.swift in Sources */,
-				E369F8FA2515B69700A51A0D /* Create.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
