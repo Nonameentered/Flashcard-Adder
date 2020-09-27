@@ -25,7 +25,7 @@ struct Flashcard {
     }
     
     var ankiUrl: URL? {
-        var ankiUrlString = "anki://x-callback-url/addnote?profile=\(profile)&type=\(noteType)&deck=\(selectedDeck)"
+        let ankiUrlString = "anki://x-callback-url/addnote?profile=\(profile)&type=\(noteType)&deck=\(selectedDeck)"
         return URL(string: ankiUrlString.addingPercentEncoding(withAllowedCharacters:NSCharacterSet.urlQueryAllowed)!)
     }
     
