@@ -23,7 +23,6 @@
 		E357B383251D32D300354BCA /* AddDeckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E357B361251D2FB500354BCA /* AddDeckViewController.swift */; };
 		E359182225106E3D002F1A35 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E359182125106E3D002F1A35 /* AppDelegate.swift */; };
 		E359182425106E3D002F1A35 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E359182325106E3D002F1A35 /* SceneDelegate.swift */; };
-		E359182625106E3D002F1A35 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E359182525106E3D002F1A35 /* ViewController.swift */; };
 		E359182925106E3D002F1A35 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E359182725106E3D002F1A35 /* Main.storyboard */; };
 		E359182B25106E3D002F1A35 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E359182A25106E3D002F1A35 /* ContentView.swift */; };
 		E359182D25106E3D002F1A35 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E359182C25106E3D002F1A35 /* Assets.xcassets */; };
@@ -92,7 +91,6 @@
 		E359181E25106E3D002F1A35 /* Flashcard Adder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Flashcard Adder.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E359182125106E3D002F1A35 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E359182325106E3D002F1A35 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		E359182525106E3D002F1A35 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		E359182825106E3D002F1A35 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E359182A25106E3D002F1A35 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		E359182C25106E3D002F1A35 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -175,7 +173,6 @@
 				E369F8F72515B69700A51A0D /* Create.swift */,
 				E359182125106E3D002F1A35 /* AppDelegate.swift */,
 				E359182325106E3D002F1A35 /* SceneDelegate.swift */,
-				E359182525106E3D002F1A35 /* ViewController.swift */,
 				E359182725106E3D002F1A35 /* Main.storyboard */,
 				E359182A25106E3D002F1A35 /* ContentView.swift */,
 				E359182C25106E3D002F1A35 /* Assets.xcassets */,
@@ -335,7 +332,6 @@
 				E369F9342515B71100A51A0D /* EditFieldTextView.swift in Sources */,
 				E357B364251D2FB500354BCA /* AnkiViewController.swift in Sources */,
 				E369F92A2515B71100A51A0D /* NoteType.swift in Sources */,
-				E359182625106E3D002F1A35 /* ViewController.swift in Sources */,
 				E369F9382515B71100A51A0D /* Flashcard.swift in Sources */,
 				E357B368251D2FB500354BCA /* SelectNoteTypeTableViewController.swift in Sources */,
 				E369F9322515B71100A51A0D /* FlashcardSettings.swift in Sources */,
