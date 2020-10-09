@@ -7,6 +7,7 @@
 
 import Foundation
 
+
 struct Field: Codable {
     enum FieldType: String, Codable {
         case cloze, tag, normal
@@ -14,7 +15,7 @@ struct Field: Codable {
     
     let name: String
     var text: String
-    let fieldType: FieldType
+    var fieldType: FieldType
     
     init(name: String, text: String = "", fieldType: FieldType = .normal) {
         self.name = name

@@ -9,15 +9,16 @@
 import UIKit
 
 class SelectDeckTypeTableViewController: UITableViewController {
-    var deckTypes: [String] = UserDefaults.standard.object(forKey: "ankiDeckOptions") as? [String] ?? ["Default", "Quizbowl"]
-    var ankiSettings = UserDefaults.standard.object(forKey: "ankiDefaults") as? Array<String> ?? ["User 1", "Basic", "Default", "Front", "Back", ""]
-    var selectedDeckType = "Default"
+//    var deckTypes: [String] = UserDefaults.standard.object(forKey: "ankiDeckOptions") as? [String] ?? ["Default", "Quizbowl"]
+//    var ankiSettings = UserDefaults.standard.object(forKey: "ankiDefaults") as? Array<String> ?? ["User 1", "Basic", "Default", "Front", "Back", ""]
+//    var selectedDeckType = "Default"
+    var deck = FlashcardSettings.shared.defaultDeck
+    var decks = FlashcardSettings.shared.decks
+    
     //var selecteddeckType = UserDefaults.standard.object(forKey: "ankiDefaults") as? String ?? "Basic"
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        selectedDeckType = ankiSettings[1]
     }
     
     @IBAction func cancel(_ sender: Any) {
@@ -33,21 +34,23 @@ class SelectDeckTypeTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return deckTypes.count
+        return decks.count
     }
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let deckType = tableView.dequeueReusableCell(withIdentifier: "deckType", for: indexPath) as? LabelTableViewCell else {
+        guard let deck = tableView.dequeueReusableCell(withIdentifier: "deck", for: indexPath) as? LabelTableViewCell else {
             fatalError("The dequeued cell is not an instance of LabelTableViewCell.")
         }
         
-        deckType.label.text = deckTypes[indexPath.row]
-        if deckType.label.text == ankiSettings[2] {
-            deckType.accessoryType = .checkmark
+        deck.label.text = decks[indexPath.row].name
+        if deck.label.text == self.deck.name {
+            deck.accessoryType = .checkmark
+        } else {
+            deck.accessoryType = .none
         }
         
-        return deckType
+        return deck
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -58,26 +61,21 @@ class SelectDeckTypeTableViewController: UITableViewController {
          tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
          }*/
         
-        guard let deckTypeRow = tableView.cellForRow(at: indexPath) as? LabelTableViewCell else {
+        guard let deckRow = tableView.cellForRow(at: indexPath) as? LabelTableViewCell else {
             fatalError("The dequeued cell is not an instance of LabelTableViewCell.")
         }
         
-        selectedDeckType = deckTypeRow.label.text ?? "Default"
+        deck = decks.first(where: {$0.name == deckRow.label.text}) ?? FlashcardSettings.shared.defaultDeck
         
         performSegue(withIdentifier: "deckTypeUnwind", sender: self)
     }
     
     @IBAction func unwindToSelectDeckView(sender: UIStoryboardSegue) {
         if let sourceViewController = sender.source as? AddDeckViewController {
-            deckTypes.append(sourceViewController.deckNameField.text)
-            UserDefaults.standard.set(deckTypes, forKey: "ankiDeckOptions")
+            let newDeck = Deck(name: sourceViewController.deckNameField.text)
+            decks.append(newDeck)
+            FlashcardSettings.shared.decks = decks
             tableView.reloadData()
-            /*
-             if ankiSettings[1] == "Cloze" {
-             clozeButton.isHidden = false
-             } else {
-             clozeButton.isHidden = true
-             }*/
         }
     }
     
@@ -85,8 +83,8 @@ class SelectDeckTypeTableViewController: UITableViewController {
         
         let delete = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
             // delete item at indexPath
-            self.deckTypes.remove(at: indexPath.row)
-            UserDefaults.standard.set(self.deckTypes, forKey: "ankiDeckOptions")
+            self.decks.remove(at: indexPath.row)
+            FlashcardSettings.shared.decks = self.decks
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
         

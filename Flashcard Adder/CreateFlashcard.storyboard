@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="3If-2Y-L1j">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Ozp-L6-Lkg">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
@@ -8,24 +8,14 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Create Flashcard View Controller-->
+        <!--Add Flashcard-->
         <scene sceneID="wen-h2-j7Y">
             <objects>
-                <viewController storyboardIdentifier="createFlashcardViewController" id="3If-2Y-L1j" customClass="CreateFlashcardViewController" customModule="Flashcard_Adder" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="createFlashcardViewController" id="3If-2Y-L1j" customClass="AnkiViewController" customModule="Flashcard_Adder" sceneMemberID="viewController">
                     <view key="view" opaque="NO" contentMode="scaleToFill" id="wXB-oo-Abr">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ICH-1a-n3e">
-                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                                <color key="backgroundColor" name="backgroundColor"/>
-                                <items>
-                                    <navigationItem title="Create Flashcard" id="86Y-ug-v8y">
-                                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="tgx-WT-sTc"/>
-                                        <barButtonItem key="rightBarButtonItem" title="Create" id="cTF-Bf-3KR"/>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e8d-Za-QWB">
                                 <rect key="frame" x="10" y="88" width="394" height="774"/>
                                 <subviews>
@@ -41,16 +31,16 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="hmh-TE-5by" customClass="EditFieldTextView" customModule="Flashcard_Adder" customModuleProvider="target">
+                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="hmh-TE-5by" customClass="EditFieldTextView" customModule="Create_Flashcard_Extension" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="26.5" width="394" height="38"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
                                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                     </textView>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="lc3-KY-vIa" userLabel="Categories Tournaments Stack">
+                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="lc3-KY-vIa" userLabel="Cloze Stack View">
                                                         <rect key="frame" x="0.0" y="70.5" width="394" height="35"/>
                                                         <subviews>
-                                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P9m-sB-3KC" customClass="BigButton" customModule="Flashcard_Adder" customModuleProvider="target">
+                                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P9m-sB-3KC" customClass="BigButton" customModule="Create_Flashcard_Extension" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="0.0" width="192" height="35"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="35" id="KaD-uE-LcP"/>
@@ -59,7 +49,7 @@
                                                                 <inset key="contentEdgeInsets" minX="5" minY="0.0" maxX="5" maxY="0.0"/>
                                                                 <state key="normal" title="Cloze"/>
                                                             </button>
-                                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fXm-UW-w9h" customClass="BigButton" customModule="Flashcard_Adder" customModuleProvider="target">
+                                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fXm-UW-w9h" customClass="BigButton" customModule="Create_Flashcard_Extension" customModuleProvider="target">
                                                                 <rect key="frame" x="202" y="0.0" width="192" height="35"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="35" id="m4C-bf-k8n"/>
@@ -73,7 +63,7 @@
                                                             <constraint firstAttribute="height" constant="35" id="FGo-fe-Gg9"/>
                                                         </constraints>
                                                     </stackView>
-                                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kbA-26-doi" customClass="BigButton" customModule="Flashcard_Adder" customModuleProvider="target">
+                                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kbA-26-doi" customClass="BigButton" customModule="Create_Flashcard_Extension" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="111.5" width="394" height="35"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="35" id="RHB-bb-Q9g"/>
@@ -93,7 +83,7 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="wTJ-VC-scf" customClass="EditFieldTextView" customModule="Flashcard_Adder" customModuleProvider="target">
+                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="wTJ-VC-scf" customClass="EditFieldTextView" customModule="Create_Flashcard_Extension" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="26.5" width="394" height="38"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <color key="textColor" name="textColor"/>
@@ -102,16 +92,16 @@
                                                     </textView>
                                                 </subviews>
                                             </stackView>
-                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="gtH-cC-tJP" userLabel="Categories Tournaments Stack">
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="gtH-cC-tJP" userLabel="Type Deck Stack View">
                                                 <rect key="frame" x="0.0" y="231" width="394" height="35"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0T8-r4-qJy" customClass="BigButton" customModule="Flashcard_Adder" customModuleProvider="target">
+                                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0T8-r4-qJy" customClass="BigButton" customModule="Create_Flashcard_Extension" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="192" height="35"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <inset key="contentEdgeInsets" minX="5" minY="0.0" maxX="5" maxY="0.0"/>
                                                         <state key="normal" title="Type: "/>
                                                     </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6BP-p0-NXP" customClass="BigButton" customModule="Flashcard_Adder" customModuleProvider="target">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6BP-p0-NXP" customClass="BigButton" customModule="Create_Flashcard_Extension" customModuleProvider="target">
                                                         <rect key="frame" x="202" y="0.0" width="192" height="35"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <inset key="contentEdgeInsets" minX="5" minY="0.0" maxX="5" maxY="0.0"/>
@@ -141,27 +131,65 @@
                         <viewLayoutGuide key="safeArea" id="JFr-h4-uX9"/>
                         <color key="backgroundColor" name="backgroundColor"/>
                         <constraints>
-                            <constraint firstItem="ICH-1a-n3e" firstAttribute="width" secondItem="wXB-oo-Abr" secondAttribute="width" id="Haz-yI-PTx"/>
-                            <constraint firstItem="ICH-1a-n3e" firstAttribute="top" secondItem="JFr-h4-uX9" secondAttribute="top" id="OfD-GI-vwg"/>
+                            <constraint firstItem="e8d-Za-QWB" firstAttribute="top" secondItem="JFr-h4-uX9" secondAttribute="top" id="0Br-Qt-ao3"/>
                             <constraint firstItem="JFr-h4-uX9" firstAttribute="trailing" secondItem="e8d-Za-QWB" secondAttribute="trailing" constant="10" id="bDI-tb-wKJ"/>
                             <constraint firstItem="e8d-Za-QWB" firstAttribute="leading" secondItem="JFr-h4-uX9" secondAttribute="leading" constant="10" id="ccT-qA-yT7"/>
                             <constraint firstItem="JFr-h4-uX9" firstAttribute="bottom" secondItem="e8d-Za-QWB" secondAttribute="bottom" id="feT-5m-b4c"/>
-                            <constraint firstItem="e8d-Za-QWB" firstAttribute="top" secondItem="ICH-1a-n3e" secondAttribute="bottom" id="key-Sp-lcH"/>
-                            <constraint firstItem="ICH-1a-n3e" firstAttribute="centerX" secondItem="wXB-oo-Abr" secondAttribute="centerX" id="qVe-9q-eKB"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Add Flashcard" id="0Ao-he-2ej">
+                        <leftBarButtonItems>
+                            <barButtonItem systemItem="cancel" id="1cc-OY-mBu"/>
+                            <barButtonItem title="Reset" id="Kln-y1-UeD"/>
+                        </leftBarButtonItems>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Xom-8b-YND">
+                            <connections>
+                                <action selector="addCard:" destination="3If-2Y-L1j" id="0eq-XL-C50"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="addButton" destination="Xom-8b-YND" id="2K9-0U-JQ6"/>
+                        <outlet property="backLabel" destination="HxM-75-kSV" id="3ai-8B-oIq"/>
+                        <outlet property="backTextView" destination="wTJ-VC-scf" id="Qj0-bp-xrz"/>
+                        <outlet property="cancelButton" destination="1cc-OY-mBu" id="WCq-C2-rbo"/>
+                        <outlet property="clozeButton" destination="P9m-sB-3KC" id="DcP-Q4-jAw"/>
+                        <outlet property="deckButton" destination="6BP-p0-NXP" id="L6t-h0-OTT"/>
+                        <outlet property="frontLabel" destination="Wht-SX-T6x" id="ayR-hQ-SJf"/>
+                        <outlet property="frontTextView" destination="hmh-TE-5by" id="ruv-vA-Pzw"/>
+                        <outlet property="resetButton" destination="Kln-y1-UeD" id="dWG-iZ-tgX"/>
+                        <outlet property="typeButton" destination="0T8-r4-qJy" id="GNN-CA-CTc"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Gl-rx-q5a" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-38" y="181"/>
+            <point key="canvasLocation" x="866.66666666666674" y="184.82142857142856"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="r3e-eo-y7l">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Ozp-L6-Lkg" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="gXH-6r-9za">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="3If-2Y-L1j" kind="relationship" relationship="rootViewController" id="5nJ-h4-Kse"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cbw-9Z-2uN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-43.478260869565219" y="184.82142857142856"/>
         </scene>
     </scenes>
     <resources>
         <namedColor name="backgroundColor">
-            <color red="0.94117647058823528" green="0.97254901960784312" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.94099998474121094" green="0.97299998998641968" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="textColor">
-            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.23529411764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.23499999940395355" green="0.23499999940395355" blue="0.23499999940395355" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

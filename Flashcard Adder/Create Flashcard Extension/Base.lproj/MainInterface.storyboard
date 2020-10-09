@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="j1y-V4-xli">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
@@ -12,11 +13,11 @@
             <objects>
                 <viewController id="j1y-V4-xli" customClass="ShareViewController" customModule="Create_Flashcard_Extension" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" opaque="NO" contentMode="scaleToFill" id="wbc-yd-nQP">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cbK-2q-Kdq">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                                 <color key="backgroundColor" name="backgroundColor"/>
                                 <items>
                                     <navigationItem title="Create Flashcard" id="PYY-r0-4ew">
@@ -34,31 +35,31 @@
                                 </items>
                             </navigationBar>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4ve-BN-xcz">
-                                <rect key="frame" x="10" y="44" width="580" height="556"/>
+                                <rect key="frame" x="10" y="88" width="394" height="774"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="VFE-hx-vbW">
-                                        <rect key="frame" x="0.0" y="20" width="580" height="266"/>
+                                        <rect key="frame" x="0.0" y="20" width="394" height="266"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="ZfA-1G-6GX" userLabel="Front">
-                                                <rect key="frame" x="0.0" y="0.0" width="580" height="146.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="394" height="146.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" Front" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TMq-UR-dTq">
-                                                        <rect key="frame" x="0.0" y="0.0" width="580" height="20.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="394" height="20.5"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="PhF-Dm-mzy" customClass="EditFieldTextView" customModule="Flashcard">
-                                                        <rect key="frame" x="0.0" y="26.5" width="580" height="38"/>
+                                                        <rect key="frame" x="0.0" y="26.5" width="394" height="38"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
                                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                     </textView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="XEy-Oh-cQD" userLabel="Categories Tournaments Stack">
-                                                        <rect key="frame" x="0.0" y="70.5" width="580" height="35"/>
+                                                        <rect key="frame" x="0.0" y="70.5" width="394" height="35"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yr6-H1-M6V" customClass="BigButton" customModule="Flashcard">
-                                                                <rect key="frame" x="0.0" y="0.0" width="285" height="35"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="192" height="35"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="35" id="PMO-6I-xo9"/>
                                                                 </constraints>
@@ -67,7 +68,7 @@
                                                                 <state key="normal" title="Cloze"/>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zGU-h4-WeU" customClass="BigButton" customModule="Flashcard">
-                                                                <rect key="frame" x="295" y="0.0" width="285" height="35"/>
+                                                                <rect key="frame" x="202" y="0.0" width="192" height="35"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="35" id="QrG-4O-dga"/>
                                                                 </constraints>
@@ -81,7 +82,7 @@
                                                         </constraints>
                                                     </stackView>
                                                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U82-Q8-Iak" customClass="BigButton" customModule="Flashcard">
-                                                        <rect key="frame" x="0.0" y="111.5" width="580" height="35"/>
+                                                        <rect key="frame" x="0.0" y="111.5" width="394" height="35"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="35" id="kvp-bi-RZV"/>
                                                         </constraints>
@@ -92,16 +93,16 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="Uov-Cj-8N2" userLabel="Back">
-                                                <rect key="frame" x="0.0" y="156.5" width="580" height="64.5"/>
+                                                <rect key="frame" x="0.0" y="156.5" width="394" height="64.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" Back" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zfm-Rj-upJ">
-                                                        <rect key="frame" x="0.0" y="0.0" width="580" height="20.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="394" height="20.5"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="5vY-sP-T90" customClass="EditFieldTextView" customModule="Flashcard">
-                                                        <rect key="frame" x="0.0" y="26.5" width="580" height="38"/>
+                                                        <rect key="frame" x="0.0" y="26.5" width="394" height="38"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <color key="textColor" name="textColor"/>
                                                         <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
@@ -110,16 +111,16 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="vCM-Eh-RrW" userLabel="Categories Tournaments Stack">
-                                                <rect key="frame" x="0.0" y="231" width="580" height="35"/>
+                                                <rect key="frame" x="0.0" y="231" width="394" height="35"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7ks-cd-qgL" customClass="BigButton" customModule="Flashcard">
-                                                        <rect key="frame" x="0.0" y="0.0" width="285" height="35"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="192" height="35"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <inset key="contentEdgeInsets" minX="5" minY="0.0" maxX="5" maxY="0.0"/>
                                                         <state key="normal" title="Type: "/>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wD4-7m-kpT" customClass="BigButton" customModule="Flashcard">
-                                                        <rect key="frame" x="295" y="0.0" width="285" height="35"/>
+                                                        <rect key="frame" x="202" y="0.0" width="192" height="35"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <inset key="contentEdgeInsets" minX="5" minY="0.0" maxX="5" maxY="0.0"/>
                                                         <state key="normal" title="Deck: "/>
@@ -171,38 +172,38 @@
             <objects>
                 <viewController id="Mfm-JK-dk1" customClass="AnkiViewController" customModule="Create_Flashcard_Extension" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7b9-0M-sgr">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hrg-bz-HhA">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vBq-ls-09D">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="511.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="511.5"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uj4-Gs-rZW" userLabel="containing view">
-                                                <rect key="frame" x="10" y="0.0" width="580" height="505.5"/>
+                                                <rect key="frame" x="10" y="0.0" width="394" height="505.5"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="Pqs-YR-YwW" userLabel="Front">
-                                                        <rect key="frame" x="0.0" y="20" width="580" height="146.5"/>
+                                                        <rect key="frame" x="0.0" y="20" width="394" height="146.5"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" Front" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="evH-XC-5f5">
-                                                                <rect key="frame" x="0.0" y="0.0" width="580" height="20.5"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="394" height="20.5"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Izh-VN-qZ3" customClass="EditFieldTextView" customModule="Create_Flashcard_Extension" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="26.5" width="580" height="38"/>
+                                                                <rect key="frame" x="0.0" y="26.5" width="394" height="38"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
                                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                             </textView>
                                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="gWQ-bZ-je4" userLabel="Categories Tournaments Stack">
-                                                                <rect key="frame" x="0.0" y="70.5" width="580" height="35"/>
+                                                                <rect key="frame" x="0.0" y="70.5" width="394" height="35"/>
                                                                 <subviews>
                                                                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kxJ-83-YK7" customClass="BigButton" customModule="iQuiz">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="285" height="35"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="192" height="35"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="35" id="SMk-TD-MRB"/>
                                                                         </constraints>
@@ -222,7 +223,7 @@
                                                                         </connections>
                                                                     </button>
                                                                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mfh-vb-ODA" customClass="BigButton" customModule="iQuiz">
-                                                                        <rect key="frame" x="295" y="0.0" width="285" height="35"/>
+                                                                        <rect key="frame" x="202" y="0.0" width="192" height="35"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="35" id="oI3-aB-2Cb"/>
                                                                         </constraints>
@@ -244,7 +245,7 @@
                                                                 </constraints>
                                                             </stackView>
                                                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T7K-Iq-KUN" customClass="BigButton" customModule="iQuiz">
-                                                                <rect key="frame" x="0.0" y="111.5" width="580" height="35"/>
+                                                                <rect key="frame" x="0.0" y="111.5" width="394" height="35"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="35" id="4pK-ZZ-9c5"/>
                                                                 </constraints>
@@ -263,16 +264,16 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="ddL-8d-Inz" userLabel="Back">
-                                                        <rect key="frame" x="0.0" y="186.5" width="580" height="64.5"/>
+                                                        <rect key="frame" x="0.0" y="186.5" width="394" height="64.5"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" Back" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="66S-BD-T4E">
-                                                                <rect key="frame" x="0.0" y="0.0" width="580" height="20.5"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="394" height="20.5"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="tpf-xi-Skp" customClass="EditFieldTextView" customModule="Create_Flashcard_Extension" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="26.5" width="580" height="38"/>
+                                                                <rect key="frame" x="0.0" y="26.5" width="394" height="38"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
                                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -280,19 +281,19 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="hZL-zt-ZJZ">
-                                                        <rect key="frame" x="0.0" y="271" width="580" height="234.5"/>
+                                                        <rect key="frame" x="0.0" y="271" width="394" height="234.5"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="eCF-Zw-fGg">
-                                                                <rect key="frame" x="0.0" y="0.0" width="580" height="64.5"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="394" height="64.5"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" Tags" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ajU-8L-BdL">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="580" height="20.5"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="394" height="20.5"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" text="quizdb" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="65J-fh-deC" customClass="EditFieldTextView" customModule="Create_Flashcard_Extension" customModuleProvider="target">
-                                                                        <rect key="frame" x="0.0" y="26.5" width="580" height="38"/>
+                                                                        <rect key="frame" x="0.0" y="26.5" width="394" height="38"/>
                                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
                                                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -300,10 +301,10 @@
                                                                 </subviews>
                                                             </stackView>
                                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="srl-gP-EVg" userLabel="Categories Tournaments Stack">
-                                                                <rect key="frame" x="0.0" y="84.5" width="580" height="35"/>
+                                                                <rect key="frame" x="0.0" y="84.5" width="394" height="35"/>
                                                                 <subviews>
                                                                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hec-jJ-SgF" customClass="BigButton" customModule="iQuiz">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="285" height="35"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="192" height="35"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                         <inset key="contentEdgeInsets" minX="5" minY="0.0" maxX="5" maxY="0.0"/>
                                                                         <state key="normal" title="Type: "/>
@@ -317,7 +318,7 @@
                                                                         </userDefinedRuntimeAttributes>
                                                                     </button>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XU0-E4-s58" customClass="BigButton" customModule="Create_Flashcard_Extension" customModuleProvider="target">
-                                                                        <rect key="frame" x="295" y="0.0" width="285" height="35"/>
+                                                                        <rect key="frame" x="202" y="0.0" width="192" height="35"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                         <inset key="contentEdgeInsets" minX="5" minY="0.0" maxX="5" maxY="0.0"/>
                                                                         <state key="normal" title="Deck: "/>
@@ -341,21 +342,21 @@
                                                                 </constraints>
                                                             </stackView>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Yr7-FU-P1N">
-                                                                <rect key="frame" x="0.0" y="139.5" width="580" height="95"/>
+                                                                <rect key="frame" x="0.0" y="139.5" width="394" height="95"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" Question Text" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xVU-mK-CCF">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="580" height="20.5"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="394" height="20.5"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="Question Text" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="GOm-JH-oRg" userLabel="questionText">
-                                                                        <rect key="frame" x="0.0" y="20.5" width="580" height="36.5"/>
+                                                                        <rect key="frame" x="0.0" y="20.5" width="394" height="36.5"/>
                                                                         <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="15"/>
                                                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                                     </textView>
                                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="Answer:" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="kxC-6e-cI8">
-                                                                        <rect key="frame" x="0.0" y="57" width="580" height="38"/>
+                                                                        <rect key="frame" x="0.0" y="57" width="394" height="38"/>
                                                                         <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
                                                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                                     </textView>
@@ -378,7 +379,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wem-rt-ECH" userLabel="space">
-                                                <rect key="frame" x="0.0" y="505.5" width="600" height="6"/>
+                                                <rect key="frame" x="0.0" y="505.5" width="414" height="6"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="6" id="hdP-xz-xH0"/>
                                                 </constraints>
@@ -448,10 +449,10 @@
     </scenes>
     <resources>
         <namedColor name="backgroundColor">
-            <color red="0.94117647058823528" green="0.97254901960784312" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.94099998474121094" green="0.97299998998641968" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="textColor">
-            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.23529411764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.23499999940395355" green="0.23499999940395355" blue="0.23499999940395355" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

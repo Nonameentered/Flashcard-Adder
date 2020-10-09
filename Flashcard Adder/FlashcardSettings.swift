@@ -20,6 +20,7 @@ final class FlashcardSettings {
     struct Key {
         static let ankiProfile = "ankiProfile"
         static let defaultNoteType = "defaultNoteType"
+        static let defaultClozeNoteType = "defaultClozeNoteType"
         static let defaultDeck = "defaultDeck"
         static let noteTypes = "noteTypes"
         static let decks = "decks"
@@ -27,7 +28,8 @@ final class FlashcardSettings {
     
     static func registerDefaults() {
         let defaults: [String: Data] = [Key.ankiProfile: encodeCodable(for: Profile(name: "User 1"))!,
-                                        Key.defaultNoteType: encodeCodable(for: NoteType(name: "Basic", fields: [Field(name: "Front"), Field(name: "Back")]))!,
+                                        Key.defaultNoteType: encodeCodable(for: NoteType(name: "Basic", fieldDefaults: [Field(name: "Front"), Field(name: "Back")]))!,
+                                        Key.defaultClozeNoteType: encodeCodable(for: NoteType(name: "Cloze", fieldDefaults: [Field(name: "Text"), Field(name: "Extra")]))!,
                                         Key.defaultDeck: encodeCodable(for: Deck(name: "Default"))!]
         FlashcardSettings.store.register(defaults: defaults)
     }
@@ -43,7 +45,16 @@ final class FlashcardSettings {
     
     var defaultNoteType: NoteType {
         get {
-            return FlashcardSettings.codable(for: Key.defaultNoteType) ?? NoteType(name: "Basic", fields: [Field(name: "Front"), Field(name: "Back")])
+            return FlashcardSettings.codable(for: Key.defaultNoteType) ?? NoteType(name: "Basic", fieldDefaults: [Field(name: "Front"), Field(name: "Back")])
+        }
+        set {
+            FlashcardSettings.setCodable(for: Key.defaultNoteType, newValue)
+        }
+    }
+    
+    var defaultClozeNoteType: NoteType {
+        get {
+            return FlashcardSettings.codable(for: Key.defaultNoteType) ?? NoteType(name: "Cloze", fieldDefaults: [Field(name: "Text"), Field(name: "Extra")])
         }
         set {
             FlashcardSettings.setCodable(for: Key.defaultNoteType, newValue)
@@ -61,7 +72,7 @@ final class FlashcardSettings {
     
     var noteTypes: [NoteType] {
         get {
-            return FlashcardSettings.codable(for: Key.noteTypes) ?? [NoteType(name: "Basic", fields: [Field(name: "Front"), Field(name: "Back")]), NoteType(name: "Cloze", fields: [Field(name: "Text"), Field(name: "Extra")])]
+            return FlashcardSettings.codable(for: Key.noteTypes) ?? [NoteType(name: "Basic", fieldDefaults: [Field(name: "Front"), Field(name: "Back")]), NoteType(name: "Cloze", fieldDefaults: [Field(name: "Text"), Field(name: "Extra")])]
         }
         set {
             FlashcardSettings.setCodable(for: Key.defaultNoteType, newValue)

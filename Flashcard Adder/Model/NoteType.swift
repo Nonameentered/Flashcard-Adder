@@ -9,5 +9,12 @@ import Foundation
 
 struct NoteType: Codable {
     let name: String
-    let fields: [Field]
+    let fieldDefaults: [Field]
+    let acceptsCloze: Bool
+    
+    init(name: String, fieldDefaults: [Field], acceptsCloze: Bool = false) {
+        self.name = name
+        self.fieldDefaults = fieldDefaults
+        self.acceptsCloze = acceptsCloze
+    }
 }

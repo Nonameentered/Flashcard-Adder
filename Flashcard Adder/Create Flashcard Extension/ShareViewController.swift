@@ -33,7 +33,7 @@ class ShareViewController: UIViewController {
         flashcard.fields[0].text = frontField.text
         flashcard.fields[1].text = backField.text
         flashcard.noteType = FlashcardSettings.shared.defaultNoteType
-        flashcard.selectedDeck = FlashcardSettings.shared.defaultDeck
+        flashcard.deck = FlashcardSettings.shared.defaultDeck
         extensionContext?.completeRequest(returningItems: []) { expired in
             if expired {
                 self.extensionContext?.cancelRequest(withError: NSError(domain: "com.technaplex.Flashcard-Adder.Create-Flashcard", code: 1, userInfo: [NSLocalizedDescriptionKey: "Previous invocation still terminating"]))
