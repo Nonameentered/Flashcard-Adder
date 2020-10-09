@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AnkiViewController: UIViewController, UITextViewDelegate {
+class AnkiViewController: UIViewController {
     @IBOutlet var frontLabel: UILabel! {
         didSet {
             frontLabel.text = flashcard.fieldNames[0]
@@ -20,7 +20,7 @@ class AnkiViewController: UIViewController, UITextViewDelegate {
             frontTextView.text = flashcard.originalText
         }
     }
-    
+
     @IBOutlet var backLabel: UILabel! {
         didSet {
             backLabel.text = flashcard.fieldNames[1]
@@ -28,19 +28,15 @@ class AnkiViewController: UIViewController, UITextViewDelegate {
     }
 
     @IBOutlet var backTextView: EditFieldTextView!
-//    @IBOutlet var tagsLabel: UILabel!
-//    @IBOutlet var tagsTextView: EditFieldTextView!
 //    @IBOutlet var surroundingTextLabel: UILabel!
 //    @IBOutlet var surroundingTextView: UITextView! {
 //        didSet {
 //            surroundingTextView.text = flashcard.surroundingText
 //        }
 //    }
-    
     @IBOutlet var addButton: UIBarButtonItem!
     @IBOutlet var resetButton: UIBarButtonItem!
     @IBOutlet var cancelButton: UIBarButtonItem!
-    
     @IBOutlet var clozeButton: BigButton!
     @IBOutlet var deckButton: BigButton! {
         didSet {
@@ -53,29 +49,28 @@ class AnkiViewController: UIViewController, UITextViewDelegate {
             typeButton.setTitle("Type: " + flashcard.typeName, for: .normal)
         }
     }
-    
+
     var flashcard = Flashcard()
     var savedRange: UITextRange?
     
-    
-    //MARK: Lifecycle
+    // MARK: - Lifecycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Maybe unnecessary
-        flashcard = Flashcard()
-        
         NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground), name: UIApplication.didBecomeActiveNotification, object: nil)
         
-        self.navigationItem.leftBarButtonItems = [resetButton]
+        navigationItem.leftBarButtonItems = [resetButton]
         hideKeyboardWhenTappedAround()
         frontTextView.delegate = self
         backTextView.delegate = self
+        
+        updateAddButtonState()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-//        enableCustomMenu()
+        enableCustomMenu()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -83,9 +78,7 @@ class AnkiViewController: UIViewController, UITextViewDelegate {
         view.endEditing(true)
     }
     
-    @objc func willEnterForeground() {
-        
-    }
+    @objc func willEnterForeground() {}
     
     // MARK: Keyboard/Menu Modifiers
     
@@ -104,8 +97,12 @@ class AnkiViewController: UIViewController, UITextViewDelegate {
     }
     
     func enableCustomMenu() {
-        // let makeHint = UIMenuItem(title: "Make Hint", action: #selector(self.makeHintCloze(sender:)))
-        // UIMenuController.shared.menuItems = [makeHint]
+        let sequential = UIMenuItem(title: "Sequential", action: #selector(sequentialCloze))
+        let repetitive = UIMenuItem(title: "Repetitive", action: #selector(repetitiveCloze))
+        let edit = UIMenuItem(title: "Edit", action: #selector(clozeWithHint))
+        let hint = UIMenuItem(title: "Hint", action: #selector(makeHintCloze))
+        
+        UIMenuController.shared.menuItems = [sequential, repetitive, edit, hint]
     }
     
     // MARK: Cloze
@@ -122,6 +119,7 @@ class AnkiViewController: UIViewController, UITextViewDelegate {
         determineCloze(sequential: true)
     }
     
+    // This should be in Field instead, with Flashcard as a delegate
     func determineCloze(sequential: Bool) {
         let clozeCounter: Int
         if sequential {
@@ -129,7 +127,6 @@ class AnkiViewController: UIViewController, UITextViewDelegate {
         } else {
             clozeCounter = frontTextView.text.countInstances(of: "{{c")
         }
-        
         
         if let textRange = frontTextView.selectedTextRange {
             let subject = frontTextView.text(in: textRange)?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
@@ -163,11 +160,7 @@ class AnkiViewController: UIViewController, UITextViewDelegate {
         performSegue(withIdentifier: "clozeBackText", sender: sender)
     }
     
-    
     // MARK: - Actions
-    @IBAction func cancel(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
-    }
     
     /// Adds a new line to the currently active text view, if a text view is active
     @objc func newLine() {
@@ -181,17 +174,11 @@ class AnkiViewController: UIViewController, UITextViewDelegate {
         backTextView.text = ""
     }
     
-    func setFlashcardText() {
-        flashcard.updateField(with: frontLabel.text ?? "", to: frontTextView.text)
-        flashcard.updateField(with: backLabel.text ?? "", to: backTextView.text)
-    }
-    
-    // MARK: - Navigation
-    
     @IBAction func addCard(_ sender: Any) {
-        // Enable add button only when fields are not empty
-        setFlashcardText()
         guard let ankiUrl = flashcard.ankiUrl else {
+            let alert = UIAlertController(title: "Incomplete Flashcard", message: "The currently filled out text does not create a flashcard", preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
+            present(alert, animated: true, completion: nil)
             return
         }
         
@@ -203,6 +190,12 @@ class AnkiViewController: UIViewController, UITextViewDelegate {
             alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
             present(alert, animated: true, completion: nil)
         }
+    }
+    
+    // MARK: - Navigation
+    
+    @IBAction func cancel(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -283,7 +276,10 @@ class AnkiViewController: UIViewController, UITextViewDelegate {
             createCloze(clozeText: sourceViewController.clozeTextView.text, hintText: sourceViewController.hintTextView.text)
         }
     }
-    
+}
+
+// MARK: UITextViewDelegate
+extension AnkiViewController: UITextViewDelegate {
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         if textView == frontTextView || textView == backTextView, text == "\t" {
             if text == "\t" {
@@ -299,6 +295,24 @@ class AnkiViewController: UIViewController, UITextViewDelegate {
             return false
         } else {
             return true
+        }
+    }
+    
+    func textViewDidChange(_ textView: UITextView) {
+        if textView == frontTextView {
+            flashcard.updateField(with: frontLabel.text ?? "", to: frontTextView.text)
+        } else if textView == backTextView {
+            flashcard.updateField(with: backLabel.text ?? "", to: backTextView.text)
+        }
+        
+        updateAddButtonState()
+    }
+    
+    func updateAddButtonState() {
+        if flashcard.isValid {
+            addButton.isEnabled = true
+        } else {
+            addButton.isEnabled = false
         }
     }
 }

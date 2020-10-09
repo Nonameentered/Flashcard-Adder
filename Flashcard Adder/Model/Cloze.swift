@@ -7,21 +7,7 @@
 
 import Foundation
 
-/*
-struct ClozeManager {
-    var clozes: [Cloze]
-    
-    var clozeCount: Int {
-        return clozes.count
-    }
-    
-    func newCloze(sequential: Bool = true, subject: String, hint: String) -> String {
-        return "{{c\(clozeCount + 1)::\(subject)::\(hint)}}"
-    }
-}
-*/
-
-struct Cloze {
+struct Cloze: Codable {
     let subject: String
     let hint: String?
     
@@ -32,6 +18,8 @@ struct Cloze {
             return "{{c\(count)::\(subject)}}"
         }
     }
+    
+    static let identifier = "{{c"
 }
 
 extension Cloze {

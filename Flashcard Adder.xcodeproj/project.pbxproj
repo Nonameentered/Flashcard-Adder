@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		E301AEBA252115E7006A9742 /* Cloze.swift in Sources */ = {isa = PBXBuildFile; fileRef = E301AEB9252115E7006A9742 /* Cloze.swift */; };
 		E301AEF025217EE1006A9742 /* Field.swift in Sources */ = {isa = PBXBuildFile; fileRef = E301AEEF25217EE1006A9742 /* Field.swift */; };
-		E301AEF125217EE1006A9742 /* Field.swift in Sources */ = {isa = PBXBuildFile; fileRef = E301AEEF25217EE1006A9742 /* Field.swift */; };
 		E306FAA725218D750012337D /* String+CountInstances.swift in Sources */ = {isa = PBXBuildFile; fileRef = E306FAA625218D750012337D /* String+CountInstances.swift */; };
 		E306FAA825218D750012337D /* String+CountInstances.swift in Sources */ = {isa = PBXBuildFile; fileRef = E306FAA625218D750012337D /* String+CountInstances.swift */; };
 		E306FAAC25218DF60012337D /* UIView+FirstResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E306FAAB25218DF60012337D /* UIView+FirstResponder.swift */; };
@@ -18,6 +17,8 @@
 		E3359E0925300CC80039F537 /* CreateFlashcard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3359E0725300CC80039F537 /* CreateFlashcard.storyboard */; };
 		E3359E3B25301A4D0039F537 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3359E3A25301A4D0039F537 /* LaunchScreen.storyboard */; };
 		E3359E3C25301A4D0039F537 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3359E3A25301A4D0039F537 /* LaunchScreen.storyboard */; };
+		E3359E6925310CAB0039F537 /* Cloze.swift in Sources */ = {isa = PBXBuildFile; fileRef = E301AEB9252115E7006A9742 /* Cloze.swift */; };
+		E3359E6E25310CCB0039F537 /* Field.swift in Sources */ = {isa = PBXBuildFile; fileRef = E301AEEF25217EE1006A9742 /* Field.swift */; };
 		E357B363251D2FB500354BCA /* AddNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E357B35D251D2FB500354BCA /* AddNoteViewController.swift */; };
 		E357B364251D2FB500354BCA /* AnkiViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E357B35E251D2FB500354BCA /* AnkiViewController.swift */; };
 		E357B365251D2FB500354BCA /* ClozeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E357B35F251D2FB500354BCA /* ClozeViewController.swift */; };
@@ -379,12 +380,13 @@
 				E357B37A251D32CA00354BCA /* ClozeViewController.swift in Sources */,
 				E306FAAD25218DF60012337D /* UIView+FirstResponder.swift in Sources */,
 				E357B383251D32D300354BCA /* AddDeckViewController.swift in Sources */,
+				E3359E6E25310CCB0039F537 /* Field.swift in Sources */,
 				E369F92F2515B71100A51A0D /* Profile.swift in Sources */,
-				E301AEF125217EE1006A9742 /* Field.swift in Sources */,
 				E306FAA825218D750012337D /* String+CountInstances.swift in Sources */,
 				E357B371251D32BF00354BCA /* LabelTableViewCell.swift in Sources */,
 				E369F9392515B71100A51A0D /* Flashcard.swift in Sources */,
 				E369F9372515B71100A51A0D /* BigButton.swift in Sources */,
+				E3359E6925310CAB0039F537 /* Cloze.swift in Sources */,
 				E369F92B2515B71100A51A0D /* NoteType.swift in Sources */,
 				E369F9352515B71100A51A0D /* EditFieldTextView.swift in Sources */,
 			);

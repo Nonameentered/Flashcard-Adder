@@ -9,12 +9,16 @@ import Foundation
 
 struct NoteType: Codable {
     let name: String
-    let fieldDefaults: [Field]
-    let acceptsCloze: Bool
+    let fields: [Field]
     
-    init(name: String, fieldDefaults: [Field], acceptsCloze: Bool = false) {
+    init(name: String, fieldDefaults: [Field]) {
         self.name = name
-        self.fieldDefaults = fieldDefaults
-        self.acceptsCloze = acceptsCloze
+        self.fields = fieldDefaults
+    }
+    
+    var acceptsCloze: Bool {
+        fields.contains {
+            $0.fieldType == .cloze
+        }
     }
 }

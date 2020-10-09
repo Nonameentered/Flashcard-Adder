@@ -14,7 +14,7 @@ protocol FlashcardDelegate {
     func flashcardAddDidSucceed(flashcard: Flashcard)
 }
 
-struct Flashcard {
+struct Flashcard: Codable {
     let originalText: String
     var fields: [Field]
     var noteType: NoteType
@@ -23,14 +23,25 @@ struct Flashcard {
     var surroundingText: String
     var delegate: FlashcardDelegate?
     
+    private enum CodingKeys: String, CodingKey {
+        case originalText
+        case fields
+        case noteType
+        case deck
+        case profile
+        case surroundingText
+    }
+    
     init(originalText: String, surroundingText: String? = nil) {
         self.originalText = originalText
         noteType = FlashcardSettings.shared.defaultNoteType
         deck = FlashcardSettings.shared.defaultDeck
         profile = FlashcardSettings.shared.ankiProfile
-        fields = noteType.fieldDefaults
+        fields = noteType.fields
         fields[0].text = originalText
         self.surroundingText = surroundingText ?? ""
+        
+        setFieldDelegates()
     }
     
     init() {
@@ -47,7 +58,6 @@ struct Flashcard {
         ankiUrlString = self.fields.reduce(ankiUrlString) { fieldString, field -> String in
             "\(fieldString)&fld\(field.name)=\(field.text)"
         }
-//        ankiUrlString.append("&tags=\(selectedTags.trimmingCharacters(in: .whitespaces))")
         ankiUrlString.append("&x-success=ankiadd://")
         if let encodednkiUrlString = ankiUrlString.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed) {
             print(encodednkiUrlString)
@@ -98,7 +108,7 @@ struct Flashcard {
         self.noteType = noteType
         
         var newFields: [Field] = []
-        for (count, var field) in noteType.fieldDefaults.enumerated() {
+        for (count, var field) in noteType.fields.enumerated() {
             if count < fields.count, !fields[count].text.isEmpty {
                 field.text = fields[count].text
             }
@@ -124,23 +134,29 @@ struct Flashcard {
         }
     }
     
-    // Maybe should be stricter/more elegant
-    mutating func updateFields(to fields: [Field]) {
-        self.fields = fields
+    mutating func insertCloze(sequential: Bool = true, cloze: Cloze, textRange: Range<String>) {
+        if noteType.acceptsCloze {
+            updateNoteType(to: FlashcardSettings.shared.defaultClozeNoteType)
+        }
+//         if let textRange = frontTextView.selectedTextRange {
+//             clozeText = frontTextView.text(in: textRange)?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+//             if hintText != "::" {
+//                 cloze = "{{c\(clozeCounter)::\(clozeText)\(hintText)}}"
+//             } else {
+//                 cloze = "{{c\(clozeCounter)::\(clozeText)}}"
+//             }
+//
+//             frontTextView.replace(textRange, withText: cloze)
+//         }
+     }
+}
+
+extension Flashcard: FieldDelegate {
+    func clozeDidCreate(_ field: Field, changeNoteType: Bool) {
+        print("CLOZE")
     }
     
-    /*
-     func insertCloze(sequential: Bool = true, cloze: Cloze, textRange: Range) {
-         if let textRange = frontTextView.selectedTextRange {
-             clozeText = frontTextView.text(in: textRange)?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
-             if hintText != "::" {
-                 cloze = "{{c\(clozeCounter)::\(clozeText)\(hintText)}}"
-             } else {
-                 cloze = "{{c\(clozeCounter)::\(clozeText)}}"
-             }
-            
-             frontTextView.replace(textRange, withText: cloze)
-         }
-     }
-     */
+    private mutating func setFieldDelegates() {
+        fields = fields.map { var newField = $0; newField.delegate = self; return newField }
+    }
 }
