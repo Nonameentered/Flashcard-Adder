@@ -20,7 +20,7 @@ class ClozeViewController: UIViewController, UITextViewDelegate {
     var hint = ""
     var surroundingText = ""
     
-    @IBOutlet weak var surroundingTextView: UITextView!
+//    @IBOutlet weak var surroundingTextView: UITextView!
     var beginWithHint = false
     
     override func viewDidLoad() {
@@ -29,18 +29,15 @@ class ClozeViewController: UIViewController, UITextViewDelegate {
         clozeTextView.text = cloze.trimmingCharacters(in: .whitespacesAndNewlines)
         hintTextView.text = hint.trimmingCharacters(in: .whitespacesAndNewlines)
         
-        surroundingTextView.text = surroundingText
+//        surroundingTextView.text = surroundingText
         
         self.clozeTextView.delegate = self
         self.hintTextView.delegate = self
         
-        let seconds = 1.0
-        DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
-            if self.beginWithHint {
-                self.hintTextView.becomeFirstResponder()
-            } else {
-                self.clozeTextView.becomeFirstResponder()
-            }
+        if self.beginWithHint {
+            self.hintTextView.becomeFirstResponder()
+        } else {
+            self.clozeTextView.becomeFirstResponder()
         }
     }
     

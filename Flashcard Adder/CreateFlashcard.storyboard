@@ -62,7 +62,7 @@
                                                                 <inset key="contentEdgeInsets" minX="5" minY="0.0" maxX="5" maxY="0.0"/>
                                                                 <state key="normal" title="Editable Cloze"/>
                                                                 <connections>
-                                                                    <segue destination="yFV-Pz-f1W" kind="presentation" id="Wrh-ab-CCK"/>
+                                                                    <segue destination="yFV-Pz-f1W" kind="presentation" identifier="editableCloze" id="Wrh-ab-CCK"/>
                                                                 </connections>
                                                             </button>
                                                         </subviews>
@@ -79,7 +79,7 @@
                                                         <inset key="contentEdgeInsets" minX="5" minY="0.0" maxX="5" maxY="0.0"/>
                                                         <state key="normal" title="Cloze Back Text with Editable Hint"/>
                                                         <connections>
-                                                            <segue destination="yFV-Pz-f1W" kind="presentation" id="SOf-Qa-yaC"/>
+                                                            <segue destination="yFV-Pz-f1W" kind="presentation" identifier="clozeBackText" id="SOf-Qa-yaC"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -339,12 +339,14 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Ar8-Yd-M1G">
                             <connections>
-                                <segue destination="cxe-3T-owy" kind="unwind" unwindAction="unwindToAnkiViewWithSender:" id="8NT-kD-Rvu"/>
+                                <segue destination="cxe-3T-owy" kind="unwind" identifier="unwindToAnkiFromCloze" unwindAction="unwindToAnkiViewWithSender:" id="8NT-kD-Rvu"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="clozeTextView" destination="07p-D7-PVM" id="MrS-5l-dgu"/>
+                        <outlet property="addButton" destination="Ar8-Yd-M1G" id="0yI-bD-aPc"/>
+                        <outlet property="clozeTextView" destination="07p-D7-PVM" id="Nbh-Ge-7lc"/>
+                        <outlet property="hintTextView" destination="m5P-VR-HoQ" id="ezK-fi-6Gx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pX5-lF-iEH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

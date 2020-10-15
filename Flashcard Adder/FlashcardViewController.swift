@@ -235,7 +235,7 @@ class FlashcardViewController: UIViewController {
                 resultViewController.hint = ""
                 savedRange = textRange
             }
-            resultViewController.surroundingText = flashcard.surroundingText
+//            resultViewController.surroundingText = flashcard.surroundingText
             resultViewController.beginWithHint = true
         case "clozeBackText":
             guard let navViewController = segue.destination as? UINavigationController else {
@@ -252,7 +252,7 @@ class FlashcardViewController: UIViewController {
                 savedRange = textRange
             }
             
-            resultViewController.surroundingText = flashcard.surroundingText
+//            resultViewController.surroundingText = flashcard.surroundingText
         default:
             fatalError("Unexpected Segue Identifier: \(String(describing: segue.identifier))")
         }
