@@ -20,7 +20,6 @@
                     </tabBar>
                     <connections>
                         <segue destination="I6V-W6-0UT" kind="relationship" relationship="viewControllers" id="Hfx-Qk-FkP"/>
-                        <segue destination="UX6-A5-M3J" kind="relationship" relationship="viewControllers" id="XNH-VS-cQO"/>
                         <segue destination="uV8-8m-cL8" kind="relationship" relationship="viewControllers" id="gWZ-m7-wSf"/>
                     </connections>
                 </tabBarController>
@@ -38,23 +37,6 @@
             </objects>
             <point key="canvasLocation" x="1879.7101449275365" y="136.60714285714286"/>
         </scene>
-        <!--Saved-->
-        <scene sceneID="9qv-ny-7p1">
-            <objects>
-                <navigationController id="UX6-A5-M3J" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Saved" image="list.bullet" catalog="system" id="nXq-cO-JBX"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="YjE-5F-0de">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="zrx-Yb-cOF" kind="relationship" relationship="rootViewController" id="9j6-Za-rcx"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="gFc-pI-ICK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2647.826086956522" y="857.8125"/>
-        </scene>
         <!--View Controller-->
         <scene sceneID="qyB-vC-zhN">
             <objects>
@@ -70,22 +52,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kmn-Rc-Ujn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1289.8550724637682" y="1170.5357142857142"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="dYR-uI-IrE">
-            <objects>
-                <viewController id="zrx-Yb-cOF" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="jya-Et-RgC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="DyT-Vl-1Ta"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="T6r-Oz-EOP"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="NUZ-VM-3cx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3402.898550724638" y="857.8125"/>
         </scene>
         <!--Add-->
         <scene sceneID="aFY-Ys-FEW">
@@ -128,7 +94,6 @@
     </scenes>
     <resources>
         <image name="gearshape" catalog="system" width="128" height="121"/>
-        <image name="list.bullet" catalog="system" width="128" height="88"/>
         <image name="plus.square" catalog="system" width="128" height="114"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

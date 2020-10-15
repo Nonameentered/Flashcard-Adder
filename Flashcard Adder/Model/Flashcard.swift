@@ -92,16 +92,6 @@ struct Flashcard: Codable {
         }
     }
     
-    /*
-    mutating func convertClozeToBasic() {
-        if type == "Cloze" && frontText.text.countInstances(of: "{{c") == 0 {
-            type = "Basic"
-            typeButton.setTitle("Type: " + type, for: .normal)
-            fields = noteTypes[type] ?? ["Front", "Back"]
-        }
-    }
-    */
-    
     mutating func updateNoteType(to noteType: Note) {
         let oldNote = self.note
         self.note = noteType

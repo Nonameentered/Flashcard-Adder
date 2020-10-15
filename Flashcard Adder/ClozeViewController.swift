@@ -1,4 +1,4 @@
-//
+//EditFieldTextView
 //  ClozeViewController.swift
 //  iQuiz
 //
@@ -13,23 +13,20 @@ class ClozeViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var clozeTextView: EditFieldTextView!
     @IBOutlet weak var hintTextView: EditFieldTextView!
     @IBOutlet weak var addButton: UIBarButtonItem!
-    //    @IBOutlet weak var clozeText: EditFieldTextView!
-    //    @IBOutlet weak var hintText: EditFieldTextView!
-    //    @IBOutlet weak var addButton: UIBarButtonItem!
     var cloze = ""
     var hint = ""
-    var surroundingText = ""
+    var referenceSpaceText = ""
     
-//    @IBOutlet weak var surroundingTextView: UITextView!
+    @IBOutlet weak var referenceSpaceTextView: EditFieldTextView!
     var beginWithHint = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.hideKeyboardWhenTappedAround()
+        hideKeyboardWhenTappedAround()
         clozeTextView.text = cloze.trimmingCharacters(in: .whitespacesAndNewlines)
         hintTextView.text = hint.trimmingCharacters(in: .whitespacesAndNewlines)
         
-//        surroundingTextView.text = surroundingText
+        referenceSpaceTextView.text = referenceSpaceText
         
         self.clozeTextView.delegate = self
         self.hintTextView.delegate = self

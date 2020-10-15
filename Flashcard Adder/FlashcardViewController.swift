@@ -29,12 +29,11 @@ class FlashcardViewController: UIViewController {
     }
 
     @IBOutlet var backTextView: EditFieldTextView!
-//    @IBOutlet var surroundingTextLabel: UILabel!
-//    @IBOutlet var surroundingTextView: UITextView! {
-//        didSet {
-//            surroundingTextView.text = flashcard.surroundingText
-//        }
-//    }
+    @IBOutlet var referenceSpaceTextView: EditFieldTextView! {
+        didSet {
+            referenceSpaceTextView.text = flashcard.surroundingText
+        }
+    }
     @IBOutlet var resetButton: UIBarButtonItem!
     @IBOutlet var addButton: UIBarButtonItem!
     @IBOutlet var cancelButton: UIBarButtonItem!
@@ -86,6 +85,7 @@ class FlashcardViewController: UIViewController {
                     DispatchQueue.main.async {
                         self.frontTextView.text = result
                         self.flashcard.note.fields[0].text = result
+                        self.referenceSpaceTextView.text = result
                     }
                 }
             }
@@ -128,65 +128,6 @@ class FlashcardViewController: UIViewController {
         let hint = UIMenuItem(title: "Hint", action: #selector(makeHintCloze))
         
         UIMenuController.shared.menuItems = [sequential, repetitive, edit, hint]
-    }
-    
-    // MARK: Cloze
-    
-    @IBAction func clozeSelected(_ sender: Any) {
-        determineCloze(sequential: true) // TODO: Update to use 'default', bring up a menu for alternative
-    }
-    
-    @objc func repetitiveCloze(_ sender: Any) {
-        determineCloze(sequential: false)
-    }
-    
-    @objc func sequentialCloze(_ sender: Any) {
-        determineCloze(sequential: true)
-    }
-    
-    // Maybe put this in Field instead, with Flashcard as a delegate
-    func determineCloze(sequential: Bool) {
-        let clozeCounter: Int
-        if sequential {
-            clozeCounter = (Cloze.highestCurrentCloze(text: frontTextView.text) ?? 0) + 1
-        } else {
-            clozeCounter = Cloze.highestCurrentCloze(text: frontTextView.text) ?? 1
-        }
-        
-        if let textRange = frontTextView.selectedTextRange {
-            let subject = frontTextView.text(in: textRange)?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
-            
-            let clozeString = Cloze(subject: subject).clozeString(with: clozeCounter)
-            
-            frontTextView.replace(textRange, withText: clozeString)
-        }
-        
-        flashcard.updateNoteType(to: FlashcardSettings.shared.defaultClozeNoteType)
-        // TODO: Handle frontLabel, backLabel, typeButton updates (or more fields)
-    }
-    
-    func createCloze(clozeText: String, hintText: String) {
-        let clozeCounter = (Cloze.highestCurrentCloze(text: frontTextView.text) ?? 0) + 1
-        let cloze = Cloze(subject: clozeText, hint: hintText).clozeString(with: clozeCounter)
-        
-        if let textRange = savedRange {
-            frontTextView.replace(textRange, withText: cloze)
-        }
-        
-        flashcard.updateNoteType(to: FlashcardSettings.shared.defaultClozeNoteType)
-        // TODO: Handle frontLabel, backLabel, typeButton updates (or more fields)
-    }
-    
-    func clozeCount() -> Int {
-        frontTextView.text.count
-    }
-    
-    @objc func clozeWithHint(_ sender: Any) {
-        performSegue(withIdentifier: "editableCloze", sender: sender)
-    }
-    
-    @objc func makeHintCloze(sender: UIMenuController) {
-        performSegue(withIdentifier: "clozeBackText", sender: sender)
     }
     
     // MARK: - Actions
@@ -272,7 +213,7 @@ class FlashcardViewController: UIViewController {
                 resultViewController.hint = ""
                 savedRange = textRange
             }
-//            resultViewController.surroundingText = flashcard.surroundingText
+            resultViewController.referenceSpaceText = flashcard.surroundingText
             resultViewController.beginWithHint = true
         case "clozeBackText":
             guard let navViewController = segue.destination as? UINavigationController else {
@@ -289,7 +230,7 @@ class FlashcardViewController: UIViewController {
                 savedRange = textRange
             }
             
-//            resultViewController.surroundingText = flashcard.surroundingText
+            resultViewController.referenceSpaceText = flashcard.surroundingText
         default:
             fatalError("Unexpected Segue Identifier: \(String(describing: segue.identifier))")
         }
@@ -335,8 +276,67 @@ class FlashcardViewController: UIViewController {
     }
 }
 
-// MARK: UITextViewDelegate
+// MARK: Cloze
+extension FlashcardViewController {
+    @IBAction func clozeSelected(_ sender: Any) {
+        determineCloze(sequential: true) // TODO: Update to use 'default', bring up a menu for alternative
+    }
+    
+    @objc func repetitiveCloze(_ sender: Any) {
+        determineCloze(sequential: false)
+    }
+    
+    @objc func sequentialCloze(_ sender: Any) {
+        determineCloze(sequential: true)
+    }
+    
+    // Maybe put this in Field instead, with Flashcard as a delegate
+    func determineCloze(sequential: Bool) {
+        let clozeCounter: Int
+        if sequential {
+            clozeCounter = (Cloze.highestCurrentCloze(text: frontTextView.text) ?? 0) + 1
+        } else {
+            clozeCounter = Cloze.highestCurrentCloze(text: frontTextView.text) ?? 1
+        }
+        
+        if let textRange = frontTextView.selectedTextRange {
+            let subject = frontTextView.text(in: textRange)?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+            
+            let clozeString = Cloze(subject: subject).clozeString(with: clozeCounter)
+            
+            frontTextView.replace(textRange, withText: clozeString)
+        }
+        
+        flashcard.updateNoteType(to: FlashcardSettings.shared.defaultClozeNoteType)
+        // TODO: Handle frontLabel, backLabel, typeButton updates (or more fields)
+    }
+    
+    func createCloze(clozeText: String, hintText: String) {
+        let clozeCounter = (Cloze.highestCurrentCloze(text: frontTextView.text) ?? 0) + 1
+        let cloze = Cloze(subject: clozeText, hint: hintText).clozeString(with: clozeCounter)
+        
+        if let textRange = savedRange {
+            frontTextView.replace(textRange, withText: cloze)
+        }
+        
+        flashcard.updateNoteType(to: FlashcardSettings.shared.defaultClozeNoteType)
+        // TODO: Handle frontLabel, backLabel, typeButton updates (or more fields)
+    }
+    
+    func clozeCount() -> Int {
+        frontTextView.text.count
+    }
+    
+    @objc func clozeWithHint(_ sender: Any) {
+        performSegue(withIdentifier: "editableCloze", sender: sender)
+    }
+    
+    @objc func makeHintCloze(sender: UIMenuController) {
+        performSegue(withIdentifier: "clozeBackText", sender: sender)
+    }
+}
 
+// MARK: UITextViewDelegate
 extension FlashcardViewController: UITextViewDelegate {
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         if textView == frontTextView || textView == backTextView, text == "\t" {
