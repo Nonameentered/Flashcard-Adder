@@ -42,7 +42,7 @@
 			<key>NSExtensionServiceTouchBarIconName</key>
 			<string>NSActionTemplate</string>
 			<key>NSExtensionActionWantsFullScreenPresentation</key>
-			<true/>
+			<false/>
 		</dict>
 		<key>NSExtensionMainStoryboard</key>
 		<string>CreateFlashcard</string>
