@@ -40,7 +40,7 @@ class ClozeViewController: UIViewController, UITextViewDelegate {
     
     override var keyCommands: [UIKeyCommand]? {
         return [
-            UIKeyCommand(input: "\r", modifierFlags: [], action: #selector(addCloze), discoverabilityTitle: "Add Cloze")
+            UIKeyCommand(title: "Add Cloze", image: nil, action: #selector(addCloze), input: "\r", modifierFlags: [])
         ]
     }
     

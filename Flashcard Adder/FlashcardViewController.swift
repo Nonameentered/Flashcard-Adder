@@ -106,18 +106,18 @@ class FlashcardViewController: UIViewController {
     @objc func willEnterForeground() {}
     
     // MARK: Keyboard/Menu Modifiers
-    
+
     override var keyCommands: [UIKeyCommand]? {
         return [
-            UIKeyCommand(input: "c", modifierFlags: [.command, .shift], action: #selector(clozeSelected), discoverabilityTitle: "Cloze"),
-            UIKeyCommand(input: "v", modifierFlags: [.command, .shift], action: #selector(clozeWithHint), discoverabilityTitle: "Editable Cloze"),
-            UIKeyCommand(input: "f", modifierFlags: [.command, .shift], action: #selector(makeHintCloze), discoverabilityTitle: "Cloze Back Text with Editable Hint"),
-            UIKeyCommand(input: "e", modifierFlags: [.command], action: #selector(sequentialCloze), discoverabilityTitle: "Sequential Cloze"),
-            UIKeyCommand(input: "s", modifierFlags: [.command], action: #selector(repetitiveCloze), discoverabilityTitle: "Repetitive Cloze"),
-            UIKeyCommand(input: "d", modifierFlags: [.command], action: #selector(clozeWithHint), discoverabilityTitle: "Editable Cloze"),
-            UIKeyCommand(input: "w", modifierFlags: [.command], action: #selector(makeHintCloze), discoverabilityTitle: "Cloze Back Text with Editable Hint"),
-            UIKeyCommand(input: "\r", modifierFlags: [], action: #selector(addCard), discoverabilityTitle: "Add Note"),
-            UIKeyCommand(input: "\r", modifierFlags: [.shift], action: #selector(newLine), discoverabilityTitle: "New Line")
+            UIKeyCommand(title: "Create Cloze", action: #selector(clozeSelected), input: "c", modifierFlags: [.command, .shift]),
+            UIKeyCommand(title: "Editable Cloze", action: #selector(clozeWithHint), input: "v", modifierFlags: [.command, .shift]),
+            UIKeyCommand(title: "Cloze Back Text with Editable Hint", action: #selector(makeHintCloze), input: "f", modifierFlags: [.command, .shift] ),
+            UIKeyCommand(title: "Sequential Cloze", action: #selector(sequentialCloze), input: "e", modifierFlags: [.command]),
+            UIKeyCommand(title: "Repetitive Cloze", action: #selector(repetitiveCloze), input: "s", modifierFlags: [.command]),
+            UIKeyCommand(title: "Editable Cloze", action: #selector(clozeWithHint), input: "d", modifierFlags: [.command]),
+            UIKeyCommand(title: "Cloze Back Text with Editable Hint", action: #selector(makeHintCloze), input: "w", modifierFlags: [.command]),
+            UIKeyCommand(title: "Add Note", action: #selector(addCard), input: "\r", modifierFlags: []),
+            UIKeyCommand(title: "New Line", action: #selector(newLine), input: "\r", modifierFlags: [.shift])
         ]
     }
     
@@ -189,14 +189,14 @@ class FlashcardViewController: UIViewController {
             guard let navViewController = segue.destination as? UINavigationController else {
                 fatalError("Unexpected destination: \(segue.destination)")
             }
-            guard let resultViewController = navViewController.viewControllers.first as? SelectNoteTypeTableViewController else {
+            guard let _ = navViewController.viewControllers.first as? SelectNoteTypeTableViewController else {
                 fatalError("Unexpected destination: \(segue.destination)")
             }
         case "deckTypeAnki":
             guard let navViewController = segue.destination as? UINavigationController else {
                 fatalError("Unexpected destination: \(segue.destination)")
             }
-            guard let resultViewController = navViewController.viewControllers.first as? SelectDeckTypeTableViewController else {
+            guard let _ = navViewController.viewControllers.first as? SelectDeckTypeTableViewController else {
                 fatalError("Unexpected destination: \(segue.destination)")
             }
         case "editableCloze":
