@@ -12,7 +12,7 @@
         <!--Add Flashcard-->
         <scene sceneID="wen-h2-j7Y">
             <objects>
-                <viewController storyboardIdentifier="createFlashcardViewController" id="3If-2Y-L1j" customClass="FlashcardViewController" customModule="Flashcard_Adder" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="createFlashcardViewController" id="3If-2Y-L1j" customClass="FlashcardViewController" customModule="Action_Extension" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" opaque="NO" contentMode="scaleToFill" id="wXB-oo-Abr">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -32,7 +32,7 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="hmh-TE-5by" customClass="EditFieldTextView" customModule="Create_Flashcard_Extension" customModuleProvider="target">
+                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="hmh-TE-5by" customClass="EditFieldTextView" customModule="Action_Extension" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="26.5" width="394" height="38"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
@@ -41,7 +41,7 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="lc3-KY-vIa" userLabel="Cloze Stack View">
                                                         <rect key="frame" x="0.0" y="70.5" width="394" height="35"/>
                                                         <subviews>
-                                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P9m-sB-3KC" customClass="BigButton" customModule="Create_Flashcard_Extension" customModuleProvider="target">
+                                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P9m-sB-3KC" customClass="BigButton" customModule="Action_Extension" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="0.0" width="192" height="35"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="35" id="KaD-uE-LcP"/>
@@ -53,7 +53,7 @@
                                                                     <action selector="clozeSelected:" destination="3If-2Y-L1j" eventType="touchUpInside" id="8sj-X4-Q5R"/>
                                                                 </connections>
                                                             </button>
-                                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fXm-UW-w9h" customClass="BigButton" customModule="Create_Flashcard_Extension" customModuleProvider="target">
+                                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fXm-UW-w9h" customClass="BigButton" customModule="Action_Extension" customModuleProvider="target">
                                                                 <rect key="frame" x="202" y="0.0" width="192" height="35"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="35" id="m4C-bf-k8n"/>
@@ -70,7 +70,7 @@
                                                             <constraint firstAttribute="height" constant="35" id="FGo-fe-Gg9"/>
                                                         </constraints>
                                                     </stackView>
-                                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kbA-26-doi" customClass="BigButton" customModule="Create_Flashcard_Extension" customModuleProvider="target">
+                                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kbA-26-doi" customClass="BigButton" customModule="Action_Extension" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="111.5" width="394" height="35"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="35" id="RHB-bb-Q9g"/>
@@ -93,7 +93,7 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="wTJ-VC-scf" customClass="EditFieldTextView" customModule="Create_Flashcard_Extension" customModuleProvider="target">
+                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="wTJ-VC-scf" customClass="EditFieldTextView" customModule="Action_Extension" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="26.5" width="394" height="38"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <color key="textColor" name="textColor"/>
@@ -105,13 +105,13 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="gtH-cC-tJP" userLabel="Type Deck Stack View">
                                                 <rect key="frame" x="0.0" y="231" width="394" height="35"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0T8-r4-qJy" customClass="BigButton" customModule="Create_Flashcard_Extension" customModuleProvider="target">
+                                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0T8-r4-qJy" customClass="BigButton" customModule="Action_Extension" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="192" height="35"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <inset key="contentEdgeInsets" minX="5" minY="0.0" maxX="5" maxY="0.0"/>
                                                         <state key="normal" title="Type: "/>
                                                     </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6BP-p0-NXP" customClass="BigButton" customModule="Create_Flashcard_Extension" customModuleProvider="target">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6BP-p0-NXP" customClass="BigButton" customModule="Action_Extension" customModuleProvider="target">
                                                         <rect key="frame" x="202" y="0.0" width="192" height="35"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <inset key="contentEdgeInsets" minX="5" minY="0.0" maxX="5" maxY="0.0"/>
@@ -149,7 +149,11 @@
                     </view>
                     <navigationItem key="navigationItem" title="Add Flashcard" id="0Ao-he-2ej">
                         <leftBarButtonItems>
-                            <barButtonItem systemItem="cancel" id="1cc-OY-mBu"/>
+                            <barButtonItem systemItem="cancel" id="1cc-OY-mBu">
+                                <connections>
+                                    <action selector="cancel:" destination="3If-2Y-L1j" id="nFk-pi-Evz"/>
+                                </connections>
+                            </barButtonItem>
                             <barButtonItem title="Reset" id="Kln-y1-UeD"/>
                         </leftBarButtonItems>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Xom-8b-YND">
@@ -159,7 +163,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="addButton" destination="Xom-8b-YND" id="2K9-0U-JQ6"/>
+                        <outlet property="addButton" destination="Xom-8b-YND" id="yIe-WC-5DF"/>
                         <outlet property="backLabel" destination="HxM-75-kSV" id="3ai-8B-oIq"/>
                         <outlet property="backTextView" destination="wTJ-VC-scf" id="Qj0-bp-xrz"/>
                         <outlet property="cancelButton" destination="1cc-OY-mBu" id="WCq-C2-rbo"/>
@@ -229,7 +233,7 @@
         <!--Add Cloze-->
         <scene sceneID="yWw-QM-VWt">
             <objects>
-                <viewController id="3tq-Q3-7mi" customClass="ClozeViewController" customModule="Create_Flashcard_Extension" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="3tq-Q3-7mi" customClass="ClozeViewController" customModule="Action_Extension" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="TTN-1Y-6F6">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -249,7 +253,7 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="07p-D7-PVM" customClass="EditFieldTextView" customModule="Create_Flashcard_Extension" customModuleProvider="target">
+                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="07p-D7-PVM" customClass="EditFieldTextView" customModule="Action_Extension" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="26.5" width="394" height="38"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
@@ -258,7 +262,7 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="CYN-57-nP7" userLabel="Cloze Stack View">
                                                         <rect key="frame" x="0.0" y="70.5" width="394" height="35"/>
                                                         <subviews>
-                                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JfP-Px-q9e" customClass="BigButton" customModule="Create_Flashcard_Extension" customModuleProvider="target">
+                                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JfP-Px-q9e" customClass="BigButton" customModule="Action_Extension" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="0.0" width="192" height="35"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="35" id="D44-kG-F7d"/>
@@ -270,7 +274,7 @@
                                                                     <action selector="addThe:" destination="3tq-Q3-7mi" eventType="touchUpInside" id="0At-dr-9um"/>
                                                                 </connections>
                                                             </button>
-                                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Udb-us-8CW" customClass="BigButton" customModule="Create_Flashcard_Extension" customModuleProvider="target">
+                                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Udb-us-8CW" customClass="BigButton" customModule="Action_Extension" customModuleProvider="target">
                                                                 <rect key="frame" x="202" y="0.0" width="192" height="35"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="35" id="6HO-6y-jLj"/>
@@ -298,7 +302,7 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="m5P-VR-HoQ" customClass="EditFieldTextView" customModule="Create_Flashcard_Extension" customModuleProvider="target">
+                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="m5P-VR-HoQ" customClass="EditFieldTextView" customModule="Action_Extension" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="26.5" width="394" height="38"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <color key="textColor" name="textColor"/>

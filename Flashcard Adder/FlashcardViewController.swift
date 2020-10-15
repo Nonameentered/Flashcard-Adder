@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MobileCoreServices
 
 class FlashcardViewController: UIViewController {
     @IBOutlet var frontLabel: UILabel! {
@@ -34,8 +35,8 @@ class FlashcardViewController: UIViewController {
 //            surroundingTextView.text = flashcard.surroundingText
 //        }
 //    }
-    @IBOutlet var addButton: UIBarButtonItem!
     @IBOutlet var resetButton: UIBarButtonItem!
+    @IBOutlet var addButton: UIBarButtonItem!
     @IBOutlet var cancelButton: UIBarButtonItem!
     @IBOutlet var clozeButton: BigButton!
     @IBOutlet var deckButton: BigButton! {
@@ -60,12 +61,33 @@ class FlashcardViewController: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground), name: UIApplication.didBecomeActiveNotification, object: nil)
         
+        #if Main
         navigationItem.leftBarButtonItems = [resetButton]
+        #elseif Action
+        navigationItem.leftBarButtonItems = [cancelButton, resetButton]
+        #endif
         hideKeyboardWhenTappedAround()
         frontTextView.delegate = self
         backTextView.delegate = self
         
         updateAddButtonState()
+        
+        #if Action
+        let textItem = extensionContext!.inputItems[0] as! NSExtensionItem
+        
+        let textItemProvider = textItem.attachments![0]
+        
+        if textItemProvider.hasItemConformingToTypeIdentifier(kUTTypeText as String) {
+            textItemProvider.loadItem(forTypeIdentifier: kUTTypeText as String, options: nil) { result, _ in
+                if let result = result as? String {
+                    DispatchQueue.main.async {
+                        self.frontTextView.text = result
+                        self.flashcard.note.fields[0].text = result
+                    }
+                }
+            }
+        }
+        #endif
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -153,7 +175,6 @@ class FlashcardViewController: UIViewController {
     }
     
     func clozeCount() -> Int {
-        
         frontTextView.text.count
     }
     
@@ -186,7 +207,7 @@ class FlashcardViewController: UIViewController {
             present(alert, animated: true, completion: nil)
             return
         }
-        
+        #if Main
         if UIApplication.shared.canOpenURL(ankiUrl) {
             clearFields()
             UIApplication.shared.open(ankiUrl, options: [:])
@@ -195,12 +216,25 @@ class FlashcardViewController: UIViewController {
             alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
             present(alert, animated: true, completion: nil)
         }
+        #elseif Action
+        
+        // Inspired by Slide for Reddit https://github.com/ccrama/Slide-iOS/blob/develop/Open%20in%20Slide/ActionViewController.swift
+        // And help from https://stackoverflow.com/a/40675306/14362235
+        // Not sure how the cancelRequest dismisses it, but it does so we're good
+        if self.openURL(ankiUrl) {
+            self.extensionContext!.cancelRequest(withError: NSError(domain: "com.technaplex.Flashcard-Adder.Action-Extension", code: 1, userInfo: [NSLocalizedDescriptionKey: "Action Extension Dismissed"]))
+        } else {
+            self.extensionContext!.cancelRequest(withError: NSError(domain: "com.technaplex.Flashcard-Adder.Action-Extension", code: 1, userInfo: [NSLocalizedDescriptionKey: "Action Extension Dismissed"]))
+        }
+        #endif
     }
     
     // MARK: - Navigation
     
     @IBAction func cancel(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
+        #if Action
+        self.extensionContext!.completeRequest(returningItems: self.extensionContext!.inputItems, completionHandler: nil)
+        #endif
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -281,9 +315,25 @@ class FlashcardViewController: UIViewController {
             createCloze(clozeText: sourceViewController.clozeTextView.text, hintText: sourceViewController.hintTextView.text)
         }
     }
+    
+    //MARK: Action Extension
+    @objc func openURL(_ url: URL) -> Bool {
+        var responder: UIResponder? = self
+        while responder != nil {
+            if let application = responder as? UIApplication {
+                return application.perform(#selector(openURL(_:)), with: url) != nil
+            }
+            responder = responder?.next
+        }
+        self.extensionContext!.cancelRequest(withError: NSError(domain: "com.technaplex.Flashcard-Adder.Action-Extension", code: 1, userInfo: [NSLocalizedDescriptionKey: "Action Extension Dismissed"]))
+//        self.extensionContext!.completeRequest(returningItems: self.extensionContext!.inputItems, completionHandler: nil)
+//        self.extensionContext!.cancelRequest(withError: NSError()) // Maybe don't 'cancel request'
+        return false
+    }
 }
 
 // MARK: UITextViewDelegate
+
 extension FlashcardViewController: UITextViewDelegate {
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         if textView == frontTextView || textView == backTextView, text == "\t" {

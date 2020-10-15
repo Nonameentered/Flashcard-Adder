@@ -53,6 +53,33 @@
 		E369F9372515B71100A51A0D /* BigButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E369F9282515B71100A51A0D /* BigButton.swift */; };
 		E369F9382515B71100A51A0D /* Flashcard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E369F9292515B71100A51A0D /* Flashcard.swift */; };
 		E369F9392515B71100A51A0D /* Flashcard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E369F9292515B71100A51A0D /* Flashcard.swift */; };
+		E39647B22537FC3700F803F4 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E39647B12537FC3700F803F4 /* Media.xcassets */; };
+		E39647B42537FC3700F803F4 /* ActionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39647B32537FC3700F803F4 /* ActionViewController.swift */; };
+		E39647B72537FC3700F803F4 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E39647B52537FC3700F803F4 /* MainInterface.storyboard */; };
+		E39647BB2537FC3700F803F4 /* Action Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = E39647AF2537FC3700F803F4 /* Action Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		E39647C22537FC5A00F803F4 /* UIViewController+HideKeyboardWheNTappedAround.swift in Sources */ = {isa = PBXBuildFile; fileRef = E357B36B251D305B00354BCA /* UIViewController+HideKeyboardWheNTappedAround.swift */; };
+		E39647C62537FC6400F803F4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E359182C25106E3D002F1A35 /* Assets.xcassets */; };
+		E39647CA2537FC6B00F803F4 /* CreateFlashcard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3359E0725300CC80039F537 /* CreateFlashcard.storyboard */; };
+		E39647D52537FC8C00F803F4 /* FlashcardSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = E369F9262515B71000A51A0D /* FlashcardSettings.swift */; };
+		E39647D92537FC9900F803F4 /* Cloze.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D011162537C4A8006FB811 /* Cloze.swift */; };
+		E39647DA2537FC9900F803F4 /* Deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = E369F9252515B71000A51A0D /* Deck.swift */; };
+		E39647DB2537FC9900F803F4 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = E369F9222515B71000A51A0D /* Note.swift */; };
+		E39647DC2537FC9900F803F4 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = E369F9242515B71000A51A0D /* Profile.swift */; };
+		E39647DD2537FC9900F803F4 /* Flashcard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E369F9292515B71100A51A0D /* Flashcard.swift */; };
+		E39647DE2537FC9900F803F4 /* Field.swift in Sources */ = {isa = PBXBuildFile; fileRef = E301AEEF25217EE1006A9742 /* Field.swift */; };
+		E39647E22537FC9E00F803F4 /* String+MatchingStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D0110F2537B9D7006FB811 /* String+MatchingStrings.swift */; };
+		E39647E32537FC9E00F803F4 /* UIView+FirstResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E306FAAB25218DF60012337D /* UIView+FirstResponder.swift */; };
+		E39647E42537FC9E00F803F4 /* String+CountInstances.swift in Sources */ = {isa = PBXBuildFile; fileRef = E306FAA625218D750012337D /* String+CountInstances.swift */; };
+		E39647E82537FCB100F803F4 /* ClozeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E357B35F251D2FB500354BCA /* ClozeViewController.swift */; };
+		E39647E92537FCB100F803F4 /* SelectNoteTypeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E357B362251D2FB500354BCA /* SelectNoteTypeTableViewController.swift */; };
+		E39647EA2537FCB100F803F4 /* SelectDeckTypeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E357B360251D2FB500354BCA /* SelectDeckTypeTableViewController.swift */; };
+		E39647EE2537FCC300F803F4 /* FlashcardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E357B35E251D2FB500354BCA /* FlashcardViewController.swift */; };
+		E39647F22537FCC600F803F4 /* AddNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E357B35D251D2FB500354BCA /* AddNoteViewController.swift */; };
+		E39647F62537FCCA00F803F4 /* NoteTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D010F225355454006FB811 /* NoteTypeViewController.swift */; };
+		E39647FA2537FCD300F803F4 /* AddDeckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E357B361251D2FB500354BCA /* AddDeckViewController.swift */; };
+		E39647FE2537FEAF00F803F4 /* EditFieldTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E369F9272515B71000A51A0D /* EditFieldTextView.swift */; };
+		E39648022537FEEF00F803F4 /* BigButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E369F9282515B71100A51A0D /* BigButton.swift */; };
+		E39648062537FEF200F803F4 /* LabelTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E357B36F251D32BF00354BCA /* LabelTableViewCell.swift */; };
 		E3BBA077251D346200603BF3 /* UIViewController+HideKeyboardWheNTappedAround.swift in Sources */ = {isa = PBXBuildFile; fileRef = E357B36B251D305B00354BCA /* UIViewController+HideKeyboardWheNTappedAround.swift */; };
 		E3BBA07C251D3CDF00603BF3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E359182C25106E3D002F1A35 /* Assets.xcassets */; };
 		E3D010E625354A4D006FB811 /* NoteType.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3D010E525354A4D006FB811 /* NoteType.storyboard */; };
@@ -72,6 +99,13 @@
 			remoteGlobalIDString = E359184D251070D0002F1A35;
 			remoteInfo = "Create Flashcard";
 		};
+		E39647B92537FC3700F803F4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E359181625106E3D002F1A35 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E39647AE2537FC3700F803F4;
+			remoteInfo = "Action Extension";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -82,6 +116,7 @@
 			dstSubfolderSpec = 13;
 			files = (
 				E3591858251070D0002F1A35 /* Create Flashcard Extension.appex in Embed App Extensions */,
+				E39647BB2537FC3700F803F4 /* Action Extension.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -121,6 +156,12 @@
 		E369F9272515B71000A51A0D /* EditFieldTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditFieldTextView.swift; sourceTree = "<group>"; };
 		E369F9282515B71100A51A0D /* BigButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BigButton.swift; sourceTree = "<group>"; };
 		E369F9292515B71100A51A0D /* Flashcard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Flashcard.swift; sourceTree = "<group>"; };
+		E39647A82537F80900F803F4 /* Flashcard Adder.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Flashcard Adder.entitlements"; sourceTree = "<group>"; };
+		E39647AF2537FC3700F803F4 /* Action Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Action Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E39647B12537FC3700F803F4 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
+		E39647B32537FC3700F803F4 /* ActionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionViewController.swift; sourceTree = "<group>"; };
+		E39647B62537FC3700F803F4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		E39647B82537FC3700F803F4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E3D010E525354A4D006FB811 /* NoteType.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NoteType.storyboard; sourceTree = "<group>"; };
 		E3D010F225355454006FB811 /* NoteTypeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteTypeViewController.swift; sourceTree = "<group>"; };
 		E3D0110F2537B9D7006FB811 /* String+MatchingStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+MatchingStrings.swift"; sourceTree = "<group>"; };
@@ -136,6 +177,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		E359184B251070D0002F1A35 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E39647AC2537FC3700F803F4 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -167,6 +215,7 @@
 			children = (
 				E301AEE625217DA7006A9742 /* FlashcardAdder.playground */,
 				E359182025106E3D002F1A35 /* Flashcard Adder */,
+				E39647B02537FC3700F803F4 /* Action Extension */,
 				E359181F25106E3D002F1A35 /* Products */,
 				E30172872515ACBB0031A354 /* Frameworks */,
 			);
@@ -177,6 +226,7 @@
 			children = (
 				E359181E25106E3D002F1A35 /* Flashcard Adder.app */,
 				E359184E251070D0002F1A35 /* Create Flashcard Extension.appex */,
+				E39647AF2537FC3700F803F4 /* Action Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -184,6 +234,7 @@
 		E359182025106E3D002F1A35 /* Flashcard Adder */ = {
 			isa = PBXGroup;
 			children = (
+				E39647A82537F80900F803F4 /* Flashcard Adder.entitlements */,
 				E357B361251D2FB500354BCA /* AddDeckViewController.swift */,
 				E357B35D251D2FB500354BCA /* AddNoteViewController.swift */,
 				E3D010F225355454006FB811 /* NoteTypeViewController.swift */,
@@ -243,6 +294,17 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		E39647B02537FC3700F803F4 /* Action Extension */ = {
+			isa = PBXGroup;
+			children = (
+				E39647B12537FC3700F803F4 /* Media.xcassets */,
+				E39647B32537FC3700F803F4 /* ActionViewController.swift */,
+				E39647B52537FC3700F803F4 /* MainInterface.storyboard */,
+				E39647B82537FC3700F803F4 /* Info.plist */,
+			);
+			path = "Action Extension";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -259,6 +321,7 @@
 			);
 			dependencies = (
 				E3591857251070D0002F1A35 /* PBXTargetDependency */,
+				E39647BA2537FC3700F803F4 /* PBXTargetDependency */,
 			);
 			name = "Flashcard Adder";
 			packageProductDependencies = (
@@ -286,6 +349,23 @@
 			productReference = E359184E251070D0002F1A35 /* Create Flashcard Extension.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
+		E39647AE2537FC3700F803F4 /* Action Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E39647BC2537FC3700F803F4 /* Build configuration list for PBXNativeTarget "Action Extension" */;
+			buildPhases = (
+				E39647AB2537FC3700F803F4 /* Sources */,
+				E39647AC2537FC3700F803F4 /* Frameworks */,
+				E39647AD2537FC3700F803F4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Action Extension";
+			productName = "Action Extension";
+			productReference = E39647AF2537FC3700F803F4 /* Action Extension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -300,6 +380,9 @@
 					};
 					E359184D251070D0002F1A35 = {
 						CreatedOnToolsVersion = 12.0;
+					};
+					E39647AE2537FC3700F803F4 = {
+						CreatedOnToolsVersion = 12.0.1;
 					};
 				};
 			};
@@ -318,6 +401,7 @@
 			targets = (
 				E359181D25106E3D002F1A35 /* Flashcard Adder */,
 				E359184D251070D0002F1A35 /* Create Flashcard Extension */,
+				E39647AE2537FC3700F803F4 /* Action Extension */,
 			);
 		};
 /* End PBXProject section */
@@ -344,6 +428,17 @@
 				E3BBA07C251D3CDF00603BF3 /* Assets.xcassets in Resources */,
 				E3359E3C25301A4D0039F537 /* LaunchScreen.storyboard in Resources */,
 				E3591854251070D0002F1A35 /* MainInterface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E39647AD2537FC3700F803F4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E39647B22537FC3700F803F4 /* Media.xcassets in Resources */,
+				E39647CA2537FC6B00F803F4 /* CreateFlashcard.storyboard in Resources */,
+				E39647C62537FC6400F803F4 /* Assets.xcassets in Resources */,
+				E39647B72537FC3700F803F4 /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -408,6 +503,35 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E39647AB2537FC3700F803F4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E39647C22537FC5A00F803F4 /* UIViewController+HideKeyboardWheNTappedAround.swift in Sources */,
+				E39647D52537FC8C00F803F4 /* FlashcardSettings.swift in Sources */,
+				E39647E22537FC9E00F803F4 /* String+MatchingStrings.swift in Sources */,
+				E39647DD2537FC9900F803F4 /* Flashcard.swift in Sources */,
+				E39647DA2537FC9900F803F4 /* Deck.swift in Sources */,
+				E39648022537FEEF00F803F4 /* BigButton.swift in Sources */,
+				E39647E42537FC9E00F803F4 /* String+CountInstances.swift in Sources */,
+				E39647E32537FC9E00F803F4 /* UIView+FirstResponder.swift in Sources */,
+				E39647EA2537FCB100F803F4 /* SelectDeckTypeTableViewController.swift in Sources */,
+				E39647E92537FCB100F803F4 /* SelectNoteTypeTableViewController.swift in Sources */,
+				E39647DC2537FC9900F803F4 /* Profile.swift in Sources */,
+				E39647DE2537FC9900F803F4 /* Field.swift in Sources */,
+				E39647B42537FC3700F803F4 /* ActionViewController.swift in Sources */,
+				E39647F22537FCC600F803F4 /* AddNoteViewController.swift in Sources */,
+				E39647E82537FCB100F803F4 /* ClozeViewController.swift in Sources */,
+				E39647F62537FCCA00F803F4 /* NoteTypeViewController.swift in Sources */,
+				E39648062537FEF200F803F4 /* LabelTableViewCell.swift in Sources */,
+				E39647D92537FC9900F803F4 /* Cloze.swift in Sources */,
+				E39647FE2537FEAF00F803F4 /* EditFieldTextView.swift in Sources */,
+				E39647FA2537FCD300F803F4 /* AddDeckViewController.swift in Sources */,
+				E39647DB2537FC9900F803F4 /* Note.swift in Sources */,
+				E39647EE2537FCC300F803F4 /* FlashcardViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -415,6 +539,11 @@
 			isa = PBXTargetDependency;
 			target = E359184D251070D0002F1A35 /* Create Flashcard Extension */;
 			targetProxy = E3591856251070D0002F1A35 /* PBXContainerItemProxy */;
+		};
+		E39647BA2537FC3700F803F4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E39647AE2537FC3700F803F4 /* Action Extension */;
+			targetProxy = E39647B92537FC3700F803F4 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -431,6 +560,14 @@
 			isa = PBXVariantGroup;
 			children = (
 				E3591853251070D0002F1A35 /* Base */,
+			);
+			name = MainInterface.storyboard;
+			sourceTree = "<group>";
+		};
+		E39647B52537FC3700F803F4 /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E39647B62537FC3700F803F4 /* Base */,
 			);
 			name = MainInterface.storyboard;
 			sourceTree = "<group>";
@@ -560,6 +697,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Flashcard Adder/Flashcard Adder.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SM7F898GQH;
 				INFOPLIST_FILE = "Flashcard Adder/Info.plist";
@@ -567,6 +705,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				OTHER_SWIFT_FLAGS = "-D Main";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.technaplex.Flashcard-Adder";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -580,6 +719,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Flashcard Adder/Flashcard Adder.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SM7F898GQH;
 				INFOPLIST_FILE = "Flashcard Adder/Info.plist";
@@ -587,6 +727,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				OTHER_SWIFT_FLAGS = "-D Main";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.technaplex.Flashcard-Adder";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -632,6 +773,46 @@
 			};
 			name = Release;
 		};
+		E39647BD2537FC3700F803F4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = SM7F898GQH;
+				INFOPLIST_FILE = "Action Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				OTHER_SWIFT_FLAGS = "-D Action";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.technaplex.Flashcard-Adder.Action-Extension";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		E39647BE2537FC3700F803F4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = SM7F898GQH;
+				INFOPLIST_FILE = "Action Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				OTHER_SWIFT_FLAGS = "-D Action";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.technaplex.Flashcard-Adder.Action-Extension";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -658,6 +839,15 @@
 			buildConfigurations = (
 				E359185A251070D0002F1A35 /* Debug */,
 				E359185B251070D0002F1A35 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E39647BC2537FC3700F803F4 /* Build configuration list for PBXNativeTarget "Action Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E39647BD2537FC3700F803F4 /* Debug */,
+				E39647BE2537FC3700F803F4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
