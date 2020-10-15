@@ -352,6 +352,7 @@
                                         <directionalEdgeInsets key="directionalLayoutMargins" top="0.0" leading="10" bottom="0.0" trailing="10"/>
                                     </stackView>
                                 </subviews>
+                                <color key="backgroundColor" name="backgroundColor"/>
                                 <constraints>
                                     <constraint firstItem="4AU-Fx-xzx" firstAttribute="trailing" secondItem="bcQ-DS-uOi" secondAttribute="trailing" id="63R-PP-7pN"/>
                                     <constraint firstItem="4AU-Fx-xzx" firstAttribute="width" secondItem="fK6-Cw-gXC" secondAttribute="width" id="71z-rY-yg1"/>
