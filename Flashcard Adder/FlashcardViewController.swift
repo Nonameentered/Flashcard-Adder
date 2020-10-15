@@ -73,6 +73,9 @@ class FlashcardViewController: UIViewController {
         updateAddButtonState()
         
         #if Action
+        // By default on iPad, the action extension modal popup is insanely small. This resizes it to be like "Save to Files" and some other extensions
+        // https://developer.apple.com/forums/thread/15674
+        preferredContentSize = CGSize(width: 540, height: 620)
         let textItem = extensionContext!.inputItems[0] as! NSExtensionItem
         
         let textItemProvider = textItem.attachments![0]

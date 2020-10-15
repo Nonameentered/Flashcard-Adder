@@ -54,8 +54,6 @@
 		E369F9382515B71100A51A0D /* Flashcard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E369F9292515B71100A51A0D /* Flashcard.swift */; };
 		E369F9392515B71100A51A0D /* Flashcard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E369F9292515B71100A51A0D /* Flashcard.swift */; };
 		E39647B22537FC3700F803F4 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E39647B12537FC3700F803F4 /* Media.xcassets */; };
-		E39647B42537FC3700F803F4 /* ActionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39647B32537FC3700F803F4 /* ActionViewController.swift */; };
-		E39647B72537FC3700F803F4 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E39647B52537FC3700F803F4 /* MainInterface.storyboard */; };
 		E39647BB2537FC3700F803F4 /* Action Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = E39647AF2537FC3700F803F4 /* Action Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		E39647C22537FC5A00F803F4 /* UIViewController+HideKeyboardWheNTappedAround.swift in Sources */ = {isa = PBXBuildFile; fileRef = E357B36B251D305B00354BCA /* UIViewController+HideKeyboardWheNTappedAround.swift */; };
 		E39647C62537FC6400F803F4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E359182C25106E3D002F1A35 /* Assets.xcassets */; };
@@ -159,8 +157,6 @@
 		E39647A82537F80900F803F4 /* Flashcard Adder.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Flashcard Adder.entitlements"; sourceTree = "<group>"; };
 		E39647AF2537FC3700F803F4 /* Action Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Action Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E39647B12537FC3700F803F4 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
-		E39647B32537FC3700F803F4 /* ActionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionViewController.swift; sourceTree = "<group>"; };
-		E39647B62537FC3700F803F4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		E39647B82537FC3700F803F4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E3D010E525354A4D006FB811 /* NoteType.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NoteType.storyboard; sourceTree = "<group>"; };
 		E3D010F225355454006FB811 /* NoteTypeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteTypeViewController.swift; sourceTree = "<group>"; };
@@ -206,6 +202,7 @@
 				E306FAAB25218DF60012337D /* UIView+FirstResponder.swift */,
 				E306FAA625218D750012337D /* String+CountInstances.swift */,
 				E3D0110F2537B9D7006FB811 /* String+MatchingStrings.swift */,
+				E357B36B251D305B00354BCA /* UIViewController+HideKeyboardWheNTappedAround.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -255,7 +252,6 @@
 				E359182C25106E3D002F1A35 /* Assets.xcassets */,
 				E359183125106E3D002F1A35 /* Info.plist */,
 				E359184F251070D0002F1A35 /* Create Flashcard Extension */,
-				E357B36B251D305B00354BCA /* UIViewController+HideKeyboardWheNTappedAround.swift */,
 			);
 			path = "Flashcard Adder";
 			sourceTree = "<group>";
@@ -298,8 +294,6 @@
 			isa = PBXGroup;
 			children = (
 				E39647B12537FC3700F803F4 /* Media.xcassets */,
-				E39647B32537FC3700F803F4 /* ActionViewController.swift */,
-				E39647B52537FC3700F803F4 /* MainInterface.storyboard */,
 				E39647B82537FC3700F803F4 /* Info.plist */,
 			);
 			path = "Action Extension";
@@ -438,7 +432,6 @@
 				E39647B22537FC3700F803F4 /* Media.xcassets in Resources */,
 				E39647CA2537FC6B00F803F4 /* CreateFlashcard.storyboard in Resources */,
 				E39647C62537FC6400F803F4 /* Assets.xcassets in Resources */,
-				E39647B72537FC3700F803F4 /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -519,7 +512,6 @@
 				E39647E92537FCB100F803F4 /* SelectNoteTypeTableViewController.swift in Sources */,
 				E39647DC2537FC9900F803F4 /* Profile.swift in Sources */,
 				E39647DE2537FC9900F803F4 /* Field.swift in Sources */,
-				E39647B42537FC3700F803F4 /* ActionViewController.swift in Sources */,
 				E39647F22537FCC600F803F4 /* AddNoteViewController.swift in Sources */,
 				E39647E82537FCB100F803F4 /* ClozeViewController.swift in Sources */,
 				E39647F62537FCCA00F803F4 /* NoteTypeViewController.swift in Sources */,
@@ -560,14 +552,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				E3591853251070D0002F1A35 /* Base */,
-			);
-			name = MainInterface.storyboard;
-			sourceTree = "<group>";
-		};
-		E39647B52537FC3700F803F4 /* MainInterface.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E39647B62537FC3700F803F4 /* Base */,
 			);
 			name = MainInterface.storyboard;
 			sourceTree = "<group>";
