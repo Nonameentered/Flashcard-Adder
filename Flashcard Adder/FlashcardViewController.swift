@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AnkiViewController: UIViewController {
+class FlashcardViewController: UIViewController {
     @IBOutlet var frontLabel: UILabel! {
         didSet {
             frontLabel.text = flashcard.fieldNames[0]
@@ -46,7 +46,7 @@ class AnkiViewController: UIViewController {
 
     @IBOutlet var typeButton: BigButton! {
         didSet {
-            typeButton.setTitle("Type: " + flashcard.typeName, for: .normal)
+            typeButton.setTitle("Type: " + flashcard.noteTypeName, for: .normal)
         }
     }
 
@@ -108,7 +108,7 @@ class AnkiViewController: UIViewController {
     // MARK: Cloze
     
     @IBAction func clozeSelected(_ sender: Any) {
-        determineCloze(sequential: true) // TODO: Update to use 'default'
+        determineCloze(sequential: true) // TODO: Update to use 'default', bring up a menu for alternative
     }
     
     @objc func repetitiveCloze(_ sender: Any) {
@@ -119,13 +119,13 @@ class AnkiViewController: UIViewController {
         determineCloze(sequential: true)
     }
     
-    // This should be in Field instead, with Flashcard as a delegate
+    // Maybe put this in Field instead, with Flashcard as a delegate
     func determineCloze(sequential: Bool) {
         let clozeCounter: Int
         if sequential {
-            clozeCounter = frontTextView.text.countInstances(of: "{{c") + 1
+            clozeCounter = (Cloze.highestCurrentCloze(text: frontTextView.text) ?? 0) + 1
         } else {
-            clozeCounter = frontTextView.text.countInstances(of: "{{c")
+            clozeCounter = Cloze.highestCurrentCloze(text: frontTextView.text) ?? 1
         }
         
         if let textRange = frontTextView.selectedTextRange {
@@ -141,7 +141,7 @@ class AnkiViewController: UIViewController {
     }
     
     func createCloze(clozeText: String, hintText: String) {
-        let clozeCounter = frontTextView.text.countInstances(of: "{{c") + 1
+        let clozeCounter = (Cloze.highestCurrentCloze(text: frontTextView.text) ?? 0) + 1
         let cloze = Cloze(subject: clozeText, hint: hintText).clozeString(with: clozeCounter)
         
         if let textRange = savedRange {
@@ -150,6 +150,11 @@ class AnkiViewController: UIViewController {
         
         flashcard.updateNoteType(to: FlashcardSettings.shared.defaultClozeNoteType)
         // TODO: Handle frontLabel, backLabel, typeButton updates (or more fields)
+    }
+    
+    func clozeCount() -> Int {
+        
+        frontTextView.text.count
     }
     
     @objc func clozeWithHint(_ sender: Any) {
@@ -279,7 +284,7 @@ class AnkiViewController: UIViewController {
 }
 
 // MARK: UITextViewDelegate
-extension AnkiViewController: UITextViewDelegate {
+extension FlashcardViewController: UITextViewDelegate {
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         if textView == frontTextView || textView == backTextView, text == "\t" {
             if text == "\t" {

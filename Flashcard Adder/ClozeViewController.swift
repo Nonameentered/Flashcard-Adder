@@ -64,7 +64,7 @@ class ClozeViewController: UIViewController, UITextViewDelegate {
         
     }
     
-    @IBAction func addPosession(_ sender: Any) {
+    @IBAction func addPossession(_ sender: Any) {
         if clozeTextView.text.suffix(1) == " " {
             clozeTextView.text = "\(clozeTextView.text!.dropLast(1))'s"
         } else {
@@ -113,23 +113,13 @@ class ClozeViewController: UIViewController, UITextViewDelegate {
                 if textView == hintTextView {
                     clozeTextView.becomeFirstResponder()
                 }
-            } /*else if text == "\n" {
+            } else if text == "\n" {
                 performSegue(withIdentifier: "unwindToAnkiFromCloze", sender: true)
-            }*/
+            }
             
             return false
         } else {
             return true
         }
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

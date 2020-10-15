@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Cloze: Codable {
+public struct Cloze: Codable {
     let subject: String
     let hint: String?
     
@@ -28,24 +28,21 @@ struct Cloze: Codable {
     }
     
     static let identifier = "{{c"
-    static let regexIdentifier = "\\{\\{c([0-9]+)"
+    public static let regexIdentifier = "\\{\\{c([0-9]+)"
 }
 
-extension Cloze {
+public extension Cloze {
     init(subject: String) {
         self.subject = subject
         self.hint = nil
     }
     
-    static func highestCurrentCloze(text: String) -> Int? {
+    public static func highestCurrentCloze(text: String) -> String? {
         let matches = text.matchingStrings(regex: regexIdentifier)
-        
+        print(matches)
         let matchedClozeValues = matches.map { $0[1] }
-        if let maxValue = matchedClozeValues.max(), let maxValueInt = Int(maxValue) {
-            return maxValueInt
-        } else {
-            return nil
-        }
+        print(matchedClozeValues)
+        return matchedClozeValues.max()
         
     }
 }

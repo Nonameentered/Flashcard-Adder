@@ -71,7 +71,7 @@ class SelectNoteTypeTableViewController: UITableViewController {
     
     @IBAction func unwindToSelectNoteView(sender: UIStoryboardSegue) {
         if let sourceViewController = sender.source as? AddNoteViewController {
-            let newNoteType = NoteType(name: sourceViewController.noteNameField.text, fieldDefaults: [Field(name: sourceViewController.firstNameField.text, fieldType: .normal), Field(name: sourceViewController.secondNameField.text, fieldType: .normal)])
+            let newNoteType = Note(name: sourceViewController.noteNameField.text, fields: [Field(name: sourceViewController.firstNameField.text, fieldType: .normal), Field(name: sourceViewController.secondNameField.text, fieldType: .normal)])
             noteTypes.append(newNoteType)
             FlashcardSettings.shared.noteTypes = noteTypes
             

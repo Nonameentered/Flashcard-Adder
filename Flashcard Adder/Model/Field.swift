@@ -29,18 +29,20 @@ struct Field: Codable {
         self.delegate = delegate
     }
     
-    var clozeInstances: Int {
-        return text.countInstances(of: Cloze.identifier)
-    }
-    
-    mutating func createCloze(sequential: Bool = true, cloze: Cloze, textRange: Range<String.Index>) {
-        text.replaceSubrange(textRange, with: cloze.clozeString(with: clozeInstances))
-        delegate?.clozeDidCreate(self, changeNoteType: !(fieldType == .cloze))
-    }
-    
     private enum CodingKeys: String, CodingKey {
         case name
         case text
         case fieldType
+    }
+    
+    // Currently Unused
+    var clozeInstances: Int {
+        return Cloze.highestCurrentCloze(text: text) ?? 0
+    }
+    
+    // Currently Unused
+    mutating func createCloze(sequential: Bool = true, cloze: Cloze, textRange: Range<String.Index>) {
+        text.replaceSubrange(textRange, with: cloze.clozeString(with: clozeInstances))
+        delegate?.clozeDidCreate(self, changeNoteType: !(fieldType == .cloze))
     }
 }

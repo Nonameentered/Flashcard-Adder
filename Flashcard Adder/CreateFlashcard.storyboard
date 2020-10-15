@@ -5,13 +5,14 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Add Flashcard-->
         <scene sceneID="wen-h2-j7Y">
             <objects>
-                <viewController storyboardIdentifier="createFlashcardViewController" id="3If-2Y-L1j" customClass="AnkiViewController" customModule="Flashcard_Adder" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="createFlashcardViewController" id="3If-2Y-L1j" customClass="FlashcardViewController" customModule="Flashcard_Adder" sceneMemberID="viewController">
                     <view key="view" opaque="NO" contentMode="scaleToFill" id="wXB-oo-Abr">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -48,6 +49,9 @@
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <inset key="contentEdgeInsets" minX="5" minY="0.0" maxX="5" maxY="0.0"/>
                                                                 <state key="normal" title="Cloze"/>
+                                                                <connections>
+                                                                    <action selector="clozeSelected:" destination="3If-2Y-L1j" eventType="touchUpInside" id="8sj-X4-Q5R"/>
+                                                                </connections>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fXm-UW-w9h" customClass="BigButton" customModule="Create_Flashcard_Extension" customModuleProvider="target">
                                                                 <rect key="frame" x="202" y="0.0" width="192" height="35"/>
@@ -57,6 +61,9 @@
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <inset key="contentEdgeInsets" minX="5" minY="0.0" maxX="5" maxY="0.0"/>
                                                                 <state key="normal" title="Editable Cloze"/>
+                                                                <connections>
+                                                                    <segue destination="yFV-Pz-f1W" kind="presentation" id="Wrh-ab-CCK"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                         <constraints>
@@ -71,6 +78,9 @@
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <inset key="contentEdgeInsets" minX="5" minY="0.0" maxX="5" maxY="0.0"/>
                                                         <state key="normal" title="Cloze Back Text with Editable Hint"/>
+                                                        <connections>
+                                                            <segue destination="yFV-Pz-f1W" kind="presentation" id="SOf-Qa-yaC"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                             </stackView>
@@ -183,7 +193,169 @@
             </objects>
             <point key="canvasLocation" x="-43.478260869565219" y="184.82142857142856"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="X40-gZ-jFz">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="01M-JP-biy" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ClF-n3-duK">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uXi-N9-7FW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-776" y="2836"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="2BE-dK-gxo">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="yFV-Pz-f1W" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="OVA-wY-uZd">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="3tq-Q3-7mi" kind="relationship" relationship="rootViewController" id="6kg-8l-raU"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KWl-Vq-Bch" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2069.5652173913045" y="169.41964285714286"/>
+        </scene>
+        <!--Add Cloze-->
+        <scene sceneID="yWw-QM-VWt">
+            <objects>
+                <viewController id="3tq-Q3-7mi" customClass="ClozeViewController" customModule="Create_Flashcard_Extension" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="TTN-1Y-6F6">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oKC-Z8-D6o">
+                                <rect key="frame" x="0.0" y="56" width="414" height="786"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="4AU-Fx-xzx">
+                                        <rect key="frame" x="0.0" y="20" width="414" height="180"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="Myz-uA-adP" userLabel="Front">
+                                                <rect key="frame" x="10" y="0.0" width="394" height="105.5"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cloze Text" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ABR-1x-gut">
+                                                        <rect key="frame" x="0.0" y="0.0" width="394" height="20.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="07p-D7-PVM" customClass="EditFieldTextView" customModule="Create_Flashcard_Extension" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="26.5" width="394" height="38"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
+                                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                    </textView>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="CYN-57-nP7" userLabel="Cloze Stack View">
+                                                        <rect key="frame" x="0.0" y="70.5" width="394" height="35"/>
+                                                        <subviews>
+                                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JfP-Px-q9e" customClass="BigButton" customModule="Create_Flashcard_Extension" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="0.0" width="192" height="35"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="35" id="D44-kG-F7d"/>
+                                                                </constraints>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                <inset key="contentEdgeInsets" minX="5" minY="0.0" maxX="5" maxY="0.0"/>
+                                                                <state key="normal" title="Add 'The'"/>
+                                                                <connections>
+                                                                    <action selector="addThe:" destination="3tq-Q3-7mi" eventType="touchUpInside" id="0At-dr-9um"/>
+                                                                </connections>
+                                                            </button>
+                                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Udb-us-8CW" customClass="BigButton" customModule="Create_Flashcard_Extension" customModuleProvider="target">
+                                                                <rect key="frame" x="202" y="0.0" width="192" height="35"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="35" id="6HO-6y-jLj"/>
+                                                                </constraints>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                <inset key="contentEdgeInsets" minX="5" minY="0.0" maxX="5" maxY="0.0"/>
+                                                                <state key="normal" title="Add 's'"/>
+                                                                <connections>
+                                                                    <action selector="addPossession:" destination="3tq-Q3-7mi" eventType="touchUpInside" id="9Yx-na-VWo"/>
+                                                                </connections>
+                                                            </button>
+                                                        </subviews>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="35" id="3NV-4I-Rqm"/>
+                                                        </constraints>
+                                                    </stackView>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="ZgD-gi-fUr" userLabel="Back">
+                                                <rect key="frame" x="10" y="115.5" width="394" height="64.5"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hint Text" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MPK-6m-zMd">
+                                                        <rect key="frame" x="0.0" y="0.0" width="394" height="20.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="m5P-VR-HoQ" customClass="EditFieldTextView" customModule="Create_Flashcard_Extension" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="26.5" width="394" height="38"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <color key="textColor" name="textColor"/>
+                                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
+                                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                    </textView>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <directionalEdgeInsets key="directionalLayoutMargins" top="0.0" leading="10" bottom="0.0" trailing="10"/>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="4AU-Fx-xzx" firstAttribute="trailing" secondItem="bcQ-DS-uOi" secondAttribute="trailing" id="63R-PP-7pN"/>
+                                    <constraint firstItem="4AU-Fx-xzx" firstAttribute="width" secondItem="fK6-Cw-gXC" secondAttribute="width" id="71z-rY-yg1"/>
+                                    <constraint firstItem="4AU-Fx-xzx" firstAttribute="leading" secondItem="bcQ-DS-uOi" secondAttribute="leading" id="DUC-ir-ARi"/>
+                                    <constraint firstItem="4AU-Fx-xzx" firstAttribute="top" secondItem="bcQ-DS-uOi" secondAttribute="top" constant="20" id="DgQ-jk-Mtd"/>
+                                    <constraint firstItem="4AU-Fx-xzx" firstAttribute="bottom" secondItem="bcQ-DS-uOi" secondAttribute="bottom" id="PUh-ci-Pqj"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="bcQ-DS-uOi"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="fK6-Cw-gXC"/>
+                            </scrollView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="BJz-dh-X2P"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="oKC-Z8-D6o" secondAttribute="bottom" id="CCf-iN-1gm"/>
+                            <constraint firstItem="oKC-Z8-D6o" firstAttribute="leading" secondItem="BJz-dh-X2P" secondAttribute="leading" id="GN8-wm-zeV"/>
+                            <constraint firstAttribute="trailing" secondItem="oKC-Z8-D6o" secondAttribute="trailing" id="GvV-EB-S2t"/>
+                            <constraint firstItem="oKC-Z8-D6o" firstAttribute="top" secondItem="BJz-dh-X2P" secondAttribute="top" id="X4s-Me-fcx"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Add Cloze" id="oj6-BF-ZTz">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="Saw-sR-DLs">
+                            <connections>
+                                <action selector="cancel:" destination="3tq-Q3-7mi" id="sJt-Y5-ei1"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Ar8-Yd-M1G">
+                            <connections>
+                                <segue destination="cxe-3T-owy" kind="unwind" unwindAction="unwindToAnkiViewWithSender:" id="8NT-kD-Rvu"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="clozeTextView" destination="07p-D7-PVM" id="MrS-5l-dgu"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pX5-lF-iEH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="cxe-3T-owy" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="2242" y="945"/>
+        </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="SOf-Qa-yaC"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <namedColor name="backgroundColor">
             <color red="0.94099998474121094" green="0.97299998998641968" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -191,5 +363,8 @@
         <namedColor name="textColor">
             <color red="0.23499999940395355" green="0.23499999940395355" blue="0.23499999940395355" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

@@ -8,7 +8,7 @@
 import Foundation
 
 protocol FlashcardDelegate {
-    func noteTypeDidChange(flashcard: Flashcard, from: NoteType, to: NoteType)
+    func noteTypeDidChange(flashcard: Flashcard, from: Note, to: Note)
     func deckDidChange(flashcard: Flashcard, from: Deck, to: Deck)
     func flashcardAddDidFail(flashcard: Flashcard)
     func flashcardAddDidSucceed(flashcard: Flashcard)
@@ -16,8 +16,8 @@ protocol FlashcardDelegate {
 
 struct Flashcard: Codable {
     let originalText: String
-    var fields: [Field]
-    var noteType: NoteType
+//    var fields: [Field]
+    var note: Note
     var deck: Deck
     var profile: Profile
     var surroundingText: String
@@ -25,8 +25,7 @@ struct Flashcard: Codable {
     
     private enum CodingKeys: String, CodingKey {
         case originalText
-        case fields
-        case noteType
+        case note
         case deck
         case profile
         case surroundingText
@@ -34,11 +33,11 @@ struct Flashcard: Codable {
     
     init(originalText: String, surroundingText: String? = nil) {
         self.originalText = originalText
-        noteType = FlashcardSettings.shared.defaultNoteType
+        note = FlashcardSettings.shared.defaultNoteType
         deck = FlashcardSettings.shared.defaultDeck
         profile = FlashcardSettings.shared.ankiProfile
-        fields = noteType.fields
-        fields[0].text = originalText
+//        fields = note.fields
+//        fields[0].text = originalText
         self.surroundingText = surroundingText ?? ""
         
         setFieldDelegates()
@@ -54,21 +53,21 @@ struct Flashcard: Codable {
             return nil
         }
         
-        var ankiUrlString = "anki://x-callback-url/addnote?profile=\(profile.name)&type=\(noteType.name)&deck=\(deck.name)"
-        ankiUrlString = self.fields.reduce(ankiUrlString) { fieldString, field -> String in
+        var ankiUrlString = "anki://x-callback-url/addnote?profile=\(profile.name)&type=\(note.name)&deck=\(deck.name)"
+        ankiUrlString = self.note.fields.reduce(ankiUrlString) { fieldString, field -> String in
             "\(fieldString)&fld\(field.name)=\(field.text)"
         }
         ankiUrlString.append("&x-success=ankiadd://")
-        if let encodednkiUrlString = ankiUrlString.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed) {
-            print(encodednkiUrlString)
-            return URL(string: encodednkiUrlString)
+        if let encodedAnkiUrlString = ankiUrlString.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed) {
+            print(encodedAnkiUrlString)
+            return URL(string: encodedAnkiUrlString)
         } else {
             return nil
         }
     }
     
-    var typeName: String {
-        return noteType.name
+    var noteTypeName: String {
+        return note.name
     }
     
     var deckName: String {
@@ -76,15 +75,15 @@ struct Flashcard: Codable {
     }
     
     var fieldNames: [String] {
-        return fields.map {
+        return note.fields.map {
             $0.name
         }
     }
     
     var isValid: Bool {
-        if fields[0].text == "" {
-            if fields[1].text == "" {
-                return noteType.acceptsCloze
+        if note.fields[0].text == "" {
+            if note.fields[1].text == "" {
+                return note.acceptsCloze
             } else {
                 return true
             }
@@ -103,20 +102,17 @@ struct Flashcard: Codable {
     }
     */
     
-    mutating func updateNoteType(to noteType: NoteType) {
-        let oldNoteType = self.noteType
-        self.noteType = noteType
+    mutating func updateNoteType(to noteType: Note) {
+        let oldNote = self.note
+        self.note = noteType
         
-        var newFields: [Field] = []
-        for (count, var field) in noteType.fields.enumerated() {
-            if count < fields.count, !fields[count].text.isEmpty {
-                field.text = fields[count].text
+        for (count, _) in noteType.fields.enumerated() {
+            if count < oldNote.fields.count, !oldNote.fields[count].text.isEmpty {
+                self.note.fields[count].text = oldNote.fields[count].text
             }
-            newFields.append(field)
         }
-        fields = newFields
         
-        delegate?.noteTypeDidChange(flashcard: self, from: oldNoteType, to: noteType)
+        delegate?.noteTypeDidChange(flashcard: self, from: oldNote, to: note)
     }
     
     mutating func updateDeck(to deck: Deck) {
@@ -128,14 +124,15 @@ struct Flashcard: Codable {
     
     mutating func updateField(with name: String, to text: String) {
         if let index = fieldNames.firstIndex(of: name) {
-            fields[index].text = text
+            note.fields[index].text = text
         } else {
             print("FIELD DOESN'T EXIST")
         }
     }
     
+    // Currently Unused. I hope this can replace the Cloze section in AnkiViewController eventually
     mutating func insertCloze(sequential: Bool = true, cloze: Cloze, textRange: Range<String>) {
-        if noteType.acceptsCloze {
+        if note.acceptsCloze {
             updateNoteType(to: FlashcardSettings.shared.defaultClozeNoteType)
         }
 //         if let textRange = frontTextView.selectedTextRange {
@@ -152,11 +149,12 @@ struct Flashcard: Codable {
 }
 
 extension Flashcard: FieldDelegate {
+    // Currently Unused
     func clozeDidCreate(_ field: Field, changeNoteType: Bool) {
         print("CLOZE")
     }
     
     private mutating func setFieldDelegates() {
-        fields = fields.map { var newField = $0; newField.delegate = self; return newField }
+        note.fields = note.fields.map { var newField = $0; newField.delegate = self; return newField }
     }
 }

@@ -15,6 +15,7 @@ class ShareViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        /*
         guard let inputItems = extensionContext?.inputItems as? [NSExtensionItem] else {
             return
         }
@@ -22,6 +23,7 @@ class ShareViewController: UIViewController {
             flashcard = Flashcard(originalText: inputText)
         }
         frontField.text = flashcard.fields[0].text
+        */
     }
 
     @IBAction func cancelButtonTapped(_ sender: Any) {
@@ -30,10 +32,12 @@ class ShareViewController: UIViewController {
     }
 
     @IBAction func createButtonTapped(_ sender: UIBarButtonItem) {
+        /*
         flashcard.fields[0].text = frontField.text
         flashcard.fields[1].text = backField.text
-        flashcard.noteType = FlashcardSettings.shared.defaultNoteType
+        flashcard.note = FlashcardSettings.shared.defaultNoteType
         flashcard.deck = FlashcardSettings.shared.defaultDeck
+        */
         extensionContext?.completeRequest(returningItems: []) { expired in
             if expired {
                 self.extensionContext?.cancelRequest(withError: NSError(domain: "com.technaplex.Flashcard-Adder.Create-Flashcard", code: 1, userInfo: [NSLocalizedDescriptionKey: "Previous invocation still terminating"]))

@@ -106,11 +106,11 @@
             </objects>
             <point key="canvasLocation" x="969.56521739130437" y="136.60714285714286"/>
         </scene>
-        <!--Item-->
+        <!--Settings-->
         <scene sceneID="YcD-R7-mDm">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="uV8-8m-cL8" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="eqQ-uV-P0A"/>
+                    <tabBarItem key="tabBarItem" title="Settings" image="gearshape" catalog="system" selectedImage="gearshape" id="eqQ-uV-P0A"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="rjT-y1-Aec">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -127,6 +127,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="gearshape" catalog="system" width="128" height="121"/>
         <image name="list.bullet" catalog="system" width="128" height="88"/>
         <image name="plus.square" catalog="system" width="128" height="114"/>
         <systemColor name="systemBackgroundColor">

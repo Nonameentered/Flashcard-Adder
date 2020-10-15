@@ -7,13 +7,13 @@
 
 import Foundation
 
-struct NoteType: Codable {
+struct Note: Codable {
     let name: String
-    let fields: [Field]
+    var fields: [Field]
     
-    init(name: String, fieldDefaults: [Field]) {
+    init(name: String, fields: [Field]) {
         self.name = name
-        self.fields = fieldDefaults
+        self.fields = fields
     }
     
     var acceptsCloze: Bool {
