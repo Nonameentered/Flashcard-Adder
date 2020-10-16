@@ -8,6 +8,7 @@
 
 import UIKit
 import MobileCoreServices
+import os.log
 
 class FlashcardViewController: UIViewController {
     @IBOutlet var frontLabel: UILabel! {
@@ -181,6 +182,15 @@ class FlashcardViewController: UIViewController {
         #endif
     }
     
+    @IBSegueAction
+    private func showNoteTypeList(coder: NSCoder, sender: Any?, segueIdentifier: String?)
+        -> NoteTypeViewController? {
+        print("LALALALLA")
+        Logger.flashcard.info("Showing Note Type")
+        return NoteTypeViewController(coder: coder, viewModel: NoteTypeViewModel())
+    }
+
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
 //        view.endEditing(true)
@@ -232,7 +242,7 @@ class FlashcardViewController: UIViewController {
             
             resultViewController.referenceSpaceText = flashcard.surroundingText
         default:
-            fatalError("Unexpected Segue Identifier: \(String(describing: segue.identifier))")
+            Logger.segue.fault("Unexpected Segue Identifier: \(String(describing: segue.identifier))")
         }
     }
  

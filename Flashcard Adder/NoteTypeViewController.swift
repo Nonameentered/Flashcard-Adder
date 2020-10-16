@@ -6,22 +6,33 @@
 //
 
 import UIKit
+import os.log
 
-
-// Currently unconnected to flashcards/app functionality. Taken from Apple sample code
 class NoteTypeViewController: UIViewController {
-
-    enum Section {
+    enum Section: CaseIterable {
         case main
     }
 
-    var dataSource: UICollectionViewDiffableDataSource<Section, Int>! = nil
-    var collectionView: UICollectionView! = nil
+    lazy var dataSource = makeDataSource()
+    var collectionView: UICollectionView!
+    var viewModel: NoteTypeViewModel
+
+    init?(coder: NSCoder, viewModel: NoteTypeViewModel) {
+        self.viewModel = viewModel
+        super.init(coder: coder)
+    }
+
+    @available(*, unavailable)
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("LOADED")
         configureHierarchy()
-        configureDataSource()
+        Logger.note.info("Loaded")
+        updateList()
     }
 }
 
@@ -40,25 +51,27 @@ extension NoteTypeViewController {
         view.addSubview(collectionView)
         collectionView.delegate = self
     }
-    private func configureDataSource() {
-        
-        let cellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, Int> { (cell, indexPath, item) in
+
+    private func makeCellRegistration() -> UICollectionView.CellRegistration<UICollectionViewListCell, Note> {
+        UICollectionView.CellRegistration { cell, _, note in
             var content = cell.defaultContentConfiguration()
-            content.text = "\(item)"
+            content.text = note.name
             cell.contentConfiguration = content
         }
-        
-        dataSource = UICollectionViewDiffableDataSource<Section, Int>(collectionView: collectionView) {
-            (collectionView: UICollectionView, indexPath: IndexPath, identifier: Int) -> UICollectionViewCell? in
-            
-            return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: identifier)
-        }
+    }
 
-        // initial data
-        var snapshot = NSDiffableDataSourceSnapshot<Section, Int>()
-        snapshot.appendSections([.main])
-        snapshot.appendItems(Array(0..<94))
-        dataSource.apply(snapshot, animatingDifferences: false)
+    private func makeDataSource() -> UICollectionViewDiffableDataSource<Section, Note> {
+        UICollectionViewDiffableDataSource<Section, Note>(collectionView: collectionView) {
+            (collectionView: UICollectionView, indexPath: IndexPath, item: Note) -> UICollectionViewCell? in
+            collectionView.dequeueConfiguredReusableCell(using: self.makeCellRegistration(), for: indexPath, item: item)
+        }
+    }
+
+    private func updateList() {
+        var snapshot = NSDiffableDataSourceSnapshot<Section, Note>()
+        snapshot.appendSections(Section.allCases)
+        snapshot.appendItems(viewModel.main, toSection: .main)
+        dataSource.apply(snapshot)
     }
 }
 
@@ -67,4 +80,3 @@ extension NoteTypeViewController: UICollectionViewDelegate {
         collectionView.deselectItem(at: indexPath, animated: true)
     }
 }
-

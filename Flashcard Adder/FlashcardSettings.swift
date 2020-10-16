@@ -17,7 +17,11 @@ final class FlashcardSettings {
         return UserDefaults(suiteName: suiteName)!
     }()
     
-    struct Key {
+    enum Segues {
+        static let goToAddNote = "goToAddNote"
+    }
+    
+    enum Key {
         static let ankiProfile = "ankiProfile"
         static let defaultNoteType = "defaultNoteType"
         static let defaultClozeNoteType = "defaultClozeNoteType"

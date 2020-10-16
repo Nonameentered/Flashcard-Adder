@@ -7,7 +7,11 @@
 
 import Foundation
 
-struct Note: Codable {
+struct Note: Codable, Hashable {
+    static func == (lhs: Note, rhs: Note) -> Bool {
+        lhs.name == rhs.name && lhs.fields == lhs.fields
+    }
+    
     let name: String
     var fields: [Field]
     

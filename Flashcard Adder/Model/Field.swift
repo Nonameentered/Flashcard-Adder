@@ -11,7 +11,11 @@ protocol FieldDelegate: Codable {
     func clozeDidCreate(_ field: Field, changeNoteType: Bool)
 }
 
-struct Field: Codable {
+struct Field: Codable, Hashable {
+    static func == (lhs: Field, rhs: Field) -> Bool {
+        lhs.name == rhs.name && lhs.text == rhs.text && lhs.fieldType == rhs.fieldType
+    }
+    
     enum FieldType: String, Codable {
         case cloze, tag, normal
     }
@@ -44,5 +48,12 @@ struct Field: Codable {
     mutating func createCloze(sequential: Bool = true, cloze: Cloze, textRange: Range<String.Index>) {
         text.replaceSubrange(textRange, with: cloze.clozeString(with: clozeInstances))
         delegate?.clozeDidCreate(self, changeNoteType: !(fieldType == .cloze))
+    }
+    
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(name)
+        hasher.combine(text)
+        hasher.combine(fieldType)
     }
 }
