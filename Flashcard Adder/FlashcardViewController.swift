@@ -185,9 +185,8 @@ class FlashcardViewController: UIViewController {
     @IBSegueAction
     private func showNoteTypeList(coder: NSCoder, sender: Any?, segueIdentifier: String?)
         -> NoteTypeViewController? {
-        print("LALALALLA")
         Logger.flashcard.info("Showing Note Type")
-        return NoteTypeViewController(coder: coder, viewModel: NoteTypeViewModel())
+        return NoteTypeViewController(coder: coder, viewModel: NoteTypeViewModel(selected: flashcard.note))
     }
 
     

@@ -12,8 +12,13 @@ struct Note: Codable, Hashable {
         lhs.name == rhs.name && lhs.fields == lhs.fields
     }
     
+    static func ~= (lhs: Note, rhs: Note) -> Bool {
+        lhs.name == rhs.name && lhs.fields ~= lhs.fields
+    }
+    
     let name: String
     var fields: [Field]
+    var selected = false
     
     init(name: String, fields: [Field]) {
         self.name = name

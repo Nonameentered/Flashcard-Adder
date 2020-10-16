@@ -10,12 +10,17 @@ import os.log
 
 class NoteTypeViewController: UIViewController {
     enum Section: CaseIterable {
+        case selected
         case main
     }
 
     lazy var dataSource = makeDataSource()
     var collectionView: UICollectionView!
-    var viewModel: NoteTypeViewModel
+    var viewModel: NoteTypeViewModel {
+        didSet {
+            applySnapshot(animatingDifferences: true)
+        }
+    }
 
     init?(coder: NSCoder, viewModel: NoteTypeViewModel) {
         self.viewModel = viewModel
@@ -29,10 +34,9 @@ class NoteTypeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("LOADED")
         configureHierarchy()
-        Logger.note.info("Loaded")
-        updateList()
+        applySnapshot(animatingDifferences: false)
+        Logger.note.info("Loaded NoteTypeViewController")
     }
 }
 
@@ -53,10 +57,18 @@ extension NoteTypeViewController {
     }
 
     private func makeCellRegistration() -> UICollectionView.CellRegistration<UICollectionViewListCell, Note> {
-        UICollectionView.CellRegistration { cell, _, note in
+        UICollectionView.CellRegistration { cell, indexPath, note in
             var content = cell.defaultContentConfiguration()
+//            content.text = note ~= self.viewModel.selected ? "selected" : note.name
             content.text = note.name
+            
             cell.contentConfiguration = content
+//            Logger.note.info("Current note \(note.name)")
+//            Logger.note.info("Selected note \(self.viewModel.selected.name)")
+//            Logger.note.info("Comparison \(note ~= self.viewModel.selected)")
+            
+//            cell.accessories = note ~= self.viewModel.selected[0] ? [.checkmark()] : []
+//            cell.accessories = note ~= self.viewModel.selected ? [.checkmark()] : []
         }
     }
 
@@ -67,16 +79,24 @@ extension NoteTypeViewController {
         }
     }
 
-    private func updateList() {
+    private func applySnapshot(animatingDifferences: Bool = true) {
         var snapshot = NSDiffableDataSourceSnapshot<Section, Note>()
         snapshot.appendSections(Section.allCases)
+        snapshot.appendItems(viewModel.selected, toSection: .selected)
         snapshot.appendItems(viewModel.main, toSection: .main)
-        dataSource.apply(snapshot)
+        dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
     }
 }
 
 extension NoteTypeViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
+        if let note = dataSource.itemIdentifier(for: indexPath) {
+            viewModel.selectNote(note)
+            applySnapshot(animatingDifferences: true)
+//            var currentSnapshot = dataSource.snapshot()
+//            currentSnapshot.reloadItems([note])
+//            dataSource.apply(currentSnapshot)
+        }
     }
 }
