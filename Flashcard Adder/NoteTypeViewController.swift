@@ -68,16 +68,11 @@ extension NoteTypeViewController {
     private func makeCellRegistration() -> UICollectionView.CellRegistration<UICollectionViewListCell, Note> {
         UICollectionView.CellRegistration { cell, indexPath, note in
             var content = cell.defaultContentConfiguration()
-//            content.text = note ~= self.viewModel.selected ? "selected" : note.name
             content.text = note.name
             
             cell.contentConfiguration = content
-//            Logger.note.info("Current note \(note.name)")
-//            Logger.note.info("Selected note \(self.viewModel.selected.name)")
-//            Logger.note.info("Comparison \(note ~= self.viewModel.selected)")
-            
-//            cell.accessories = note ~= self.viewModel.selected[0] ? [.checkmark()] : []
-            cell.accessories = note ~= self.viewModel.selectedNote ? [.checkmark()] : []
+            cell.accessories = note ~= self.viewModel.selectedNote ? [.checkmark()] : [] // Will not update because nothing changes in equatable
+            // It's possible the better way to do this is have a `selected` value in Note
         }
     }
 
@@ -91,7 +86,6 @@ extension NoteTypeViewController {
     private func applySnapshot(animatingDifferences: Bool = true) {
         var snapshot = NSDiffableDataSourceSnapshot<Section, Note>()
         snapshot.appendSections(Section.allCases)
-//        snapshot.appendItems(viewModel.selected, toSection: .selected)
         snapshot.appendItems(viewModel.main, toSection: .main)
         dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
     }
@@ -105,10 +99,6 @@ extension NoteTypeViewController: UICollectionViewDelegate {
         if let note = dataSource.itemIdentifier(for: indexPath) {
             viewModel.selectNote(note)
             performSegue(withIdentifier: FlashcardSettings.Segues.unwindToFlashcardFromNoteList, sender: true)
-//            applySnapshot(animatingDifferences: true)
-//            var currentSnapshot = dataSource.snapshot()
-//            currentSnapshot.reloadItems([note])
-//            dataSource.apply(currentSnapshot)
         }
     }
 }

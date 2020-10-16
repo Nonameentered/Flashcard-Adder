@@ -9,20 +9,14 @@ import Foundation
 
 struct NoteTypeViewModel {
     var main: [Note]
-    var selected: [Note]
     var selectedNote: Note
     
     init(selected: Note) {
         main = FlashcardSettings.shared.noteTypes
-//        main.remove(at: main.firstIndex(of: selected)!)
-        self.selected = [selected]
         self.selectedNote = selected
     }
     
     mutating func selectNote(_ note: Note) {
-//        main.append(contentsOf: selected)
-//        selected = [note]
-//        main.remove(at: main.firstIndex(of: selected[0])!)
         selectedNote = note
     }
     

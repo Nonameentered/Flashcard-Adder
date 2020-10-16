@@ -18,7 +18,6 @@ struct Note: Codable, Hashable {
     
     let name: String
     var fields: [Field]
-    var selected = false
     
     init(name: String, fields: [Field]) {
         self.name = name
