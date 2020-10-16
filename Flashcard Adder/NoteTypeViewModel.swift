@@ -10,19 +10,26 @@ import Foundation
 struct NoteTypeViewModel {
     var main: [Note]
     var selected: [Note]
+    var selectedNote: Note
     
     init(selected: Note) {
         main = FlashcardSettings.shared.noteTypes
-        main.remove(at: main.firstIndex(of: selected)!)
+//        main.remove(at: main.firstIndex(of: selected)!)
         self.selected = [selected]
-//        if let row = self.main.firstIndex(where: {$0.hashValue == selected.hashValue}) {
-//               main[row] = selected
-//        }
+        self.selectedNote = selected
     }
     
     mutating func selectNote(_ note: Note) {
-        main.append(contentsOf: selected)
-        selected = [note]
-        main.remove(at: main.firstIndex(of: selected[0])!)
+//        main.append(contentsOf: selected)
+//        selected = [note]
+//        main.remove(at: main.firstIndex(of: selected[0])!)
+        selectedNote = note
+    }
+    
+    mutating func addNewNote(_ note: Note) {
+        // Check for and produce alert if note type already exists
+        if (main.firstIndex(of: note) == nil) {
+            main.append(note)
+        }
     }
 }

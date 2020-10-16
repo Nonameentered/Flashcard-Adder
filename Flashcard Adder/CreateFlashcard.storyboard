@@ -377,7 +377,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Ar8-Yd-M1G">
                             <connections>
-                                <segue destination="cxe-3T-owy" kind="unwind" identifier="unwindToAnkiFromCloze" unwindAction="unwindToAnkiViewWithSender:" id="8NT-kD-Rvu"/>
+                                <segue destination="cxe-3T-owy" kind="unwind" identifier="unwindToFlashcardFromCloze" unwindAction="unwindToFlashcardViewWithSender:" id="8NT-kD-Rvu"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

@@ -67,7 +67,7 @@ class ClozeViewController: UIViewController, UITextViewDelegate {
     }
     
     @objc func addCloze() {
-        performSegue(withIdentifier: "unwindToAnkiFromCloze", sender: true)
+        performSegue(withIdentifier: "unwindToFlashcardFromCloze", sender: true)
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {
@@ -108,7 +108,7 @@ class ClozeViewController: UIViewController, UITextViewDelegate {
                     clozeTextView.becomeFirstResponder()
                 }
             } else if text == "\n" {
-                performSegue(withIdentifier: "unwindToAnkiFromCloze", sender: true)
+                addCloze()
             }
             
             return false

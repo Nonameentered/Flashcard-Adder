@@ -18,6 +18,7 @@ class NoteTypeViewController: UIViewController {
     var collectionView: UICollectionView!
     var viewModel: NoteTypeViewModel {
         didSet {
+            Logger.note.info("Updated view model")
             applySnapshot(animatingDifferences: true)
         }
     }
@@ -37,6 +38,14 @@ class NoteTypeViewController: UIViewController {
         configureHierarchy()
         applySnapshot(animatingDifferences: false)
         Logger.note.info("Loaded NoteTypeViewController")
+    }
+    
+    @IBAction func unwindToSelectNote(sender: UIStoryboardSegue) {
+        if let sourceViewController = sender.source as? AddNoteViewController {
+            if let note = sourceViewController.note {
+                viewModel.addNewNote(note)
+            }
+        }
     }
 }
 
@@ -68,7 +77,7 @@ extension NoteTypeViewController {
 //            Logger.note.info("Comparison \(note ~= self.viewModel.selected)")
             
 //            cell.accessories = note ~= self.viewModel.selected[0] ? [.checkmark()] : []
-//            cell.accessories = note ~= self.viewModel.selected ? [.checkmark()] : []
+            cell.accessories = note ~= self.viewModel.selectedNote ? [.checkmark()] : []
         }
     }
 
@@ -82,7 +91,7 @@ extension NoteTypeViewController {
     private func applySnapshot(animatingDifferences: Bool = true) {
         var snapshot = NSDiffableDataSourceSnapshot<Section, Note>()
         snapshot.appendSections(Section.allCases)
-        snapshot.appendItems(viewModel.selected, toSection: .selected)
+//        snapshot.appendItems(viewModel.selected, toSection: .selected)
         snapshot.appendItems(viewModel.main, toSection: .main)
         dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
     }
@@ -90,10 +99,13 @@ extension NoteTypeViewController {
 
 extension NoteTypeViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: false)
+        collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .top)
         collectionView.deselectItem(at: indexPath, animated: true)
         if let note = dataSource.itemIdentifier(for: indexPath) {
             viewModel.selectNote(note)
-            applySnapshot(animatingDifferences: true)
+            performSegue(withIdentifier: FlashcardSettings.Segues.unwindToFlashcardFromNoteList, sender: true)
+//            applySnapshot(animatingDifferences: true)
 //            var currentSnapshot = dataSource.snapshot()
 //            currentSnapshot.reloadItems([note])
 //            dataSource.apply(currentSnapshot)

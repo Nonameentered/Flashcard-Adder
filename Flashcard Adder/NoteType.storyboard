@@ -3,8 +3,8 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -16,7 +16,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="Scw-M0-Pnn"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="backgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" title="Note Type" id="oGI-Lm-vbV">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="ags-cY-dTh"/>
@@ -26,8 +26,12 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="Oxk-ji-1ma" kind="unwind" identifier="unwindToFlashcardFromNoteList" unwindAction="unwindToFlashcardViewWithSender:" id="R4T-UF-eyE"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gnm-S6-h4d" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="Oxk-ji-1ma" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1642" y="293"/>
         </scene>
@@ -68,7 +72,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" text="Front" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="KAl-Bg-QSb" customClass="EditFieldTextView" customModule="Action_Extension" customModuleProvider="target">
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="KAl-Bg-QSb" customClass="EditFieldTextView" customModule="Action_Extension" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="26.5" width="394" height="38"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
@@ -85,7 +89,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" text="Back" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ydd-EF-Qbs" customClass="EditFieldTextView" customModule="Action_Extension" customModuleProvider="target">
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ydd-EF-Qbs" customClass="EditFieldTextView" customModule="Action_Extension" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="26.5" width="394" height="38"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
@@ -97,7 +101,7 @@
                             </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Veg-sz-2I6"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" name="backgroundColor"/>
                         <constraints>
                             <constraint firstItem="VGt-6G-9CP" firstAttribute="leading" secondItem="Veg-sz-2I6" secondAttribute="leading" constant="10" id="S7z-IJ-4FM"/>
                             <constraint firstItem="Veg-sz-2I6" firstAttribute="trailing" secondItem="VGt-6G-9CP" secondAttribute="trailing" constant="10" id="eex-4G-o9B"/>
@@ -112,7 +116,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="VYg-3m-YXK">
                             <connections>
-                                <segue destination="enh-9U-ehz" kind="unwind" unwindAction="unwindToSelectNoteViewWithSender:" id="GGB-Qh-s7P"/>
+                                <action selector="addButtonPressed:" destination="UbN-2s-brC" id="PQ9-uA-MYQ"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -121,6 +125,7 @@
                         <outlet property="firstNameField" destination="KAl-Bg-QSb" id="lUQ-OR-Szb"/>
                         <outlet property="noteNameField" destination="gMZ-Tl-lrf" id="wQW-qy-pOb"/>
                         <outlet property="secondNameField" destination="ydd-EF-Qbs" id="Zzn-4r-Tg3"/>
+                        <segue destination="enh-9U-ehz" kind="unwind" identifier="unwindToSelectNote" unwindAction="unwindToSelectNoteWithSender:" id="mCI-MI-JuA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6ek-hN-Cgl" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -166,8 +171,8 @@
         </scene>
     </scenes>
     <resources>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
+        <namedColor name="backgroundColor">
+            <color red="0.94099998474121094" green="0.97299998998641968" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

@@ -19,6 +19,8 @@ final class FlashcardSettings {
     
     enum Segues {
         static let goToAddNote = "goToAddNote"
+        static let unwindToSelectNote = "unwindToSelectNote"
+        static let unwindToFlashcardFromNoteList = "unwindToFlashcardFromNoteList"
     }
     
     enum Key {

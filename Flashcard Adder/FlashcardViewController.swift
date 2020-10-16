@@ -1,9 +1,8 @@
 //
-//  AnkiViewController.swift
-//  iQuiz
+//  FlashcardViewController.swift
+//  Flashcard Adder
 //
-//  Created by Matthew on 12/24/18.
-//  Copyright © 2018 Innoviox. All rights reserved.
+//  Created by Matthew Shu on 10/15/20.
 //
 
 import UIKit
@@ -69,6 +68,7 @@ class FlashcardViewController: UIViewController {
         hideKeyboardWhenTappedAround()
         frontTextView.delegate = self
         backTextView.delegate = self
+        flashcard.delegate = self
         
         updateAddButtonState()
         
@@ -245,7 +245,7 @@ class FlashcardViewController: UIViewController {
         }
     }
  
-    @IBAction func unwindToAnkiView(sender: UIStoryboardSegue) {
+    @IBAction func unwindToFlashcardView(sender: UIStoryboardSegue) {
         if let sourceViewController = sender.source as? SelectNoteTypeTableViewController {
             flashcard.updateNoteType(to: sourceViewController.noteType)
             /*
@@ -266,6 +266,8 @@ class FlashcardViewController: UIViewController {
              */
         } else if let sourceViewController = sender.source as? ClozeViewController {
             createCloze(clozeText: sourceViewController.clozeTextView.text, hintText: sourceViewController.hintTextView.text)
+        } else if let sourceViewController = sender.source as? NoteTypeViewController {
+            flashcard.updateNoteType(to: sourceViewController.viewModel.selectedNote)
         }
     }
     
@@ -382,4 +384,25 @@ extension FlashcardViewController: UITextViewDelegate {
             addButton.isEnabled = false
         }
     }
+}
+
+// MARK: FlashcardDelegate
+extension FlashcardViewController: FlashcardDelegate {
+    func noteTypeDidChange(flashcard: Flashcard, from: Note, to: Note) {
+        typeButton.setTitle("Type: " + flashcard.noteTypeName, for: .normal)
+    }
+    
+    func deckDidChange(flashcard: Flashcard, from: Deck, to: Deck) {
+        deckButton.setTitle("Deck: " + flashcard.deckName, for: .normal)
+    }
+    
+    func flashcardAddDidFail(flashcard: Flashcard) {
+        Logger.flashcard.error("Flashcard add failed")
+    }
+    
+    func flashcardAddDidSucceed(flashcard: Flashcard) {
+        Logger.flashcard.info("Flashcard add succeeded")
+    }
+    
+
 }
