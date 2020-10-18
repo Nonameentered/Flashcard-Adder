@@ -8,7 +8,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Note Type-->
+        <!--Note Types-->
         <scene sceneID="jU3-oC-dW7">
             <objects>
                 <viewController id="UCd-ZK-via" customClass="NoteTypeViewController" customModule="Action_Extension" customModuleProvider="target" sceneMemberID="viewController">
@@ -18,8 +18,12 @@
                         <viewLayoutGuide key="safeArea" id="Scw-M0-Pnn"/>
                         <color key="backgroundColor" name="backgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Note Type" id="oGI-Lm-vbV">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="ags-cY-dTh"/>
+                    <navigationItem key="navigationItem" title="Note Types" id="oGI-Lm-vbV">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="ags-cY-dTh">
+                            <connections>
+                                <action selector="cancel:" destination="UCd-ZK-via" id="1Fj-W6-Hog"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="vCD-7i-R6X">
                             <connections>
                                 <segue destination="0iP-jw-89g" kind="presentation" identifier="goToAddNote" id="J4s-93-0RD"/>

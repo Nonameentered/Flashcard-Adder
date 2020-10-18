@@ -71,12 +71,14 @@ class SelectDeckTypeTableViewController: UITableViewController {
     }
     
     @IBAction func unwindToSelectDeckView(sender: UIStoryboardSegue) {
+        /*
         if let sourceViewController = sender.source as? AddDeckViewController {
             let newDeck = Deck(name: sourceViewController.deckNameField.text)
             decks.append(newDeck)
             FlashcardSettings.shared.decks = decks
             tableView.reloadData()
         }
+        */
     }
     
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {

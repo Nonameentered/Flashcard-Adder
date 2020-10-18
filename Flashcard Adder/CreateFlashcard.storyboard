@@ -17,6 +17,14 @@
             </objects>
             <point key="canvasLocation" x="1537" y="-340"/>
         </scene>
+        <!--Deck-->
+        <scene sceneID="que-Xn-6eI">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Deck" id="uAv-k6-qQf" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="F1G-yS-RF2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1577" y="-234"/>
+        </scene>
         <!--Add Flashcard-->
         <scene sceneID="wen-h2-j7Y">
             <objects>
@@ -127,6 +135,9 @@
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <inset key="contentEdgeInsets" minX="5" minY="0.0" maxX="5" maxY="0.0"/>
                                                         <state key="normal" title="Deck: "/>
+                                                        <connections>
+                                                            <segue destination="uAv-k6-qQf" kind="presentation" id="d2m-Bo-vti"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <constraints>

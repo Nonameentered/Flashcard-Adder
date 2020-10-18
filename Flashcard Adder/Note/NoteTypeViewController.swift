@@ -47,12 +47,19 @@ class NoteTypeViewController: UIViewController {
             }
         }
     }
+    
+    
+    @IBAction func cancel(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
 }
 
 extension NoteTypeViewController {
     /// - Tag: List
     private func createLayout() -> UICollectionViewLayout {
-        let config = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
+        var config = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
+        
+        config.backgroundColor = UIColor(named: FlashcardSettings.Colors.backgroundColor)
         return UICollectionViewCompositionalLayout.list(using: config)
     }
 }
@@ -61,7 +68,9 @@ extension NoteTypeViewController {
     private func configureHierarchy() {
         collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createLayout())
         collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        collectionView.backgroundColor = UIColor(named: FlashcardSettings.Colors.backgroundColor)
         view.addSubview(collectionView)
+        view.backgroundColor = UIColor(named: FlashcardSettings.Colors.backgroundColor)
         collectionView.delegate = self
     }
 
@@ -69,8 +78,10 @@ extension NoteTypeViewController {
         UICollectionView.CellRegistration { cell, indexPath, note in
             var content = cell.defaultContentConfiguration()
             content.text = note.name
-            
             cell.contentConfiguration = content
+            var background = UIBackgroundConfiguration.listGroupedCell()
+            background.backgroundColor = UIColor(named: FlashcardSettings.Colors.backgroundColor)?.lighter(by: 5)
+            cell.backgroundConfiguration = background
             cell.accessories = note ~= self.viewModel.selectedNote ? [.checkmark()] : [] // Will not update because nothing changes in equatable
             // It's possible the better way to do this is have a `selected` value in Note
         }

@@ -16,4 +16,6 @@ extension Logger {
     static let segue = Logger(subsystem: subsystem, category: "segue")
     static let note = Logger(subsystem: subsystem, category: "note")
     static let flashcard = Logger(subsystem: subsystem, category: "flashcard")
+    static let deck = Logger(subsystem: subsystem, category: "deck")
+    static let settings = Logger(subsystem: subsystem, category: "settings")
 }

@@ -25,5 +25,6 @@ struct NoteTypeViewModel {
         if (main.firstIndex(of: note) == nil) {
             main.append(note)
         }
+        FlashcardSettings.shared.noteTypes = main
     }
 }

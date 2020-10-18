@@ -185,8 +185,15 @@ class FlashcardViewController: UIViewController {
     @IBSegueAction
     private func showNoteTypeList(coder: NSCoder, sender: Any?, segueIdentifier: String?)
         -> NoteTypeViewController? {
-        Logger.flashcard.info("Showing Note Type")
+        Logger.flashcard.info("Showing Note Type List")
         return NoteTypeViewController(coder: coder, viewModel: NoteTypeViewModel(selected: flashcard.note))
+    }
+    
+    @IBSegueAction
+    private func showDeckList(coder: NSCoder, sender: Any?, segueIdentifier: String?)
+        -> DeckViewController? {
+        Logger.flashcard.info("Showing Deck List")
+        return DeckViewController(coder: coder, viewModel: DeckViewModel(selected: flashcard.deck))
     }
 
     
@@ -194,13 +201,6 @@ class FlashcardViewController: UIViewController {
         super.prepare(for: segue, sender: sender)
 //        view.endEditing(true)
         switch segue.identifier ?? "" {
-        case "noteTypeAnki":
-            guard let navViewController = segue.destination as? UINavigationController else {
-                fatalError("Unexpected destination: \(segue.destination)")
-            }
-            guard let _ = navViewController.viewControllers.first as? SelectNoteTypeTableViewController else {
-                fatalError("Unexpected destination: \(segue.destination)")
-            }
         case "deckTypeAnki":
             guard let navViewController = segue.destination as? UINavigationController else {
                 fatalError("Unexpected destination: \(segue.destination)")
@@ -246,18 +246,7 @@ class FlashcardViewController: UIViewController {
     }
  
     @IBAction func unwindToFlashcardView(sender: UIStoryboardSegue) {
-        if let sourceViewController = sender.source as? SelectNoteTypeTableViewController {
-            flashcard.updateNoteType(to: sourceViewController.noteType)
-            /*
-             type = sourceViewController.selectedNoteType
-             fields = noteTypes[String(sourceViewController.selectedNoteType)] ?? ["Front", "Back"]
-             frontLabel.text = fields[0]
-             backLabel.text = fields[1]
-            
-             typeButton.setTitle("Type: " + type, for: .normal)
-             ankiSettings[1] = type
-             */
-        } else if let sourceViewController = sender.source as? SelectDeckTypeTableViewController {
+        if let sourceViewController = sender.source as? SelectDeckTypeTableViewController {
             flashcard.updateDeck(to: sourceViewController.deck)
             
             /*
@@ -268,6 +257,8 @@ class FlashcardViewController: UIViewController {
             createCloze(clozeText: sourceViewController.clozeTextView.text, hintText: sourceViewController.hintTextView.text)
         } else if let sourceViewController = sender.source as? NoteTypeViewController {
             flashcard.updateNoteType(to: sourceViewController.viewModel.selectedNote)
+        } else if let sourceViewController = sender.source as? DeckViewController {
+            flashcard.updateDeck(to: sourceViewController.viewModel.selectedDeck)
         }
     }
     
@@ -360,7 +351,6 @@ extension FlashcardViewController: UITextViewDelegate {
                     frontTextView.becomeFirstResponder()
                 }
             }
-            
             return false
         } else {
             return true

@@ -7,6 +7,6 @@
 
 import Foundation
 
-struct Deck: Codable {
+struct Deck: Codable, Hashable {
     let name: String
 }

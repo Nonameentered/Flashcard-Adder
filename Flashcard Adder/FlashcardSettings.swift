@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import os.log
 
 final class FlashcardSettings {
     static let shared = FlashcardSettings()
@@ -21,6 +22,11 @@ final class FlashcardSettings {
         static let goToAddNote = "goToAddNote"
         static let unwindToSelectNote = "unwindToSelectNote"
         static let unwindToFlashcardFromNoteList = "unwindToFlashcardFromNoteList"
+        static let unwindToFlashcardFromDeckList = "unwindToFlashcardFromDeckList"
+    }
+    
+    enum Colors {
+        static let backgroundColor = "backgroundColor"
     }
     
     enum Key {
@@ -33,16 +39,28 @@ final class FlashcardSettings {
     }
     
     static func registerDefaults() {
-        let defaults: [String: Data] = [Key.ankiProfile: encodeCodable(for: Profile(name: "User 1"))!,
+        let defaults: [String: Any] = [Key.ankiProfile: encodeCodable(for: Profile(name: "User 1"))!,
                                         Key.defaultNoteType: encodeCodable(for: Note(name: "Basic", fields: [Field(name: "Front"), Field(name: "Back")]))!,
                                         Key.defaultClozeNoteType: encodeCodable(for: Note(name: "Cloze", fields: [Field(name: "Text"), Field(name: "Extra")]))!,
-                                        Key.defaultDeck: encodeCodable(for: Deck(name: "Default"))!]
+                                        Key.defaultDeck: encodeCodable(for: Deck(name: "Default"))!,
+                                        Key.noteTypes: encodeCodable(for: [Note(name: "Basic", fields: [Field(name: "Front"), Field(name: "Back")]), Note(name: "Cloze", fields: [Field(name: "Text"), Field(name: "Extra")])])!,
+                                        Key.decks: encodeCodable(for: [Deck(name: "Default")])!]
         FlashcardSettings.store.register(defaults: defaults)
+        Logger.settings.info("Register defaults")
+    }
+    
+    static func flushSettings() {
+        FlashcardSettings.store.set(nil, forKey: Key.ankiProfile)
+        FlashcardSettings.store.set(nil, forKey: Key.defaultClozeNoteType)
+        FlashcardSettings.store.set(nil, forKey: Key.defaultNoteType)
+        FlashcardSettings.store.set(nil, forKey: Key.defaultDeck)
+        FlashcardSettings.store.set(nil, forKey: Key.noteTypes)
+        FlashcardSettings.store.set(nil, forKey: Key.decks)
     }
     
     var ankiProfile: Profile {
         get {
-            return FlashcardSettings.codable(for: Key.ankiProfile) ?? Profile(name: "User 1")
+            return FlashcardSettings.codable(for: Key.ankiProfile)!
         }
         set {
             FlashcardSettings.setCodable(for: Key.ankiProfile, newValue)
@@ -51,16 +69,17 @@ final class FlashcardSettings {
     
     var defaultNoteType: Note {
         get {
-            return FlashcardSettings.codable(for: Key.defaultNoteType) ?? Note(name: "Basic", fields: [Field(name: "Front"), Field(name: "Back")])
+            return FlashcardSettings.codable(for: Key.defaultNoteType)!
         }
         set {
             FlashcardSettings.setCodable(for: Key.defaultNoteType, newValue)
+            Logger.settings.info("Set default note type")
         }
     }
     
     var defaultClozeNoteType: Note {
         get {
-            return FlashcardSettings.codable(for: Key.defaultNoteType) ?? Note(name: "Cloze", fields: [Field(name: "Text"), Field(name: "Extra")])
+            return FlashcardSettings.codable(for: Key.defaultNoteType)!
         }
         set {
             FlashcardSettings.setCodable(for: Key.defaultNoteType, newValue)
@@ -69,7 +88,7 @@ final class FlashcardSettings {
     
     var defaultDeck: Deck {
         get {
-            return FlashcardSettings.codable(for: Key.defaultDeck) ?? Deck(name: "Default")
+            return FlashcardSettings.codable(for: Key.defaultDeck)!
         }
         set {
             FlashcardSettings.setCodable(for: Key.defaultDeck, newValue)
@@ -78,19 +97,21 @@ final class FlashcardSettings {
     
     var noteTypes: [Note] {
         get {
-            return FlashcardSettings.codable(for: Key.noteTypes) ?? [Note(name: "Basic", fields: [Field(name: "Front"), Field(name: "Back")]), Note(name: "Cloze", fields: [Field(name: "Text"), Field(name: "Extra")])]
+            return FlashcardSettings.codable(for: Key.noteTypes)!
         }
         set {
-            FlashcardSettings.setCodable(for: Key.defaultNoteType, newValue)
+            FlashcardSettings.setCodable(for: Key.decks, newValue)
+            Logger.settings.info("Set note types")
         }
     }
     
     var decks: [Deck] {
         get {
-            return FlashcardSettings.codable(for: Key.decks) ?? [Deck(name: "Default")]
+            return FlashcardSettings.codable(for: Key.decks)!
         }
         set {
-            FlashcardSettings.setCodable(for: Key.defaultNoteType, newValue)
+            FlashcardSettings.setCodable(for: Key.decks, newValue)
+            Logger.settings.info("Set decks \(newValue)")
         }
     }
 }
@@ -114,6 +135,7 @@ private extension FlashcardSettings {
     
     static func encodeCodable<T: Codable>(for value: T) -> Data? {
         let encoder = JSONEncoder()
+        Logger.settings.error("Encoding codable")
         return try? encoder.encode(value)
     }
     
@@ -126,6 +148,7 @@ private extension FlashcardSettings {
         if let savedCodable = FlashcardSettings.store.object(forKey: key) as? Data {
             return decodeCodable(for: savedCodable)
         }
+        Logger.settings.error("Failed to save codable for key \(key)")
         return nil
     }
     
