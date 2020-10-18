@@ -29,88 +29,93 @@ final class FlashcardSettings {
         static let backgroundColor = "backgroundColor"
     }
     
-    enum Key {
-        static let ankiProfile = "ankiProfile"
-        static let defaultNoteType = "defaultNoteType"
-        static let defaultClozeNoteType = "defaultClozeNoteType"
-        static let defaultDeck = "defaultDeck"
-        static let noteTypes = "noteTypes"
-        static let decks = "decks"
+//    enum Key {
+//        static let ankiProfile = "ankiProfile"
+//        static let defaultNoteType = "defaultNoteType"
+//        static let defaultClozeNoteType = "defaultClozeNoteType"
+//        static let defaultDeck = "defaultDeck"
+//        static let noteTypes = "noteTypes"
+//        static let decks = "decks"
+//    }
+    
+    enum Key: String, Codable {
+        case ankiProfile, defaultNoteType, defaultClozeNoteType, defaultDeck, noteTypes, decks
     }
     
     static func registerDefaults() {
-        let defaults: [String: Any] = [Key.ankiProfile: encodeCodable(for: Profile(name: "User 1"))!,
-                                        Key.defaultNoteType: encodeCodable(for: Note(name: "Basic", fields: [Field(name: "Front"), Field(name: "Back")]))!,
-                                        Key.defaultClozeNoteType: encodeCodable(for: Note(name: "Cloze", fields: [Field(name: "Text"), Field(name: "Extra")]))!,
-                                        Key.defaultDeck: encodeCodable(for: Deck(name: "Default"))!,
-                                        Key.noteTypes: encodeCodable(for: [Note(name: "Basic", fields: [Field(name: "Front"), Field(name: "Back")]), Note(name: "Cloze", fields: [Field(name: "Text"), Field(name: "Extra")])])!,
-                                        Key.decks: encodeCodable(for: [Deck(name: "Default")])!]
+        let defaults: [String: Any] = [Key.ankiProfile.rawValue: encodeCodable(for: Profile(name: "User 1"))!,
+                                        Key.defaultNoteType.rawValue: encodeCodable(for: Note(name: "Basic", fields: [Field(name: "Front"), Field(name: "Back")]))!,
+                                        Key.defaultClozeNoteType.rawValue: encodeCodable(for: Note(name: "Cloze", fields: [Field(name: "Text"), Field(name: "Extra")]))!,
+                                        Key.defaultDeck.rawValue: encodeCodable(for: Deck(name: "Default"))!,
+                                        Key.noteTypes.rawValue: encodeCodable(for: [Note(name: "Basic", fields: [Field(name: "Front"), Field(name: "Back")]), Note(name: "Cloze", fields: [Field(name: "Text"), Field(name: "Extra")])])!,
+                                        Key.decks.rawValue: encodeCodable(for: [Deck(name: "Default")])!]
         FlashcardSettings.store.register(defaults: defaults)
         Logger.settings.info("Register defaults")
     }
     
+    // Provided for developer convenience since UserDefaults don't always seem to be deleted when apps are deleted
     static func flushSettings() {
-        FlashcardSettings.store.set(nil, forKey: Key.ankiProfile)
-        FlashcardSettings.store.set(nil, forKey: Key.defaultClozeNoteType)
-        FlashcardSettings.store.set(nil, forKey: Key.defaultNoteType)
-        FlashcardSettings.store.set(nil, forKey: Key.defaultDeck)
-        FlashcardSettings.store.set(nil, forKey: Key.noteTypes)
-        FlashcardSettings.store.set(nil, forKey: Key.decks)
+        FlashcardSettings.store.set(nil, forKey: Key.ankiProfile.rawValue)
+        FlashcardSettings.store.set(nil, forKey: Key.defaultClozeNoteType.rawValue)
+        FlashcardSettings.store.set(nil, forKey: Key.defaultNoteType.rawValue)
+        FlashcardSettings.store.set(nil, forKey: Key.defaultDeck.rawValue)
+        FlashcardSettings.store.set(nil, forKey: Key.noteTypes.rawValue)
+        FlashcardSettings.store.set(nil, forKey: Key.decks.rawValue)
     }
     
     var ankiProfile: Profile {
         get {
-            return FlashcardSettings.codable(for: Key.ankiProfile)!
+            return FlashcardSettings.codable(for: Key.ankiProfile.rawValue)!
         }
         set {
-            FlashcardSettings.setCodable(for: Key.ankiProfile, newValue)
+            FlashcardSettings.setCodable(for: Key.ankiProfile.rawValue, newValue)
         }
     }
     
     var defaultNoteType: Note {
         get {
-            return FlashcardSettings.codable(for: Key.defaultNoteType)!
+            return FlashcardSettings.codable(for: Key.defaultNoteType.rawValue)!
         }
         set {
-            FlashcardSettings.setCodable(for: Key.defaultNoteType, newValue)
+            FlashcardSettings.setCodable(for: Key.defaultNoteType.rawValue, newValue)
             Logger.settings.info("Set default note type")
         }
     }
     
     var defaultClozeNoteType: Note {
         get {
-            return FlashcardSettings.codable(for: Key.defaultNoteType)!
+            return FlashcardSettings.codable(for: Key.defaultNoteType.rawValue)!
         }
         set {
-            FlashcardSettings.setCodable(for: Key.defaultNoteType, newValue)
+            FlashcardSettings.setCodable(for: Key.defaultNoteType.rawValue, newValue)
         }
     }
     
     var defaultDeck: Deck {
         get {
-            return FlashcardSettings.codable(for: Key.defaultDeck)!
+            return FlashcardSettings.codable(for: Key.defaultDeck.rawValue)!
         }
         set {
-            FlashcardSettings.setCodable(for: Key.defaultDeck, newValue)
+            FlashcardSettings.setCodable(for: Key.defaultDeck.rawValue, newValue)
         }
     }
     
     var noteTypes: [Note] {
         get {
-            return FlashcardSettings.codable(for: Key.noteTypes)!
+            return FlashcardSettings.codable(for: Key.noteTypes.rawValue)!
         }
         set {
-            FlashcardSettings.setCodable(for: Key.decks, newValue)
+            FlashcardSettings.setCodable(for: Key.decks.rawValue, newValue)
             Logger.settings.info("Set note types")
         }
     }
     
     var decks: [Deck] {
         get {
-            return FlashcardSettings.codable(for: Key.decks)!
+            return FlashcardSettings.codable(for: Key.decks.rawValue)!
         }
         set {
-            FlashcardSettings.setCodable(for: Key.decks, newValue)
+            FlashcardSettings.setCodable(for: Key.decks.rawValue, newValue)
             Logger.settings.info("Set decks \(newValue)")
         }
     }

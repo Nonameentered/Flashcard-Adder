@@ -199,15 +199,8 @@ class FlashcardViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
-//        view.endEditing(true)
+        // Convert these into @IBSegueActions
         switch segue.identifier ?? "" {
-        case "deckTypeAnki":
-            guard let navViewController = segue.destination as? UINavigationController else {
-                fatalError("Unexpected destination: \(segue.destination)")
-            }
-            guard let _ = navViewController.viewControllers.first as? SelectDeckTypeTableViewController else {
-                fatalError("Unexpected destination: \(segue.destination)")
-            }
         case "editableCloze":
             guard let navViewController = segue.destination as? UINavigationController else {
                 fatalError("Unexpected destination: \(segue.destination)")
@@ -246,14 +239,7 @@ class FlashcardViewController: UIViewController {
     }
  
     @IBAction func unwindToFlashcardView(sender: UIStoryboardSegue) {
-        if let sourceViewController = sender.source as? SelectDeckTypeTableViewController {
-            flashcard.updateDeck(to: sourceViewController.deck)
-            
-            /*
-             deckButton.setTitle("Deck: " + deck, for: .normal)
-             ankiSettings[2] = deck
-             */
-        } else if let sourceViewController = sender.source as? ClozeViewController {
+        if let sourceViewController = sender.source as? ClozeViewController {
             createCloze(clozeText: sourceViewController.clozeTextView.text, hintText: sourceViewController.hintTextView.text)
         } else if let sourceViewController = sender.source as? NoteTypeViewController {
             flashcard.updateNoteType(to: sourceViewController.viewModel.selectedNote)

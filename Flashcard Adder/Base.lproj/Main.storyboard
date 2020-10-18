@@ -37,17 +37,17 @@
             </objects>
             <point key="canvasLocation" x="1879.7101449275365" y="136.60714285714286"/>
         </scene>
-        <!--View Controller-->
+        <!--Settings-->
         <scene sceneID="qyB-vC-zhN">
             <objects>
-                <viewController id="WTl-me-X5T" sceneMemberID="viewController">
+                <viewController id="WTl-me-X5T" customClass="SettingsViewController" customModule="Flashcard_Adder" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Lwo-n1-z7g">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="PI1-Hc-OdO"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" id="pc9-24-vPZ"/>
+                    <navigationItem key="navigationItem" title="Settings" id="pc9-24-vPZ"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kmn-Rc-Ujn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
