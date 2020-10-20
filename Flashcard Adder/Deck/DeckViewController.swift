@@ -10,7 +10,7 @@ import UIKit
 
 class DeckViewController: UIViewController {
     enum Section: CaseIterable {
-        case selected
+        case usual
         case main
     }
 
@@ -93,6 +93,7 @@ extension DeckViewController {
     private func applySnapshot(animatingDifferences: Bool = true) {
         var snapshot = NSDiffableDataSourceSnapshot<Section, Deck>()
         snapshot.appendSections(Section.allCases)
+        snapshot.appendItems(viewModel.defaultDeckList, toSection: .usual)
         snapshot.appendItems(viewModel.main, toSection: .main)
         dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
     }

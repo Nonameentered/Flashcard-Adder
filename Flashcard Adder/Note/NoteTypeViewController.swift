@@ -10,7 +10,8 @@ import os.log
 
 class NoteTypeViewController: UIViewController {
     enum Section: CaseIterable {
-        case selected
+        case defaultNote
+        case defaultCloze
         case main
     }
 
@@ -97,6 +98,8 @@ extension NoteTypeViewController {
     private func applySnapshot(animatingDifferences: Bool = true) {
         var snapshot = NSDiffableDataSourceSnapshot<Section, Note>()
         snapshot.appendSections(Section.allCases)
+        snapshot.appendItems(viewModel.defaultNoteList, toSection: .defaultNote)
+        snapshot.appendItems(viewModel.defaultClozeNoteList, toSection: .defaultCloze)
         snapshot.appendItems(viewModel.main, toSection: .main)
         dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
     }

@@ -7,12 +7,30 @@
 
 import Foundation
 
+// Maybe rewrite to fit with DeckViewModel
 struct NoteTypeViewModel {
     var main: [Note]
+    var defaultNote: Note
+    var defaultClozeNote: Note
     var selectedNote: Note
+    
+    var defaultNoteList: [Note] {
+        [defaultNote]
+    }
+    
+    var defaultClozeNoteList: [Note] {
+        [defaultClozeNote]
+    }
     
     init(selected: Note) {
         main = FlashcardSettings.shared.noteTypes
+        defaultNote = FlashcardSettings.shared.defaultNoteType
+        defaultClozeNote = FlashcardSettings.shared.defaultClozeNoteType
+        print(main)
+        print(defaultNote)
+        print(defaultClozeNote)
+        main.remove(at: main.firstIndex(of: defaultNote)!)
+        main.remove(at: main.firstIndex(of: defaultClozeNote)!)
         self.selectedNote = selected
     }
     
@@ -24,7 +42,7 @@ struct NoteTypeViewModel {
         // Check for and produce alert if note type already exists
         if (main.firstIndex(of: note) == nil) {
             main.append(note)
+            FlashcardSettings.shared.noteTypes.append(note)
         }
-        FlashcardSettings.shared.noteTypes = main
     }
 }
