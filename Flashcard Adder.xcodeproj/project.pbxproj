@@ -75,8 +75,6 @@
 		E3F8D9BC253C930E003E7CC7 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F8D9BA253C930E003E7CC7 /* SettingsViewModel.swift */; };
 		E3F8D9C2253C93E8003E7CC7 /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F8D9C1253C93E8003E7CC7 /* Setting.swift */; };
 		E3F8D9C3253C93E8003E7CC7 /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F8D9C1253C93E8003E7CC7 /* Setting.swift */; };
-		E3F8D9C7253C9A6B003E7CC7 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F8D9C6253C9A6B003E7CC7 /* TabBarViewController.swift */; };
-		E3F8D9C8253C9A6B003E7CC7 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F8D9C6253C9A6B003E7CC7 /* TabBarViewController.swift */; };
 		E3F8D9CC253F6571003E7CC7 /* ClozeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F8D9CB253F6571003E7CC7 /* ClozeViewModel.swift */; };
 		E3F8D9CD253F6571003E7CC7 /* ClozeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F8D9CB253F6571003E7CC7 /* ClozeViewModel.swift */; };
 /* End PBXBuildFile section */
@@ -148,7 +146,6 @@
 		E3F8D9B5253C92F1003E7CC7 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		E3F8D9BA253C930E003E7CC7 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		E3F8D9C1253C93E8003E7CC7 /* Setting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Setting.swift; sourceTree = "<group>"; };
-		E3F8D9C6253C9A6B003E7CC7 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		E3F8D9CB253F6571003E7CC7 /* ClozeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClozeViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -216,15 +213,14 @@
 				E39647A82537F80900F803F4 /* Flashcard Adder.entitlements */,
 				E3F8D998253BF162003E7CC7 /* Deck */,
 				E3A7AFAA253BEF8000CE1035 /* Note */,
-				E3B7B56D253912D800E38EC4 /* Logger.swift */,
-				E357B35E251D2FB500354BCA /* FlashcardViewController.swift */,
 				E3F8D9D0253F6579003E7CC7 /* Cloze */,
 				E3359E3125300E090039F537 /* Extensions */,
 				E369F93D2515B95C00A51A0D /* Model */,
 				E369F93C2515B94F00A51A0D /* Custom Views */,
 				E3F8D9B4253C92B5003E7CC7 /* Settings */,
+				E357B35E251D2FB500354BCA /* FlashcardViewController.swift */,
+				E3B7B56D253912D800E38EC4 /* Logger.swift */,
 				E359182125106E3D002F1A35 /* AppDelegate.swift */,
-				E3F8D9C6253C9A6B003E7CC7 /* TabBarViewController.swift */,
 				E359182325106E3D002F1A35 /* SceneDelegate.swift */,
 				E359182725106E3D002F1A35 /* Main.storyboard */,
 				E3359E0725300CC80039F537 /* CreateFlashcard.storyboard */,
@@ -447,7 +443,6 @@
 				E3F8D9C2253C93E8003E7CC7 /* Setting.swift in Sources */,
 				E306FAA725218D750012337D /* String+CountInstances.swift in Sources */,
 				E369F9302515B71100A51A0D /* Deck.swift in Sources */,
-				E3F8D9C7253C9A6B003E7CC7 /* TabBarViewController.swift in Sources */,
 				E3D010F325355454006FB811 /* NoteTypeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -460,7 +455,6 @@
 				E39647D52537FC8C00F803F4 /* FlashcardSettings.swift in Sources */,
 				E39647E22537FC9E00F803F4 /* String+MatchingStrings.swift in Sources */,
 				E3F8D99B253BF1A1003E7CC7 /* DeckViewController.swift in Sources */,
-				E3F8D9C8253C9A6B003E7CC7 /* TabBarViewController.swift in Sources */,
 				E3F8D9B1253C0074003E7CC7 /* UIColor+DarkerLighterExtensions.swift in Sources */,
 				E39647DD2537FC9900F803F4 /* Flashcard.swift in Sources */,
 				E39647DA2537FC9900F803F4 /* Deck.swift in Sources */,
