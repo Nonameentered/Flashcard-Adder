@@ -51,7 +51,6 @@ class FlashcardViewController: UIViewController {
     }
 
     var flashcard = Flashcard()
-    var savedRange: UITextRange?
     
     // MARK: - Lifecycle
 
@@ -195,52 +194,38 @@ class FlashcardViewController: UIViewController {
         Logger.flashcard.info("Showing Deck List")
         return DeckViewController(coder: coder, viewModel: DeckViewModel(selected: flashcard.deck))
     }
-
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        super.prepare(for: segue, sender: sender)
-        // Convert these into @IBSegueActions
-        switch segue.identifier ?? "" {
-        case "editableCloze":
-            guard let navViewController = segue.destination as? UINavigationController else {
-                fatalError("Unexpected destination: \(segue.destination)")
-            }
-            guard let resultViewController = navViewController.viewControllers.first as? ClozeViewController else {
-                fatalError("Unexpected destination: \(segue.destination)")
-            }
-            
+    @IBSegueAction
+    private func showClozeView(coder: NSCoder, sender: Any?, segueIdentifier: String?)
+        -> ClozeViewController? {
+        var viewModel: ClozeViewModel!
+        
+        switch segueIdentifier {
+        case FlashcardSettings.Segues.goToClozeWithEdit:
             if let textRange = frontTextView.selectedTextRange {
-                let clozeText = frontTextView.text(in: textRange) ?? ""
-                resultViewController.cloze = clozeText
-                resultViewController.hint = ""
-                savedRange = textRange
+                viewModel = ClozeViewModel(cloze: frontTextView.text(in: textRange)?.trimmingCharacters(in: .whitespacesAndNewlines), referenceSpaceText: flashcard.surroundingText, savedRange: textRange, beginWithHint: true)
+            } else {
+                viewModel = ClozeViewModel(referenceSpaceText: flashcard.surroundingText, beginWithHint: true)
             }
-            resultViewController.referenceSpaceText = flashcard.surroundingText
-            resultViewController.beginWithHint = true
-        case "clozeBackText":
-            guard let navViewController = segue.destination as? UINavigationController else {
-                fatalError("Unexpected destination: \(segue.destination)")
-            }
-            guard let resultViewController = navViewController.viewControllers.first as? ClozeViewController else {
-                fatalError("Unexpected destination: \(segue.destination)")
-            }
-            
+            Logger.flashcard.info("Showing Cloze View with Editable Selection")
+        case FlashcardSettings.Segues.goToClozeWithBackText:
             if let textRange = frontTextView.selectedTextRange {
-                let hintText = frontTextView.text(in: textRange) ?? ""
-                resultViewController.cloze = backTextView!.text
-                resultViewController.hint = hintText
-                savedRange = textRange
+                viewModel = ClozeViewModel(cloze: backTextView.text.trimmingCharacters(in: .whitespacesAndNewlines), hint: frontTextView.text(in: textRange)?.trimmingCharacters(in: .whitespacesAndNewlines), referenceSpaceText: flashcard.surroundingText, savedRange: textRange, beginWithHint: false)
+            } else {
+                viewModel = ClozeViewModel(referenceSpaceText: flashcard.surroundingText, beginWithHint: false)
             }
-            
-            resultViewController.referenceSpaceText = flashcard.surroundingText
+            Logger.flashcard.info("Showing Cloze View with Back Text")
         default:
-            Logger.segue.fault("Unexpected Segue Identifier: \(String(describing: segue.identifier))")
+            fatalError("Unexpected Segue Identifier: \(String(describing: segueIdentifier))")
         }
+        
+        
+        return ClozeViewController(coder: coder, viewModel: viewModel)
     }
  
     @IBAction func unwindToFlashcardView(sender: UIStoryboardSegue) {
         if let sourceViewController = sender.source as? ClozeViewController {
-            createCloze(clozeText: sourceViewController.clozeTextView.text, hintText: sourceViewController.hintTextView.text)
+            createCloze(clozeText: sourceViewController.viewModel.cloze, hintText: sourceViewController.viewModel.hint, savedRange: sourceViewController.viewModel.savedRange)
         } else if let sourceViewController = sender.source as? NoteTypeViewController {
             flashcard.updateNoteType(to: sourceViewController.viewModel.selectedNote)
         } else if let sourceViewController = sender.source as? DeckViewController {
@@ -296,7 +281,7 @@ extension FlashcardViewController {
         flashcard.updateNoteType(to: FlashcardSettings.shared.defaultClozeNoteType)
     }
     
-    func createCloze(clozeText: String, hintText: String) {
+    func createCloze(clozeText: String, hintText: String, savedRange: UITextRange?) {
         let clozeCounter = (Cloze.highestCurrentCloze(text: frontTextView.text) ?? 0) + 1
         let cloze = Cloze(subject: clozeText, hint: hintText).clozeString(with: clozeCounter)
         

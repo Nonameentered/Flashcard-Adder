@@ -77,6 +77,8 @@
 		E3F8D9C3253C93E8003E7CC7 /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F8D9C1253C93E8003E7CC7 /* Setting.swift */; };
 		E3F8D9C7253C9A6B003E7CC7 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F8D9C6253C9A6B003E7CC7 /* TabBarViewController.swift */; };
 		E3F8D9C8253C9A6B003E7CC7 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F8D9C6253C9A6B003E7CC7 /* TabBarViewController.swift */; };
+		E3F8D9CC253F6571003E7CC7 /* ClozeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F8D9CB253F6571003E7CC7 /* ClozeViewModel.swift */; };
+		E3F8D9CD253F6571003E7CC7 /* ClozeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F8D9CB253F6571003E7CC7 /* ClozeViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -112,7 +114,7 @@
 		E3359E3A25301A4D0039F537 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E357B35D251D2FB500354BCA /* AddNoteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddNoteViewController.swift; path = "Flashcard Adder/Note/AddNoteViewController.swift"; sourceTree = SOURCE_ROOT; };
 		E357B35E251D2FB500354BCA /* FlashcardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FlashcardViewController.swift; path = "Flashcard Adder/FlashcardViewController.swift"; sourceTree = SOURCE_ROOT; };
-		E357B35F251D2FB500354BCA /* ClozeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ClozeViewController.swift; path = "Flashcard Adder/ClozeViewController.swift"; sourceTree = SOURCE_ROOT; };
+		E357B35F251D2FB500354BCA /* ClozeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ClozeViewController.swift; path = "Flashcard Adder/Cloze/ClozeViewController.swift"; sourceTree = SOURCE_ROOT; };
 		E357B36B251D305B00354BCA /* UIViewController+HideKeyboardWheNTappedAround.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+HideKeyboardWheNTappedAround.swift"; sourceTree = "<group>"; };
 		E357B36F251D32BF00354BCA /* LabelTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelTableViewCell.swift; sourceTree = "<group>"; };
 		E359181E25106E3D002F1A35 /* Flashcard Adder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Flashcard Adder.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -147,6 +149,7 @@
 		E3F8D9BA253C930E003E7CC7 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		E3F8D9C1253C93E8003E7CC7 /* Setting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Setting.swift; sourceTree = "<group>"; };
 		E3F8D9C6253C9A6B003E7CC7 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
+		E3F8D9CB253F6571003E7CC7 /* ClozeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClozeViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -215,7 +218,7 @@
 				E3A7AFAA253BEF8000CE1035 /* Note */,
 				E3B7B56D253912D800E38EC4 /* Logger.swift */,
 				E357B35E251D2FB500354BCA /* FlashcardViewController.swift */,
-				E357B35F251D2FB500354BCA /* ClozeViewController.swift */,
+				E3F8D9D0253F6579003E7CC7 /* Cloze */,
 				E3359E3125300E090039F537 /* Extensions */,
 				E369F93D2515B95C00A51A0D /* Model */,
 				E369F93C2515B94F00A51A0D /* Custom Views */,
@@ -294,6 +297,15 @@
 				E3F8D9C1253C93E8003E7CC7 /* Setting.swift */,
 			);
 			path = Settings;
+			sourceTree = "<group>";
+		};
+		E3F8D9D0253F6579003E7CC7 /* Cloze */ = {
+			isa = PBXGroup;
+			children = (
+				E357B35F251D2FB500354BCA /* ClozeViewController.swift */,
+				E3F8D9CB253F6571003E7CC7 /* ClozeViewModel.swift */,
+			);
+			path = Cloze;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -415,6 +427,7 @@
 				E39595A7253906E70073FD2B /* NoteTypeViewModel.swift in Sources */,
 				E306FAAC25218DF60012337D /* UIView+FirstResponder.swift in Sources */,
 				E3D011182537C4A8006FB811 /* Cloze.swift in Sources */,
+				E3F8D9CC253F6571003E7CC7 /* ClozeViewModel.swift in Sources */,
 				E3F8D9A1253BF209003E7CC7 /* DeckViewModel.swift in Sources */,
 				E3B7B56E253912D800E38EC4 /* Logger.swift in Sources */,
 				E357B364251D2FB500354BCA /* FlashcardViewController.swift in Sources */,
@@ -464,6 +477,7 @@
 				E3F8D9C3253C93E8003E7CC7 /* Setting.swift in Sources */,
 				E39648062537FEF200F803F4 /* LabelTableViewCell.swift in Sources */,
 				E3F8D9AC253BF7AD003E7CC7 /* UIViewController+showInputDialog.swift in Sources */,
+				E3F8D9CD253F6571003E7CC7 /* ClozeViewModel.swift in Sources */,
 				E3B7B56925390C5E00E38EC4 /* NoteTypeViewModel.swift in Sources */,
 				E39647D92537FC9900F803F4 /* Cloze.swift in Sources */,
 				E39647FE2537FEAF00F803F4 /* EditFieldTextView.swift in Sources */,

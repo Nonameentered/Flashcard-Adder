@@ -78,7 +78,7 @@
                                                                 <inset key="contentEdgeInsets" minX="5" minY="0.0" maxX="5" maxY="0.0"/>
                                                                 <state key="normal" title="Editable Cloze"/>
                                                                 <connections>
-                                                                    <segue destination="yFV-Pz-f1W" kind="presentation" identifier="editableCloze" id="Wrh-ab-CCK"/>
+                                                                    <segue destination="yFV-Pz-f1W" kind="presentation" identifier="goToClozeWithEdit" id="Wrh-ab-CCK"/>
                                                                 </connections>
                                                             </button>
                                                         </subviews>
@@ -95,7 +95,7 @@
                                                         <inset key="contentEdgeInsets" minX="5" minY="0.0" maxX="5" maxY="0.0"/>
                                                         <state key="normal" title="Cloze Back Text with Editable Hint"/>
                                                         <connections>
-                                                            <segue destination="yFV-Pz-f1W" kind="presentation" identifier="clozeBackText" id="SOf-Qa-yaC"/>
+                                                            <segue destination="yFV-Pz-f1W" kind="presentation" identifier="goToClozeWithBackText" id="SOf-Qa-yaC"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -249,7 +249,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="3tq-Q3-7mi" kind="relationship" relationship="rootViewController" id="6kg-8l-raU"/>
+                        <segue destination="3tq-Q3-7mi" kind="relationship" relationship="rootViewController" destinationCreationSelector="showClozeViewWithCoder:sender:segueIdentifier:" id="6kg-8l-raU"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KWl-Vq-Bch" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

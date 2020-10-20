@@ -1,4 +1,4 @@
-//EditFieldTextView
+// EditFieldTextView
 //  ClozeViewController.swift
 //  iQuiz
 //
@@ -9,32 +9,37 @@
 import UIKit
 
 class ClozeViewController: UIViewController, UITextViewDelegate {
+    @IBOutlet var clozeTextView: EditFieldTextView!
+    @IBOutlet var hintTextView: EditFieldTextView!
+    @IBOutlet var addButton: UIBarButtonItem!
     
-    @IBOutlet weak var clozeTextView: EditFieldTextView!
-    @IBOutlet weak var hintTextView: EditFieldTextView!
-    @IBOutlet weak var addButton: UIBarButtonItem!
-    var cloze = ""
-    var hint = ""
-    var referenceSpaceText = ""
+    @IBOutlet var referenceSpaceTextView: EditFieldTextView!
+    var viewModel: ClozeViewModel
     
-    @IBOutlet weak var referenceSpaceTextView: EditFieldTextView!
-    var beginWithHint = false
+    init?(coder: NSCoder, viewModel: ClozeViewModel) {
+        self.viewModel = viewModel
+        super.init(coder: coder)
+    }
+
+    @available(*, unavailable)
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         hideKeyboardWhenTappedAround()
-        clozeTextView.text = cloze.trimmingCharacters(in: .whitespacesAndNewlines)
-        hintTextView.text = hint.trimmingCharacters(in: .whitespacesAndNewlines)
         
-        referenceSpaceTextView.text = referenceSpaceText
+        clozeTextView.delegate = self
+        hintTextView.delegate = self
         
-        self.clozeTextView.delegate = self
-        self.hintTextView.delegate = self
-        
-        if self.beginWithHint {
-            self.hintTextView.becomeFirstResponder()
+        clozeTextView.text = viewModel.cloze
+        hintTextView.text = viewModel.hint
+        referenceSpaceTextView.text = viewModel.referenceSpaceText
+        if viewModel.beginWithHint {
+            hintTextView.becomeFirstResponder()
         } else {
-            self.clozeTextView.becomeFirstResponder()
+            clozeTextView.becomeFirstResponder()
         }
     }
     
@@ -49,21 +54,29 @@ class ClozeViewController: UIViewController, UITextViewDelegate {
     }
     
     @IBAction func addThe(_ sender: Any) {
-        print(clozeTextView.text.prefix(1) == " ")
-        if clozeTextView.text.prefix(1) == " " {
-            clozeTextView.text = "The\(clozeTextView.text!)"
-        } else {
-            clozeTextView.text = "The \(clozeTextView.text!)"
+        guard let text = clozeTextView.text else {
+            return
         }
         
+        if text.prefix(1) == " " {
+            clozeTextView.text = "The\(text)"
+        } else {
+            clozeTextView.text = "The \(text)"
+        }
+        updateState()
     }
     
     @IBAction func addPossession(_ sender: Any) {
-        if clozeTextView.text.suffix(1) == " " {
-            clozeTextView.text = "\(clozeTextView.text!.dropLast(1))'s"
-        } else {
-            clozeTextView.text = "\(clozeTextView.text!)'s"
+        guard let text = clozeTextView.text else {
+            return
         }
+        
+        if text.suffix(1) == " " {
+            clozeTextView.text = "\(text.dropLast(1))'s"
+        } else {
+            clozeTextView.text = "\(text)'s"
+        }
+        updateState()
     }
     
     @objc func addCloze() {
@@ -71,12 +84,12 @@ class ClozeViewController: UIViewController, UITextViewDelegate {
     }
     
     func textViewDidChange(_ textView: UITextView) {
-        updateAddButtonState()
+        updateState()
     }
     
-    func updateAddButtonState() {
-        let text = clozeTextView.text ?? ""
-        addButton.isEnabled = !text.isEmpty
+    func updateState() {
+        addButton.isEnabled = !clozeTextView.text.isEmpty
+        viewModel.update(cloze: clozeTextView.text, hint: hintTextView.text, referenceSpaceText: referenceSpaceTextView.text)
     }
     
     func textViewShouldReturn(_ textView: UITextView) -> Bool {
@@ -92,7 +105,7 @@ class ClozeViewController: UIViewController, UITextViewDelegate {
     }
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        if (text == "\t" || text == "\n") && (textView == clozeTextView || textView == hintTextView) {
+        if text == "\t" || text == "\n", textView == clozeTextView || textView == hintTextView {
             if text == "\t" {
                 if textView == clozeTextView {
                     hintTextView.becomeFirstResponder()
