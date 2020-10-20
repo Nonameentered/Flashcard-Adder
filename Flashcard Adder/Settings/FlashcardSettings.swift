@@ -86,10 +86,10 @@ final class FlashcardSettings {
     
     var defaultClozeNoteType: Note {
         get {
-            return FlashcardSettings.codable(for: Key.defaultNoteType.rawValue)!
+            return FlashcardSettings.codable(for: Key.defaultClozeNoteType.rawValue)!
         }
         set {
-            FlashcardSettings.setCodable(for: Key.defaultNoteType.rawValue, newValue)
+            FlashcardSettings.setCodable(for: Key.defaultClozeNoteType.rawValue, newValue)
         }
     }
     
