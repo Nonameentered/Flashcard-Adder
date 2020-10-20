@@ -258,8 +258,6 @@ class FlashcardViewController: UIViewController {
             responder = responder?.next
         }
         self.extensionContext!.cancelRequest(withError: NSError(domain: "com.technaplex.Flashcard-Adder.Action-Extension", code: 1, userInfo: [NSLocalizedDescriptionKey: "Action Extension Dismissed"]))
-//        self.extensionContext!.completeRequest(returningItems: self.extensionContext!.inputItems, completionHandler: nil)
-//        self.extensionContext!.cancelRequest(withError: NSError()) // Maybe don't 'cancel request'
         return false
     }
 }
@@ -296,7 +294,6 @@ extension FlashcardViewController {
         }
         
         flashcard.updateNoteType(to: FlashcardSettings.shared.defaultClozeNoteType)
-        // TODO: Handle frontLabel, backLabel, typeButton updates (or more fields)
     }
     
     func createCloze(clozeText: String, hintText: String) {
@@ -308,7 +305,6 @@ extension FlashcardViewController {
         }
         
         flashcard.updateNoteType(to: FlashcardSettings.shared.defaultClozeNoteType)
-        // TODO: Handle frontLabel, backLabel, typeButton updates (or more fields)
     }
     
     func clozeCount() -> Int {
@@ -334,6 +330,10 @@ extension FlashcardViewController: UITextViewDelegate {
                 }
                 
                 if textView == backTextView {
+                    referenceSpaceTextView.becomeFirstResponder()
+                }
+                
+                if textView == referenceSpaceTextView {
                     frontTextView.becomeFirstResponder()
                 }
             }
