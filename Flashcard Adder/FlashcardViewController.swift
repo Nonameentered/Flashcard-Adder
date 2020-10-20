@@ -308,7 +308,7 @@ extension FlashcardViewController {
 // MARK: UITextViewDelegate
 extension FlashcardViewController: UITextViewDelegate {
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        if textView == frontTextView || textView == backTextView, text == "\t" {
+        if textView == frontTextView || textView == backTextView || textView == referenceSpaceTextView, text == "\t" || text == "\n" {
             if text == "\t" {
                 if textView == frontTextView {
                     backTextView.becomeFirstResponder()
