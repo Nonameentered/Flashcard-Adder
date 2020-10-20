@@ -70,12 +70,6 @@ class ClozeViewController: UIViewController, UITextViewDelegate {
         performSegue(withIdentifier: "unwindToFlashcardFromCloze", sender: true)
     }
     
-    func textViewDidBeginEditing(_ textView: UITextView) {
-        updateAddButtonState()
-    }
-    func textViewDidEndEditing(_ textView: UITextView) {
-        updateAddButtonState()
-    }
     func textViewDidChange(_ textView: UITextView) {
         updateAddButtonState()
     }
