@@ -69,8 +69,8 @@
 		E3F8D9AC253BF7AD003E7CC7 /* UIViewController+showInputDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F8D9AA253BF7AD003E7CC7 /* UIViewController+showInputDialog.swift */; };
 		E3F8D9B0253C0074003E7CC7 /* UIColor+DarkerLighterExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F8D9AF253C0074003E7CC7 /* UIColor+DarkerLighterExtensions.swift */; };
 		E3F8D9B1253C0074003E7CC7 /* UIColor+DarkerLighterExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F8D9AF253C0074003E7CC7 /* UIColor+DarkerLighterExtensions.swift */; };
-		E3F8D9B6253C92F1003E7CC7 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F8D9B5253C92F1003E7CC7 /* SettingsViewController.swift */; };
-		E3F8D9B7253C92F1003E7CC7 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F8D9B5253C92F1003E7CC7 /* SettingsViewController.swift */; };
+		E3F8D9B6253C92F1003E7CC7 /* SettingsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F8D9B5253C92F1003E7CC7 /* SettingsListViewController.swift */; };
+		E3F8D9B7253C92F1003E7CC7 /* SettingsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F8D9B5253C92F1003E7CC7 /* SettingsListViewController.swift */; };
 		E3F8D9BB253C930E003E7CC7 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F8D9BA253C930E003E7CC7 /* SettingsViewModel.swift */; };
 		E3F8D9BC253C930E003E7CC7 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F8D9BA253C930E003E7CC7 /* SettingsViewModel.swift */; };
 		E3F8D9C2253C93E8003E7CC7 /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F8D9C1253C93E8003E7CC7 /* Setting.swift */; };
@@ -143,7 +143,7 @@
 		E3F8D9A5253BF36D003E7CC7 /* Deck.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Deck.storyboard; sourceTree = "<group>"; };
 		E3F8D9AA253BF7AD003E7CC7 /* UIViewController+showInputDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+showInputDialog.swift"; sourceTree = "<group>"; };
 		E3F8D9AF253C0074003E7CC7 /* UIColor+DarkerLighterExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+DarkerLighterExtensions.swift"; sourceTree = "<group>"; };
-		E3F8D9B5253C92F1003E7CC7 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		E3F8D9B5253C92F1003E7CC7 /* SettingsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsListViewController.swift; sourceTree = "<group>"; };
 		E3F8D9BA253C930E003E7CC7 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		E3F8D9C1253C93E8003E7CC7 /* Setting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Setting.swift; sourceTree = "<group>"; };
 		E3F8D9CB253F6571003E7CC7 /* ClozeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClozeViewModel.swift; sourceTree = "<group>"; };
@@ -288,7 +288,7 @@
 			isa = PBXGroup;
 			children = (
 				E369F9262515B71000A51A0D /* FlashcardSettings.swift */,
-				E3F8D9B5253C92F1003E7CC7 /* SettingsViewController.swift */,
+				E3F8D9B5253C92F1003E7CC7 /* SettingsListViewController.swift */,
 				E3F8D9BA253C930E003E7CC7 /* SettingsViewModel.swift */,
 				E3F8D9C1253C93E8003E7CC7 /* Setting.swift */,
 			);
@@ -439,7 +439,7 @@
 				E3F8D99A253BF1A1003E7CC7 /* DeckViewController.swift in Sources */,
 				E369F92E2515B71100A51A0D /* Profile.swift in Sources */,
 				E359182425106E3D002F1A35 /* SceneDelegate.swift in Sources */,
-				E3F8D9B6253C92F1003E7CC7 /* SettingsViewController.swift in Sources */,
+				E3F8D9B6253C92F1003E7CC7 /* SettingsListViewController.swift in Sources */,
 				E3F8D9C2253C93E8003E7CC7 /* Setting.swift in Sources */,
 				E306FAA725218D750012337D /* String+CountInstances.swift in Sources */,
 				E369F9302515B71100A51A0D /* Deck.swift in Sources */,
@@ -475,7 +475,7 @@
 				E3B7B56925390C5E00E38EC4 /* NoteTypeViewModel.swift in Sources */,
 				E39647D92537FC9900F803F4 /* Cloze.swift in Sources */,
 				E39647FE2537FEAF00F803F4 /* EditFieldTextView.swift in Sources */,
-				E3F8D9B7253C92F1003E7CC7 /* SettingsViewController.swift in Sources */,
+				E3F8D9B7253C92F1003E7CC7 /* SettingsListViewController.swift in Sources */,
 				E39647DB2537FC9900F803F4 /* Note.swift in Sources */,
 				E39647EE2537FCC300F803F4 /* FlashcardViewController.swift in Sources */,
 				E3F8D9BC253C930E003E7CC7 /* SettingsViewModel.swift in Sources */,

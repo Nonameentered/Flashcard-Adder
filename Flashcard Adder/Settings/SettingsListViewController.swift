@@ -8,7 +8,7 @@
 import UIKit
 import os.log
 
-class SettingsViewController: UIViewController {
+class SettingsListViewController: UIViewController {
     enum Section: CaseIterable {
         case selected
         case main
@@ -35,7 +35,7 @@ class SettingsViewController: UIViewController {
     }
 }
 
-extension SettingsViewController {
+extension SettingsListViewController {
     /// - Tag: List
     private func createLayout() -> UICollectionViewLayout {
         var config = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
@@ -44,7 +44,7 @@ extension SettingsViewController {
     }
 }
 
-extension SettingsViewController {
+extension SettingsListViewController {
     private func configureHierarchy() {
         collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createLayout())
         collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
@@ -75,7 +75,7 @@ extension SettingsViewController {
     }
 }
 
-extension SettingsViewController: UICollectionViewDelegate {
+extension SettingsListViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: false)
         collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .top)
