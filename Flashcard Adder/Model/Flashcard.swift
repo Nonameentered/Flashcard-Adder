@@ -6,12 +6,12 @@
 //
 
 import Foundation
+import os.log
 
 protocol FlashcardDelegate {
     func noteTypeDidChange(flashcard: Flashcard, from: Note, to: Note)
     func deckDidChange(flashcard: Flashcard, from: Deck, to: Deck)
-    func flashcardAddDidFail(flashcard: Flashcard)
-    func flashcardAddDidSucceed(flashcard: Flashcard)
+    func flashcardDidCreate(flashcard: Flashcard)
 }
 
 struct Flashcard: Codable {
@@ -30,24 +30,6 @@ struct Flashcard: Codable {
         case referenceText
     }
     
-    var ankiUrl: URL? {
-        if !isValid {
-            print("INVALID")
-            return nil
-        }
-        
-        var ankiUrlString = "anki://x-callback-url/addnote?profile=\(profile.name)&type=\(note.name)&deck=\(deck.name)"
-        ankiUrlString = self.note.fields.reduce(ankiUrlString) { fieldString, field -> String in
-            "\(fieldString)&fld\(field.name)=\(field.text)"
-        }
-        ankiUrlString.append("&x-success=ankiadd://")
-        if let encodedAnkiUrlString = ankiUrlString.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed) {
-            print(encodedAnkiUrlString)
-            return URL(string: encodedAnkiUrlString)
-        } else {
-            return nil
-        }
-    }
     
     var noteTypeName: String {
         return note.name
@@ -75,6 +57,59 @@ struct Flashcard: Codable {
         }
     }
     
+    init(originalText: String? = nil, note: Note? = nil, deck: Deck? = nil, profile: Profile? = nil, referenceText: String? = nil, delegate: FlashcardDelegate? = nil) {
+        self.originalText = originalText ?? ""
+        self.note = note ?? FlashcardSettings.shared.defaultNoteType
+        self.deck = deck ?? FlashcardSettings.shared.defaultDeck
+        self.profile = profile ?? FlashcardSettings.shared.ankiProfile
+        self.referenceText = referenceText ?? ""
+        self.delegate = delegate
+        
+        updateField(index: 0, to: self.originalText)
+        updateField(index: 1, to: "")
+        
+        setFieldDelegates()
+        
+        delegate?.flashcardDidCreate(flashcard: self)
+    }
+    
+    // Creates a new flashcard following previous settings
+    // Revise to allow frozen fields/other options
+    init(previous: Flashcard, delegate: FlashcardDelegate? = nil) {
+        self.init(originalText: "", note: previous.note, deck: previous.deck, profile: previous.profile, referenceText: previous.referenceText, delegate: delegate)
+    }
+    
+    // Not a computed property because it calls the mutating function checkNoteType
+    mutating func getAnkiUrl() -> URL? {
+        if !isValid {
+            Logger.flashcard.error("Invalid anki url")
+            return nil
+        }
+        
+        checkNoteType()
+        var ankiUrlString = "anki://x-callback-url/addnote?profile=\(profile.name)&type=\(note.name)&deck=\(deck.name)"
+        ankiUrlString = self.note.fields.reduce(ankiUrlString) { fieldString, field -> String in
+            "\(fieldString)&fld\(field.name)=\(field.text)"
+        }
+        ankiUrlString.append("&x-success=ankiadd://")
+        if let encodedAnkiUrlString = ankiUrlString.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed) {
+            Logger.flashcard.error("Encoded anki url:\(encodedAnkiUrlString)")
+            return URL(string: encodedAnkiUrlString)
+        } else {
+            return nil
+        }
+    }
+    
+    private mutating func checkNoteType() {
+        if note.acceptsCloze && Cloze.highestCurrentCloze(text: note.fields[0].text) == nil {
+            Logger.flashcard.info("No clozes detected in cloze type note, converting to default non-cloze type")
+            updateNoteType(to: FlashcardSettings.shared.defaultNoteType)
+        } else if !note.acceptsCloze && Cloze.highestCurrentCloze(text: note.fields[0].text) != nil {
+            Logger.flashcard.info("Clozes detected in non-cloze type note, converting to default cloze type")
+            updateNoteType(to: FlashcardSettings.shared.defaultClozeNoteType)
+        }
+    }
+    
     mutating func updateNoteType(to noteType: Note) {
         let oldNote = self.note
         self.note = noteType
@@ -99,47 +134,21 @@ struct Flashcard: Codable {
         if let index = fieldNames.firstIndex(of: name) {
             note.fields[index].text = text
         } else {
-            print("FIELD DOESN'T EXIST")
+            Logger.flashcard.error("Field \(name) does not exist. \(text) not updated")
         }
     }
     
+    mutating func updateField(index: Int, to text: String) {
+        note.fields[index].text = text
+    }
+    
     // Currently Unused. I hope this can replace the Cloze section in AnkiViewController eventually
+    @available(*, unavailable)
     mutating func insertCloze(sequential: Bool = true, cloze: Cloze, textRange: Range<String>) {
         if note.acceptsCloze {
             updateNoteType(to: FlashcardSettings.shared.defaultClozeNoteType)
         }
-//         if let textRange = frontTextView.selectedTextRange {
-//             clozeText = frontTextView.text(in: textRange)?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
-//             if hintText != "::" {
-//                 cloze = "{{c\(clozeCounter)::\(clozeText)\(hintText)}}"
-//             } else {
-//                 cloze = "{{c\(clozeCounter)::\(clozeText)}}"
-//             }
-//
-//             frontTextView.replace(textRange, withText: cloze)
-//         }
      }
-}
-
-extension Flashcard {
-    init(originalText: String, referenceText: String? = nil) {
-        self.originalText = originalText
-        note = FlashcardSettings.shared.defaultNoteType
-        deck = FlashcardSettings.shared.defaultDeck
-        profile = FlashcardSettings.shared.ankiProfile
-        self.referenceText = referenceText ?? ""
-        
-        setFieldDelegates()
-    }
-    
-    // Creates a new flashcard following previous settings
-    init(previous: Flashcard) {
-        self.init(originalText: "", note: previous.note, deck: previous.deck, profile: previous.profile, referenceText: previous.referenceText)
-    }
-    
-    init() {
-        self.init(originalText: "")
-    }
 }
 
 extension Flashcard: FieldDelegate {

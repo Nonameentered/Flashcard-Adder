@@ -133,8 +133,18 @@ class FlashcardViewController: UIViewController {
     // MARK: - Actions
     
     @IBAction func reset(_ sender: Any) {
+        hardReset()
     }
     
+    // Resets fields while preserving decks/etc with a new flashcard
+    @objc func softReset() {
+        flashcard = Flashcard(previous: flashcard, delegate: self)
+    }
+    
+    // Resets to default settings with a new flashcard
+    @objc func hardReset() {
+        flashcard = Flashcard(delegate: self)
+    }
     /// Adds a new line to the currently active text view, if a text view is active
     @objc func newLine() {
         if let firstResponder = view.window?.firstResponder as? UITextView {
@@ -142,13 +152,8 @@ class FlashcardViewController: UIViewController {
         }
     }
     
-    func clearFields() {
-        frontTextView.text = ""
-        backTextView.text = ""
-    }
-    
     @IBAction func addCard(_ sender: Any) {
-        guard let ankiUrl = flashcard.ankiUrl else {
+        guard let ankiUrl = flashcard.getAnkiUrl() else {
             let alert = UIAlertController(title: "Incomplete Flashcard", message: "The currently filled out text does not create a flashcard", preferredStyle: UIAlertController.Style.alert)
             alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
             present(alert, animated: true, completion: nil)
@@ -156,7 +161,7 @@ class FlashcardViewController: UIViewController {
         }
         #if Main
         if UIApplication.shared.canOpenURL(ankiUrl) {
-            clearFields()
+            softReset()
             UIApplication.shared.open(ankiUrl, options: [:])
         } else {
             let alert = UIAlertController(title: "AnkiMobile Not Installed", message: "AnkiMobile Flashcards must be installed to add facts", preferredStyle: UIAlertController.Style.alert)
@@ -295,10 +300,6 @@ extension FlashcardViewController {
         flashcard.updateNoteType(to: FlashcardSettings.shared.defaultClozeNoteType)
     }
     
-    func clozeCount() -> Int {
-        frontTextView.text.count
-    }
-    
     @objc func clozeWithHint(_ sender: Any) {
         performSegue(withIdentifier: "editableCloze", sender: sender)
     }
@@ -356,19 +357,18 @@ extension FlashcardViewController: UITextViewDelegate {
 extension FlashcardViewController: FlashcardDelegate {
     func noteTypeDidChange(flashcard: Flashcard, from: Note, to: Note) {
         typeButton.setTitle("Type: " + flashcard.noteTypeName, for: .normal)
+        frontLabel.text = to.fields[0].name
+        backLabel.text = to.fields[1].name
     }
     
     func deckDidChange(flashcard: Flashcard, from: Deck, to: Deck) {
         deckButton.setTitle("Deck: " + flashcard.deckName, for: .normal)
     }
     
-    func flashcardAddDidFail(flashcard: Flashcard) {
-        Logger.flashcard.error("Flashcard add failed")
+    func flashcardDidCreate(flashcard: Flashcard) {
+        frontTextView.text = flashcard.note.fields[0].text
+        backTextView.text = flashcard.note.fields[1].text
+        typeButton.setTitle("Type: " + flashcard.noteTypeName, for: .normal)
+        deckButton.setTitle("Deck: " + flashcard.deckName, for: .normal)
     }
-    
-    func flashcardAddDidSucceed(flashcard: Flashcard) {
-        Logger.flashcard.info("Flashcard add succeeded")
-    }
-    
-
 }

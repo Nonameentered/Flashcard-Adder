@@ -47,7 +47,7 @@ final class FlashcardSettings {
     static func registerDefaults() {
         let defaults: [String: Any] = [Key.ankiProfile.rawValue: encodeCodable(for: Profile(name: "User 1"))!,
                                         Key.defaultNoteType.rawValue: encodeCodable(for: Note(name: "Basic", fields: [Field(name: "Front"), Field(name: "Back")]))!,
-                                        Key.defaultClozeNoteType.rawValue: encodeCodable(for: Note(name: "Cloze", fields: [Field(name: "Text"), Field(name: "Extra")]))!,
+                                        Key.defaultClozeNoteType.rawValue: encodeCodable(for: Note(name: "Cloze", fields: [Field(name: "Text", fieldType: .cloze), Field(name: "Extra")]))!,
                                         Key.defaultDeck.rawValue: encodeCodable(for: Deck(name: "Default"))!,
                                         Key.noteTypes.rawValue: encodeCodable(for: [Note(name: "Basic", fields: [Field(name: "Front"), Field(name: "Back")]), Note(name: "Cloze", fields: [Field(name: "Text"), Field(name: "Extra")])])!,
                                         Key.decks.rawValue: encodeCodable(for: [Deck(name: "Default")])!]
