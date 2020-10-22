@@ -39,9 +39,7 @@ public extension Cloze {
     
     public static func highestCurrentCloze(text: String) -> String? {
         let matches = text.matchingStrings(regex: regexIdentifier)
-        print(matches)
         let matchedClozeValues = matches.map { $0[1] }
-        print(matchedClozeValues)
         return matchedClozeValues.max()
         
     }

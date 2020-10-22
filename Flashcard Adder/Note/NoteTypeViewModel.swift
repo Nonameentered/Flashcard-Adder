@@ -26,9 +26,6 @@ struct NoteTypeViewModel {
         main = FlashcardSettings.shared.noteTypes
         defaultNote = FlashcardSettings.shared.defaultNoteType
         defaultClozeNote = FlashcardSettings.shared.defaultClozeNoteType
-        print(main)
-        print(defaultNote)
-        print(defaultClozeNote)
         main.remove(at: main.firstIndex(of: defaultNote)!)
         main.remove(at: main.firstIndex(of: defaultClozeNote)!)
         self.selectedNote = selected
