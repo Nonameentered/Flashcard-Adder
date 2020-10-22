@@ -31,7 +31,7 @@ class FlashcardViewController: UIViewController {
     @IBOutlet var backTextView: EditFieldTextView!
     @IBOutlet var referenceSpaceTextView: EditFieldTextView! {
         didSet {
-            referenceSpaceTextView.text = flashcard.surroundingText
+            referenceSpaceTextView.text = flashcard.referenceText
         }
     }
     @IBOutlet var resetButton: UIBarButtonItem!
@@ -206,16 +206,16 @@ class FlashcardViewController: UIViewController {
         switch segueIdentifier {
         case FlashcardSettings.Segues.goToClozeWithEdit:
             if let textRange = frontTextView.selectedTextRange {
-                viewModel = ClozeViewModel(cloze: frontTextView.text(in: textRange)?.trimmingCharacters(in: .whitespacesAndNewlines), referenceSpaceText: flashcard.surroundingText, savedRange: textRange, beginWithHint: true)
+                viewModel = ClozeViewModel(cloze: frontTextView.text(in: textRange)?.trimmingCharacters(in: .whitespacesAndNewlines), referenceSpaceText: flashcard.referenceText, savedRange: textRange, beginWithHint: true)
             } else {
-                viewModel = ClozeViewModel(referenceSpaceText: flashcard.surroundingText, beginWithHint: true)
+                viewModel = ClozeViewModel(referenceSpaceText: flashcard.referenceText, beginWithHint: true)
             }
             Logger.flashcard.info("Showing Cloze View with Editable Selection")
         case FlashcardSettings.Segues.goToClozeWithBackText:
             if let textRange = frontTextView.selectedTextRange {
-                viewModel = ClozeViewModel(cloze: backTextView.text.trimmingCharacters(in: .whitespacesAndNewlines), hint: frontTextView.text(in: textRange)?.trimmingCharacters(in: .whitespacesAndNewlines), referenceSpaceText: flashcard.surroundingText, savedRange: textRange, beginWithHint: false)
+                viewModel = ClozeViewModel(cloze: backTextView.text.trimmingCharacters(in: .whitespacesAndNewlines), hint: frontTextView.text(in: textRange)?.trimmingCharacters(in: .whitespacesAndNewlines), referenceSpaceText: flashcard.referenceText, savedRange: textRange, beginWithHint: false)
             } else {
-                viewModel = ClozeViewModel(referenceSpaceText: flashcard.surroundingText, beginWithHint: false)
+                viewModel = ClozeViewModel(referenceSpaceText: flashcard.referenceText, beginWithHint: false)
             }
             Logger.flashcard.info("Showing Cloze View with Back Text")
         default:
@@ -337,7 +337,7 @@ extension FlashcardViewController: UITextViewDelegate {
         } else if textView == backTextView {
             flashcard.updateField(name: backLabel.text ?? "", to: backTextView.text)
         } else if textView == referenceSpaceTextView {
-            flashcard.surroundingText = referenceSpaceTextView.text
+            flashcard.referenceText = referenceSpaceTextView.text
         }
         
         updateAddButtonState()

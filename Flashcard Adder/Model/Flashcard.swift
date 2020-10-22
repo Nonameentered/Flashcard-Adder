@@ -19,7 +19,7 @@ struct Flashcard: Codable {
     var note: Note
     var deck: Deck
     var profile: Profile
-    var surroundingText: String
+    var referenceText: String
     var delegate: FlashcardDelegate?
     
     private enum CodingKeys: String, CodingKey {
@@ -27,7 +27,7 @@ struct Flashcard: Codable {
         case note
         case deck
         case profile
-        case surroundingText
+        case referenceText
     }
     
     var ankiUrl: URL? {
@@ -122,19 +122,19 @@ struct Flashcard: Codable {
 }
 
 extension Flashcard {
-    init(originalText: String, surroundingText: String? = nil) {
+    init(originalText: String, referenceText: String? = nil) {
         self.originalText = originalText
         note = FlashcardSettings.shared.defaultNoteType
         deck = FlashcardSettings.shared.defaultDeck
         profile = FlashcardSettings.shared.ankiProfile
-        self.surroundingText = surroundingText ?? ""
+        self.referenceText = referenceText ?? ""
         
         setFieldDelegates()
     }
     
     // Creates a new flashcard following previous settings
     init(previous: Flashcard) {
-        self.init(originalText: "", note: previous.note, deck: previous.deck, profile: previous.profile, surroundingText: previous.surroundingText)
+        self.init(originalText: "", note: previous.note, deck: previous.deck, profile: previous.profile, referenceText: previous.referenceText)
     }
     
     init() {
