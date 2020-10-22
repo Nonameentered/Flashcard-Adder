@@ -16,7 +16,6 @@ protocol FlashcardDelegate {
 
 struct Flashcard: Codable {
     let originalText: String
-//    var fields: [Field]
     var note: Note
     var deck: Deck
     var profile: Profile
@@ -29,22 +28,6 @@ struct Flashcard: Codable {
         case deck
         case profile
         case surroundingText
-    }
-    
-    init(originalText: String, surroundingText: String? = nil) {
-        self.originalText = originalText
-        note = FlashcardSettings.shared.defaultNoteType
-        deck = FlashcardSettings.shared.defaultDeck
-        profile = FlashcardSettings.shared.ankiProfile
-//        fields = note.fields
-//        fields[0].text = originalText
-        self.surroundingText = surroundingText ?? ""
-        
-        setFieldDelegates()
-    }
-    
-    init() {
-        self.init(originalText: "")
     }
     
     var ankiUrl: URL? {
@@ -112,7 +95,7 @@ struct Flashcard: Codable {
         delegate?.deckDidChange(flashcard: self, from: oldDeck, to: deck)
     }
     
-    mutating func updateField(with name: String, to text: String) {
+    mutating func updateField(name: String, to text: String) {
         if let index = fieldNames.firstIndex(of: name) {
             note.fields[index].text = text
         } else {
@@ -136,6 +119,27 @@ struct Flashcard: Codable {
 //             frontTextView.replace(textRange, withText: cloze)
 //         }
      }
+}
+
+extension Flashcard {
+    init(originalText: String, surroundingText: String? = nil) {
+        self.originalText = originalText
+        note = FlashcardSettings.shared.defaultNoteType
+        deck = FlashcardSettings.shared.defaultDeck
+        profile = FlashcardSettings.shared.ankiProfile
+        self.surroundingText = surroundingText ?? ""
+        
+        setFieldDelegates()
+    }
+    
+    // Creates a new flashcard following previous settings
+    init(previous: Flashcard) {
+        self.init(originalText: "", note: previous.note, deck: previous.deck, profile: previous.profile, surroundingText: previous.surroundingText)
+    }
+    
+    init() {
+        self.init(originalText: "")
+    }
 }
 
 extension Flashcard: FieldDelegate {

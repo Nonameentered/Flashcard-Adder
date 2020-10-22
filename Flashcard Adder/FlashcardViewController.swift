@@ -132,6 +132,9 @@ class FlashcardViewController: UIViewController {
     
     // MARK: - Actions
     
+    @IBAction func reset(_ sender: Any) {
+    }
+    
     /// Adds a new line to the currently active text view, if a text view is active
     @objc func newLine() {
         if let firstResponder = view.window?.firstResponder as? UITextView {
@@ -330,9 +333,11 @@ extension FlashcardViewController: UITextViewDelegate {
     
     func textViewDidChange(_ textView: UITextView) {
         if textView == frontTextView {
-            flashcard.updateField(with: frontLabel.text ?? "", to: frontTextView.text)
+            flashcard.updateField(name: frontLabel.text ?? "", to: frontTextView.text)
         } else if textView == backTextView {
-            flashcard.updateField(with: backLabel.text ?? "", to: backTextView.text)
+            flashcard.updateField(name: backLabel.text ?? "", to: backTextView.text)
+        } else if textView == referenceSpaceTextView {
+            flashcard.surroundingText = referenceSpaceTextView.text
         }
         
         updateAddButtonState()
