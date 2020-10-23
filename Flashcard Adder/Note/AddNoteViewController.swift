@@ -27,11 +27,6 @@ class AddNoteViewController: UIViewController, UITextViewDelegate {
         dismiss(animated: true, completion: nil)
     }
     
-    /*
-    func textViewDidBeginEditing(_ textView: UITextView) {
-        updateAddButtonState()
-    }
-    */
     func textViewDidChange(_ textView: UITextView) {
         updateAddButtonState()
     }
