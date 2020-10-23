@@ -67,6 +67,7 @@ class FlashcardViewController: UIViewController {
         hideKeyboardWhenTappedAround()
         frontTextView.delegate = self
         backTextView.delegate = self
+        referenceSpaceTextView.delegate = self
         flashcard.delegate = self
         
         updateAddButtonState()
