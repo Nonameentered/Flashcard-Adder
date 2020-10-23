@@ -1,9 +1,8 @@
-// EditFieldTextView
+//
 //  ClozeViewController.swift
-//  iQuiz
+//  Flashcard Adder
 //
 //  Created by Matthew on 4/8/19.
-//  Copyright © 2019 Innoviox. All rights reserved.
 //
 
 import UIKit
