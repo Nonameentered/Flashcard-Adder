@@ -58,6 +58,9 @@ struct Flashcard: Codable {
     }
     
     init(originalText: String? = nil, note: Note? = nil, deck: Deck? = nil, profile: Profile? = nil, referenceText: String? = nil, delegate: FlashcardDelegate? = nil) {
+        #if Action
+        FlashcardSettings.registerDefaults()
+        #endif
         self.originalText = originalText ?? ""
         self.note = note ?? FlashcardSettings.shared.defaultNoteType
         self.deck = deck ?? FlashcardSettings.shared.defaultDeck

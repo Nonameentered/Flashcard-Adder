@@ -61,8 +61,19 @@ class FlashcardViewController: UIViewController {
         
         #if Main
         navigationItem.leftBarButtonItems = [resetButton]
+//        flashcard = Flashcard()
         #elseif Action
         navigationItem.leftBarButtonItems = [cancelButton, resetButton]
+//        var defaults = UserDefaults(suiteName: "group.com.technaplex.Flashcard-Adder")!
+//        
+//        if let savedCodable = defaults.object(forKey: FlashcardSettings.Key.ankiProfile.rawValue) as? Data {
+//            let decoder = JSONDecoder()
+//            var ankiProfile = try! decoder.decode(Profile.self, from: savedCodable)
+//            print(ankiProfile)
+//        } else {
+//            print("Could not find")
+//        }
+//        flashcard = Flashcard()
         #endif
         hideKeyboardWhenTappedAround()
         frontTextView.delegate = self

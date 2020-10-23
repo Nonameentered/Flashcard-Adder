@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		E301AEF025217EE1006A9742 /* Field.swift in Sources */ = {isa = PBXBuildFile; fileRef = E301AEEF25217EE1006A9742 /* Field.swift */; };
+		E3029A072543537D00518703 /* SettingItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3029A062543537D00518703 /* SettingItemViewController.swift */; };
+		E3029A082543537D00518703 /* SettingItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3029A062543537D00518703 /* SettingItemViewController.swift */; };
 		E306FAA725218D750012337D /* String+CountInstances.swift in Sources */ = {isa = PBXBuildFile; fileRef = E306FAA625218D750012337D /* String+CountInstances.swift */; };
 		E306FAAC25218DF60012337D /* UIView+FirstResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E306FAAB25218DF60012337D /* UIView+FirstResponder.swift */; };
 		E3359E0825300CC80039F537 /* CreateFlashcard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3359E0725300CC80039F537 /* CreateFlashcard.storyboard */; };
@@ -106,6 +108,7 @@
 /* Begin PBXFileReference section */
 		E301AEE625217DA7006A9742 /* FlashcardAdder.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = FlashcardAdder.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		E301AEEF25217EE1006A9742 /* Field.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Field.swift; sourceTree = "<group>"; };
+		E3029A062543537D00518703 /* SettingItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingItemViewController.swift; sourceTree = "<group>"; };
 		E306FAA625218D750012337D /* String+CountInstances.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+CountInstances.swift"; sourceTree = "<group>"; };
 		E306FAAB25218DF60012337D /* UIView+FirstResponder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+FirstResponder.swift"; sourceTree = "<group>"; };
 		E3359E0725300CC80039F537 /* CreateFlashcard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CreateFlashcard.storyboard; sourceTree = "<group>"; };
@@ -128,6 +131,7 @@
 		E369F9272515B71000A51A0D /* EditFieldTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditFieldTextView.swift; sourceTree = "<group>"; };
 		E369F9282515B71100A51A0D /* BigButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BigButton.swift; sourceTree = "<group>"; };
 		E369F9292515B71100A51A0D /* Flashcard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Flashcard.swift; sourceTree = "<group>"; };
+		E388BB1A254359F300B549CD /* Action Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Action Extension.entitlements"; sourceTree = "<group>"; };
 		E39595A6253906E70073FD2B /* NoteTypeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteTypeViewModel.swift; sourceTree = "<group>"; };
 		E39647A82537F80900F803F4 /* Flashcard Adder.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Flashcard Adder.entitlements"; sourceTree = "<group>"; };
 		E39647AF2537FC3700F803F4 /* Action Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Action Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -227,6 +231,7 @@
 				E3359E3A25301A4D0039F537 /* LaunchScreen.storyboard */,
 				E359182C25106E3D002F1A35 /* Assets.xcassets */,
 				E359183125106E3D002F1A35 /* Info.plist */,
+				E3029A062543537D00518703 /* SettingItemViewController.swift */,
 			);
 			path = "Flashcard Adder";
 			sourceTree = "<group>";
@@ -257,6 +262,7 @@
 		E39647B02537FC3700F803F4 /* Action Extension */ = {
 			isa = PBXGroup;
 			children = (
+				E388BB1A254359F300B549CD /* Action Extension.entitlements */,
 				E39647B12537FC3700F803F4 /* Media.xcassets */,
 				E39647B82537FC3700F803F4 /* Info.plist */,
 			);
@@ -417,6 +423,7 @@
 				E357B365251D2FB500354BCA /* ClozeViewController.swift in Sources */,
 				E357B36C251D305B00354BCA /* UIViewController+HideKeyboardWheNTappedAround.swift in Sources */,
 				E3F8D9B0253C0074003E7CC7 /* UIColor+DarkerLighterExtensions.swift in Sources */,
+				E3029A072543537D00518703 /* SettingItemViewController.swift in Sources */,
 				E357B363251D2FB500354BCA /* AddNoteViewController.swift in Sources */,
 				E3D011102537B9D7006FB811 /* String+MatchingStrings.swift in Sources */,
 				E369F9342515B71100A51A0D /* EditFieldTextView.swift in Sources */,
@@ -454,6 +461,7 @@
 				E39647C22537FC5A00F803F4 /* UIViewController+HideKeyboardWheNTappedAround.swift in Sources */,
 				E39647D52537FC8C00F803F4 /* FlashcardSettings.swift in Sources */,
 				E39647E22537FC9E00F803F4 /* String+MatchingStrings.swift in Sources */,
+				E3029A082543537D00518703 /* SettingItemViewController.swift in Sources */,
 				E3F8D99B253BF1A1003E7CC7 /* DeckViewController.swift in Sources */,
 				E3F8D9B1253C0074003E7CC7 /* UIColor+DarkerLighterExtensions.swift in Sources */,
 				E39647DD2537FC9900F803F4 /* Flashcard.swift in Sources */,
@@ -667,6 +675,7 @@
 		E39647BD2537FC3700F803F4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "Action Extension/Action Extension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SM7F898GQH;
 				INFOPLIST_FILE = "Action Extension/Info.plist";
@@ -687,6 +696,7 @@
 		E39647BE2537FC3700F803F4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "Action Extension/Action Extension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SM7F898GQH;
 				INFOPLIST_FILE = "Action Extension/Info.plist";

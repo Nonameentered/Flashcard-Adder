@@ -13,8 +13,7 @@ final class FlashcardSettings {
     private init() {}
     
     static var store: UserDefaults = {
-        let appIdentifierPrefix = Bundle.main.object(forInfoDictionaryKey: "AppIdentifierPrefix") as! String
-        let suiteName = "\(appIdentifierPrefix)group.\(Bundle.main.bundleIdentifier!)"
+        let suiteName = "group.com.technaplex.Flashcard-Adder"
         return UserDefaults(suiteName: suiteName)!
     }()
     
@@ -31,6 +30,10 @@ final class FlashcardSettings {
         static let backgroundColor = "backgroundColor"
     }
     
+    enum ElementKind {
+        static let sectionHeader = "section-header-element-kind"
+        static let sectionFooter = "section-footer-element-kind"
+    }
 //    enum Key {
 //        static let ankiProfile = "ankiProfile"
 //        static let defaultNoteType = "defaultNoteType"
@@ -53,6 +56,7 @@ final class FlashcardSettings {
                                         Key.decks.rawValue: encodeCodable(for: [Deck(name: "Default")])!]
         FlashcardSettings.store.register(defaults: defaults)
         Logger.settings.info("Register defaults")
+        FlashcardSettings.store.synchronize()
     }
     
     // Provided for developer convenience since UserDefaults don't always seem to be deleted when apps are deleted
@@ -63,6 +67,7 @@ final class FlashcardSettings {
         FlashcardSettings.store.set(nil, forKey: Key.defaultDeck.rawValue)
         FlashcardSettings.store.set(nil, forKey: Key.noteTypes.rawValue)
         FlashcardSettings.store.set(nil, forKey: Key.decks.rawValue)
+        FlashcardSettings.store.synchronize()
     }
     
     var ankiProfile: Profile {
@@ -71,6 +76,8 @@ final class FlashcardSettings {
         }
         set {
             FlashcardSettings.setCodable(for: Key.ankiProfile.rawValue, newValue)
+            
+            FlashcardSettings.store.synchronize()
         }
     }
     
@@ -81,6 +88,8 @@ final class FlashcardSettings {
         set {
             FlashcardSettings.setCodable(for: Key.defaultNoteType.rawValue, newValue)
             Logger.settings.info("Set default note type")
+            
+            FlashcardSettings.store.synchronize()
         }
     }
     
@@ -90,6 +99,8 @@ final class FlashcardSettings {
         }
         set {
             FlashcardSettings.setCodable(for: Key.defaultClozeNoteType.rawValue, newValue)
+            
+            FlashcardSettings.store.synchronize()
         }
     }
     
@@ -99,6 +110,8 @@ final class FlashcardSettings {
         }
         set {
             FlashcardSettings.setCodable(for: Key.defaultDeck.rawValue, newValue)
+            
+            FlashcardSettings.store.synchronize()
         }
     }
     
@@ -108,6 +121,7 @@ final class FlashcardSettings {
         }
         set {
             FlashcardSettings.setCodable(for: Key.decks.rawValue, newValue)
+            FlashcardSettings.store.synchronize()
             Logger.settings.info("Set note types")
         }
     }
@@ -118,6 +132,7 @@ final class FlashcardSettings {
         }
         set {
             FlashcardSettings.setCodable(for: Key.decks.rawValue, newValue)
+            FlashcardSettings.store.synchronize()
             Logger.settings.info("Set decks \(newValue)")
         }
     }
