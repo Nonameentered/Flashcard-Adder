@@ -45,9 +45,9 @@ class DeckViewController: UIViewController {
     }
 
     @IBAction func addDeck(_ sender: Any) {
-        showInputDialog(title: "Add Deck", message: "Enter a deck name", cancelHandler: nil) { (deckName) in
+        showInputDialog(title: "Add Deck", message: "Enter a deck name", cancelHandler: nil) { deckName in
             if let deckName = deckName {
-                self.viewModel.addNewDeck(with: deckName)
+                self.viewModel.addNewDeck(AttributedDeck(deck: Deck(name: deckName)))
             }
         }
     }
@@ -58,6 +58,18 @@ extension DeckViewController {
     private func createLayout() -> UICollectionViewLayout {
         var config = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
         config.backgroundColor = UIColor(named: FlashcardSettings.Colors.backgroundColor)
+        
+        config.trailingSwipeActionsConfigurationProvider = { [unowned self] indexPath -> UISwipeActionsConfiguration in
+            if indexPath.section != 0 {
+
+                let action = UIContextualAction(style: .destructive, title: "Delete") { _, _, completion in
+                    self.viewModel.deleteDeck(self.viewModel.all[indexPath.row])
+                    completion(true)
+                }
+                return UISwipeActionsConfiguration(actions: [action])
+            }
+            return UISwipeActionsConfiguration()
+        }
         return UICollectionViewCompositionalLayout.list(using: config)
     }
 }
@@ -70,7 +82,7 @@ extension DeckViewController {
         collectionView.delegate = self
     }
 
-    private func makeCellRegistration() -> UICollectionView.CellRegistration<UICollectionViewListCell, Deck> {
+    private func makeCellRegistration() -> UICollectionView.CellRegistration<UICollectionViewListCell, AttributedDeck> {
         UICollectionView.CellRegistration { cell, _, deck in
             var content = cell.defaultContentConfiguration()
             content.text = deck.name
@@ -78,23 +90,22 @@ extension DeckViewController {
             var background = UIBackgroundConfiguration.listGroupedCell()
             background.backgroundColor = UIColor(named: FlashcardSettings.Colors.backgroundColor)?.lighter(by: 5)
             cell.backgroundConfiguration = background
-            cell.accessories = deck ~= self.viewModel.selectedDeck ? [.checkmark()] : [] // Will not update because nothing changes in equatable
-            // It's possible the better way to do this is have a `selected` value in Deck
+            cell.accessories = deck.isSelected ? [.checkmark()] : []
         }
     }
 
-    private func makeDataSource() -> UICollectionViewDiffableDataSource<Section, Deck> {
-        UICollectionViewDiffableDataSource<Section, Deck>(collectionView: collectionView) {
-            (collectionView: UICollectionView, indexPath: IndexPath, item: Deck) -> UICollectionViewCell? in
+    private func makeDataSource() -> UICollectionViewDiffableDataSource<Section, AttributedDeck> {
+        UICollectionViewDiffableDataSource<Section, AttributedDeck>(collectionView: collectionView) {
+            (collectionView: UICollectionView, indexPath: IndexPath, item: AttributedDeck) -> UICollectionViewCell? in
             collectionView.dequeueConfiguredReusableCell(using: self.makeCellRegistration(), for: indexPath, item: item)
         }
     }
 
     private func applySnapshot(animatingDifferences: Bool = true) {
-        var snapshot = NSDiffableDataSourceSnapshot<Section, Deck>()
+        var snapshot = NSDiffableDataSourceSnapshot<Section, AttributedDeck>()
         snapshot.appendSections(Section.allCases)
-        snapshot.appendItems(viewModel.defaultDeckList, toSection: .usual)
-        snapshot.appendItems(viewModel.main, toSection: .main)
+//        snapshot.appendItems(viewModel.selectedDeckList, toSection: .usual)
+        snapshot.appendItems(viewModel.all, toSection: .main)
         dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
     }
 }
@@ -105,7 +116,7 @@ extension DeckViewController: UICollectionViewDelegate {
         collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .top)
         collectionView.deselectItem(at: indexPath, animated: true)
         if let deck = dataSource.itemIdentifier(for: indexPath) {
-            viewModel.selectDeck(deck)
+            viewModel.selectAttributedDeck(deck)
             performSegue(withIdentifier: FlashcardSettings.Segues.unwindToFlashcardFromDeckList, sender: true)
         }
     }
