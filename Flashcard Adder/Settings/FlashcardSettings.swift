@@ -120,7 +120,7 @@ final class FlashcardSettings {
             return FlashcardSettings.codable(for: Key.noteTypes.rawValue)!
         }
         set {
-            FlashcardSettings.setCodable(for: Key.decks.rawValue, newValue)
+            FlashcardSettings.setCodable(for: Key.noteTypes.rawValue, newValue)
             FlashcardSettings.store.synchronize()
             Logger.settings.info("Set note types")
         }
