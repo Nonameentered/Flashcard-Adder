@@ -17,7 +17,8 @@ struct AttributedDeck: Hashable {
     var isDefault: Bool {
         source == FlashcardSettings.shared.defaultDeck
     }
-
+    
+    // Maybe should be rewritten into a computed property, with a delegate
     var isSelected: Bool = false
     
     var name: String {
@@ -37,8 +38,12 @@ struct AttributedDeck: Hashable {
 
 struct DeckViewModel {
     var all: [AttributedDeck]
-//    var main: [Deck]
-//    var defaultDeck: Deck
+    var main: [AttributedDeck] {
+        all.filter { !$0.isDefault }
+    }
+    var usual: [AttributedDeck] {
+        all.filter { $0.isDefault }
+    }
     var selectedDeck: Deck {
         all.first { $0.isSelected }!.source
     }

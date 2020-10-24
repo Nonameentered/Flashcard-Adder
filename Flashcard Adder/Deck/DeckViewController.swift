@@ -63,7 +63,10 @@ extension DeckViewController {
             if indexPath.section != 0 {
 
                 let action = UIContextualAction(style: .destructive, title: "Delete") { _, _, completion in
-                    self.viewModel.deleteDeck(self.viewModel.all[indexPath.row])
+                    if let deck = dataSource.itemIdentifier(for: indexPath) {
+                        self.viewModel.deleteDeck(deck)
+                    }
+                    
                     completion(true)
                 }
                 return UISwipeActionsConfiguration(actions: [action])
@@ -104,8 +107,8 @@ extension DeckViewController {
     private func applySnapshot(animatingDifferences: Bool = true) {
         var snapshot = NSDiffableDataSourceSnapshot<Section, AttributedDeck>()
         snapshot.appendSections(Section.allCases)
-//        snapshot.appendItems(viewModel.selectedDeckList, toSection: .usual)
-        snapshot.appendItems(viewModel.all, toSection: .main)
+        snapshot.appendItems(viewModel.usual, toSection: .usual)
+        snapshot.appendItems(viewModel.main, toSection: .main)
         dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
     }
 }
