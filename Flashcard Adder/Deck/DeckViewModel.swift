@@ -8,38 +8,34 @@
 import Foundation
 import os.log
 
-struct AttributedDeck: Hashable {
+struct AttributedDeck: Hashable, AttributedOption {
+    static func == (lhs: AttributedDeck, rhs: AttributedDeck) -> Bool {
+        lhs.source == rhs.source && lhs.isDefault == rhs.isDefault && lhs.isSelected == rhs.isSelected
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(name)
+        hasher.combine(isSelected)
+        hasher.combine(isDefault)
+    }
+    
     let source: Deck
+    let manager: DeckViewModel
     var isDefault: Bool {
         source == FlashcardSettings.shared.defaultDeck
     }
     
     // Maybe should be rewritten into a computed property, with a delegate
-    var isSelected: Bool = false
-    
-    var name: String {
-        source.name
-    }
-    
-    init(deck: Deck) {
-        source = deck
-        isSelected = isDefault
-    }
-    
-    init(deck: Deck, selected: Deck) {
-        source = deck
-        isSelected = deck == selected
-    }
-    
-    init(deck: Deck, isSelected: Bool) {
-        source = deck
-        self.isSelected = isSelected
+    var isSelected: Bool {
+        source == manager.selected
     }
 }
 
-struct DeckViewModel {
-    let original: [Deck]
-    let originalDefault: Deck
+protocol DeckViewModelDelegate {
+    func decksDidChange(_ viewModel: DeckViewModel, animatingDifferences: Bool)
+}
+
+struct DeckViewModel: AttributedManager {
     var all: [AttributedDeck] {
         didSet {
             FlashcardSettings.shared.decks = all.map { $0.source }
@@ -52,26 +48,28 @@ struct DeckViewModel {
     var usual: [AttributedDeck] {
         all.filter { $0.isDefault }
     }
-
-    var selected: Deck {
-        all.first { $0.isSelected }!.source
-    }
+    
+    var selected: Deck
+    var delegate: DeckViewModelDelegate?
+    
     
     init(selected: Deck) {
-        all = FlashcardSettings.shared.decks.map { AttributedDeck(deck: $0, selected: selected) }
-        original = FlashcardSettings.shared.decks
-        originalDefault = FlashcardSettings.shared.defaultDeck
+        self.selected = selected
+        all = [] // Maybe make the delegate a different object?
+        all = FlashcardSettings.shared.decks.map { AttributedDeck(source: $0, manager: self) }
     }
     
     mutating func select(_ deck: AttributedDeck) {
-        all = FlashcardSettings.shared.decks.map { AttributedDeck(deck: $0, selected: deck.source) }
+        self.selected = deck.source
     }
     
-    mutating func add(_ deck: AttributedDeck) {
-        // Check for and tell view controller to produce alert if deck type already exists
-        if all.firstIndex(of: deck) == nil {
-            all.append(deck)
+    mutating func add(_ deck: Deck) {
+        let attributedDeck = AttributedDeck(source: deck, manager: self)
+        // Maybe check for and tell view controller to produce alert if deck type already exists
+        if all.firstIndex(of: attributedDeck) == nil {
+            all.append(attributedDeck)
         }
+        delegate?.decksDidChange(self, animatingDifferences: true)
     }
     
     mutating func delete(_ deck: AttributedDeck) {
@@ -80,20 +78,23 @@ struct DeckViewModel {
     
     mutating func move(_ deck: AttributedDeck, to indexPath: IndexPath) {
         if indexPath.section == 0 {
-            setDefault(deck)
+            FlashcardSettings.shared.defaultDeck = deck.source
         }
         if !deck.isDefault, let moved = main.moved(deck, to: indexPath.row) {
             all = usual + moved
         }
+        delegate?.decksDidChange(self, animatingDifferences: false)
     }
     
-    mutating func setDefault(_ deck: AttributedDeck) {
+    mutating func makeDefault(_ deck: AttributedDeck) {
         FlashcardSettings.shared.defaultDeck = deck.source
     }
     
-    mutating func edit(from oldDeck: AttributedDeck, to newDeck: AttributedDeck) {
-        if all.firstIndex(of: newDeck) == nil, let replaceIndex = all.firstIndex(of: oldDeck) {
-            all[replaceIndex] = newDeck
+    mutating func edit(from oldDeck: AttributedDeck, to newDeck: Deck) {
+        let newAttributedDeck = AttributedDeck(source: newDeck, manager: self)
+        if all.firstIndex(of: newAttributedDeck) == nil, let replaceIndex = all.firstIndex(of: oldDeck) {
+            all[replaceIndex] = newAttributedDeck
         }
+        delegate?.decksDidChange(self, animatingDifferences: true)
     }
 }

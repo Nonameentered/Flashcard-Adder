@@ -31,6 +31,8 @@ class DeckViewController: UIViewController, UIAdaptivePresentationControllerDele
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        viewModel.delegate = self
+        setUpNavBar()
         configureHierarchy()
         applySnapshot(animatingDifferences: false)
         collectionView.dragInteractionEnabled = true
@@ -43,18 +45,23 @@ class DeckViewController: UIViewController, UIAdaptivePresentationControllerDele
     override func viewWillDisappear(_ animated: Bool) {
         Logger.deck.info("DeckViewController will disappear")
     }
-
-    @IBAction func cancel(_ sender: Any) {
-        FlashcardSettings.shared.decks = viewModel.original
-        FlashcardSettings.shared.defaultDeck = viewModel.originalDefault
+    
+    func setUpNavBar() {
+        self.navigationItem.title = "Decks"
+        let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancel))
+        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(add))
+        self.navigationItem.leftBarButtonItems = [cancelButton]
+        self.navigationItem.rightBarButtonItems = [addButton]
+    }
+    
+    @objc func cancel() {
         dismiss(animated: true, completion: nil)
     }
-
-    @IBAction func addDeck(_ sender: Any) {
+    
+    @objc func add() {
         showInputDialog(title: "Add Deck", message: "Enter a deck name", cancelHandler: nil) { deckName in
-            if let deckName = deckName {
-                self.viewModel.add(AttributedDeck(deck: Deck(name: deckName)))
-                self.applySnapshot(animatingDifferences: true)
+            if let deckName = deckName, !deckName.isEmpty {
+                self.viewModel.add(Deck(name: deckName))
             }
         }
     }
@@ -62,8 +69,7 @@ class DeckViewController: UIViewController, UIAdaptivePresentationControllerDele
     func edit(oldDeck: AttributedDeck) {
         showInputDialog(title: "Edit Deck", message: "Enter a modified deck name", actionTitle: "OK", inputPlaceholder: oldDeck.name, cancelHandler: nil) { deckName in
             if let deckName = deckName, !deckName.isEmpty {
-                self.viewModel.edit(from: oldDeck, to: AttributedDeck(deck: Deck(name: deckName), isSelected: oldDeck.isSelected))
-                self.applySnapshot(animatingDifferences: true)
+                self.viewModel.edit(from: oldDeck, to: Deck(name: deckName))
             }
         }
     }
@@ -82,7 +88,6 @@ extension DeckViewController {
                 if !deck.isDefault {
                     actions.append(UIContextualAction(style: .normal, title: "Set Default") { _, _, completion in
                         self.viewModel.move(deck, to: IndexPath(row: 0, section: 0))
-                        self.applySnapshot(animatingDifferences: false)
 
                         completion(true)
                     })
@@ -97,7 +102,6 @@ extension DeckViewController {
                     actions.append(UIContextualAction(style: .destructive, title: "Delete") { _, _, completion in
                         self.viewModel.delete(deck)
                         self.applySnapshot(animatingDifferences: true)
-
                         completion(true)
                     })
                 }
@@ -146,8 +150,8 @@ extension DeckViewController {
     private func applySnapshot(animatingDifferences: Bool = true) {
         var snapshot = NSDiffableDataSourceSnapshot<Section, AttributedDeck>()
         snapshot.appendSections(Section.allCases)
-        snapshot.appendItems(viewModel.usual, toSection: .usual)
         snapshot.appendItems(viewModel.main, toSection: .main)
+        snapshot.appendItems(viewModel.usual, toSection: .usual)
 
         dataSource.supplementaryViewProvider = { [unowned self] (collectionView: UICollectionView, _: String, indexPath: IndexPath) -> UICollectionReusableView? in
             if let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: FlashcardSettings.ElementKind.sectionHeader, withReuseIdentifier: HeaderSupplementaryView.reuseIdentifier, for: indexPath) as? HeaderSupplementaryView {
@@ -158,6 +162,15 @@ extension DeckViewController {
             }
         }
         dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
+    }
+}
+
+extension DeckViewController: DeckViewModelDelegate {
+    func decksDidChange(_ viewModel: DeckViewModel, animatingDifferences: Bool) {
+        DispatchQueue.main.async {
+            self.applySnapshot(animatingDifferences: animatingDifferences)
+        }
+        
     }
 }
 
@@ -175,8 +188,8 @@ extension DeckViewController: UICollectionViewDelegate {
 
 extension DeckViewController: UICollectionViewDragDelegate {
     func collectionView(_ collectionView: UICollectionView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
-        if let item = dataSource.itemIdentifier(for: indexPath) {
-            let itemProvider = NSItemProvider(object: item.source.name as NSString) // if this works, add as computed property to AttributedDeck
+        if let item = dataSource.itemIdentifier(for: indexPath), !item.isDefault {
+            let itemProvider = NSItemProvider(object: item.nameAsNSString)
             let dragItem = UIDragItem(itemProvider: itemProvider)
             dragItem.localObject = item
             return [dragItem]

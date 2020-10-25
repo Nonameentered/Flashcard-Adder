@@ -56,6 +56,8 @@
 		E39C88082544D07700B852BE /* HeaderSupplementaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3ABE99C2544CA0B00148D6F /* HeaderSupplementaryView.swift */; };
 		E39C88102545EDB300B852BE /* Array+Moved.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39C880F2545EDB300B852BE /* Array+Moved.swift */; };
 		E39C88132546180300B852BE /* Array+Moved.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39C880F2545EDB300B852BE /* Array+Moved.swift */; };
+		E39C881725461B9200B852BE /* Option.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39C881625461B9200B852BE /* Option.swift */; };
+		E39C881A2546350400B852BE /* Option.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39C881625461B9200B852BE /* Option.swift */; };
 		E3ABE99D2544CA0B00148D6F /* HeaderSupplementaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3ABE99C2544CA0B00148D6F /* HeaderSupplementaryView.swift */; };
 		E3B7B56925390C5E00E38EC4 /* NoteTypeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39595A6253906E70073FD2B /* NoteTypeViewModel.swift */; };
 		E3B7B56E253912D800E38EC4 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B7B56D253912D800E38EC4 /* Logger.swift */; };
@@ -142,6 +144,7 @@
 		E39647B12537FC3700F803F4 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		E39647B82537FC3700F803F4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E39C880F2545EDB300B852BE /* Array+Moved.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Moved.swift"; sourceTree = "<group>"; };
+		E39C881625461B9200B852BE /* Option.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Option.swift; sourceTree = "<group>"; };
 		E3ABE99C2544CA0B00148D6F /* HeaderSupplementaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderSupplementaryView.swift; sourceTree = "<group>"; };
 		E3B7B56D253912D800E38EC4 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		E3D010E525354A4D006FB811 /* NoteType.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NoteType.storyboard; sourceTree = "<group>"; };
@@ -240,6 +243,7 @@
 				E359183125106E3D002F1A35 /* Info.plist */,
 				E3029A062543537D00518703 /* SettingItemViewController.swift */,
 				E3ABE99C2544CA0B00148D6F /* HeaderSupplementaryView.swift */,
+				E39C881625461B9200B852BE /* Option.swift */,
 			);
 			path = "Flashcard Adder";
 			sourceTree = "<group>";
@@ -452,6 +456,7 @@
 				E357B370251D32BF00354BCA /* LabelTableViewCell.swift in Sources */,
 				E369F9362515B71100A51A0D /* BigButton.swift in Sources */,
 				E3ABE99D2544CA0B00148D6F /* HeaderSupplementaryView.swift in Sources */,
+				E39C881725461B9200B852BE /* Option.swift in Sources */,
 				E359182225106E3D002F1A35 /* AppDelegate.swift in Sources */,
 				E3F8D99A253BF1A1003E7CC7 /* DeckViewController.swift in Sources */,
 				E369F92E2515B71100A51A0D /* Profile.swift in Sources */,
@@ -468,6 +473,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E39C881A2546350400B852BE /* Option.swift in Sources */,
 				E39647C22537FC5A00F803F4 /* UIViewController+HideKeyboardWheNTappedAround.swift in Sources */,
 				E39647D52537FC8C00F803F4 /* FlashcardSettings.swift in Sources */,
 				E39647E22537FC9E00F803F4 /* String+MatchingStrings.swift in Sources */,
