@@ -53,7 +53,7 @@ class DeckViewController: UIViewController, UIAdaptivePresentationControllerDele
     @IBAction func addDeck(_ sender: Any) {
         showInputDialog(title: "Add Deck", message: "Enter a deck name", cancelHandler: nil) { deckName in
             if let deckName = deckName {
-                self.viewModel.addNewDeck(AttributedDeck(deck: Deck(name: deckName)))
+                self.viewModel.add(AttributedDeck(deck: Deck(name: deckName)))
                 self.applySnapshot(animatingDifferences: true)
             }
         }
@@ -81,7 +81,7 @@ extension DeckViewController {
             if let deck = dataSource.itemIdentifier(for: indexPath) {
                 if !deck.isDefault {
                     actions.append(UIContextualAction(style: .normal, title: "Set Default") { _, _, completion in
-                        self.viewModel.moveDeck(deck, to: IndexPath(row: 0, section: 0))
+                        self.viewModel.move(deck, to: IndexPath(row: 0, section: 0))
                         self.applySnapshot(animatingDifferences: false)
 
                         completion(true)
@@ -95,7 +95,7 @@ extension DeckViewController {
             if let deck = dataSource.itemIdentifier(for: indexPath) {
                 if !deck.isSelected && !deck.isDefault {
                     actions.append(UIContextualAction(style: .destructive, title: "Delete") { _, _, completion in
-                        self.viewModel.deleteDeck(deck)
+                        self.viewModel.delete(deck)
                         self.applySnapshot(animatingDifferences: true)
 
                         completion(true)
@@ -167,7 +167,7 @@ extension DeckViewController: UICollectionViewDelegate {
         collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .top)
         collectionView.deselectItem(at: indexPath, animated: true)
         if let deck = dataSource.itemIdentifier(for: indexPath) {
-            viewModel.selectAttributedDeck(deck)
+            viewModel.select(deck)
             performSegue(withIdentifier: FlashcardSettings.Segues.unwindToFlashcardFromDeckList, sender: true)
         }
     }
@@ -196,7 +196,7 @@ extension DeckViewController: UICollectionViewDropDelegate {
                 return
             }
             if let deck = self.dataSource.itemIdentifier(for: sourceIndexPath) {
-                self.viewModel.moveDeck(deck, to: destinationIndexPath)
+                self.viewModel.move(deck, to: destinationIndexPath)
                 applySnapshot(animatingDifferences: false)
             }
         }

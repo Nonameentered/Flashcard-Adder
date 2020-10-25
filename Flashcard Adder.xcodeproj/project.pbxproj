@@ -54,6 +54,7 @@
 		E39648022537FEEF00F803F4 /* BigButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E369F9282515B71100A51A0D /* BigButton.swift */; };
 		E39648062537FEF200F803F4 /* LabelTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E357B36F251D32BF00354BCA /* LabelTableViewCell.swift */; };
 		E39C88082544D07700B852BE /* HeaderSupplementaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3ABE99C2544CA0B00148D6F /* HeaderSupplementaryView.swift */; };
+		E39C88102545EDB300B852BE /* Array+Moved.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39C880F2545EDB300B852BE /* Array+Moved.swift */; };
 		E3ABE99D2544CA0B00148D6F /* HeaderSupplementaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3ABE99C2544CA0B00148D6F /* HeaderSupplementaryView.swift */; };
 		E3B7B56925390C5E00E38EC4 /* NoteTypeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39595A6253906E70073FD2B /* NoteTypeViewModel.swift */; };
 		E3B7B56E253912D800E38EC4 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B7B56D253912D800E38EC4 /* Logger.swift */; };
@@ -139,6 +140,7 @@
 		E39647AF2537FC3700F803F4 /* Action Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Action Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E39647B12537FC3700F803F4 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		E39647B82537FC3700F803F4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E39C880F2545EDB300B852BE /* Array+Moved.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Moved.swift"; sourceTree = "<group>"; };
 		E3ABE99C2544CA0B00148D6F /* HeaderSupplementaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderSupplementaryView.swift; sourceTree = "<group>"; };
 		E3B7B56D253912D800E38EC4 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		E3D010E525354A4D006FB811 /* NoteType.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NoteType.storyboard; sourceTree = "<group>"; };
@@ -190,6 +192,7 @@
 				E357B36B251D305B00354BCA /* UIViewController+HideKeyboardWheNTappedAround.swift */,
 				E3F8D9AA253BF7AD003E7CC7 /* UIViewController+showInputDialog.swift */,
 				E3F8D9AF253C0074003E7CC7 /* UIColor+DarkerLighterExtensions.swift */,
+				E39C880F2545EDB300B852BE /* Array+Moved.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -436,6 +439,7 @@
 				E3D011182537C4A8006FB811 /* Cloze.swift in Sources */,
 				E3F8D9CC253F6571003E7CC7 /* ClozeViewModel.swift in Sources */,
 				E3F8D9A1253BF209003E7CC7 /* DeckViewModel.swift in Sources */,
+				E39C88102545EDB300B852BE /* Array+Moved.swift in Sources */,
 				E3B7B56E253912D800E38EC4 /* Logger.swift in Sources */,
 				E357B364251D2FB500354BCA /* FlashcardViewController.swift in Sources */,
 				E369F92A2515B71100A51A0D /* Note.swift in Sources */,

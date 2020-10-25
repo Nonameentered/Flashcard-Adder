@@ -53,7 +53,7 @@ struct DeckViewModel {
         all.filter { $0.isDefault }
     }
 
-    var selectedDeck: Deck {
+    var selected: Deck {
         all.first { $0.isSelected }!.source
     }
     
@@ -63,40 +63,31 @@ struct DeckViewModel {
         originalDefault = FlashcardSettings.shared.defaultDeck
     }
     
-    mutating func selectAttributedDeck(_ deck: AttributedDeck) {
-        selectDeck(deck.source)
+    mutating func select(_ deck: AttributedDeck) {
+        all = FlashcardSettings.shared.decks.map { AttributedDeck(deck: $0, selected: deck.source) }
     }
     
-    private mutating func selectDeck(_ deck: Deck) {
-        all = FlashcardSettings.shared.decks.map { AttributedDeck(deck: $0, selected: deck) }
-    }
-    
-    mutating func addNewDeck(_ deck: AttributedDeck) {
+    mutating func add(_ deck: AttributedDeck) {
         // Check for and tell view controller to produce alert if deck type already exists
         if all.firstIndex(of: deck) == nil {
             all.append(deck)
         }
     }
     
-    mutating func deleteDeck(_ deck: AttributedDeck) {
-        if FlashcardSettings.shared.defaultDeck != deck.source {
-            if selectedDeck == deck.source {
-                selectDeck(FlashcardSettings.shared.defaultDeck)
-            }
-            all.removeAll { $0.source == deck.source }
-        }
+    mutating func delete(_ deck: AttributedDeck) {
+        all.removeAll { $0.source == deck.source }
     }
     
-    mutating func moveDeck(_ deck: AttributedDeck, to indexPath: IndexPath) {
+    mutating func move(_ deck: AttributedDeck, to indexPath: IndexPath) {
         if indexPath.section == 0 {
-            setDefaultDeck(deck)
+            setDefault(deck)
         }
         if !deck.isDefault, let moved = main.moved(deck, to: indexPath.row) {
             all = usual + moved
         }
     }
     
-    mutating func setDefaultDeck(_ deck: AttributedDeck) {
+    mutating func setDefault(_ deck: AttributedDeck) {
         FlashcardSettings.shared.defaultDeck = deck.source
     }
     
@@ -104,27 +95,5 @@ struct DeckViewModel {
         if all.firstIndex(of: newDeck) == nil, let replaceIndex = all.firstIndex(of: oldDeck) {
             all[replaceIndex] = newDeck
         }
-    }
-}
-
-extension Array where Element: Equatable {
-    func moved(_ element: Element, to newIndex: Index) -> Array? where Element: Equatable {
-        if let oldIndex: Int = firstIndex(of: element) { return moved(from: oldIndex, to: newIndex) }
-        return nil
-    }
-}
-
-extension Array {
-    func moved(from oldIndex: Index, to newIndex: Index) -> Array {
-        var newArray = self
-        // Don't work for free and use swap when indices are next to each other - this
-        // won't rebuild array and will be super efficient.
-        if oldIndex == newIndex {
-        } else if abs(newIndex - oldIndex) == 1 {
-            newArray.swapAt(oldIndex, newIndex)
-        } else {
-            newArray.insert(newArray.remove(at: oldIndex), at: newIndex)
-        }
-        return newArray
     }
 }

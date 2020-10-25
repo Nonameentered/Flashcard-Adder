@@ -238,7 +238,7 @@ class FlashcardViewController: UIViewController {
         } else if let sourceViewController = sender.source as? NoteTypeViewController {
             flashcard.updateNoteType(to: sourceViewController.viewModel.selectedNote)
         } else if let sourceViewController = sender.source as? DeckViewController {
-            flashcard.updateDeck(to: sourceViewController.viewModel.selectedDeck)
+            flashcard.updateDeck(to: sourceViewController.viewModel.selected)
         }
     }
     
