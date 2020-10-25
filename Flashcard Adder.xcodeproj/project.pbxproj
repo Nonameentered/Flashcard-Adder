@@ -55,6 +55,7 @@
 		E39648062537FEF200F803F4 /* LabelTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E357B36F251D32BF00354BCA /* LabelTableViewCell.swift */; };
 		E39C88082544D07700B852BE /* HeaderSupplementaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3ABE99C2544CA0B00148D6F /* HeaderSupplementaryView.swift */; };
 		E39C88102545EDB300B852BE /* Array+Moved.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39C880F2545EDB300B852BE /* Array+Moved.swift */; };
+		E39C88132546180300B852BE /* Array+Moved.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39C880F2545EDB300B852BE /* Array+Moved.swift */; };
 		E3ABE99D2544CA0B00148D6F /* HeaderSupplementaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3ABE99C2544CA0B00148D6F /* HeaderSupplementaryView.swift */; };
 		E3B7B56925390C5E00E38EC4 /* NoteTypeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39595A6253906E70073FD2B /* NoteTypeViewModel.swift */; };
 		E3B7B56E253912D800E38EC4 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B7B56D253912D800E38EC4 /* Logger.swift */; };
@@ -485,6 +486,7 @@
 				E39647F22537FCC600F803F4 /* AddNoteViewController.swift in Sources */,
 				E39647E82537FCB100F803F4 /* ClozeViewController.swift in Sources */,
 				E39647F62537FCCA00F803F4 /* NoteTypeViewController.swift in Sources */,
+				E39C88132546180300B852BE /* Array+Moved.swift in Sources */,
 				E3F8D9C3253C93E8003E7CC7 /* Setting.swift in Sources */,
 				E39648062537FEF200F803F4 /* LabelTableViewCell.swift in Sources */,
 				E3F8D9AC253BF7AD003E7CC7 /* UIViewController+showInputDialog.swift in Sources */,
