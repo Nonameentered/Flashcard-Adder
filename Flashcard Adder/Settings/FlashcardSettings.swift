@@ -32,7 +32,6 @@ final class FlashcardSettings {
     
     enum ElementKind {
         static let sectionHeader = "section-header-element-kind"
-        static let sectionFooter = "section-footer-element-kind"
     }
 //    enum Key {
 //        static let ankiProfile = "ankiProfile"

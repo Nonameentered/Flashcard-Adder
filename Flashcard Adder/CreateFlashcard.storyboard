@@ -127,7 +127,7 @@
                                                         <inset key="contentEdgeInsets" minX="5" minY="0.0" maxX="5" maxY="0.0"/>
                                                         <state key="normal" title="Type: "/>
                                                         <connections>
-                                                            <segue destination="y6K-Ox-xl1" kind="presentation" id="ii0-uo-WWy"/>
+                                                            <segue destination="y6K-Ox-xl1" kind="presentation" identifier="goToNoteList" id="ii0-uo-WWy"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6BP-p0-NXP" customClass="BigButton" customModule="Action_Extension" customModuleProvider="target">
@@ -136,7 +136,7 @@
                                                         <inset key="contentEdgeInsets" minX="5" minY="0.0" maxX="5" maxY="0.0"/>
                                                         <state key="normal" title="Deck: "/>
                                                         <connections>
-                                                            <segue destination="uAv-k6-qQf" kind="presentation" id="d2m-Bo-vti"/>
+                                                            <segue destination="uAv-k6-qQf" kind="presentation" identifier="goToDeckList" id="d2m-Bo-vti"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>

@@ -8,10 +8,6 @@
 import Foundation
 import os.log
 
-protocol DeckViewModelDelegate {
-    func defaultDeckNotDeletable()
-}
-
 struct AttributedDeck: Hashable {
     let source: Deck
     var isDefault: Bool {
@@ -37,18 +33,20 @@ struct AttributedDeck: Hashable {
 }
 
 struct DeckViewModel {
+    let original: [Deck]
+    let originalDefault: Deck
     var all: [AttributedDeck]
     var main: [AttributedDeck] {
         all.filter { !$0.isDefault }
     }
+
     var usual: [AttributedDeck] {
         all.filter { $0.isDefault }
     }
+
     var selectedDeck: Deck {
         all.first { $0.isSelected }!.source
     }
-
-    var delegate: DeckViewModelDelegate?
     
 //    var defaultDeckList: [Deck] {
 //        [defaultDeck]
@@ -60,7 +58,8 @@ struct DeckViewModel {
     
     init(selected: Deck) {
         all = FlashcardSettings.shared.decks.map { AttributedDeck(deck: $0, selected: selected) }
-        
+        original = FlashcardSettings.shared.decks
+        originalDefault = FlashcardSettings.shared.defaultDeck
 //        main = FlashcardSettings.shared.decks
 //        defaultDeck = FlashcardSettings.shared.defaultDeck
         ////        main.remove(at: main.firstIndex(of: defaultDeck)!)
@@ -99,17 +98,49 @@ struct DeckViewModel {
     }
     
     mutating func deleteDeck(_ deck: AttributedDeck) {
-        if FlashcardSettings.shared.defaultDeck == deck.source {
-            delegate?.defaultDeckNotDeletable()
-        } else {
+        if FlashcardSettings.shared.defaultDeck != deck.source {
             if selectedDeck == deck.source {
                 selectDeck(FlashcardSettings.shared.defaultDeck)
             }
-            print(all)
             all.removeAll { $0.source == deck.source }
-            print(all)
             FlashcardSettings.shared.decks = all.map { $0.source }
             print(FlashcardSettings.shared.decks)
         }
+    }
+    
+    mutating func moveDeck(_ deck: AttributedDeck, to indexPath: IndexPath) {
+        if indexPath.section == 0 {
+            setDefaultDeck(deck)
+        }
+        if !deck.isDefault, let moved = main.moved(deck, to: indexPath.row) {
+            all = usual + moved
+            FlashcardSettings.shared.decks = all.map { $0.source } // Maybe put in didSet
+        }
+    }
+    
+    mutating func setDefaultDeck(_ deck: AttributedDeck) {
+        FlashcardSettings.shared.defaultDeck = deck.source
+    }
+}
+
+extension Array where Element: Equatable {
+    func moved(_ element: Element, to newIndex: Index) -> Array? where Element: Equatable {
+        if let oldIndex: Int = firstIndex(of: element) { return moved(from: oldIndex, to: newIndex) }
+        return nil
+    }
+}
+
+extension Array {
+    func moved(from oldIndex: Index, to newIndex: Index) -> Array {
+        var newArray = self
+        // Don't work for free and use swap when indices are next to each other - this
+        // won't rebuild array and will be super efficient.
+        if oldIndex == newIndex {
+        } else if abs(newIndex - oldIndex) == 1 {
+            newArray.swapAt(oldIndex, newIndex)
+        } else {
+            newArray.insert(newArray.remove(at: oldIndex), at: newIndex)
+        }
+        return newArray
     }
 }

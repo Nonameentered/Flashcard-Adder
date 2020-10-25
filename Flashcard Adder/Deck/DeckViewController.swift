@@ -8,7 +8,7 @@
 import os.log
 import UIKit
 
-class DeckViewController: UIViewController {
+class DeckViewController: UIViewController, UIAdaptivePresentationControllerDelegate {
     enum Section: CaseIterable {
         case usual
         case main
@@ -16,12 +16,7 @@ class DeckViewController: UIViewController {
 
     lazy var dataSource = makeDataSource()
     var collectionView: UICollectionView!
-    var viewModel: DeckViewModel {
-        didSet {
-            Logger.deck.info("Updated view model")
-            applySnapshot(animatingDifferences: true)
-        }
-    }
+    var viewModel: DeckViewModel
 
     init?(coder: NSCoder, viewModel: DeckViewModel) {
         self.viewModel = viewModel
@@ -35,12 +30,23 @@ class DeckViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         configureHierarchy()
         applySnapshot(animatingDifferences: false)
+        collectionView.dragInteractionEnabled = true
+        collectionView.dragDelegate = self
+        collectionView.dropDelegate = self
+        
         Logger.deck.info("Loaded DeckViewController")
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        print("GOING To disappaer")
     }
 
     @IBAction func cancel(_ sender: Any) {
+        FlashcardSettings.shared.decks = viewModel.original
+        FlashcardSettings.shared.defaultDeck = viewModel.originalDefault
         dismiss(animated: true, completion: nil)
     }
 
@@ -48,6 +54,7 @@ class DeckViewController: UIViewController {
         showInputDialog(title: "Add Deck", message: "Enter a deck name", cancelHandler: nil) { deckName in
             if let deckName = deckName {
                 self.viewModel.addNewDeck(AttributedDeck(deck: Deck(name: deckName)))
+                self.applySnapshot(animatingDifferences: true)
             }
         }
     }
@@ -58,15 +65,14 @@ extension DeckViewController {
     private func createLayout() -> UICollectionViewLayout {
         var config = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
         config.backgroundColor = UIColor(named: FlashcardSettings.Colors.backgroundColor)
-        
-        config.trailingSwipeActionsConfigurationProvider = { [unowned self] indexPath -> UISwipeActionsConfiguration in
-            if indexPath.section != 0 {
 
+        config.headerMode = .supplementary
+        config.trailingSwipeActionsConfigurationProvider = { [unowned self] indexPath -> UISwipeActionsConfiguration in
+            if let deck = dataSource.itemIdentifier(for: indexPath), !deck.isSelected && !deck.isDefault {
                 let action = UIContextualAction(style: .destructive, title: "Delete") { _, _, completion in
-                    if let deck = dataSource.itemIdentifier(for: indexPath) {
-                        self.viewModel.deleteDeck(deck)
-                    }
-                    
+                    self.viewModel.deleteDeck(deck)
+                    self.applySnapshot(animatingDifferences: true)
+
                     completion(true)
                 }
                 return UISwipeActionsConfiguration(actions: [action])
@@ -83,6 +89,7 @@ extension DeckViewController {
         collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         view.addSubview(collectionView)
         collectionView.delegate = self
+        collectionView.register(HeaderSupplementaryView.self, forSupplementaryViewOfKind: FlashcardSettings.ElementKind.sectionHeader, withReuseIdentifier: HeaderSupplementaryView.reuseIdentifier)
     }
 
     private func makeCellRegistration() -> UICollectionView.CellRegistration<UICollectionViewListCell, AttributedDeck> {
@@ -90,9 +97,12 @@ extension DeckViewController {
             var content = cell.defaultContentConfiguration()
             content.text = deck.name
             cell.contentConfiguration = content
-            var background = UIBackgroundConfiguration.listGroupedCell()
-            background.backgroundColor = UIColor(named: FlashcardSettings.Colors.backgroundColor)?.lighter(by: 5)
-            cell.backgroundConfiguration = background
+            // without also setting selectedBackgroundView, this disables automatic highlight for selections
+            /*
+             var background = UIBackgroundConfiguration.listGroupedCell()
+             background.backgroundColor = UIColor(named: FlashcardSettings.Colors.backgroundColor)?.lighter(by: 5)
+             cell.backgroundConfiguration = background
+             */
             cell.accessories = deck.isSelected ? [.checkmark()] : []
         }
     }
@@ -109,6 +119,15 @@ extension DeckViewController {
         snapshot.appendSections(Section.allCases)
         snapshot.appendItems(viewModel.usual, toSection: .usual)
         snapshot.appendItems(viewModel.main, toSection: .main)
+
+        dataSource.supplementaryViewProvider = { [unowned self] (collectionView: UICollectionView, _: String, indexPath: IndexPath) -> UICollectionReusableView? in
+            if let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: FlashcardSettings.ElementKind.sectionHeader, withReuseIdentifier: HeaderSupplementaryView.reuseIdentifier, for: indexPath) as? HeaderSupplementaryView {
+                headerView.label.text = self.dataSource.itemIdentifier(for: indexPath)?.isDefault ?? false ? "Default" : "Other Decks"
+                return headerView
+            } else {
+                fatalError("Cannot create supplementary header view")
+            }
+        }
         dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
     }
 }
@@ -122,5 +141,42 @@ extension DeckViewController: UICollectionViewDelegate {
             viewModel.selectAttributedDeck(deck)
             performSegue(withIdentifier: FlashcardSettings.Segues.unwindToFlashcardFromDeckList, sender: true)
         }
+    }
+}
+
+extension DeckViewController: UICollectionViewDragDelegate {
+    func collectionView(_ collectionView: UICollectionView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
+        if let item = dataSource.itemIdentifier(for: indexPath) {
+            let itemProvider = NSItemProvider(object: item.source.name as NSString) // if this works, add as computed property to AttributedDeck
+            let dragItem = UIDragItem(itemProvider: itemProvider)
+            dragItem.localObject = item
+            return [dragItem]
+        }
+        return []
+    }
+}
+
+extension DeckViewController: UICollectionViewDropDelegate {
+    func collectionView(_ collectionView: UICollectionView, performDropWith coordinator: UICollectionViewDropCoordinator) {
+        guard let destinationIndexPath = coordinator.destinationIndexPath else {
+            return
+        }
+
+        coordinator.items.forEach { dropItem in
+            guard let sourceIndexPath = dropItem.sourceIndexPath else {
+                return
+            }
+            if let deck = self.dataSource.itemIdentifier(for: sourceIndexPath) {
+                self.viewModel.moveDeck(deck, to: destinationIndexPath)
+                applySnapshot(animatingDifferences: false)
+            }
+        }
+    }
+
+    func collectionView(_ collectionView: UICollectionView, dropSessionDidUpdate session: UIDropSession, withDestinationIndexPath destinationIndexPath: IndexPath?) -> UICollectionViewDropProposal {
+        if collectionView.hasActiveDrag {
+            return UICollectionViewDropProposal(operation: .move, intent: .insertAtDestinationIndexPath)
+        }
+        return UICollectionViewDropProposal(operation: .forbidden)
     }
 }

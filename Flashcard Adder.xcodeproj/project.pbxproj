@@ -53,6 +53,8 @@
 		E39647FE2537FEAF00F803F4 /* EditFieldTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E369F9272515B71000A51A0D /* EditFieldTextView.swift */; };
 		E39648022537FEEF00F803F4 /* BigButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E369F9282515B71100A51A0D /* BigButton.swift */; };
 		E39648062537FEF200F803F4 /* LabelTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E357B36F251D32BF00354BCA /* LabelTableViewCell.swift */; };
+		E39C88082544D07700B852BE /* HeaderSupplementaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3ABE99C2544CA0B00148D6F /* HeaderSupplementaryView.swift */; };
+		E3ABE99D2544CA0B00148D6F /* HeaderSupplementaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3ABE99C2544CA0B00148D6F /* HeaderSupplementaryView.swift */; };
 		E3B7B56925390C5E00E38EC4 /* NoteTypeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39595A6253906E70073FD2B /* NoteTypeViewModel.swift */; };
 		E3B7B56E253912D800E38EC4 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B7B56D253912D800E38EC4 /* Logger.swift */; };
 		E3B7B56F253912D800E38EC4 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B7B56D253912D800E38EC4 /* Logger.swift */; };
@@ -137,6 +139,7 @@
 		E39647AF2537FC3700F803F4 /* Action Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Action Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E39647B12537FC3700F803F4 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		E39647B82537FC3700F803F4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E3ABE99C2544CA0B00148D6F /* HeaderSupplementaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderSupplementaryView.swift; sourceTree = "<group>"; };
 		E3B7B56D253912D800E38EC4 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		E3D010E525354A4D006FB811 /* NoteType.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NoteType.storyboard; sourceTree = "<group>"; };
 		E3D010F225355454006FB811 /* NoteTypeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteTypeViewController.swift; sourceTree = "<group>"; };
@@ -232,6 +235,7 @@
 				E359182C25106E3D002F1A35 /* Assets.xcassets */,
 				E359183125106E3D002F1A35 /* Info.plist */,
 				E3029A062543537D00518703 /* SettingItemViewController.swift */,
+				E3ABE99C2544CA0B00148D6F /* HeaderSupplementaryView.swift */,
 			);
 			path = "Flashcard Adder";
 			sourceTree = "<group>";
@@ -442,6 +446,7 @@
 				E301AEF025217EE1006A9742 /* Field.swift in Sources */,
 				E357B370251D32BF00354BCA /* LabelTableViewCell.swift in Sources */,
 				E369F9362515B71100A51A0D /* BigButton.swift in Sources */,
+				E3ABE99D2544CA0B00148D6F /* HeaderSupplementaryView.swift in Sources */,
 				E359182225106E3D002F1A35 /* AppDelegate.swift in Sources */,
 				E3F8D99A253BF1A1003E7CC7 /* DeckViewController.swift in Sources */,
 				E369F92E2515B71100A51A0D /* Profile.swift in Sources */,
@@ -487,6 +492,7 @@
 				E39647DB2537FC9900F803F4 /* Note.swift in Sources */,
 				E39647EE2537FCC300F803F4 /* FlashcardViewController.swift in Sources */,
 				E3F8D9BC253C930E003E7CC7 /* SettingsViewModel.swift in Sources */,
+				E39C88082544D07700B852BE /* HeaderSupplementaryView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -231,7 +231,7 @@ class FlashcardViewController: UIViewController {
         
         return ClozeViewController(coder: coder, viewModel: viewModel)
     }
- 
+    
     @IBAction func unwindToFlashcardView(sender: UIStoryboardSegue) {
         if let sourceViewController = sender.source as? ClozeViewController {
             createCloze(clozeText: sourceViewController.viewModel.cloze, hintText: sourceViewController.viewModel.hint, savedRange: sourceViewController.viewModel.savedRange)
