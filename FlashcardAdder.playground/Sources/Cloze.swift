@@ -36,11 +36,4 @@ public extension Cloze {
         self.subject = subject
         self.hint = nil
     }
-    
-    public static func highestCurrentCloze(text: String) -> String? {
-        let matches = text.matchingStrings(regex: regexIdentifier)
-        let matchedClozeValues = matches.map { $0[1] }
-        return matchedClozeValues.max()
-        
-    }
 }
