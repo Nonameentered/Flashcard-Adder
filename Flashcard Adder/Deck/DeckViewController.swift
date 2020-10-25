@@ -37,11 +37,11 @@ class DeckViewController: UIViewController, UIAdaptivePresentationControllerDele
         collectionView.dragDelegate = self
         collectionView.dropDelegate = self
         
-        Logger.deck.info("Loaded DeckViewController")
+        Logger.deck.info("DeckViewController loaded")
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        print("GOING To disappaer")
+        Logger.deck.info("DeckViewController will disappear")
     }
 
     @IBAction func cancel(_ sender: Any) {
@@ -58,6 +58,15 @@ class DeckViewController: UIViewController, UIAdaptivePresentationControllerDele
             }
         }
     }
+    
+    func edit(oldDeck: AttributedDeck) {
+        showInputDialog(title: "Edit Deck", message: "Enter a modified deck name", actionTitle: "OK", inputPlaceholder: oldDeck.name, cancelHandler: nil) { deckName in
+            if let deckName = deckName, !deckName.isEmpty {
+                self.viewModel.edit(from: oldDeck, to: AttributedDeck(deck: Deck(name: deckName), isSelected: oldDeck.isSelected))
+                self.applySnapshot(animatingDifferences: true)
+            }
+        }
+    }
 }
 
 extension DeckViewController {
@@ -67,17 +76,37 @@ extension DeckViewController {
         config.backgroundColor = UIColor(named: FlashcardSettings.Colors.backgroundColor)
 
         config.headerMode = .supplementary
-        config.trailingSwipeActionsConfigurationProvider = { [unowned self] indexPath -> UISwipeActionsConfiguration in
-            if let deck = dataSource.itemIdentifier(for: indexPath), !deck.isSelected && !deck.isDefault {
-                let action = UIContextualAction(style: .destructive, title: "Delete") { _, _, completion in
-                    self.viewModel.deleteDeck(deck)
-                    self.applySnapshot(animatingDifferences: true)
+        config.leadingSwipeActionsConfigurationProvider = { [unowned self] indexPath -> UISwipeActionsConfiguration in
+            var actions = [UIContextualAction]()
+            if let deck = dataSource.itemIdentifier(for: indexPath) {
+                if !deck.isDefault {
+                    actions.append(UIContextualAction(style: .normal, title: "Set Default") { _, _, completion in
+                        self.viewModel.moveDeck(deck, to: IndexPath(row: 0, section: 0))
+                        self.applySnapshot(animatingDifferences: false)
 
-                    completion(true)
+                        completion(true)
+                    })
                 }
-                return UISwipeActionsConfiguration(actions: [action])
             }
-            return UISwipeActionsConfiguration()
+            return UISwipeActionsConfiguration(actions: actions)
+        }
+        config.trailingSwipeActionsConfigurationProvider = { [unowned self] indexPath -> UISwipeActionsConfiguration in
+            var actions = [UIContextualAction]()
+            if let deck = dataSource.itemIdentifier(for: indexPath) {
+                if !deck.isSelected && !deck.isDefault {
+                    actions.append(UIContextualAction(style: .destructive, title: "Delete") { _, _, completion in
+                        self.viewModel.deleteDeck(deck)
+                        self.applySnapshot(animatingDifferences: true)
+
+                        completion(true)
+                    })
+                }
+                actions.append(UIContextualAction(style: .normal, title: "Edit") { _, _, completion in
+                    self.edit(oldDeck: deck)
+                    completion(true)
+                })
+            }
+            return UISwipeActionsConfiguration(actions: actions)
         }
         return UICollectionViewCompositionalLayout.list(using: config)
     }

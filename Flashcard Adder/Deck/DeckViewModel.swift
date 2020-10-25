@@ -30,12 +30,21 @@ struct AttributedDeck: Hashable {
         source = deck
         isSelected = deck == selected
     }
+    
+    init(deck: Deck, isSelected: Bool) {
+        source = deck
+        self.isSelected = isSelected
+    }
 }
 
 struct DeckViewModel {
     let original: [Deck]
     let originalDefault: Deck
-    var all: [AttributedDeck]
+    var all: [AttributedDeck] {
+        didSet {
+            FlashcardSettings.shared.decks = all.map { $0.source }
+        }
+    }
     var main: [AttributedDeck] {
         all.filter { !$0.isDefault }
     }
@@ -48,31 +57,11 @@ struct DeckViewModel {
         all.first { $0.isSelected }!.source
     }
     
-//    var defaultDeckList: [Deck] {
-//        [defaultDeck]
-//    }
-    
-//    var selectedDeckList: [Deck] {
-//        [selectedDeck]
-//    }
-    
     init(selected: Deck) {
         all = FlashcardSettings.shared.decks.map { AttributedDeck(deck: $0, selected: selected) }
         original = FlashcardSettings.shared.decks
         originalDefault = FlashcardSettings.shared.defaultDeck
-//        main = FlashcardSettings.shared.decks
-//        defaultDeck = FlashcardSettings.shared.defaultDeck
-        ////        main.remove(at: main.firstIndex(of: defaultDeck)!)
-//        selectedDeck = selected
-//        selectDeck(selected)
     }
-    
-    /*
-     mutating func splitSectionWith() {
-         if let index = all.firstIndex(of: selectedDeck) {
-         }
-     }
-     */
     
     mutating func selectAttributedDeck(_ deck: AttributedDeck) {
         selectDeck(deck.source)
@@ -83,18 +72,10 @@ struct DeckViewModel {
     }
     
     mutating func addNewDeck(_ deck: AttributedDeck) {
-        Logger.deck.info("Deck \(deck.name)")
-        let source = deck.source
         // Check for and tell view controller to produce alert if deck type already exists
-        if FlashcardSettings.shared.decks.firstIndex(of: source) == nil {
-            FlashcardSettings.shared.decks.append(source)
-            reload()
+        if all.firstIndex(of: deck) == nil {
+            all.append(deck)
         }
-    }
-    
-    mutating func reload() {
-        let selectedDeck = self.selectedDeck
-        all = FlashcardSettings.shared.decks.map { AttributedDeck(deck: $0, selected: selectedDeck) }
     }
     
     mutating func deleteDeck(_ deck: AttributedDeck) {
@@ -103,8 +84,6 @@ struct DeckViewModel {
                 selectDeck(FlashcardSettings.shared.defaultDeck)
             }
             all.removeAll { $0.source == deck.source }
-            FlashcardSettings.shared.decks = all.map { $0.source }
-            print(FlashcardSettings.shared.decks)
         }
     }
     
@@ -114,12 +93,17 @@ struct DeckViewModel {
         }
         if !deck.isDefault, let moved = main.moved(deck, to: indexPath.row) {
             all = usual + moved
-            FlashcardSettings.shared.decks = all.map { $0.source } // Maybe put in didSet
         }
     }
     
     mutating func setDefaultDeck(_ deck: AttributedDeck) {
         FlashcardSettings.shared.defaultDeck = deck.source
+    }
+    
+    mutating func edit(from oldDeck: AttributedDeck, to newDeck: AttributedDeck) {
+        if all.firstIndex(of: newDeck) == nil, let replaceIndex = all.firstIndex(of: oldDeck) {
+            all[replaceIndex] = newDeck
+        }
     }
 }
 
