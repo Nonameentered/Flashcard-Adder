@@ -7,43 +7,22 @@
 
 import Foundation
 
-protocol Option {
+protocol Option: Hashable {
     var name: String { get }
 }
-//
-protocol AttributedManager {
+
+protocol AttributedOption: Hashable {
     associatedtype sourceType
-    var selected: sourceType { get set }
-}
-protocol AttributedOption {
-    associatedtype sourceType
-    associatedtype managerType
     var source: sourceType { get }
     var isDefault: Bool { get }
     var isSelected: Bool { get }
-    var manager: managerType { get }
+    var selected: sourceType { get }
     var name: String { get }
     var nameAsNSString: NSString { get }
 }
 
-extension AttributedOption where sourceType: Option, managerType: AttributedManager, managerType.sourceType: Option {
-    
-    var name: String {
-        source.name
-    }
-
-    var nameAsNSString: NSString {
-        source.name as NSString
-    }
-}
-
-protocol ViewModel {
-    
-}
-
-/*
-struct AttributedItem<T: Hashable & Option>: Hashable {
-    static func == (lhs: AttributedItem, rhs: AttributedItem) -> Bool {
+extension AttributedOption where sourceType: Option {
+    static func == (lhs: Self, rhs: Self) -> Bool {
         lhs.source == rhs.source && lhs.isDefault == rhs.isDefault && lhs.isSelected == rhs.isSelected
     }
     
@@ -53,23 +32,78 @@ struct AttributedItem<T: Hashable & Option>: Hashable {
         hasher.combine(isDefault)
     }
     
-    let source: T
-//    let delegate: AttributedDelegate
-    var isDefault: Bool {
-        source == FlashcardSettings.shared.defaultDeck
-    }
-    
-    // Maybe should be rewritten into a computed property, with a delegate
-    var isSelected: Bool {
-        source == delegate.selected
-    }
-    
     var name: String {
         source.name
     }
-    
+
     var nameAsNSString: NSString {
         source.name as NSString
     }
+    
+    var isSelected: Bool {
+        source == selected
+    }
 }
-*/
+
+protocol OptionViewModelDelegate {
+    func updateList(animatingDifferences: Bool)
+}
+
+protocol OptionViewModel {
+    associatedtype attributedSourceType
+    associatedtype sourceType
+    var all: [attributedSourceType] { get set }
+    var main: [attributedSourceType] { get }
+    var usual: [attributedSourceType] { get }
+    var selected: sourceType { get set }
+    var delegate: OptionViewModelDelegate? { get set }
+    
+    mutating func select(_ item: attributedSourceType)
+    mutating func add(_ item: attributedSourceType)
+    mutating func delete(_ item: attributedSourceType)
+    mutating func move(_ item: attributedSourceType, to indexPath: IndexPath)
+    mutating func makeDefault(_ item: attributedSourceType)
+    mutating func edit(from oldItem: attributedSourceType, to newItem: attributedSourceType)
+}
+
+extension OptionViewModel where attributedSourceType: AttributedOption, sourceType == attributedSourceType.sourceType, sourceType: Hashable {
+    var main: [attributedSourceType] {
+        all.filter { !$0.isDefault }
+    }
+
+    var usual: [attributedSourceType] {
+        all.filter { $0.isDefault }
+    }
+    
+    mutating func select(_ item: attributedSourceType) {
+        self.selected = item.source
+    }
+    
+    mutating func add(_ item: attributedSourceType) {
+        if all.firstIndex(of: item) == nil {
+            all.append(item)
+        }
+        delegate?.updateList(animatingDifferences: true)
+    }
+    
+    mutating func delete(_ item: attributedSourceType) {
+        all.removeAll { $0.source == item.source }
+    }
+    
+    mutating func move(_ item: attributedSourceType, to indexPath: IndexPath) {
+        if indexPath.section == 0 {
+            makeDefault(item)
+        }
+        if !item.isDefault, let moved = main.moved(item, to: indexPath.row) {
+            all = usual + moved
+        }
+        delegate?.updateList(animatingDifferences: false)
+    }
+    
+    mutating func edit(from oldItem: attributedSourceType, to newItem: attributedSourceType) {
+        if all.firstIndex(of: newItem) == nil, let replaceIndex = all.firstIndex(of: oldItem) {
+            all[replaceIndex] = newItem
+        }
+        delegate?.updateList(animatingDifferences: false)
+    }
+}

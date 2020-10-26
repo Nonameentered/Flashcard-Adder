@@ -9,33 +9,21 @@ import Foundation
 import os.log
 
 struct AttributedDeck: Hashable, AttributedOption {
-    static func == (lhs: AttributedDeck, rhs: AttributedDeck) -> Bool {
-        lhs.source == rhs.source && lhs.isDefault == rhs.isDefault && lhs.isSelected == rhs.isSelected
-    }
-    
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(name)
-        hasher.combine(isSelected)
-        hasher.combine(isDefault)
-    }
-    
     let source: Deck
-    let manager: DeckViewModel
+    let selected: Deck
     var isDefault: Bool {
         source == FlashcardSettings.shared.defaultDeck
     }
     
     // Maybe should be rewritten into a computed property, with a delegate
-    var isSelected: Bool {
-        source == manager.selected
-    }
+    
 }
 
 protocol DeckViewModelDelegate {
     func decksDidChange(_ viewModel: DeckViewModel, animatingDifferences: Bool)
 }
 
-struct DeckViewModel: AttributedManager {
+struct DeckViewModel {
     var all: [AttributedDeck] {
         didSet {
             FlashcardSettings.shared.decks = all.map { $0.source }
@@ -55,8 +43,8 @@ struct DeckViewModel: AttributedManager {
     
     init(selected: Deck) {
         self.selected = selected
-        all = [] // Maybe make the delegate a different object?
-        all = FlashcardSettings.shared.decks.map { AttributedDeck(source: $0, manager: self) }
+        all = [] // Maybe make the manager a different object?
+        all = FlashcardSettings.shared.decks.map { AttributedDeck(source: $0, selected: selected) }
     }
     
     mutating func select(_ deck: AttributedDeck) {
@@ -64,8 +52,7 @@ struct DeckViewModel: AttributedManager {
     }
     
     mutating func add(_ deck: Deck) {
-        let attributedDeck = AttributedDeck(source: deck, manager: self)
-        // Maybe check for and tell view controller to produce alert if deck type already exists
+        let attributedDeck = AttributedDeck(source: deck, selected: selected)
         if all.firstIndex(of: attributedDeck) == nil {
             all.append(attributedDeck)
         }
@@ -78,7 +65,7 @@ struct DeckViewModel: AttributedManager {
     
     mutating func move(_ deck: AttributedDeck, to indexPath: IndexPath) {
         if indexPath.section == 0 {
-            FlashcardSettings.shared.defaultDeck = deck.source
+            makeDefault(deck)
         }
         if !deck.isDefault, let moved = main.moved(deck, to: indexPath.row) {
             all = usual + moved
@@ -91,7 +78,7 @@ struct DeckViewModel: AttributedManager {
     }
     
     mutating func edit(from oldDeck: AttributedDeck, to newDeck: Deck) {
-        let newAttributedDeck = AttributedDeck(source: newDeck, manager: self)
+        let newAttributedDeck = AttributedDeck(source: newDeck, selected: selected)
         if all.firstIndex(of: newAttributedDeck) == nil, let replaceIndex = all.firstIndex(of: oldDeck) {
             all[replaceIndex] = newAttributedDeck
         }
