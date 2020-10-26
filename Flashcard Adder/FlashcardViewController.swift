@@ -49,7 +49,12 @@ class FlashcardViewController: UIViewController {
             typeButton.setTitle("Type: " + flashcard.noteTypeName, for: .normal)
         }
     }
-
+    @IBOutlet weak var profileButton: BigButton! {
+        didSet {
+            profileButton.setTitle("Profile: " + flashcard.profileName, for: .normal)
+        }
+    }
+    
     var flashcard = Flashcard()
     
     // MARK: - Lifecycle
@@ -190,6 +195,17 @@ class FlashcardViewController: UIViewController {
         #endif
     }
     
+    @IBAction func changeProfile(_ sender: Any) {
+        let profileViewController = DeckViewController(viewModel: DeckViewModel(selected: flashcard.deck), delegate: self)
+        let navigationController = UINavigationController(rootViewController: profileViewController)
+        self.present(navigationController, animated: true, completion: nil)
+    }
+    @IBAction func changeDeck(_ sender: Any) {
+        let profileViewController = DeckViewController(viewModel: DeckViewModel(selected: flashcard.deck), delegate: self)
+        let navigationController = UINavigationController(rootViewController: profileViewController)
+        self.present(navigationController, animated: true, completion: nil)
+    }
+    
     @IBSegueAction
     private func showNoteTypeList(coder: NSCoder, sender: Any?, segueIdentifier: String?)
         -> NoteTypeViewController? {
@@ -197,12 +213,14 @@ class FlashcardViewController: UIViewController {
         return NoteTypeViewController(coder: coder, viewModel: NoteTypeViewModel(selected: flashcard.note))
     }
     
+    /*
     @IBSegueAction
     private func showDeckList(coder: NSCoder, sender: Any?, segueIdentifier: String?)
         -> DeckViewController? {
         Logger.flashcard.info("Showing Deck List")
         return DeckViewController(coder: coder, viewModel: DeckViewModel(selected: flashcard.deck))
     }
+    */
     
     @IBSegueAction
     private func showClozeView(coder: NSCoder, sender: Any?, segueIdentifier: String?)
@@ -371,5 +389,12 @@ extension FlashcardViewController: FlashcardDelegate {
         backTextView.text = flashcard.note.fields[1].text
         typeButton.setTitle("Type: " + flashcard.noteTypeName, for: .normal)
         deckButton.setTitle("Deck: " + flashcard.deckName, for: .normal)
+    }
+}
+
+// MARK: FlashcardDelegate
+extension FlashcardViewController: DeckViewControllerDelegate {
+    func deckSelected(_ deck: Deck) {
+        flashcard.updateDeck(to: deck)
     }
 }

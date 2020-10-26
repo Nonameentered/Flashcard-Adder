@@ -1,13 +1,13 @@
 //
-//  SettingItemViewController.swift
+//  ProfileViewController.swift
 //  Flashcard Adder
 //
-//  Created by Matthew Shu on 10/23/20.
+//  Created by Matthew Shu on 10/26/20.
 //
 
 import UIKit
 
-class SettingItemViewController: UIViewController {
+class ProfileViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

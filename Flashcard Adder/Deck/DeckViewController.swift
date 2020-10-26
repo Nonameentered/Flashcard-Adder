@@ -8,6 +8,10 @@
 import os.log
 import UIKit
 
+protocol DeckViewControllerDelegate {
+    func deckSelected(_ deck: Deck)
+}
+
 class DeckViewController: UIViewController, UIAdaptivePresentationControllerDelegate {
     enum Section: CaseIterable {
         case usual
@@ -17,12 +21,15 @@ class DeckViewController: UIViewController, UIAdaptivePresentationControllerDele
     lazy var dataSource = makeDataSource()
     var collectionView: UICollectionView!
     var viewModel: DeckViewModel
-
-    init?(coder: NSCoder, viewModel: DeckViewModel) {
+    let delegate: DeckViewControllerDelegate
+    
+    init(viewModel: DeckViewModel, delegate: DeckViewControllerDelegate) {
         self.viewModel = viewModel
-        super.init(coder: coder)
+        self.delegate = delegate
+        
+        super.init(nibName: nil, bundle: nil)
     }
-
+    
     @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -48,9 +55,9 @@ class DeckViewController: UIViewController, UIAdaptivePresentationControllerDele
     
     func setUpNavBar() {
         self.navigationItem.title = "Decks"
-        let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancel))
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(cancel))
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(add))
-        self.navigationItem.leftBarButtonItems = [cancelButton]
+        self.navigationItem.leftBarButtonItems = [doneButton]
         self.navigationItem.rightBarButtonItems = [addButton]
     }
     
@@ -180,8 +187,9 @@ extension DeckViewController: UICollectionViewDelegate {
         collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .top)
         collectionView.deselectItem(at: indexPath, animated: true)
         if let deck = dataSource.itemIdentifier(for: indexPath) {
-            viewModel.select(deck)
-            performSegue(withIdentifier: FlashcardSettings.Segues.unwindToFlashcardFromDeckList, sender: true)
+            delegate.deckSelected(deck.source)
+            dismiss(animated: true, completion: nil)
+//            performSegue(withIdentifier: FlashcardSettings.Segues.unwindToFlashcardFromDeckList, sender: true)
         }
     }
 }

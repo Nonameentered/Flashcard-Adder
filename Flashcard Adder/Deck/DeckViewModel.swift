@@ -26,6 +26,7 @@ protocol DeckViewModelDelegate {
 struct DeckViewModel {
     var all: [AttributedDeck] {
         didSet {
+            print("REPLACED")
             FlashcardSettings.shared.decks = all.map { $0.source }
         }
     }
@@ -47,8 +48,9 @@ struct DeckViewModel {
         all = FlashcardSettings.shared.decks.map { AttributedDeck(source: $0, selected: selected) }
     }
     
-    mutating func select(_ deck: AttributedDeck) {
-        self.selected = deck.source
+    mutating func select(_ deck: Deck) {
+        self.selected = deck
+        all = FlashcardSettings.shared.decks.map { AttributedDeck(source: $0, selected: selected) }
     }
     
     mutating func add(_ deck: Deck) {
@@ -80,8 +82,16 @@ struct DeckViewModel {
     mutating func edit(from oldDeck: AttributedDeck, to newDeck: Deck) {
         let newAttributedDeck = AttributedDeck(source: newDeck, selected: selected)
         if all.firstIndex(of: newAttributedDeck) == nil, let replaceIndex = all.firstIndex(of: oldDeck) {
+            print("SHOULD BRE EPALCEMENT")
             all[replaceIndex] = newAttributedDeck
+            if oldDeck.isSelected {
+                print("IS SELCTED")
+                select(newDeck)
+            }
+            if oldDeck.isDefault {
+                makeDefault(newAttributedDeck)
+            }
+            delegate?.decksDidChange(self, animatingDifferences: true)
         }
-        delegate?.decksDidChange(self, animatingDifferences: true)
     }
 }

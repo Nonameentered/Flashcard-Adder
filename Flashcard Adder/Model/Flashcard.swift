@@ -39,6 +39,10 @@ struct Flashcard: Codable {
         return deck.name
     }
     
+    var profileName: String {
+        return profile.name
+    }
+    
     var fieldNames: [String] {
         return note.fields.map {
             $0.name
