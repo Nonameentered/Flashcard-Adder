@@ -205,8 +205,8 @@ class FlashcardViewController: UIViewController {
     }
 
     @IBAction func changeDeck(_ sender: Any) {
-        let profileViewController = OptionViewController(viewModel: DeckViewModel(selected: flashcard.deck, controllerDelegate: self))
-        let navigationController = UINavigationController(rootViewController: profileViewController)
+        let deckViewController = OptionViewController(viewModel: DeckViewModel(selected: flashcard.deck, controllerDelegate: self))
+        let navigationController = UINavigationController(rootViewController: deckViewController)
         present(navigationController, animated: true, completion: nil)
     }
     
