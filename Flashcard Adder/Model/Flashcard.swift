@@ -11,6 +11,7 @@ import os.log
 protocol FlashcardDelegate {
     func noteTypeDidChange(flashcard: Flashcard, from: Note, to: Note)
     func deckDidChange(flashcard: Flashcard, from: Deck, to: Deck)
+    func profileDidChange(flashcard: Flashcard, from: Profile, to: Profile)
     func flashcardDidCreate(flashcard: Flashcard)
 }
 
@@ -68,7 +69,7 @@ struct Flashcard: Codable {
         self.originalText = originalText ?? ""
         self.note = note ?? FlashcardSettings.shared.defaultNoteType
         self.deck = deck ?? FlashcardSettings.shared.defaultDeck
-        self.profile = profile ?? FlashcardSettings.shared.ankiProfile
+        self.profile = profile ?? FlashcardSettings.shared.defaultAnkiProfile
         self.referenceText = referenceText ?? ""
         self.delegate = delegate
         
@@ -135,6 +136,13 @@ struct Flashcard: Codable {
         self.deck = deck
         
         delegate?.deckDidChange(flashcard: self, from: oldDeck, to: deck)
+    }
+    
+    mutating func updateProfile(to profile: Profile) {
+        let oldProfile = self.profile
+        self.profile = profile
+        
+        delegate?.profileDidChange(flashcard: self, from: oldProfile, to: profile)
     }
     
     mutating func updateField(name: String, to text: String) {

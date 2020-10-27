@@ -43,16 +43,17 @@ final class FlashcardSettings {
 //    }
     
     enum Key: String, Codable {
-        case ankiProfile, defaultNoteType, defaultClozeNoteType, defaultDeck, noteTypes, decks
+        case defaultAnkiProfile, defaultNoteType, defaultClozeNoteType, defaultDeck, noteTypes, decks, ankiProfiles
     }
     
     static func registerDefaults() {
-        let defaults: [String: Any] = [Key.ankiProfile.rawValue: encodeCodable(for: Profile(name: "User 1"))!,
+        let defaults: [String: Any] = [Key.defaultAnkiProfile.rawValue: encodeCodable(for: Profile(name: "User 1"))!,
                                         Key.defaultNoteType.rawValue: encodeCodable(for: Note(name: "Basic", fields: [Field(name: "Front"), Field(name: "Back")]))!,
                                         Key.defaultClozeNoteType.rawValue: encodeCodable(for: Note(name: "Cloze", fields: [Field(name: "Text", fieldType: .cloze), Field(name: "Extra")]))!,
                                         Key.defaultDeck.rawValue: encodeCodable(for: Deck(name: "Default"))!,
                                         Key.noteTypes.rawValue: encodeCodable(for: [Note(name: "Basic", fields: [Field(name: "Front"), Field(name: "Back")]), Note(name: "Cloze", fields: [Field(name: "Text"), Field(name: "Extra")])])!,
-                                        Key.decks.rawValue: encodeCodable(for: [Deck(name: "Default")])!]
+                                        Key.decks.rawValue: encodeCodable(for: [Deck(name: "Default")])!,
+                                        Key.ankiProfiles.rawValue: encodeCodable(for: [Profile(name: "User 1")])!]
         FlashcardSettings.store.register(defaults: defaults)
         Logger.settings.info("Register defaults")
         FlashcardSettings.store.synchronize()
@@ -60,7 +61,7 @@ final class FlashcardSettings {
     
     // Provided for developer convenience since UserDefaults don't always seem to be deleted when apps are deleted
     static func flushSettings() {
-        FlashcardSettings.store.set(nil, forKey: Key.ankiProfile.rawValue)
+        FlashcardSettings.store.set(nil, forKey: Key.defaultAnkiProfile.rawValue)
         FlashcardSettings.store.set(nil, forKey: Key.defaultClozeNoteType.rawValue)
         FlashcardSettings.store.set(nil, forKey: Key.defaultNoteType.rawValue)
         FlashcardSettings.store.set(nil, forKey: Key.defaultDeck.rawValue)
@@ -69,12 +70,12 @@ final class FlashcardSettings {
         FlashcardSettings.store.synchronize()
     }
     
-    var ankiProfile: Profile {
+    var defaultAnkiProfile: Profile {
         get {
-            return FlashcardSettings.codable(for: Key.ankiProfile.rawValue)!
+            return FlashcardSettings.codable(for: Key.defaultAnkiProfile.rawValue)!
         }
         set {
-            FlashcardSettings.setCodable(for: Key.ankiProfile.rawValue, newValue)
+            FlashcardSettings.setCodable(for: Key.defaultAnkiProfile.rawValue, newValue)
             
             FlashcardSettings.store.synchronize()
         }
@@ -133,6 +134,17 @@ final class FlashcardSettings {
             FlashcardSettings.setCodable(for: Key.decks.rawValue, newValue)
             FlashcardSettings.store.synchronize()
             Logger.settings.info("Set decks \(newValue)")
+        }
+    }
+    
+    var ankiProfiles: [Profile] {
+        get {
+            return FlashcardSettings.codable(for: Key.ankiProfiles.rawValue)!
+        }
+        set {
+            FlashcardSettings.setCodable(for: Key.ankiProfiles.rawValue, newValue)
+            FlashcardSettings.store.synchronize()
+            Logger.settings.info("Set anki profiles \(newValue)")
         }
     }
 }

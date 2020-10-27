@@ -9,16 +9,22 @@ import Foundation
 
 protocol Option: Hashable {
     var name: String { get }
+    static var typeName: String { get }
+    static var typeNamePlural: String { get }
+    
+    init(name: String)
 }
 
 protocol AttributedOption: Hashable {
-    associatedtype sourceType
+    associatedtype sourceType: Option
     var source: sourceType { get }
     var isDefault: Bool { get }
     var isSelected: Bool { get }
     var selected: sourceType { get }
     var name: String { get }
     var nameAsNSString: NSString { get }
+    
+    init(source: sourceType, selected: sourceType)
 }
 
 extension AttributedOption where sourceType: Option {
@@ -50,23 +56,27 @@ protocol OptionViewModelDelegate {
 }
 
 protocol OptionViewModel {
-    associatedtype attributedSourceType
-    associatedtype sourceType
+    associatedtype attributedSourceType: AttributedOption
     var all: [attributedSourceType] { get set }
     var main: [attributedSourceType] { get }
     var usual: [attributedSourceType] { get }
-    var selected: sourceType { get set }
+    var selected: attributedSourceType.sourceType { get set }
     var delegate: OptionViewModelDelegate? { get set }
+    var controllerDelegate: OptionViewControllerDelegate { get set }
     
-    mutating func select(_ item: attributedSourceType)
-    mutating func add(_ item: attributedSourceType)
+    
+    init(selected: attributedSourceType.sourceType, controllerDelegate: OptionViewControllerDelegate)
+    
+    mutating func select(_ item: attributedSourceType.sourceType) // calls controllerDelegate when called
+    mutating func makeDefault(_ item: attributedSourceType)
+    
+    mutating func add(_ item: attributedSourceType.sourceType)
     mutating func delete(_ item: attributedSourceType)
     mutating func move(_ item: attributedSourceType, to indexPath: IndexPath)
-    mutating func makeDefault(_ item: attributedSourceType)
-    mutating func edit(from oldItem: attributedSourceType, to newItem: attributedSourceType)
+    mutating func edit(from oldItem: attributedSourceType, to newItem: attributedSourceType.sourceType)
 }
 
-extension OptionViewModel where attributedSourceType: AttributedOption, sourceType == attributedSourceType.sourceType, sourceType: Hashable {
+extension OptionViewModel where attributedSourceType: AttributedOption, attributedSourceType.sourceType: Option {
     var main: [attributedSourceType] {
         all.filter { !$0.isDefault }
     }
@@ -75,13 +85,10 @@ extension OptionViewModel where attributedSourceType: AttributedOption, sourceTy
         all.filter { $0.isDefault }
     }
     
-    mutating func select(_ item: attributedSourceType) {
-        self.selected = item.source
-    }
-    
-    mutating func add(_ item: attributedSourceType) {
-        if all.firstIndex(of: item) == nil {
-            all.append(item)
+    mutating func add(_ item: attributedSourceType.sourceType) {
+        let attributedItem = attributedSourceType(source: item, selected: selected)
+        if all.firstIndex(of: attributedItem) == nil {
+            all.append(attributedItem)
         }
         delegate?.updateList(animatingDifferences: true)
     }
@@ -93,16 +100,25 @@ extension OptionViewModel where attributedSourceType: AttributedOption, sourceTy
     mutating func move(_ item: attributedSourceType, to indexPath: IndexPath) {
         if indexPath.section == 0 {
             makeDefault(item)
+        } else {
+            if !item.isDefault, let moved = main.moved(item, to: indexPath.row) {
+                all = usual + moved
+            }
+            delegate?.updateList(animatingDifferences: false)
         }
-        if !item.isDefault, let moved = main.moved(item, to: indexPath.row) {
-            all = usual + moved
-        }
-        delegate?.updateList(animatingDifferences: false)
     }
     
-    mutating func edit(from oldItem: attributedSourceType, to newItem: attributedSourceType) {
-        if all.firstIndex(of: newItem) == nil, let replaceIndex = all.firstIndex(of: oldItem) {
-            all[replaceIndex] = newItem
+    mutating func edit(from oldItem: attributedSourceType, to newItem: attributedSourceType.sourceType) {
+        let newAttributedItem = attributedSourceType(source: newItem, selected: selected)
+        if all.firstIndex(of: newAttributedItem) == nil, let replaceIndex = all.firstIndex(of: oldItem) {
+            all[replaceIndex] = newAttributedItem
+            
+            if oldItem.isSelected {
+                select(newItem)
+            }
+            if oldItem.isDefault {
+                makeDefault(newAttributedItem)
+            }
         }
         delegate?.updateList(animatingDifferences: false)
     }

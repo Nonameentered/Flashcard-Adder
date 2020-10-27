@@ -26,7 +26,6 @@ protocol DeckViewModelDelegate {
 struct DeckViewModel {
     var all: [AttributedDeck] {
         didSet {
-            print("REPLACED")
             FlashcardSettings.shared.decks = all.map { $0.source }
         }
     }

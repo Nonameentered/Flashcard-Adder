@@ -12,7 +12,12 @@ protocol DeckViewControllerDelegate {
     func deckSelected(_ deck: Deck)
 }
 
-class DeckViewController: UIViewController, UIAdaptivePresentationControllerDelegate {
+protocol OptionViewControllerDelegate {
+    func profileChanged(_ profile: Profile)
+    
+}
+
+class DeckViewController: UIViewController {
     enum Section: CaseIterable {
         case usual
         case main
@@ -162,6 +167,7 @@ extension DeckViewController {
 
         dataSource.supplementaryViewProvider = { [unowned self] (collectionView: UICollectionView, _: String, indexPath: IndexPath) -> UICollectionReusableView? in
             if let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: FlashcardSettings.ElementKind.sectionHeader, withReuseIdentifier: HeaderSupplementaryView.reuseIdentifier, for: indexPath) as? HeaderSupplementaryView {
+                print(self.dataSource.itemIdentifier(for: indexPath))
                 headerView.label.text = self.dataSource.itemIdentifier(for: indexPath)?.isDefault ?? false ? "Default" : "Other Decks"
                 return headerView
             } else {
@@ -189,7 +195,6 @@ extension DeckViewController: UICollectionViewDelegate {
         if let deck = dataSource.itemIdentifier(for: indexPath) {
             delegate.deckSelected(deck.source)
             dismiss(animated: true, completion: nil)
-//            performSegue(withIdentifier: FlashcardSettings.Segues.unwindToFlashcardFromDeckList, sender: true)
         }
     }
 }

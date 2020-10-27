@@ -12,7 +12,7 @@ class SettingsViewModel {
     let flashcardOptions: [Setting]
     
     private init() {
-        flashcardOptions = [Setting(name: .ankiProfile)]
+        flashcardOptions = [Setting(name: .defaultAnkiProfile)]
     }
     
     func selected(setting: Setting) {

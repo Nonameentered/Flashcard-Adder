@@ -196,7 +196,7 @@ class FlashcardViewController: UIViewController {
     }
     
     @IBAction func changeProfile(_ sender: Any) {
-        let profileViewController = DeckViewController(viewModel: DeckViewModel(selected: flashcard.deck), delegate: self)
+        let profileViewController = OptionViewController(viewModel: ProfileViewModel(selected: flashcard.profile, controllerDelegate: self))
         let navigationController = UINavigationController(rootViewController: profileViewController)
         self.present(navigationController, animated: true, completion: nil)
     }
@@ -374,6 +374,10 @@ extension FlashcardViewController: UITextViewDelegate {
 
 // MARK: FlashcardDelegate
 extension FlashcardViewController: FlashcardDelegate {
+    func profileDidChange(flashcard: Flashcard, from: Profile, to: Profile) {
+        profileButton.setTitle("Profile: " + flashcard.profileName, for: .normal)
+    }
+    
     func noteTypeDidChange(flashcard: Flashcard, from: Note, to: Note) {
         typeButton.setTitle("Type: " + flashcard.noteTypeName, for: .normal)
         frontLabel.text = to.fields[0].name
@@ -396,5 +400,11 @@ extension FlashcardViewController: FlashcardDelegate {
 extension FlashcardViewController: DeckViewControllerDelegate {
     func deckSelected(_ deck: Deck) {
         flashcard.updateDeck(to: deck)
+    }
+}
+
+extension FlashcardViewController: OptionViewControllerDelegate {
+    func profileChanged(_ profile: Profile) {
+        flashcard.updateProfile(to: profile)
     }
 }

@@ -18,4 +18,5 @@ extension Logger {
     static let flashcard = Logger(subsystem: subsystem, category: "flashcard")
     static let deck = Logger(subsystem: subsystem, category: "deck")
     static let settings = Logger(subsystem: subsystem, category: "settings")
+    static let option = Logger(subsystem: subsystem, category: "option")
 }

@@ -7,6 +7,9 @@
 
 import Foundation
 
-struct Profile: Codable {
+struct Profile: Codable, Hashable, Option {
+    static let typeName: String = "Profile"
+    static let typeNamePlural: String = "Profiles"
+    
     let name: String
 }

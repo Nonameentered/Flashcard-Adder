@@ -58,6 +58,8 @@
 		E39C881A2546350400B852BE /* Option.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39C881625461B9200B852BE /* Option.swift */; };
 		E39C882425475D6800B852BE /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39C882325475D6800B852BE /* ProfileViewController.swift */; };
 		E39C882525475D6800B852BE /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39C882325475D6800B852BE /* ProfileViewController.swift */; };
+		E39C882D2547B3EA00B852BE /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39C882C2547B3EA00B852BE /* ProfileViewModel.swift */; };
+		E39C882E2547B3EA00B852BE /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39C882C2547B3EA00B852BE /* ProfileViewModel.swift */; };
 		E3ABE99D2544CA0B00148D6F /* HeaderSupplementaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3ABE99C2544CA0B00148D6F /* HeaderSupplementaryView.swift */; };
 		E3B7B56925390C5E00E38EC4 /* NoteTypeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39595A6253906E70073FD2B /* NoteTypeViewModel.swift */; };
 		E3B7B56E253912D800E38EC4 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B7B56D253912D800E38EC4 /* Logger.swift */; };
@@ -145,6 +147,7 @@
 		E39C880F2545EDB300B852BE /* Array+Moved.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Moved.swift"; sourceTree = "<group>"; };
 		E39C881625461B9200B852BE /* Option.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Option.swift; sourceTree = "<group>"; };
 		E39C882325475D6800B852BE /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		E39C882C2547B3EA00B852BE /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		E3ABE99C2544CA0B00148D6F /* HeaderSupplementaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderSupplementaryView.swift; sourceTree = "<group>"; };
 		E3B7B56D253912D800E38EC4 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		E3D010E525354A4D006FB811 /* NoteType.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NoteType.storyboard; sourceTree = "<group>"; };
@@ -285,6 +288,7 @@
 			isa = PBXGroup;
 			children = (
 				E39C882325475D6800B852BE /* ProfileViewController.swift */,
+				E39C882C2547B3EA00B852BE /* ProfileViewModel.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -446,6 +450,7 @@
 				E357B363251D2FB500354BCA /* AddNoteViewController.swift in Sources */,
 				E3D011102537B9D7006FB811 /* String+MatchingStrings.swift in Sources */,
 				E369F9342515B71100A51A0D /* EditFieldTextView.swift in Sources */,
+				E39C882D2547B3EA00B852BE /* ProfileViewModel.swift in Sources */,
 				E39595A7253906E70073FD2B /* NoteTypeViewModel.swift in Sources */,
 				E306FAAC25218DF60012337D /* UIView+FirstResponder.swift in Sources */,
 				E3D011182537C4A8006FB811 /* Cloze.swift in Sources */,
@@ -510,6 +515,7 @@
 				E39647FE2537FEAF00F803F4 /* EditFieldTextView.swift in Sources */,
 				E3F8D9B7253C92F1003E7CC7 /* SettingsListViewController.swift in Sources */,
 				E39647DB2537FC9900F803F4 /* Note.swift in Sources */,
+				E39C882E2547B3EA00B852BE /* ProfileViewModel.swift in Sources */,
 				E39647EE2537FCC300F803F4 /* FlashcardViewController.swift in Sources */,
 				E3F8D9BC253C930E003E7CC7 /* SettingsViewModel.swift in Sources */,
 				E39C88082544D07700B852BE /* HeaderSupplementaryView.swift in Sources */,
