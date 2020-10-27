@@ -201,7 +201,7 @@ class FlashcardViewController: UIViewController {
         self.present(navigationController, animated: true, completion: nil)
     }
     @IBAction func changeDeck(_ sender: Any) {
-        let profileViewController = DeckViewController(viewModel: DeckViewModel(selected: flashcard.deck), delegate: self)
+        let profileViewController = OptionViewController(viewModel: DeckViewModel(selected: flashcard.deck, controllerDelegate: self))
         let navigationController = UINavigationController(rootViewController: profileViewController)
         self.present(navigationController, animated: true, completion: nil)
     }
@@ -255,8 +255,6 @@ class FlashcardViewController: UIViewController {
             createCloze(clozeText: sourceViewController.viewModel.cloze, hintText: sourceViewController.viewModel.hint, savedRange: sourceViewController.viewModel.savedRange)
         } else if let sourceViewController = sender.source as? NoteTypeViewController {
             flashcard.updateNoteType(to: sourceViewController.viewModel.selectedNote)
-        } else if let sourceViewController = sender.source as? DeckViewController {
-            flashcard.updateDeck(to: sourceViewController.viewModel.selected)
         }
     }
     
@@ -406,5 +404,8 @@ extension FlashcardViewController: DeckViewControllerDelegate {
 extension FlashcardViewController: OptionViewControllerDelegate {
     func profileChanged(_ profile: Profile) {
         flashcard.updateProfile(to: profile)
+    }
+    func deckChanged(_ deck: Deck) {
+        flashcard.updateDeck(to: deck)
     }
 }

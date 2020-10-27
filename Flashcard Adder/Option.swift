@@ -67,9 +67,10 @@ protocol OptionViewModel {
     
     init(selected: attributedSourceType.sourceType, controllerDelegate: OptionViewControllerDelegate)
     
-    mutating func select(_ item: attributedSourceType.sourceType) // calls controllerDelegate when called
+    mutating func generateAll()
     mutating func makeDefault(_ item: attributedSourceType)
     
+    mutating func select(_ item: attributedSourceType.sourceType) // calls controllerDelegate when called
     mutating func add(_ item: attributedSourceType.sourceType)
     mutating func delete(_ item: attributedSourceType)
     mutating func move(_ item: attributedSourceType, to indexPath: IndexPath)

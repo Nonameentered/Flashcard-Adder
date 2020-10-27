@@ -14,9 +14,10 @@ protocol DeckViewControllerDelegate {
 
 protocol OptionViewControllerDelegate {
     func profileChanged(_ profile: Profile)
-    
+    func deckChanged(_ deck: Deck)
 }
 
+/*
 class DeckViewController: UIViewController {
     enum Section: CaseIterable {
         case usual
@@ -235,3 +236,4 @@ extension DeckViewController: UICollectionViewDropDelegate {
         return UICollectionViewDropProposal(operation: .forbidden)
     }
 }
+*/
