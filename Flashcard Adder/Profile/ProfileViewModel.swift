@@ -41,27 +41,13 @@ struct ProfileViewModel: OptionViewModel {
         all = FlashcardSettings.shared.ankiProfiles.map {
             AttributedProfile(source: $0, selected: selected)
         }
-    }
-    mutating func select(_ item: Profile) {
-        selected = item
-        generateAll()
         controllerDelegate.profileChanged(selected)
     }
     
     mutating func makeDefault(_ item: AttributedProfile) {
         FlashcardSettings.shared.defaultAnkiProfile = item.source
-        // Duplicated with move function
-        // Maybe could be replaced by call to generateAll?
-        if !item.isDefault, let moved = main.moved(item, to: 0) {
-            print(all)
-            print(usual)
-            print(moved)
-            all = usual + moved
-        }
         delegate?.updateList(animatingDifferences: false)
     }
-    
-    typealias attributedSourceType = AttributedProfile
     
     
 }

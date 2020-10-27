@@ -86,6 +86,11 @@ extension OptionViewModel where attributedSourceType: AttributedOption, attribut
         all.filter { $0.isDefault }
     }
     
+    mutating func select(_ item: attributedSourceType.sourceType) {
+        selected = item
+        generateAll()
+    }
+    
     mutating func add(_ item: attributedSourceType.sourceType) {
         let attributedItem = attributedSourceType(source: item, selected: selected)
         if all.firstIndex(of: attributedItem) == nil {

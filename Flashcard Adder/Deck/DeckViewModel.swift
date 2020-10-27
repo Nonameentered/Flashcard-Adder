@@ -44,22 +44,13 @@ struct DeckViewModel: OptionViewModel {
     
     mutating func generateAll() {
         all = FlashcardSettings.shared.decks.map { AttributedDeck(source: $0, selected: selected) }
-    }
-    
-    mutating func select(_ item: Deck) {
-        selected = item
-        generateAll()
         controllerDelegate.deckChanged(selected)
     }
     
+    
+    
     mutating func makeDefault(_ item: AttributedDeck) {
         FlashcardSettings.shared.defaultDeck = item.source
-        if !item.isDefault, let moved = main.moved(item, to: 0) {
-            print(all)
-            print(usual)
-            print(moved)
-            all = usual + moved
-        }
         delegate?.updateList(animatingDifferences: false)
     }
 }
