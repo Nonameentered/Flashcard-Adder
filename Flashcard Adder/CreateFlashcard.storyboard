@@ -17,14 +17,6 @@
             </objects>
             <point key="canvasLocation" x="1537" y="-340"/>
         </scene>
-        <!--Deck-->
-        <scene sceneID="que-Xn-6eI">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Deck" id="uAv-k6-qQf" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="F1G-yS-RF2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1577" y="-234"/>
-        </scene>
         <!--Add Flashcard-->
         <scene sceneID="wen-h2-j7Y">
             <objects>

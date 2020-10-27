@@ -8,21 +8,6 @@
 import Foundation
 import os.log
 
-struct AttributedDeck: Hashable, AttributedOption {
-    let source: Deck
-    let selected: Deck
-    var isDefault: Bool {
-        source == FlashcardSettings.shared.defaultDeck
-    }
-    
-    // Maybe should be rewritten into a computed property, with a delegate
-    
-}
-
-protocol DeckViewModelDelegate {
-    func decksDidChange(_ viewModel: DeckViewModel, animatingDifferences: Bool)
-}
-
 struct DeckViewModel: OptionViewModel {
     var all: [AttributedDeck] {
         didSet {
@@ -33,7 +18,6 @@ struct DeckViewModel: OptionViewModel {
     var selected: Deck
     var delegate: OptionViewModelDelegate?
     var controllerDelegate: OptionViewControllerDelegate
-    
     
     init(selected: Deck, controllerDelegate: OptionViewControllerDelegate) {
         self.selected = selected
@@ -46,8 +30,6 @@ struct DeckViewModel: OptionViewModel {
         all = FlashcardSettings.shared.decks.map { AttributedDeck(source: $0, selected: selected) }
         controllerDelegate.deckChanged(selected)
     }
-    
-    
     
     mutating func makeDefault(_ item: AttributedDeck) {
         FlashcardSettings.shared.defaultDeck = item.source

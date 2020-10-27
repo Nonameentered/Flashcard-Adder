@@ -7,17 +7,7 @@
 
 import Foundation
 
-struct AttributedProfile: AttributedOption {
-    let source: Profile
-    let selected: Profile
-    var isDefault: Bool {
-        source == FlashcardSettings.shared.defaultAnkiProfile
-    }
-}
 
-struct Manager {
-    
-}
 
 struct ProfileViewModel: OptionViewModel {
     var all: [AttributedProfile] {
@@ -25,29 +15,27 @@ struct ProfileViewModel: OptionViewModel {
             FlashcardSettings.shared.ankiProfiles = all.map { $0.source }
         }
     }
-    
+
     var selected: Profile
     var delegate: OptionViewModelDelegate?
     var controllerDelegate: OptionViewControllerDelegate
-    
+
     init(selected: Profile, controllerDelegate: OptionViewControllerDelegate) {
         self.selected = selected
         self.controllerDelegate = controllerDelegate
         all = []
         generateAll()
     }
-    
+
     mutating func generateAll() {
         all = FlashcardSettings.shared.ankiProfiles.map {
             AttributedProfile(source: $0, selected: selected)
         }
         controllerDelegate.profileChanged(selected)
     }
-    
+
     mutating func makeDefault(_ item: AttributedProfile) {
         FlashcardSettings.shared.defaultAnkiProfile = item.source
         delegate?.updateList(animatingDifferences: false)
     }
-    
-    
 }

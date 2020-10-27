@@ -1,5 +1,5 @@
 //
-//  ProfileViewController.swift
+//  OptionViewController.swift
 //  Flashcard Adder
 //
 //  Created by Matthew Shu on 10/26/20.

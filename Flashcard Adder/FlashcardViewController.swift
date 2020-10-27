@@ -5,9 +5,9 @@
 //  Created by Matthew Shu on 10/15/20.
 //
 
-import UIKit
 import MobileCoreServices
 import os.log
+import UIKit
 
 class FlashcardViewController: UIViewController {
     @IBOutlet var frontLabel: UILabel! {
@@ -34,6 +34,7 @@ class FlashcardViewController: UIViewController {
             referenceSpaceTextView.text = flashcard.referenceText
         }
     }
+
     @IBOutlet var resetButton: UIBarButtonItem!
     @IBOutlet var addButton: UIBarButtonItem!
     @IBOutlet var cancelButton: UIBarButtonItem!
@@ -49,7 +50,8 @@ class FlashcardViewController: UIViewController {
             typeButton.setTitle("Type: " + flashcard.noteTypeName, for: .normal)
         }
     }
-    @IBOutlet weak var profileButton: BigButton! {
+
+    @IBOutlet var profileButton: BigButton! {
         didSet {
             profileButton.setTitle("Profile: " + flashcard.profileName, for: .normal)
         }
@@ -117,7 +119,7 @@ class FlashcardViewController: UIViewController {
         return [
             UIKeyCommand(title: "Create Cloze", action: #selector(clozeSelected), input: "c", modifierFlags: [.command, .shift]),
             UIKeyCommand(title: "Editable Cloze", action: #selector(clozeWithHint), input: "v", modifierFlags: [.command, .shift]),
-            UIKeyCommand(title: "Cloze Back Text with Editable Hint", action: #selector(makeHintCloze), input: "f", modifierFlags: [.command, .shift] ),
+            UIKeyCommand(title: "Cloze Back Text with Editable Hint", action: #selector(makeHintCloze), input: "f", modifierFlags: [.command, .shift]),
             UIKeyCommand(title: "Sequential Cloze", action: #selector(sequentialCloze), input: "e", modifierFlags: [.command]),
             UIKeyCommand(title: "Repetitive Cloze", action: #selector(repetitiveCloze), input: "s", modifierFlags: [.command]),
             UIKeyCommand(title: "Editable Cloze", action: #selector(clozeWithHint), input: "d", modifierFlags: [.command]),
@@ -151,6 +153,7 @@ class FlashcardViewController: UIViewController {
     @objc func hardReset() {
         flashcard = Flashcard(delegate: self)
     }
+
     /// Adds a new line to the currently active text view, if a text view is active
     @objc func newLine() {
         if let firstResponder = view.window?.firstResponder as? UITextView {
@@ -179,10 +182,10 @@ class FlashcardViewController: UIViewController {
         // Inspired by Slide for Reddit https://github.com/ccrama/Slide-iOS/blob/develop/Open%20in%20Slide/ActionViewController.swift
         // And help from https://stackoverflow.com/a/40675306/14362235
         // Not sure how the cancelRequest dismisses it, but it does so we're good
-        if self.openURL(ankiUrl) {
-            self.extensionContext!.cancelRequest(withError: NSError(domain: "com.technaplex.Flashcard-Adder.Action-Extension", code: 1, userInfo: [NSLocalizedDescriptionKey: "Action Extension Dismissed"]))
+        if openURL(ankiUrl) {
+            extensionContext!.cancelRequest(withError: NSError(domain: "com.technaplex.Flashcard-Adder.Action-Extension", code: 1, userInfo: [NSLocalizedDescriptionKey: "Action Extension Dismissed"]))
         } else {
-            self.extensionContext!.cancelRequest(withError: NSError(domain: "com.technaplex.Flashcard-Adder.Action-Extension", code: 1, userInfo: [NSLocalizedDescriptionKey: "Action Extension Dismissed"]))
+            extensionContext!.cancelRequest(withError: NSError(domain: "com.technaplex.Flashcard-Adder.Action-Extension", code: 1, userInfo: [NSLocalizedDescriptionKey: "Action Extension Dismissed"]))
         }
         #endif
     }
@@ -191,40 +194,43 @@ class FlashcardViewController: UIViewController {
     
     @IBAction func cancel(_ sender: Any) {
         #if Action
-        self.extensionContext!.completeRequest(returningItems: self.extensionContext!.inputItems, completionHandler: nil)
+        extensionContext!.completeRequest(returningItems: extensionContext!.inputItems, completionHandler: nil)
         #endif
     }
     
     @IBAction func changeProfile(_ sender: Any) {
         let profileViewController = OptionViewController(viewModel: ProfileViewModel(selected: flashcard.profile, controllerDelegate: self))
         let navigationController = UINavigationController(rootViewController: profileViewController)
-        self.present(navigationController, animated: true, completion: nil)
+        present(navigationController, animated: true, completion: nil)
     }
+
     @IBAction func changeDeck(_ sender: Any) {
         let profileViewController = OptionViewController(viewModel: DeckViewModel(selected: flashcard.deck, controllerDelegate: self))
         let navigationController = UINavigationController(rootViewController: profileViewController)
-        self.present(navigationController, animated: true, completion: nil)
+        present(navigationController, animated: true, completion: nil)
     }
     
     @IBSegueAction
     private func showNoteTypeList(coder: NSCoder, sender: Any?, segueIdentifier: String?)
-        -> NoteTypeViewController? {
+        -> NoteTypeViewController?
+    {
         Logger.flashcard.info("Showing Note Type List")
         return NoteTypeViewController(coder: coder, viewModel: NoteTypeViewModel(selected: flashcard.note))
     }
     
     /*
-    @IBSegueAction
-    private func showDeckList(coder: NSCoder, sender: Any?, segueIdentifier: String?)
-        -> DeckViewController? {
-        Logger.flashcard.info("Showing Deck List")
-        return DeckViewController(coder: coder, viewModel: DeckViewModel(selected: flashcard.deck))
-    }
-    */
+     @IBSegueAction
+     private func showDeckList(coder: NSCoder, sender: Any?, segueIdentifier: String?)
+         -> DeckViewController? {
+         Logger.flashcard.info("Showing Deck List")
+         return DeckViewController(coder: coder, viewModel: DeckViewModel(selected: flashcard.deck))
+     }
+     */
     
     @IBSegueAction
     private func showClozeView(coder: NSCoder, sender: Any?, segueIdentifier: String?)
-        -> ClozeViewController? {
+        -> ClozeViewController?
+    {
         var viewModel: ClozeViewModel!
         
         switch segueIdentifier {
@@ -246,7 +252,6 @@ class FlashcardViewController: UIViewController {
             fatalError("Unexpected Segue Identifier: \(String(describing: segueIdentifier))")
         }
         
-        
         return ClozeViewController(coder: coder, viewModel: viewModel)
     }
     
@@ -258,7 +263,8 @@ class FlashcardViewController: UIViewController {
         }
     }
     
-    //MARK: Action Extension
+    // MARK: Action Extension
+
     @objc func openURL(_ url: URL) -> Bool {
         var responder: UIResponder? = self
         while responder != nil {
@@ -267,12 +273,13 @@ class FlashcardViewController: UIViewController {
             }
             responder = responder?.next
         }
-        self.extensionContext!.cancelRequest(withError: NSError(domain: "com.technaplex.Flashcard-Adder.Action-Extension", code: 1, userInfo: [NSLocalizedDescriptionKey: "Action Extension Dismissed"]))
+        extensionContext!.cancelRequest(withError: NSError(domain: "com.technaplex.Flashcard-Adder.Action-Extension", code: 1, userInfo: [NSLocalizedDescriptionKey: "Action Extension Dismissed"]))
         return false
     }
 }
 
 // MARK: Cloze
+
 extension FlashcardViewController {
     @IBAction func clozeSelected(_ sender: Any) {
         determineCloze(sequential: true) // TODO: Update to use 'default', bring up a menu for alternative
@@ -327,6 +334,7 @@ extension FlashcardViewController {
 }
 
 // MARK: UITextViewDelegate
+
 extension FlashcardViewController: UITextViewDelegate {
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         if textView == frontTextView || textView == backTextView || textView == referenceSpaceTextView, text == "\t" || text == "\n" {
@@ -371,6 +379,7 @@ extension FlashcardViewController: UITextViewDelegate {
 }
 
 // MARK: FlashcardDelegate
+
 extension FlashcardViewController: FlashcardDelegate {
     func profileDidChange(flashcard: Flashcard, from: Profile, to: Profile) {
         profileButton.setTitle("Profile: " + flashcard.profileName, for: .normal)
@@ -395,16 +404,12 @@ extension FlashcardViewController: FlashcardDelegate {
 }
 
 // MARK: FlashcardDelegate
-extension FlashcardViewController: DeckViewControllerDelegate {
-    func deckSelected(_ deck: Deck) {
-        flashcard.updateDeck(to: deck)
-    }
-}
 
 extension FlashcardViewController: OptionViewControllerDelegate {
     func profileChanged(_ profile: Profile) {
         flashcard.updateProfile(to: profile)
     }
+
     func deckChanged(_ deck: Deck) {
         flashcard.updateDeck(to: deck)
     }

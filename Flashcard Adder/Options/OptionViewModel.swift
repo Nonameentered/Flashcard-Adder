@@ -1,59 +1,11 @@
 //
-//  Option.swift
+//  OptionViewModel.swift
 //  Flashcard Adder
 //
-//  Created by Matthew Shu on 10/25/20.
+//  Created by Matthew Shu on 10/27/20.
 //
 
 import Foundation
-
-protocol Option: Hashable {
-    var name: String { get }
-    static var typeName: String { get }
-    static var typeNamePlural: String { get }
-    
-    init(name: String)
-}
-
-protocol AttributedOption: Hashable {
-    associatedtype sourceType: Option
-    var source: sourceType { get }
-    var isDefault: Bool { get }
-    var isSelected: Bool { get }
-    var selected: sourceType { get }
-    var name: String { get }
-    var nameAsNSString: NSString { get }
-    
-    init(source: sourceType, selected: sourceType)
-}
-
-extension AttributedOption where sourceType: Option {
-    static func == (lhs: Self, rhs: Self) -> Bool {
-        lhs.source == rhs.source && lhs.isDefault == rhs.isDefault && lhs.isSelected == rhs.isSelected
-    }
-    
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(name)
-        hasher.combine(isSelected)
-        hasher.combine(isDefault)
-    }
-    
-    var name: String {
-        source.name
-    }
-
-    var nameAsNSString: NSString {
-        source.name as NSString
-    }
-    
-    var isSelected: Bool {
-        source == selected
-    }
-}
-
-protocol OptionViewModelDelegate {
-    func updateList(animatingDifferences: Bool)
-}
 
 protocol OptionViewModel {
     associatedtype attributedSourceType: AttributedOption
@@ -63,7 +15,6 @@ protocol OptionViewModel {
     var selected: attributedSourceType.sourceType { get set }
     var delegate: OptionViewModelDelegate? { get set }
     var controllerDelegate: OptionViewControllerDelegate { get set }
-    
     
     init(selected: attributedSourceType.sourceType, controllerDelegate: OptionViewControllerDelegate)
     
