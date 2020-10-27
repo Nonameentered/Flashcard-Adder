@@ -41,7 +41,6 @@ class OptionViewController<ViewModel: OptionViewModel>: UIViewController, UIColl
         collectionView.dragDelegate = self
         collectionView.dropDelegate = self
         Logger.option.info("OptionViewController loaded")
-        // Do any additional setup after loading the view.
     }
 
     override func viewWillDisappear(_ animated: Bool) {
