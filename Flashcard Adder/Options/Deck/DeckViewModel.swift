@@ -5,7 +5,7 @@
 //  Created by Matthew Shu on 10/17/20.
 //
 
-import Foundation
+import UIKit
 import os.log
 
 struct DeckViewModel: OptionViewModel {
@@ -13,6 +13,10 @@ struct DeckViewModel: OptionViewModel {
         didSet {
             FlashcardSettings.shared.decks = all.map { $0.source }
         }
+    }
+    
+    var sections: [Section<AttributedDeck>] {
+        [Section(title: "Default \(Deck.typeName)", items: all.filter { $0.isDefault }), Section(title: "Other \(Deck.typeNamePlural)", items: all.filter { !$0.isDefault })]
     }
     
     var selected: Deck

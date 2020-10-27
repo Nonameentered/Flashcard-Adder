@@ -7,7 +7,11 @@
 
 import Foundation
 
-struct Note: Codable, Hashable {
+struct Note: Option {
+    static let typeName = "Note Type"
+    
+    static let typeNamePlural = "Note Types"
+    
     static func == (lhs: Note, rhs: Note) -> Bool {
         lhs.name == rhs.name && lhs.fields == lhs.fields
     }
@@ -18,6 +22,10 @@ struct Note: Codable, Hashable {
     
     let name: String
     var fields: [Field]
+    
+    init(name: String) {
+        self.init(name: name, fields: [Field(name: "Front"), Field(name: "Back")])
+    }
     
     init(name: String, fields: [Field]) {
         self.name = name

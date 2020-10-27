@@ -8,8 +8,8 @@
 import Foundation
 
 struct Deck: Option {
-    static let typeName: String = "Deck"
-    static let typeNamePlural: String = "Decks"
+    static let typeName = "Deck"
+    static let typeNamePlural = "Decks"
 
     let name: String
 }

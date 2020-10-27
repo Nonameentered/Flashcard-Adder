@@ -10,12 +10,13 @@ import Foundation
 protocol OptionViewModel {
     associatedtype attributedSourceType: AttributedOption
     var all: [attributedSourceType] { get set }
+    var sections: [Section<attributedSourceType>] { get }
     var main: [attributedSourceType] { get }
     var usual: [attributedSourceType] { get }
     var selected: attributedSourceType.sourceType { get set }
     var delegate: OptionViewModelDelegate? { get set }
     var controllerDelegate: OptionViewControllerDelegate { get set }
-    
+
     init(selected: attributedSourceType.sourceType, controllerDelegate: OptionViewControllerDelegate)
     
     mutating func generateAll()
@@ -26,9 +27,14 @@ protocol OptionViewModel {
     mutating func delete(_ item: attributedSourceType)
     mutating func move(_ item: attributedSourceType, to indexPath: IndexPath)
     mutating func edit(from oldItem: attributedSourceType, to newItem: attributedSourceType.sourceType)
+    
 }
 
 extension OptionViewModel where attributedSourceType: AttributedOption, attributedSourceType.sourceType: Option {
+    
+    var sections: [Section<attributedSourceType>] {
+        [Section(title: "Default \(attributedSourceType.sourceType.typeNamePlural)", items: main), Section(title: "Other \(attributedSourceType.sourceType.typeNamePlural)", items: usual)]
+    }
     var main: [attributedSourceType] {
         all.filter { !$0.isDefault }
     }

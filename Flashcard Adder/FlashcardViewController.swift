@@ -210,22 +210,11 @@ class FlashcardViewController: UIViewController {
         present(navigationController, animated: true, completion: nil)
     }
     
-    @IBSegueAction
-    private func showNoteTypeList(coder: NSCoder, sender: Any?, segueIdentifier: String?)
-        -> NoteTypeViewController?
-    {
-        Logger.flashcard.info("Showing Note Type List")
-        return NoteTypeViewController(coder: coder, viewModel: NoteTypeViewModel(selected: flashcard.note))
+    @IBAction func changeType(_ sender: Any) {
+        let noteViewController = OptionViewController(viewModel: NoteViewModel(selected: flashcard.note, controllerDelegate: self))
+        let navigationController = UINavigationController(rootViewController: noteViewController)
+        present(navigationController, animated: true, completion: nil)
     }
-    
-    /*
-     @IBSegueAction
-     private func showDeckList(coder: NSCoder, sender: Any?, segueIdentifier: String?)
-         -> DeckViewController? {
-         Logger.flashcard.info("Showing Deck List")
-         return DeckViewController(coder: coder, viewModel: DeckViewModel(selected: flashcard.deck))
-     }
-     */
     
     @IBSegueAction
     private func showClozeView(coder: NSCoder, sender: Any?, segueIdentifier: String?)
@@ -412,5 +401,9 @@ extension FlashcardViewController: OptionViewControllerDelegate {
 
     func deckChanged(_ deck: Deck) {
         flashcard.updateDeck(to: deck)
+    }
+    
+    func noteChanged(_ note: Note) {
+        flashcard.updateNoteType(to: note)
     }
 }

@@ -10,4 +10,5 @@ import Foundation
 protocol OptionViewControllerDelegate {
     func profileChanged(_ profile: Profile)
     func deckChanged(_ deck: Deck)
+    func noteChanged(_ note: Note)
 }

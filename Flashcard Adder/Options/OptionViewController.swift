@@ -9,14 +9,15 @@ import os.log
 import UIKit
 
 class OptionViewController<ViewModel: OptionViewModel>: UIViewController, UICollectionViewDelegate, UICollectionViewDragDelegate, UICollectionViewDropDelegate {
-    enum Section: CaseIterable {
-        case usual
-        case main
-    }
 
     lazy var dataSource = makeDataSource()
     var collectionView: UICollectionView!
     var viewModel: ViewModel
+    
+    typealias TypedAttributedOption = ViewModel.attributedSourceType
+    typealias TypedOption = TypedAttributedOption.sourceType
+    typealias TypedSession = Section<TypedAttributedOption>
+    typealias DataSource = UICollectionViewDiffableDataSource<TypedSession, TypedAttributedOption>
 
     init(viewModel: ViewModel) {
         self.viewModel = viewModel
@@ -48,7 +49,7 @@ class OptionViewController<ViewModel: OptionViewModel>: UIViewController, UIColl
     }
 
     func setUpNavBar() {
-        navigationItem.title = ViewModel.attributedSourceType.sourceType.typeNamePlural
+        navigationItem.title = TypedOption.typeNamePlural
         let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(cancel))
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(add))
         navigationItem.leftBarButtonItems = [doneButton]
@@ -60,17 +61,17 @@ class OptionViewController<ViewModel: OptionViewModel>: UIViewController, UIColl
     }
 
     @objc func add() {
-        showInputDialog(title: "Add \(ViewModel.attributedSourceType.sourceType.typeName)", message: "Enter a \(ViewModel.attributedSourceType.sourceType.typeName.lowercased()) name", cancelHandler: nil) { optionName in
+        showInputDialog(title: "Add \(TypedOption.typeName)", message: "Enter a \(TypedOption.typeName.lowercased()) name", cancelHandler: nil) { optionName in
             if let optionName = optionName, !optionName.isEmpty {
-                self.viewModel.add(ViewModel.attributedSourceType.sourceType(name: optionName))
+                self.viewModel.add(TypedOption(name: optionName))
             }
         }
     }
 
-    func edit(oldOption: ViewModel.attributedSourceType) {
-        showInputDialog(title: "Edit \(ViewModel.attributedSourceType.sourceType.typeName)", message: "Enter a modified \(ViewModel.attributedSourceType.sourceType.typeName.lowercased()) name", actionTitle: "OK", inputPlaceholder: oldOption.name, cancelHandler: nil) { optionName in
+    func edit(oldOption: TypedAttributedOption) {
+        showInputDialog(title: "Edit \(TypedOption.typeName)", message: "Enter a modified \(TypedOption.typeName.lowercased()) name", actionTitle: "OK", inputPlaceholder: oldOption.name, cancelHandler: nil) { optionName in
             if let optionName = optionName, !optionName.isEmpty {
-                self.viewModel.edit(from: oldOption, to: ViewModel.attributedSourceType.sourceType(name: optionName))
+                self.viewModel.edit(from: oldOption, to: TypedOption(name: optionName))
             }
         }
     }
@@ -174,7 +175,7 @@ extension OptionViewController {
         collectionView.register(HeaderSupplementaryView.self, forSupplementaryViewOfKind: FlashcardSettings.ElementKind.sectionHeader, withReuseIdentifier: HeaderSupplementaryView.reuseIdentifier)
     }
 
-    private func makeCellRegistration() -> UICollectionView.CellRegistration<UICollectionViewListCell, ViewModel.attributedSourceType> {
+    private func makeCellRegistration() -> UICollectionView.CellRegistration<UICollectionViewListCell, TypedAttributedOption> {
         UICollectionView.CellRegistration { cell, _, option in
             var content = cell.defaultContentConfiguration()
             content.text = option.name
@@ -183,26 +184,28 @@ extension OptionViewController {
         }
     }
 
-    private func makeDataSource() -> UICollectionViewDiffableDataSource<Section, ViewModel.attributedSourceType> {
-        UICollectionViewDiffableDataSource<Section, ViewModel.attributedSourceType>(collectionView: collectionView) {
-            (collectionView: UICollectionView, indexPath: IndexPath, item: ViewModel.attributedSourceType) -> UICollectionViewCell? in
+    private func makeDataSource() -> UICollectionViewDiffableDataSource<TypedSession, TypedAttributedOption> {
+        let dataSource = UICollectionViewDiffableDataSource<TypedSession, TypedAttributedOption>(collectionView: collectionView) {
+            (collectionView: UICollectionView, indexPath: IndexPath, item: TypedAttributedOption) -> UICollectionViewCell? in
             collectionView.dequeueConfiguredReusableCell(using: self.makeCellRegistration(), for: indexPath, item: item)
         }
+
+        dataSource.supplementaryViewProvider = { collectionView, kind, indexPath in
+            let section = self.dataSource.snapshot().sectionIdentifiers[indexPath.section]
+            let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: FlashcardSettings.ElementKind.sectionHeader, withReuseIdentifier: HeaderSupplementaryView.reuseIdentifier, for: indexPath) as? HeaderSupplementaryView
+            headerView?.label.text = section.title
+            return headerView
+        }
+        return dataSource
     }
 
     private func applySnapshot(animatingDifferences: Bool = true) {
-        var snapshot = NSDiffableDataSourceSnapshot<Section, ViewModel.attributedSourceType>()
-        snapshot.appendSections(Section.allCases)
-        snapshot.appendItems(viewModel.main, toSection: .main)
-        snapshot.appendItems(viewModel.usual, toSection: .usual)
-
-        dataSource.supplementaryViewProvider = { [unowned self] (collectionView: UICollectionView, _: String, indexPath: IndexPath) -> UICollectionReusableView? in
-            if let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: FlashcardSettings.ElementKind.sectionHeader, withReuseIdentifier: HeaderSupplementaryView.reuseIdentifier, for: indexPath) as? HeaderSupplementaryView {
-                headerView.label.text = self.dataSource.itemIdentifier(for: indexPath)?.isDefault ?? false ? "Default" : "Other \(ViewModel.attributedSourceType.sourceType.typeNamePlural)"
-                return headerView
-            } else {
-                fatalError("Cannot create supplementary header view")
-            }
+        var snapshot = NSDiffableDataSourceSnapshot<TypedSession, TypedAttributedOption>()
+        snapshot.appendSections(viewModel.sections)
+        print(viewModel.sections[0].title)
+        print(viewModel.sections[0].items)
+        viewModel.sections.forEach { section in
+            snapshot.appendItems(section.items, toSection: section)
         }
         dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
     }
