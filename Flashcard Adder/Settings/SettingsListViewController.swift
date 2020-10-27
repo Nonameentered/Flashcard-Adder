@@ -5,8 +5,8 @@
 //  Created by Matthew Shu on 10/18/20.
 //
 
-import UIKit
 import os.log
+import UIKit
 
 class SettingsListViewController: UIViewController {
     enum Section: CaseIterable {
@@ -16,7 +16,7 @@ class SettingsListViewController: UIViewController {
 
     lazy var dataSource = makeDataSource()
     var collectionView: UICollectionView!
-    var viewModel: SettingsViewModel = SettingsViewModel.shared {
+    var viewModel = SettingsViewModel.shared {
         didSet {
             Logger.settings.info("Updated view model")
             applySnapshot(animatingDifferences: true)

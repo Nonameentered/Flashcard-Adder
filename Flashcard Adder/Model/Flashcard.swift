@@ -31,7 +31,6 @@ struct Flashcard: Codable {
         case referenceText
     }
     
-    
     var noteTypeName: String {
         return note.name
     }
@@ -96,7 +95,7 @@ struct Flashcard: Codable {
         
         checkNoteType()
         var ankiUrlString = "anki://x-callback-url/addnote?profile=\(profile.name)&type=\(note.name)&deck=\(deck.name)"
-        ankiUrlString = self.note.fields.reduce(ankiUrlString) { fieldString, field -> String in
+        ankiUrlString = note.fields.reduce(ankiUrlString) { fieldString, field -> String in
             "\(fieldString)&fld\(field.name)=\(field.text)"
         }
         ankiUrlString.append("&x-success=ankiadd://")
@@ -119,12 +118,12 @@ struct Flashcard: Codable {
     }
     
     mutating func updateNoteType(to noteType: Note) {
-        let oldNote = self.note
-        self.note = noteType
+        let oldNote = note
+        note = noteType
         
         for (count, _) in noteType.fields.enumerated() {
             if count < oldNote.fields.count, !oldNote.fields[count].text.isEmpty {
-                self.note.fields[count].text = oldNote.fields[count].text
+                note.fields[count].text = oldNote.fields[count].text
             }
         }
         
@@ -163,7 +162,7 @@ struct Flashcard: Codable {
         if note.acceptsCloze {
             updateNoteType(to: FlashcardSettings.shared.defaultClozeNoteType)
         }
-     }
+    }
 }
 
 extension Flashcard: FieldDelegate {

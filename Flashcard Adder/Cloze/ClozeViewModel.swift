@@ -21,7 +21,7 @@ struct ClozeViewModel {
         self.savedRange = savedRange
         self.beginWithHint = beginWithHint
     }
-    
+
     mutating func update(cloze: String? = nil, hint: String? = nil, referenceSpaceText: String? = nil) {
         if let cloze = cloze {
             self.cloze = cloze

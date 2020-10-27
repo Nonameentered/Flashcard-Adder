@@ -33,14 +33,6 @@ final class FlashcardSettings {
     enum ElementKind {
         static let sectionHeader = "section-header-element-kind"
     }
-//    enum Key {
-//        static let ankiProfile = "ankiProfile"
-//        static let defaultNoteType = "defaultNoteType"
-//        static let defaultClozeNoteType = "defaultClozeNoteType"
-//        static let defaultDeck = "defaultDeck"
-//        static let noteTypes = "noteTypes"
-//        static let decks = "decks"
-//    }
     
     enum Key: String, Codable {
         case defaultAnkiProfile, defaultNoteType, defaultClozeNoteType, defaultDeck, noteTypes, decks, ankiProfiles
@@ -48,12 +40,12 @@ final class FlashcardSettings {
     
     static func registerDefaults() {
         let defaults: [String: Any] = [Key.defaultAnkiProfile.rawValue: encodeCodable(for: Profile(name: "User 1"))!,
-                                        Key.defaultNoteType.rawValue: encodeCodable(for: Note(name: "Basic", fields: [Field(name: "Front"), Field(name: "Back")]))!,
-                                        Key.defaultClozeNoteType.rawValue: encodeCodable(for: Note(name: "Cloze", fields: [Field(name: "Text", fieldType: .cloze), Field(name: "Extra")]))!,
-                                        Key.defaultDeck.rawValue: encodeCodable(for: Deck(name: "Default"))!,
-                                        Key.noteTypes.rawValue: encodeCodable(for: [Note(name: "Basic", fields: [Field(name: "Front"), Field(name: "Back")]), Note(name: "Cloze", fields: [Field(name: "Text"), Field(name: "Extra")])])!,
-                                        Key.decks.rawValue: encodeCodable(for: [Deck(name: "Default")])!,
-                                        Key.ankiProfiles.rawValue: encodeCodable(for: [Profile(name: "User 1")])!]
+                                       Key.defaultNoteType.rawValue: encodeCodable(for: Note(name: "Basic", fields: [Field(name: "Front"), Field(name: "Back")]))!,
+                                       Key.defaultClozeNoteType.rawValue: encodeCodable(for: Note(name: "Cloze", fields: [Field(name: "Text", fieldType: .cloze), Field(name: "Extra")]))!,
+                                       Key.defaultDeck.rawValue: encodeCodable(for: Deck(name: "Default"))!,
+                                       Key.noteTypes.rawValue: encodeCodable(for: [Note(name: "Basic", fields: [Field(name: "Front"), Field(name: "Back")]), Note(name: "Cloze", fields: [Field(name: "Text"), Field(name: "Extra")])])!,
+                                       Key.decks.rawValue: encodeCodable(for: [Deck(name: "Default")])!,
+                                       Key.ankiProfiles.rawValue: encodeCodable(for: [Profile(name: "User 1")])!]
         FlashcardSettings.store.register(defaults: defaults)
         Logger.settings.info("Register defaults")
         FlashcardSettings.store.synchronize()

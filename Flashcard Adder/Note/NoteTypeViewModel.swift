@@ -28,7 +28,7 @@ struct NoteTypeViewModel {
         defaultClozeNote = FlashcardSettings.shared.defaultClozeNoteType
         main.remove(at: main.firstIndex(of: defaultNote)!)
         main.remove(at: main.firstIndex(of: defaultClozeNote)!)
-        self.selectedNote = selected
+        selectedNote = selected
     }
     
     mutating func selectNote(_ note: Note) {
@@ -37,7 +37,7 @@ struct NoteTypeViewModel {
     
     mutating func addNewNote(_ note: Note) {
         // Check for and produce alert if note type already exists
-        if (main.firstIndex(of: note) == nil) {
+        if main.firstIndex(of: note) == nil {
             main.append(note)
             FlashcardSettings.shared.noteTypes.append(note)
         }

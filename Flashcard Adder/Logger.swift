@@ -10,7 +10,7 @@ import os.log
 
 extension Logger {
     private static var subsystem = Bundle.main.bundleIdentifier!
-    
+
     // Example from https://www.avanderlee.com/workflow/oslog-unified-logging/
     /// Logs the view cycles like viewDidLoad.
     static let segue = Logger(subsystem: subsystem, category: "segue")

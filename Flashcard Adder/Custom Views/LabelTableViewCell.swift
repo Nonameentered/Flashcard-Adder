@@ -8,8 +8,7 @@
 import UIKit
 
 class LabelTableViewCell: UITableViewCell {
-    
-    @IBOutlet weak var label: UILabel!
+    @IBOutlet var label: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -20,5 +19,4 @@ class LabelTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
 }

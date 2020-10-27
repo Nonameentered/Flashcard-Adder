@@ -46,6 +46,5 @@ extension Cloze {
         } else {
             return nil
         }
-        
     }
 }

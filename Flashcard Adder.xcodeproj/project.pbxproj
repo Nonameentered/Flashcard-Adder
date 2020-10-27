@@ -256,7 +256,6 @@
 				E3359E3A25301A4D0039F537 /* LaunchScreen.storyboard */,
 				E359182C25106E3D002F1A35 /* Assets.xcassets */,
 				E359183125106E3D002F1A35 /* Info.plist */,
-				E3ABE99C2544CA0B00148D6F /* HeaderSupplementaryView.swift */,
 			);
 			path = "Flashcard Adder";
 			sourceTree = "<group>";
@@ -267,6 +266,7 @@
 				E357B36F251D32BF00354BCA /* LabelTableViewCell.swift */,
 				E369F9272515B71000A51A0D /* EditFieldTextView.swift */,
 				E369F9282515B71100A51A0D /* BigButton.swift */,
+				E3ABE99C2544CA0B00148D6F /* HeaderSupplementaryView.swift */,
 			);
 			path = "Custom Views";
 			sourceTree = "<group>";

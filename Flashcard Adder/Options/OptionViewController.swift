@@ -5,33 +5,33 @@
 //  Created by Matthew Shu on 10/26/20.
 //
 
-import UIKit
 import os.log
+import UIKit
 
 class OptionViewController<ViewModel: OptionViewModel>: UIViewController, UICollectionViewDelegate, UICollectionViewDragDelegate, UICollectionViewDropDelegate {
     enum Section: CaseIterable {
         case usual
         case main
     }
-    
+
     lazy var dataSource = makeDataSource()
     var collectionView: UICollectionView!
     var viewModel: ViewModel
-    
+
     init(viewModel: ViewModel) {
         self.viewModel = viewModel
-        
+
         super.init(nibName: nil, bundle: nil)
     }
-    
+
     @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         viewModel.delegate = self
         setUpNavBar()
         configureHierarchy()
@@ -42,23 +42,23 @@ class OptionViewController<ViewModel: OptionViewModel>: UIViewController, UIColl
         Logger.option.info("OptionViewController loaded")
         // Do any additional setup after loading the view.
     }
-    
+
     override func viewWillDisappear(_ animated: Bool) {
         Logger.option.info("OptionViewController will disappear")
     }
-    
+
     func setUpNavBar() {
-        self.navigationItem.title = ViewModel.attributedSourceType.sourceType.typeNamePlural
+        navigationItem.title = ViewModel.attributedSourceType.sourceType.typeNamePlural
         let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(cancel))
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(add))
-        self.navigationItem.leftBarButtonItems = [doneButton]
-        self.navigationItem.rightBarButtonItems = [addButton]
+        navigationItem.leftBarButtonItems = [doneButton]
+        navigationItem.rightBarButtonItems = [addButton]
     }
-    
+
     @objc func cancel() {
         dismiss(animated: true, completion: nil)
     }
-    
+
     @objc func add() {
         showInputDialog(title: "Add \(ViewModel.attributedSourceType.sourceType.typeName)", message: "Enter a \(ViewModel.attributedSourceType.sourceType.typeName.lowercased()) name", cancelHandler: nil) { optionName in
             if let optionName = optionName, !optionName.isEmpty {
@@ -66,7 +66,7 @@ class OptionViewController<ViewModel: OptionViewModel>: UIViewController, UIColl
             }
         }
     }
-    
+
     func edit(oldOption: ViewModel.attributedSourceType) {
         showInputDialog(title: "Edit \(ViewModel.attributedSourceType.sourceType.typeName)", message: "Enter a modified \(ViewModel.attributedSourceType.sourceType.typeName.lowercased()) name", actionTitle: "OK", inputPlaceholder: oldOption.name, cancelHandler: nil) { optionName in
             if let optionName = optionName, !optionName.isEmpty {
@@ -74,19 +74,21 @@ class OptionViewController<ViewModel: OptionViewModel>: UIViewController, UIColl
             }
         }
     }
-    
+
     // MARK: UICollectionViewDelegate
+
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: false)
         collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .top)
         collectionView.deselectItem(at: indexPath, animated: true)
         if let option = dataSource.itemIdentifier(for: indexPath) {
-            self.viewModel.select(option.source)
+            viewModel.select(option.source)
             dismiss(animated: true, completion: nil)
         }
     }
-    
+
     // MARK: UICollectionViewDragDelegate
+
     func collectionView(_ collectionView: UICollectionView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
         if let item = dataSource.itemIdentifier(for: indexPath), !item.isDefault {
             let itemProvider = NSItemProvider(object: item.nameAsNSString)
@@ -96,8 +98,9 @@ class OptionViewController<ViewModel: OptionViewModel>: UIViewController, UIColl
         }
         return []
     }
-    
+
     // MARK: UICollectionViewDropDelegate
+
     func collectionView(_ collectionView: UICollectionView, performDropWith coordinator: UICollectionViewDropCoordinator) {
         guard let destinationIndexPath = coordinator.destinationIndexPath else {
             return
@@ -144,7 +147,7 @@ extension OptionViewController {
         config.trailingSwipeActionsConfigurationProvider = { [unowned self] indexPath -> UISwipeActionsConfiguration in
             var actions = [UIContextualAction]()
             if let option = dataSource.itemIdentifier(for: indexPath) {
-                if !option.isSelected && !option.isDefault {
+                if !option.isSelected, !option.isDefault {
                     actions.append(UIContextualAction(style: .destructive, title: "Delete") { _, _, completion in
                         self.viewModel.delete(option)
                         self.applySnapshot(animatingDifferences: true)

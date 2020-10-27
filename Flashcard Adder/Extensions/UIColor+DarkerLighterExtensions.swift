@@ -9,13 +9,12 @@ import UIKit
 
 // Taken from @Stephen https://stackoverflow.com/a/38435309/14362235
 extension UIColor {
-
     func lighter(by percentage: CGFloat = 30.0) -> UIColor? {
-        return self.adjust(by: abs(percentage) )
+        return self.adjust(by: abs(percentage))
     }
 
     func darker(by percentage: CGFloat = 30.0) -> UIColor? {
-        return self.adjust(by: -1 * abs(percentage) )
+        return self.adjust(by: -1 * abs(percentage))
     }
 
     func adjust(by percentage: CGFloat = 30.0) -> UIColor? {
@@ -30,4 +29,3 @@ extension UIColor {
         }
     }
 }
-

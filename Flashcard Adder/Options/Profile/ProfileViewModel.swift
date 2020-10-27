@@ -7,8 +7,6 @@
 
 import Foundation
 
-
-
 struct ProfileViewModel: OptionViewModel {
     var all: [AttributedProfile] {
         didSet {

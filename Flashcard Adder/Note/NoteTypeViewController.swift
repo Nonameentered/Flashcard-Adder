@@ -5,8 +5,8 @@
 //  Created by Matthew Shu on 10/12/20.
 //
 
-import UIKit
 import os.log
+import UIKit
 
 class NoteTypeViewController: UIViewController {
     enum Section: CaseIterable {
@@ -40,7 +40,7 @@ class NoteTypeViewController: UIViewController {
         applySnapshot(animatingDifferences: false)
         Logger.note.info("Loaded NoteTypeViewController")
     }
-    
+
     @IBAction func unwindToSelectNote(sender: UIStoryboardSegue) {
         if let sourceViewController = sender.source as? AddNoteViewController {
             if let note = sourceViewController.note {
@@ -48,10 +48,9 @@ class NoteTypeViewController: UIViewController {
             }
         }
     }
-    
-    
+
     @IBAction func cancel(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
 }
 
@@ -59,7 +58,7 @@ extension NoteTypeViewController {
     /// - Tag: List
     private func createLayout() -> UICollectionViewLayout {
         var config = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
-        
+
         config.backgroundColor = UIColor(named: FlashcardSettings.Colors.backgroundColor)
         return UICollectionViewCompositionalLayout.list(using: config)
     }
@@ -76,7 +75,7 @@ extension NoteTypeViewController {
     }
 
     private func makeCellRegistration() -> UICollectionView.CellRegistration<UICollectionViewListCell, Note> {
-        UICollectionView.CellRegistration { cell, indexPath, note in
+        UICollectionView.CellRegistration { cell, _, note in
             var content = cell.defaultContentConfiguration()
             content.text = note.name
             cell.contentConfiguration = content

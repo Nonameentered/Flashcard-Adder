@@ -8,10 +8,10 @@
 import UIKit
 
 class AddNoteViewController: UIViewController, UITextViewDelegate {
-    @IBOutlet weak var noteNameField: EditFieldTextView!
-    @IBOutlet weak var firstNameField: EditFieldTextView!
-    @IBOutlet weak var secondNameField: EditFieldTextView!
-    @IBOutlet weak var addButton: UIBarButtonItem!
+    @IBOutlet var noteNameField: EditFieldTextView!
+    @IBOutlet var firstNameField: EditFieldTextView!
+    @IBOutlet var secondNameField: EditFieldTextView!
+    @IBOutlet var addButton: UIBarButtonItem!
     var note: Note?
     
     override func viewDidLoad() {
@@ -20,7 +20,7 @@ class AddNoteViewController: UIViewController, UITextViewDelegate {
         noteNameField.delegate = self
         firstNameField.delegate = self
         secondNameField.delegate = self
-        self.hideKeyboardWhenTappedAround()
+        hideKeyboardWhenTappedAround()
     }
     
     @IBAction func cancel(_ sender: Any) {
@@ -45,6 +45,5 @@ class AddNoteViewController: UIViewController, UITextViewDelegate {
         }
         // TODO: Else throw error
         // TODO: Add Keyboard shortcut to call addButtonPressed
-        
     }
 }
