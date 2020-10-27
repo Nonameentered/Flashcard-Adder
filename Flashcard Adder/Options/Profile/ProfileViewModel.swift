@@ -16,7 +16,7 @@ struct ProfileViewModel: OptionViewModel {
 
     var selected: Profile
     var delegate: OptionViewModelDelegate?
-    var controllerDelegate: OptionViewControllerDelegate
+    let controllerDelegate: OptionViewControllerDelegate
 
     init(selected: Profile, controllerDelegate: OptionViewControllerDelegate) {
         self.selected = selected

@@ -21,7 +21,7 @@ struct DeckViewModel: OptionViewModel {
     
     var selected: Deck
     var delegate: OptionViewModelDelegate?
-    var controllerDelegate: OptionViewControllerDelegate
+    let controllerDelegate: OptionViewControllerDelegate
     
     init(selected: Deck, controllerDelegate: OptionViewControllerDelegate) {
         self.selected = selected

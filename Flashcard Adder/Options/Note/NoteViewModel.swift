@@ -14,7 +14,7 @@ struct NoteViewModel: OptionViewModel {
     
     var delegate: OptionViewModelDelegate?
     
-    var controllerDelegate: OptionViewControllerDelegate
+    let controllerDelegate: OptionViewControllerDelegate
     
     var main: [AttributedNote] {
         all.filter { !$0.isDefault && !$0.isDefaultCloze }
