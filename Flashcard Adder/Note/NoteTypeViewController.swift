@@ -42,7 +42,7 @@ class NoteTypeViewController: UIViewController {
     }
 
     @IBAction func unwindToSelectNote(sender: UIStoryboardSegue) {
-        if let sourceViewController = sender.source as? AddNoteViewController {
+        if let sourceViewController = sender.source as? OldAddNoteViewController {
             if let note = sourceViewController.note {
                 viewModel.addNewNote(note)
             }

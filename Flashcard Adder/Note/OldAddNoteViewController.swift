@@ -1,5 +1,5 @@
 //
-//  AddNoteViewController.swift
+//  OldAddNoteViewController.swift
 //  Flashcard Adder
 //
 //  Created by Matthew on 12/26/18.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AddNoteViewController: UIViewController, UITextViewDelegate {
+class OldAddNoteViewController: UIViewController, UITextViewDelegate {
     @IBOutlet var noteNameField: EditFieldTextView!
     @IBOutlet var firstNameField: EditFieldTextView!
     @IBOutlet var secondNameField: EditFieldTextView!
