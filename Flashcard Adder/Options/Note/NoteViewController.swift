@@ -17,7 +17,6 @@ class NoteViewController: UIViewController {
     var delegate: NoteViewControllerDelegate?
     var stackView: UIStackView!
     var fieldViews: [UITextView]!
-    
 
     convenience init() {
         self.init(note: nil)
@@ -25,7 +24,7 @@ class NoteViewController: UIViewController {
 
     init(note: AttributedNote?) {
         self.initialNote = note
-        
+
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -40,7 +39,6 @@ class NoteViewController: UIViewController {
         view.backgroundColor = UIColor(named: FlashcardSettings.Colors.backgroundColor)
 
         setUpNavBar()
-        // Do any additional setup after loading the view.
     }
 
     func setUpNavBar() {
