@@ -9,10 +9,4 @@ import Foundation
 
 protocol OptionViewModelDelegate {
     func updateList(animatingDifferences: Bool)
-    func showEditDeck(current: Deck)
-    func showEditProfile(current: Profile)
-    func showEditNote(current: Note)
-    func showAddDeck()
-    func showAddProfile()
-    func showAddNote()
 }

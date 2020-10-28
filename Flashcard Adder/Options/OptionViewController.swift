@@ -62,7 +62,7 @@ class OptionViewController<ViewModel: OptionViewModel>: UIViewController, UIColl
     @objc func add() {
         switch ViewModel.self {
         case is NoteViewModel.Type:
-            print("CHICKEN")
+            present(UINavigationController(rootViewController: NoteViewController()), animated: true, completion: nil)
         default:
             showInputDialog(title: "Add \(TypedOption.typeName)", message: "Enter a \(TypedOption.typeName.lowercased()) name", cancelHandler: nil) { optionName in
                 if let optionName = optionName, !optionName.isEmpty {
@@ -73,9 +73,9 @@ class OptionViewController<ViewModel: OptionViewModel>: UIViewController, UIColl
     }
 
     func edit(oldOption: TypedAttributedOption) {
-        switch ViewModel.self {
-        case is NoteViewModel.Type:
-            print("CHICKEN")
+        switch oldOption {
+        case let oldNote as AttributedNote:
+            present(UINavigationController(rootViewController: NoteViewController(note: oldNote)), animated: true, completion: nil)
         default:
             showInputDialog(title: "Edit \(TypedOption.typeName)", message: "Enter a modified \(TypedOption.typeName.lowercased()) name", actionTitle: "OK", inputPlaceholder: oldOption.name, cancelHandler: nil) { optionName in
                 if let optionName = optionName, !optionName.isEmpty {
@@ -211,9 +211,15 @@ extension OptionViewController {
     private func applySnapshot(animatingDifferences: Bool = true) {
         var snapshot = NSDiffableDataSourceSnapshot<TypedSession, TypedAttributedOption>()
         snapshot.appendSections(viewModel.sections)
-        print(viewModel.sections[0].title)
-        print(viewModel.sections[0].items)
         viewModel.sections.forEach { section in
+            print(section.title)
+            for eachItem in section.items {
+                print(eachItem.name)
+                print(eachItem.source)
+                print()
+            }
+            print()
+            print()
             snapshot.appendItems(section.items, toSection: section)
         }
         dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
@@ -221,49 +227,25 @@ extension OptionViewController {
 }
 
 extension OptionViewController: OptionViewModelDelegate {
-    func showEditDeck(current: Deck) {
-        showInputDialog(title: "Edit \(TypedOption.typeName)", message: "Enter a modified \(TypedOption.typeName.lowercased()) name", actionTitle: "OK", inputPlaceholder: current.name, cancelHandler: nil) { optionName in
-            if let optionName = optionName, !optionName.isEmpty {
-                self.viewModel.edit(from: current as! ViewModel.AttributedSourceType, to: TypedOption(name: optionName))
-            }
-        }
-    }
-    
-    func showEditProfile(current: Profile) {
-        showInputDialog(title: "Edit \(TypedOption.typeName)", message: "Enter a modified \(TypedOption.typeName.lowercased()) name", actionTitle: "OK", inputPlaceholder: current.name, cancelHandler: nil) { optionName in
-            if let optionName = optionName, !optionName.isEmpty {
-                self.viewModel.edit(from: current as! ViewModel.AttributedSourceType, to: TypedOption(name: optionName))
-            }
-        }
-    }
-    
-    func showEditNote(current: Note) {
-        print("SHOW EDIT NOTE")
-    }
-    
-    func showAddDeck() {
-        showInputDialog(title: "Add \(TypedOption.typeName)", message: "Enter a \(TypedOption.typeName.lowercased()) name", cancelHandler: nil) { optionName in
-            if let optionName = optionName, !optionName.isEmpty {
-                self.viewModel.add(TypedOption(name: optionName))
-            }
-        }
-    }
-    
-    func showAddProfile() {
-        showInputDialog(title: "Add \(TypedOption.typeName)", message: "Enter a \(TypedOption.typeName.lowercased()) name", cancelHandler: nil) { optionName in
-            if let optionName = optionName, !optionName.isEmpty {
-                self.viewModel.add(TypedOption(name: optionName))
-            }
-        }
-    }
-    
-    func showAddNote() {
-        print("SHOW ADD NOTe")
-    }
-    
     func updateList(animatingDifferences: Bool) {
         DispatchQueue.main.async {
             self.applySnapshot(animatingDifferences: animatingDifferences)
         }
     }
+}
+
+extension OptionViewController: NoteViewControllerDelegate {
+    func addNote(note: Note) {
+        if let note = note as? TypedOption {
+            self.viewModel.add(note)
+        }
+    }
+    
+    func editNote(old: AttributedNote, new: Note) {
+        if let old = old as? TypedAttributedOption, let new = new as? TypedOption {
+            self.viewModel.edit(from: old, to: new)
+        }
+    }
+    
+    
 }

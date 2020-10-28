@@ -85,8 +85,8 @@
 		E3D010F325355454006FB811 /* NoteTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D010F225355454006FB811 /* NoteTypeViewController.swift */; };
 		E3D011102537B9D7006FB811 /* String+MatchingStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D0110F2537B9D7006FB811 /* String+MatchingStrings.swift */; };
 		E3D011182537C4A8006FB811 /* Cloze.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D011162537C4A8006FB811 /* Cloze.swift */; };
-		E3F376F42548FDCF00A05F40 /* AddNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F376F32548FDCF00A05F40 /* AddNoteViewController.swift */; };
-		E3F376F72548FDD200A05F40 /* AddNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F376F32548FDCF00A05F40 /* AddNoteViewController.swift */; };
+		E3F376F42548FDCF00A05F40 /* NoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F376F32548FDCF00A05F40 /* NoteViewController.swift */; };
+		E3F376F72548FDD200A05F40 /* NoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F376F32548FDCF00A05F40 /* NoteViewController.swift */; };
 		E3F8D99A253BF1A1003E7CC7 /* OptionViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F8D999253BF1A1003E7CC7 /* OptionViewControllerDelegate.swift */; };
 		E3F8D99B253BF1A1003E7CC7 /* OptionViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F8D999253BF1A1003E7CC7 /* OptionViewControllerDelegate.swift */; };
 		E3F8D9A1253BF209003E7CC7 /* DeckViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F8D9A0253BF209003E7CC7 /* DeckViewModel.swift */; };
@@ -178,7 +178,7 @@
 		E3D010F225355454006FB811 /* NoteTypeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteTypeViewController.swift; sourceTree = "<group>"; };
 		E3D0110F2537B9D7006FB811 /* String+MatchingStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+MatchingStrings.swift"; sourceTree = "<group>"; };
 		E3D011162537C4A8006FB811 /* Cloze.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cloze.swift; sourceTree = "<group>"; };
-		E3F376F32548FDCF00A05F40 /* AddNoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNoteViewController.swift; sourceTree = "<group>"; };
+		E3F376F32548FDCF00A05F40 /* NoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteViewController.swift; sourceTree = "<group>"; };
 		E3F8D999253BF1A1003E7CC7 /* OptionViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionViewControllerDelegate.swift; sourceTree = "<group>"; };
 		E3F8D9A0253BF209003E7CC7 /* DeckViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckViewModel.swift; sourceTree = "<group>"; };
 		E3F8D9AA253BF7AD003E7CC7 /* UIViewController+showInputDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+showInputDialog.swift"; sourceTree = "<group>"; };
@@ -337,7 +337,7 @@
 			children = (
 				E39C88582548B34300B852BE /* NoteViewModel.swift */,
 				E39C885D2548B37500B852BE /* AttributedNote.swift */,
-				E3F376F32548FDCF00A05F40 /* AddNoteViewController.swift */,
+				E3F376F32548FDCF00A05F40 /* NoteViewController.swift */,
 			);
 			path = Note;
 			sourceTree = "<group>";
@@ -490,7 +490,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E3F376F42548FDCF00A05F40 /* AddNoteViewController.swift in Sources */,
+				E3F376F42548FDCF00A05F40 /* NoteViewController.swift in Sources */,
 				E39C88512548AC7900B852BE /* OptionViewModelDelegate.swift in Sources */,
 				E39C88452548AC3600B852BE /* AttributedOption.swift in Sources */,
 				E357B365251D2FB500354BCA /* ClozeViewController.swift in Sources */,
@@ -555,7 +555,7 @@
 				E39648022537FEEF00F803F4 /* BigButton.swift in Sources */,
 				E39647E42537FC9E00F803F4 /* String+CountInstances.swift in Sources */,
 				E3F8D9A2253BF209003E7CC7 /* DeckViewModel.swift in Sources */,
-				E3F376F72548FDD200A05F40 /* AddNoteViewController.swift in Sources */,
+				E3F376F72548FDD200A05F40 /* NoteViewController.swift in Sources */,
 				E39647E32537FC9E00F803F4 /* UIView+FirstResponder.swift in Sources */,
 				E3B7B56F253912D800E38EC4 /* Logger.swift in Sources */,
 				E39647DC2537FC9900F803F4 /* Profile.swift in Sources */,
