@@ -11,9 +11,24 @@ struct AttributedNote: AttributedOption {
     let source: Note
     let selected: Note
     var isDefault: Bool {
-        source == FlashcardSettings.shared.defaultNoteType
+        isDefaultCloze || isDefaultNormal
     }
     var isDefaultCloze: Bool {
         source == FlashcardSettings.shared.defaultClozeNoteType
+    }
+    var isDefaultNormal: Bool {
+        source == FlashcardSettings.shared.defaultNoteType
+    }
+    
+    static func == (lhs: Self, rhs: Self) -> Bool {
+        lhs.source == rhs.source && lhs.isDefault == rhs.isDefault && lhs.isSelected == rhs.isSelected && lhs.isDefaultCloze == rhs.isDefaultCloze && lhs.isDefaultNormal == rhs.isDefaultNormal
+    }
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(name)
+        hasher.combine(isSelected)
+        hasher.combine(isDefault)
+        hasher.combine(isDefaultNormal)
+        hasher.combine(isDefaultCloze)
     }
 }

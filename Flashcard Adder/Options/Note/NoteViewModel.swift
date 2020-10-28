@@ -8,7 +8,11 @@
 import Foundation
 
 struct NoteViewModel: OptionViewModel {
-    var all: [AttributedNote]
+    var all: [AttributedNote] {
+        didSet {
+            FlashcardSettings.shared.noteTypes = all.map { $0.source }
+        }
+    }
     
     var selected: Note
     
@@ -25,7 +29,7 @@ struct NoteViewModel: OptionViewModel {
     }
     
     var sections: [Section<AttributedNote>] {
-        [Section(title: "Default Note", items: usual), Section(title: "Default Cloze Note", items: usualCloze), Section(title: "Other \(attributedSourceType.sourceType.typeNamePlural)", items: main)]
+        [Section(title: "Default Note", items: usual), Section(title: "Default Cloze Note", items: usualCloze), Section(title: "Other \(AttributedNote.sourceType.typeNamePlural)", items: main)]
     }
     
     init(selected: Note, controllerDelegate: OptionViewControllerDelegate) {
@@ -43,9 +47,31 @@ struct NoteViewModel: OptionViewModel {
     }
     
     mutating func makeDefault(_ item: AttributedNote) {
+        if item.source.acceptsCloze {
+            makeClozeDefault(item)
+        } else {
+            makeNormalDefault(item)
+        }
+    }
+    
+    mutating func makeNormalDefault(_ item: AttributedNote) {
         FlashcardSettings.shared.defaultNoteType = item.source
         delegate?.updateList(animatingDifferences: false)
     }
     
+    mutating func makeClozeDefault(_ item: AttributedNote) {
+        FlashcardSettings.shared.defaultClozeNoteType = item.source
+        delegate?.updateList(animatingDifferences: false)
+    }
     
+    mutating func move(_ item: AttributedNote, to indexPath: IndexPath) {
+        if indexPath.section == 0 || indexPath.section == 1 {
+            makeDefault(item)
+        } else {
+            if !item.isDefault, !item.isDefaultCloze, let moved = main.moved(item, to: indexPath.row) {
+                all = usual + usualCloze + moved
+            }
+            delegate?.updateList(animatingDifferences: false)
+        }
+    }
 }

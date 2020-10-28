@@ -42,7 +42,7 @@
         <!--Add Note-->
         <scene sceneID="yjF-1L-GWp">
             <objects>
-                <viewController id="UbN-2s-brC" customClass="AddNoteViewController" customModule="Action_Extension" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="addNoteViewController" id="UbN-2s-brC" customClass="AddNoteViewController" customModule="Action_Extension" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vbe-vv-2wl">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -118,7 +118,7 @@
                                 <action selector="cancel:" destination="UbN-2s-brC" id="mYL-S6-Tlz"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="VYg-3m-YXK">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="VYg-3m-YXK">
                             <connections>
                                 <action selector="addButtonPressed:" destination="UbN-2s-brC" id="PQ9-uA-MYQ"/>
                             </connections>

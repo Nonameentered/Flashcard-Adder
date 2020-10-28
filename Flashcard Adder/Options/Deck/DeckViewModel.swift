@@ -5,7 +5,7 @@
 //  Created by Matthew Shu on 10/17/20.
 //
 
-import UIKit
+import Foundation
 import os.log
 
 struct DeckViewModel: OptionViewModel {

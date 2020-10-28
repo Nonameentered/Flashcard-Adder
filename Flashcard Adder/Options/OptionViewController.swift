@@ -14,7 +14,7 @@ class OptionViewController<ViewModel: OptionViewModel>: UIViewController, UIColl
     var collectionView: UICollectionView!
     var viewModel: ViewModel
     
-    typealias TypedAttributedOption = ViewModel.attributedSourceType
+    typealias TypedAttributedOption = ViewModel.AttributedSourceType
     typealias TypedOption = TypedAttributedOption.sourceType
     typealias TypedSession = Section<TypedAttributedOption>
     typealias DataSource = UICollectionViewDiffableDataSource<TypedSession, TypedAttributedOption>
@@ -60,17 +60,27 @@ class OptionViewController<ViewModel: OptionViewModel>: UIViewController, UIColl
     }
 
     @objc func add() {
-        showInputDialog(title: "Add \(TypedOption.typeName)", message: "Enter a \(TypedOption.typeName.lowercased()) name", cancelHandler: nil) { optionName in
-            if let optionName = optionName, !optionName.isEmpty {
-                self.viewModel.add(TypedOption(name: optionName))
+        switch ViewModel.self {
+        case is NoteViewModel.Type:
+            print("CHICKEN")
+        default:
+            showInputDialog(title: "Add \(TypedOption.typeName)", message: "Enter a \(TypedOption.typeName.lowercased()) name", cancelHandler: nil) { optionName in
+                if let optionName = optionName, !optionName.isEmpty {
+                    self.viewModel.add(TypedOption(name: optionName))
+                }
             }
         }
     }
 
     func edit(oldOption: TypedAttributedOption) {
-        showInputDialog(title: "Edit \(TypedOption.typeName)", message: "Enter a modified \(TypedOption.typeName.lowercased()) name", actionTitle: "OK", inputPlaceholder: oldOption.name, cancelHandler: nil) { optionName in
-            if let optionName = optionName, !optionName.isEmpty {
-                self.viewModel.edit(from: oldOption, to: TypedOption(name: optionName))
+        switch ViewModel.self {
+        case is NoteViewModel.Type:
+            print("CHICKEN")
+        default:
+            showInputDialog(title: "Edit \(TypedOption.typeName)", message: "Enter a modified \(TypedOption.typeName.lowercased()) name", actionTitle: "OK", inputPlaceholder: oldOption.name, cancelHandler: nil) { optionName in
+                if let optionName = optionName, !optionName.isEmpty {
+                    self.viewModel.edit(from: oldOption, to: TypedOption(name: optionName))
+                }
             }
         }
     }
@@ -211,6 +221,46 @@ extension OptionViewController {
 }
 
 extension OptionViewController: OptionViewModelDelegate {
+    func showEditDeck(current: Deck) {
+        showInputDialog(title: "Edit \(TypedOption.typeName)", message: "Enter a modified \(TypedOption.typeName.lowercased()) name", actionTitle: "OK", inputPlaceholder: current.name, cancelHandler: nil) { optionName in
+            if let optionName = optionName, !optionName.isEmpty {
+                self.viewModel.edit(from: current as! ViewModel.AttributedSourceType, to: TypedOption(name: optionName))
+            }
+        }
+    }
+    
+    func showEditProfile(current: Profile) {
+        showInputDialog(title: "Edit \(TypedOption.typeName)", message: "Enter a modified \(TypedOption.typeName.lowercased()) name", actionTitle: "OK", inputPlaceholder: current.name, cancelHandler: nil) { optionName in
+            if let optionName = optionName, !optionName.isEmpty {
+                self.viewModel.edit(from: current as! ViewModel.AttributedSourceType, to: TypedOption(name: optionName))
+            }
+        }
+    }
+    
+    func showEditNote(current: Note) {
+        print("SHOW EDIT NOTE")
+    }
+    
+    func showAddDeck() {
+        showInputDialog(title: "Add \(TypedOption.typeName)", message: "Enter a \(TypedOption.typeName.lowercased()) name", cancelHandler: nil) { optionName in
+            if let optionName = optionName, !optionName.isEmpty {
+                self.viewModel.add(TypedOption(name: optionName))
+            }
+        }
+    }
+    
+    func showAddProfile() {
+        showInputDialog(title: "Add \(TypedOption.typeName)", message: "Enter a \(TypedOption.typeName.lowercased()) name", cancelHandler: nil) { optionName in
+            if let optionName = optionName, !optionName.isEmpty {
+                self.viewModel.add(TypedOption(name: optionName))
+            }
+        }
+    }
+    
+    func showAddNote() {
+        print("SHOW ADD NOTe")
+    }
+    
     func updateList(animatingDifferences: Bool) {
         DispatchQueue.main.async {
             self.applySnapshot(animatingDifferences: animatingDifferences)
