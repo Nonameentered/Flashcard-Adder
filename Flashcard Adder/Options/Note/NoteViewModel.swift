@@ -21,7 +21,11 @@ struct NoteViewModel: OptionViewModel {
     let controllerDelegate: OptionViewControllerDelegate
     
     var main: [AttributedNote] {
-        all.filter { !$0.isDefault && !$0.isDefaultCloze }
+        all.filter { !$0.isDefault }
+    }
+    
+    var usual: [AttributedNote] {
+        all.filter { $0.isDefaultNormal }
     }
     
     var usualCloze: [AttributedNote] {
