@@ -12,6 +12,10 @@
 		E306FAAC25218DF60012337D /* UIView+FirstResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E306FAAB25218DF60012337D /* UIView+FirstResponder.swift */; };
 		E3359E0825300CC80039F537 /* CreateFlashcard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3359E0725300CC80039F537 /* CreateFlashcard.storyboard */; };
 		E3359E3B25301A4D0039F537 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3359E3A25301A4D0039F537 /* LaunchScreen.storyboard */; };
+		E33CA71D254B161E00A28175 /* FieldStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E33CA71C254B161D00A28175 /* FieldStackView.swift */; };
+		E33CA71E254B161E00A28175 /* FieldStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E33CA71C254B161D00A28175 /* FieldStackView.swift */; };
+		E33CA724254B1D8D00A28175 /* BorderedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E33CA723254B1D8D00A28175 /* BorderedTextField.swift */; };
+		E33CA725254B1D8D00A28175 /* BorderedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E33CA723254B1D8D00A28175 /* BorderedTextField.swift */; };
 		E357B363251D2FB500354BCA /* OldAddNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E357B35D251D2FB500354BCA /* OldAddNoteViewController.swift */; };
 		E357B364251D2FB500354BCA /* FlashcardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E357B35E251D2FB500354BCA /* FlashcardViewController.swift */; };
 		E357B365251D2FB500354BCA /* ClozeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E357B35F251D2FB500354BCA /* ClozeViewController.swift */; };
@@ -25,7 +29,7 @@
 		E369F92E2515B71100A51A0D /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = E369F9242515B71000A51A0D /* Profile.swift */; };
 		E369F9302515B71100A51A0D /* Deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = E369F9252515B71000A51A0D /* Deck.swift */; };
 		E369F9322515B71100A51A0D /* FlashcardSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = E369F9262515B71000A51A0D /* FlashcardSettings.swift */; };
-		E369F9342515B71100A51A0D /* EditFieldTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E369F9272515B71000A51A0D /* EditFieldTextView.swift */; };
+		E369F9342515B71100A51A0D /* EditTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E369F9272515B71000A51A0D /* EditTextView.swift */; };
 		E369F9362515B71100A51A0D /* BigButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E369F9282515B71100A51A0D /* BigButton.swift */; };
 		E369F9382515B71100A51A0D /* Flashcard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E369F9292515B71100A51A0D /* Flashcard.swift */; };
 		E39595A7253906E70073FD2B /* NoteTypeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39595A6253906E70073FD2B /* NoteTypeViewModel.swift */; };
@@ -48,7 +52,7 @@
 		E39647EE2537FCC300F803F4 /* FlashcardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E357B35E251D2FB500354BCA /* FlashcardViewController.swift */; };
 		E39647F22537FCC600F803F4 /* OldAddNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E357B35D251D2FB500354BCA /* OldAddNoteViewController.swift */; };
 		E39647F62537FCCA00F803F4 /* NoteTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D010F225355454006FB811 /* NoteTypeViewController.swift */; };
-		E39647FE2537FEAF00F803F4 /* EditFieldTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E369F9272515B71000A51A0D /* EditFieldTextView.swift */; };
+		E39647FE2537FEAF00F803F4 /* EditTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E369F9272515B71000A51A0D /* EditTextView.swift */; };
 		E39648022537FEEF00F803F4 /* BigButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E369F9282515B71100A51A0D /* BigButton.swift */; };
 		E39648062537FEF200F803F4 /* LabelTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E357B36F251D32BF00354BCA /* LabelTableViewCell.swift */; };
 		E39C88082544D07700B852BE /* HeaderSupplementaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3ABE99C2544CA0B00148D6F /* HeaderSupplementaryView.swift */; };
@@ -136,6 +140,8 @@
 		E306FAAB25218DF60012337D /* UIView+FirstResponder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+FirstResponder.swift"; sourceTree = "<group>"; };
 		E3359E0725300CC80039F537 /* CreateFlashcard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CreateFlashcard.storyboard; sourceTree = "<group>"; };
 		E3359E3A25301A4D0039F537 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		E33CA71C254B161D00A28175 /* FieldStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldStackView.swift; sourceTree = "<group>"; };
+		E33CA723254B1D8D00A28175 /* BorderedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderedTextField.swift; sourceTree = "<group>"; };
 		E357B35D251D2FB500354BCA /* OldAddNoteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OldAddNoteViewController.swift; path = "Flashcard Adder/Note/OldAddNoteViewController.swift"; sourceTree = SOURCE_ROOT; };
 		E357B35E251D2FB500354BCA /* FlashcardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FlashcardViewController.swift; path = "Flashcard Adder/FlashcardViewController.swift"; sourceTree = SOURCE_ROOT; };
 		E357B35F251D2FB500354BCA /* ClozeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ClozeViewController.swift; path = "Flashcard Adder/Cloze/ClozeViewController.swift"; sourceTree = SOURCE_ROOT; };
@@ -151,7 +157,7 @@
 		E369F9242515B71000A51A0D /* Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		E369F9252515B71000A51A0D /* Deck.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Deck.swift; sourceTree = "<group>"; };
 		E369F9262515B71000A51A0D /* FlashcardSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlashcardSettings.swift; sourceTree = "<group>"; };
-		E369F9272515B71000A51A0D /* EditFieldTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditFieldTextView.swift; sourceTree = "<group>"; };
+		E369F9272515B71000A51A0D /* EditTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTextView.swift; sourceTree = "<group>"; };
 		E369F9282515B71100A51A0D /* BigButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BigButton.swift; sourceTree = "<group>"; };
 		E369F9292515B71100A51A0D /* Flashcard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Flashcard.swift; sourceTree = "<group>"; };
 		E388BB1A254359F300B549CD /* Action Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Action Extension.entitlements"; sourceTree = "<group>"; };
@@ -276,9 +282,11 @@
 			isa = PBXGroup;
 			children = (
 				E357B36F251D32BF00354BCA /* LabelTableViewCell.swift */,
-				E369F9272515B71000A51A0D /* EditFieldTextView.swift */,
+				E369F9272515B71000A51A0D /* EditTextView.swift */,
 				E369F9282515B71100A51A0D /* BigButton.swift */,
 				E3ABE99C2544CA0B00148D6F /* HeaderSupplementaryView.swift */,
+				E33CA71C254B161D00A28175 /* FieldStackView.swift */,
+				E33CA723254B1D8D00A28175 /* BorderedTextField.swift */,
 			);
 			path = "Custom Views";
 			sourceTree = "<group>";
@@ -499,7 +507,7 @@
 				E39C885E2548B37500B852BE /* AttributedNote.swift in Sources */,
 				E357B363251D2FB500354BCA /* OldAddNoteViewController.swift in Sources */,
 				E3D011102537B9D7006FB811 /* String+MatchingStrings.swift in Sources */,
-				E369F9342515B71100A51A0D /* EditFieldTextView.swift in Sources */,
+				E369F9342515B71100A51A0D /* EditTextView.swift in Sources */,
 				E39C88592548B34300B852BE /* NoteViewModel.swift in Sources */,
 				E39C882D2547B3EA00B852BE /* ProfileViewModel.swift in Sources */,
 				E39595A7253906E70073FD2B /* NoteTypeViewModel.swift in Sources */,
@@ -521,9 +529,11 @@
 				E369F9362515B71100A51A0D /* BigButton.swift in Sources */,
 				E3ABE99D2544CA0B00148D6F /* HeaderSupplementaryView.swift in Sources */,
 				E39C883D2548AB0A00B852BE /* AttributedProfile.swift in Sources */,
+				E33CA724254B1D8D00A28175 /* BorderedTextField.swift in Sources */,
 				E39C881725461B9200B852BE /* Option.swift in Sources */,
 				E359182225106E3D002F1A35 /* AppDelegate.swift in Sources */,
 				E39C88382548AAF600B852BE /* AttributedDeck.swift in Sources */,
+				E33CA71D254B161E00A28175 /* FieldStackView.swift in Sources */,
 				E3F8D99A253BF1A1003E7CC7 /* OptionViewControllerDelegate.swift in Sources */,
 				E369F92E2515B71100A51A0D /* Profile.swift in Sources */,
 				E359182425106E3D002F1A35 /* SceneDelegate.swift in Sources */,
@@ -544,6 +554,7 @@
 				E39C881A2546350400B852BE /* Option.swift in Sources */,
 				E39647C22537FC5A00F803F4 /* UIViewController+HideKeyboardWheNTappedAround.swift in Sources */,
 				E39C885A2548B34300B852BE /* NoteViewModel.swift in Sources */,
+				E33CA71E254B161E00A28175 /* FieldStackView.swift in Sources */,
 				E39647D52537FC8C00F803F4 /* FlashcardSettings.swift in Sources */,
 				E39647E22537FC9E00F803F4 /* String+MatchingStrings.swift in Sources */,
 				E3F8D99B253BF1A1003E7CC7 /* OptionViewControllerDelegate.swift in Sources */,
@@ -569,12 +580,13 @@
 				E3F8D9C3253C93E8003E7CC7 /* Setting.swift in Sources */,
 				E39C88522548AC7900B852BE /* OptionViewModelDelegate.swift in Sources */,
 				E39C883E2548AB0A00B852BE /* AttributedProfile.swift in Sources */,
+				E33CA725254B1D8D00A28175 /* BorderedTextField.swift in Sources */,
 				E39648062537FEF200F803F4 /* LabelTableViewCell.swift in Sources */,
 				E3F8D9AC253BF7AD003E7CC7 /* UIViewController+showInputDialog.swift in Sources */,
 				E3F8D9CD253F6571003E7CC7 /* ClozeViewModel.swift in Sources */,
 				E3B7B56925390C5E00E38EC4 /* NoteTypeViewModel.swift in Sources */,
 				E39647D92537FC9900F803F4 /* Cloze.swift in Sources */,
-				E39647FE2537FEAF00F803F4 /* EditFieldTextView.swift in Sources */,
+				E39647FE2537FEAF00F803F4 /* EditTextView.swift in Sources */,
 				E3F8D9B7253C92F1003E7CC7 /* SettingsListViewController.swift in Sources */,
 				E39647DB2537FC9900F803F4 /* Note.swift in Sources */,
 				E39C882E2547B3EA00B852BE /* ProfileViewModel.swift in Sources */,

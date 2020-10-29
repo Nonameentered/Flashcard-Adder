@@ -16,7 +16,7 @@ class FlashcardViewController: UIViewController {
         }
     }
 
-    @IBOutlet var frontTextView: EditFieldTextView! {
+    @IBOutlet var frontTextView: EditTextView! {
         didSet {
             frontTextView.text = flashcard.originalText
         }
@@ -28,8 +28,8 @@ class FlashcardViewController: UIViewController {
         }
     }
 
-    @IBOutlet var backTextView: EditFieldTextView!
-    @IBOutlet var referenceSpaceTextView: EditFieldTextView! {
+    @IBOutlet var backTextView: EditTextView!
+    @IBOutlet var referenceSpaceTextView: EditTextView! {
         didSet {
             referenceSpaceTextView.text = flashcard.referenceText
         }

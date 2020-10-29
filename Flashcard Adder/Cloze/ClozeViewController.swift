@@ -8,11 +8,11 @@
 import UIKit
 
 class ClozeViewController: UIViewController, UITextViewDelegate {
-    @IBOutlet var clozeTextView: EditFieldTextView!
-    @IBOutlet var hintTextView: EditFieldTextView!
+    @IBOutlet var clozeTextView: EditTextView!
+    @IBOutlet var hintTextView: EditTextView!
     @IBOutlet var addButton: UIBarButtonItem!
     
-    @IBOutlet var referenceSpaceTextView: EditFieldTextView!
+    @IBOutlet var referenceSpaceTextView: EditTextView!
     var viewModel: ClozeViewModel
     
     init?(coder: NSCoder, viewModel: ClozeViewModel) {

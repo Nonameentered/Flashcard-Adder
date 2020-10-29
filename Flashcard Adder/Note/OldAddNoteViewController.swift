@@ -8,9 +8,9 @@
 import UIKit
 
 class OldAddNoteViewController: UIViewController, UITextViewDelegate {
-    @IBOutlet var noteNameField: EditFieldTextView!
-    @IBOutlet var firstNameField: EditFieldTextView!
-    @IBOutlet var secondNameField: EditFieldTextView!
+    @IBOutlet var noteNameField: EditTextView!
+    @IBOutlet var firstNameField: EditTextView!
+    @IBOutlet var secondNameField: EditTextView!
     @IBOutlet var addButton: UIBarButtonItem!
     var note: Note?
     

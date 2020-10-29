@@ -8,13 +8,12 @@
 
 import UIKit
 
-class EditFieldTextView: UITextView {
-    convenience init() {
-        self.init(frame: .zero, textContainer: nil)
-    }
-    override init(frame: CGRect, textContainer: NSTextContainer?) {
-        super.init(frame: frame, textContainer: textContainer)
+class EditTextView: UITextView {
+
+    init() {
+        super.init(frame: .zero, textContainer: nil)
         setUpView()
+        translatesAutoresizingMaskIntoConstraints = false
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -30,5 +29,7 @@ class EditFieldTextView: UITextView {
         layer.cornerRadius = 5
         layer.borderWidth = 1
         layer.borderColor = UIColor(named: "tintColor")!.cgColor
+        isScrollEnabled = false
+        
     }
 }
