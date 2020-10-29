@@ -15,7 +15,31 @@ protocol NoteViewControllerDelegate {
 class NoteViewController: UIViewController {
     let initialNote: AttributedNote?
     var delegate: NoteViewControllerDelegate?
-    var stackView: UIStackView!
+    private enum ViewMetrics {
+        static let margin: CGFloat = 20.0
+    }
+    private lazy var scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.addSubview(stackView)
+        return scrollView
+    }()
+    var stackView: UIStackView = {
+        let textView = EditFieldTextView()
+        textView.isScrollEnabled = false
+        textView.text = "CHICKEN"
+        textView.translatesAutoresizingMaskIntoConstraints = false
+        let textView2 = EditFieldTextView()
+        textView2.isScrollEnabled = false
+        textView2.text = "CHICKEN NOODLEs"
+        textView2.translatesAutoresizingMaskIntoConstraints = false
+        
+        let stackView = UIStackView(arrangedSubviews: [textView, textView2])
+        stackView.axis = .vertical
+        stackView.spacing = 10
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
     var fieldViews: [UITextView]!
 
     convenience init() {
@@ -35,10 +59,27 @@ class NoteViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view = UIView()
         view.backgroundColor = UIColor(named: FlashcardSettings.Colors.backgroundColor)
+        stackView.directionalLayoutMargins = NSDirectionalEdgeInsets(top: ViewMetrics.margin, leading: ViewMetrics.margin, bottom: ViewMetrics.margin, trailing: ViewMetrics.margin)
+        
+        view.addSubview(scrollView)
+        let frameGuide = scrollView.frameLayoutGuide
+        let contentGuide = scrollView.contentLayoutGuide
+        NSLayoutConstraint.activate([
+            frameGuide.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            frameGuide.topAnchor.constraint(equalTo: view.topAnchor),
+            frameGuide.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            frameGuide.bottomAnchor.constraint(equalTo: view.bottomAnchor),
 
+            contentGuide.leadingAnchor.constraint(equalTo: stackView.leadingAnchor),
+            contentGuide.topAnchor.constraint(equalTo: stackView.topAnchor),
+            contentGuide.trailingAnchor.constraint(equalTo: stackView.trailingAnchor),
+            contentGuide.bottomAnchor.constraint(equalTo: stackView.bottomAnchor),
+
+            contentGuide.widthAnchor.constraint(equalTo: frameGuide.widthAnchor),
+            ])
         setUpNavBar()
+        print(stackView.arrangedSubviews[0])
     }
 
     func setUpNavBar() {
