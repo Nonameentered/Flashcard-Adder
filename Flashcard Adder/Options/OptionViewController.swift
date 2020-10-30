@@ -96,6 +96,22 @@ class OptionViewController<ViewModel: OptionViewModel>: UIViewController, UIColl
             dismiss(animated: true, completion: nil)
         }
     }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize{
+        return CGSize(width: collectionView.bounds.width, height: collectionView.bounds.height)
+    }
+
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+//
+//        // Get the view for the first header
+//        let indexPath = IndexPath(row: 0, section: section)
+//        let headerView = self.collectionView(collectionView, viewForSupplementaryElementOfKind: UICollectionView.elementKindSectionHeader, at: indexPath)
+//
+//        // Use this view to calculate the optimal size based on the collection view's width
+//        return headerView.systemLayoutSizeFitting(CGSize(width: collectionView.frame.width, height: UIView.layoutFittingExpandedSize.height),
+//                                                  withHorizontalFittingPriority: .required, // Width is fixed
+//                                                  verticalFittingPriority: .fittingSizeLevel) // Height can be as large as needed
+//    }
 
     // MARK: UICollectionViewDragDelegate
 
@@ -122,7 +138,6 @@ class OptionViewController<ViewModel: OptionViewModel>: UIViewController, UIColl
             }
             if let option = self.dataSource.itemIdentifier(for: sourceIndexPath) {
                 self.viewModel.move(option, to: destinationIndexPath)
-                applySnapshot(animatingDifferences: false)
             }
         }
     }
@@ -147,7 +162,6 @@ extension OptionViewController {
                 if !option.isDefault {
                     actions.append(UIContextualAction(style: .normal, title: "Set Default") { _, _, completion in
                         self.viewModel.makeDefault(option)
-
                         completion(true)
                     })
                 }
@@ -160,7 +174,6 @@ extension OptionViewController {
                 if !option.isSelected, !option.isDefault {
                     actions.append(UIContextualAction(style: .destructive, title: "Delete") { _, _, completion in
                         self.viewModel.delete(option)
-                        self.applySnapshot(animatingDifferences: true)
                         completion(true)
                     })
                 }
@@ -184,6 +197,7 @@ extension OptionViewController {
         collectionView.register(HeaderSupplementaryView.self, forSupplementaryViewOfKind: FlashcardSettings.ElementKind.sectionHeader, withReuseIdentifier: HeaderSupplementaryView.reuseIdentifier)
     }
 
+    
     private func makeCellRegistration() -> UICollectionView.CellRegistration<UICollectionViewListCell, TypedAttributedOption> {
         UICollectionView.CellRegistration { cell, _, option in
             var content = cell.defaultContentConfiguration()
@@ -212,14 +226,6 @@ extension OptionViewController {
         var snapshot = NSDiffableDataSourceSnapshot<TypedSession, TypedAttributedOption>()
         snapshot.appendSections(viewModel.sections)
         viewModel.sections.forEach { section in
-            print(section.title)
-            for eachItem in section.items {
-                print(eachItem.name)
-                print(eachItem.source)
-                print()
-            }
-            print()
-            print()
             snapshot.appendItems(section.items, toSection: section)
         }
         dataSource.apply(snapshot, animatingDifferences: animatingDifferences)

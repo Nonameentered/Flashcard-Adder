@@ -36,7 +36,7 @@ protocol OptionViewModel {
 extension OptionViewModel where AttributedSourceType: AttributedOption, AttributedSourceType.sourceType: Option {
     
     var sections: [Section<AttributedSourceType>] {
-        [Section(title: "Default \(AttributedSourceType.sourceType.typeNamePlural)", items: main), Section(title: "Other \(AttributedSourceType.sourceType.typeNamePlural)", items: usual)]
+        [Section(title: "Default \(AttributedSourceType.sourceType.typeNamePlural)", items: usual), Section(title: "Other \(AttributedSourceType.sourceType.typeNamePlural)", items: main)]
     }
     var main: [AttributedSourceType] {
         all.filter { !$0.isDefault }
@@ -61,6 +61,7 @@ extension OptionViewModel where AttributedSourceType: AttributedOption, Attribut
     
     mutating func delete(_ item: AttributedSourceType) {
         all.removeAll { $0.source == item.source }
+        delegate?.updateList(animatingDifferences: true)
     }
     
     mutating func move(_ item: AttributedSourceType, to indexPath: IndexPath) {
@@ -70,7 +71,7 @@ extension OptionViewModel where AttributedSourceType: AttributedOption, Attribut
             if !item.isDefault, let moved = main.moved(item, to: indexPath.row) {
                 all = usual + moved
             }
-            delegate?.updateList(animatingDifferences: false)
+            delegate?.updateList(animatingDifferences: true)
         }
     }
     
@@ -86,6 +87,6 @@ extension OptionViewModel where AttributedSourceType: AttributedOption, Attribut
                 makeDefault(newAttributedItem)
             }
         }
-        delegate?.updateList(animatingDifferences: false)
+        delegate?.updateList(animatingDifferences: true)
     }
 }

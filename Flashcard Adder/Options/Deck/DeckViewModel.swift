@@ -15,10 +15,6 @@ struct DeckViewModel: OptionViewModel {
         }
     }
     
-    var sections: [Section<AttributedDeck>] {
-        [Section(title: "Default \(Deck.typeName)", items: all.filter { $0.isDefault }), Section(title: "Other \(Deck.typeNamePlural)", items: all.filter { !$0.isDefault })]
-    }
-    
     var selected: Deck
     var delegate: OptionViewModelDelegate?
     let controllerDelegate: OptionViewControllerDelegate
