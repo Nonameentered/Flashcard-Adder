@@ -62,7 +62,9 @@ class OptionViewController<ViewModel: OptionViewModel>: UIViewController, UIColl
     @objc func add() {
         switch ViewModel.self {
         case is NoteViewModel.Type:
-            present(UINavigationController(rootViewController: NoteViewController()), animated: true, completion: nil)
+            let noteViewController = NoteViewController()
+            noteViewController.delegate = self
+            present(UINavigationController(rootViewController: noteViewController), animated: true, completion: nil)
         default:
             showInputDialog(title: "Add \(TypedOption.typeName)", message: "Enter a \(TypedOption.typeName.lowercased()) name", cancelHandler: nil) { optionName in
                 if let optionName = optionName, !optionName.isEmpty {
@@ -75,7 +77,9 @@ class OptionViewController<ViewModel: OptionViewModel>: UIViewController, UIColl
     func edit(oldOption: TypedAttributedOption) {
         switch oldOption {
         case let oldNote as AttributedNote:
-            present(UINavigationController(rootViewController: NoteViewController(note: oldNote)), animated: true, completion: nil)
+            let noteViewController = NoteViewController(note: oldNote)
+            noteViewController.delegate = self
+            present(UINavigationController(rootViewController: noteViewController), animated: true, completion: nil)
         default:
             showInputDialog(title: "Edit \(TypedOption.typeName)", message: "Enter a modified \(TypedOption.typeName.lowercased()) name", actionTitle: "OK", inputPlaceholder: oldOption.name, cancelHandler: nil) { optionName in
                 if let optionName = optionName, !optionName.isEmpty {

@@ -19,11 +19,11 @@ class NoteViewController: UIViewController {
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.addSubview(stackView)
+        scrollView.addSubview(noteView)
         return scrollView
     }()
-    var stackView: UIStackView = NoteView()
-    var fieldViews: [UITextView]!
+    var noteView: NoteView!
+    var addButton: UIBarButtonItem!
 
     convenience init() {
         self.init(note: nil)
@@ -48,7 +48,7 @@ class NoteViewController: UIViewController {
 
     func setUpNavBar() {
         let doneButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancel))
-        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(add))
+        addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(add))
         let editButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(edit))
         navigationItem.leftBarButtonItems = [doneButton]
         if initialNote == nil {
@@ -61,6 +61,8 @@ class NoteViewController: UIViewController {
     }
     
     func setUpView() {
+        noteView = NoteView(initialNote: initialNote?.source, axis: .vertical)
+        noteView.delegate = self
         view.backgroundColor = UIColor(named: FlashcardSettings.Colors.backgroundColor)
         view.addSubview(scrollView)
         let frameGuide = scrollView.frameLayoutGuide
@@ -71,10 +73,10 @@ class NoteViewController: UIViewController {
             frameGuide.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             frameGuide.bottomAnchor.constraint(equalTo: view.bottomAnchor),
 
-            contentGuide.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: -8),
-            contentGuide.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: 8),
-            contentGuide.bottomAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 20),
-            contentGuide.topAnchor.constraint(equalTo: stackView.topAnchor, constant: -20.0),
+            contentGuide.leadingAnchor.constraint(equalTo: noteView.leadingAnchor, constant: -8),
+            contentGuide.trailingAnchor.constraint(equalTo: noteView.trailingAnchor, constant: 8),
+            contentGuide.bottomAnchor.constraint(equalTo: noteView.bottomAnchor, constant: 20),
+            contentGuide.topAnchor.constraint(equalTo: noteView.topAnchor, constant: -20.0),
             contentGuide.widthAnchor.constraint(equalTo: frameGuide.widthAnchor),
             ])
     }
@@ -84,12 +86,22 @@ class NoteViewController: UIViewController {
     }
 
     @objc func add() {
-        delegate?.addNote(note: Note(name: "CHICKEN"))
+        if let note = noteView.note {
+            delegate?.addNote(note: note)
+            dismiss(animated: true, completion: nil)
+        }
     }
 
     @objc func edit() {
-        if let initialNote = initialNote {
-            delegate?.editNote(old: initialNote, new: Note(name: "CHICKdfsdf"))
+        if let initialNote = initialNote, let note = noteView.note {
+            delegate?.editNote(old: initialNote, new: note)
+            dismiss(animated: true, completion: nil)
         }
+    }
+}
+
+extension NoteViewController: NoteViewDelegate {
+    func noteUpdated() {
+        addButton.isEnabled = noteView.note != nil
     }
 }
