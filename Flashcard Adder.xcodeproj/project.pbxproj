@@ -21,7 +21,6 @@
 		E357B364251D2FB500354BCA /* FlashcardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E357B35E251D2FB500354BCA /* FlashcardViewController.swift */; };
 		E357B365251D2FB500354BCA /* ClozeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E357B35F251D2FB500354BCA /* ClozeViewController.swift */; };
 		E357B36C251D305B00354BCA /* UIViewController+HideKeyboardWheNTappedAround.swift in Sources */ = {isa = PBXBuildFile; fileRef = E357B36B251D305B00354BCA /* UIViewController+HideKeyboardWheNTappedAround.swift */; };
-		E357B370251D32BF00354BCA /* LabelTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E357B36F251D32BF00354BCA /* LabelTableViewCell.swift */; };
 		E359182225106E3D002F1A35 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E359182125106E3D002F1A35 /* AppDelegate.swift */; };
 		E359182425106E3D002F1A35 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E359182325106E3D002F1A35 /* SceneDelegate.swift */; };
 		E359182925106E3D002F1A35 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E359182725106E3D002F1A35 /* Main.storyboard */; };
@@ -52,7 +51,6 @@
 		E39647EE2537FCC300F803F4 /* FlashcardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E357B35E251D2FB500354BCA /* FlashcardViewController.swift */; };
 		E39647FE2537FEAF00F803F4 /* EditTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E369F9272515B71000A51A0D /* EditTextView.swift */; };
 		E39648022537FEEF00F803F4 /* BigButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E369F9282515B71100A51A0D /* BigButton.swift */; };
-		E39648062537FEF200F803F4 /* LabelTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E357B36F251D32BF00354BCA /* LabelTableViewCell.swift */; };
 		E39C88082544D07700B852BE /* HeaderSupplementaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3ABE99C2544CA0B00148D6F /* HeaderSupplementaryView.swift */; };
 		E39C88102545EDB300B852BE /* Array+Moved.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39C880F2545EDB300B852BE /* Array+Moved.swift */; };
 		E39C88132546180300B852BE /* Array+Moved.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39C880F2545EDB300B852BE /* Array+Moved.swift */; };
@@ -140,7 +138,6 @@
 		E357B35E251D2FB500354BCA /* FlashcardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FlashcardViewController.swift; path = "Flashcard Adder/FlashcardViewController.swift"; sourceTree = SOURCE_ROOT; };
 		E357B35F251D2FB500354BCA /* ClozeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ClozeViewController.swift; path = "Flashcard Adder/Cloze/ClozeViewController.swift"; sourceTree = SOURCE_ROOT; };
 		E357B36B251D305B00354BCA /* UIViewController+HideKeyboardWheNTappedAround.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+HideKeyboardWheNTappedAround.swift"; sourceTree = "<group>"; };
-		E357B36F251D32BF00354BCA /* LabelTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelTableViewCell.swift; sourceTree = "<group>"; };
 		E359181E25106E3D002F1A35 /* Flashcard Adder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Flashcard Adder.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E359182125106E3D002F1A35 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E359182325106E3D002F1A35 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -249,11 +246,10 @@
 			isa = PBXGroup;
 			children = (
 				E39C88432548AB8300B852BE /* Options */,
-				E39647A82537F80900F803F4 /* Flashcard Adder.entitlements */,
 				E3F8D9D0253F6579003E7CC7 /* Cloze */,
-				E3359E3125300E090039F537 /* Extensions */,
 				E369F93D2515B95C00A51A0D /* Model */,
 				E369F93C2515B94F00A51A0D /* Custom Views */,
+				E3359E3125300E090039F537 /* Extensions */,
 				E3F8D9B4253C92B5003E7CC7 /* Settings */,
 				E357B35E251D2FB500354BCA /* FlashcardViewController.swift */,
 				E3B7B56D253912D800E38EC4 /* Logger.swift */,
@@ -262,6 +258,7 @@
 				E359182725106E3D002F1A35 /* Main.storyboard */,
 				E3359E0725300CC80039F537 /* CreateFlashcard.storyboard */,
 				E3359E3A25301A4D0039F537 /* LaunchScreen.storyboard */,
+				E39647A82537F80900F803F4 /* Flashcard Adder.entitlements */,
 				E359182C25106E3D002F1A35 /* Assets.xcassets */,
 				E359183125106E3D002F1A35 /* Info.plist */,
 			);
@@ -271,7 +268,6 @@
 		E369F93C2515B94F00A51A0D /* Custom Views */ = {
 			isa = PBXGroup;
 			children = (
-				E357B36F251D32BF00354BCA /* LabelTableViewCell.swift */,
 				E369F9272515B71000A51A0D /* EditTextView.swift */,
 				E369F9282515B71100A51A0D /* BigButton.swift */,
 				E3ABE99C2544CA0B00148D6F /* HeaderSupplementaryView.swift */,
@@ -501,7 +497,6 @@
 				E369F9322515B71100A51A0D /* FlashcardSettings.swift in Sources */,
 				E3F8D9BB253C930E003E7CC7 /* SettingsViewModel.swift in Sources */,
 				E301AEF025217EE1006A9742 /* Field.swift in Sources */,
-				E357B370251D32BF00354BCA /* LabelTableViewCell.swift in Sources */,
 				E39C884C2548AC4F00B852BE /* OptionViewModel.swift in Sources */,
 				E369F9362515B71100A51A0D /* BigButton.swift in Sources */,
 				E3ABE99D2544CA0B00148D6F /* HeaderSupplementaryView.swift in Sources */,
@@ -556,7 +551,6 @@
 				E39C88522548AC7900B852BE /* OptionViewModelDelegate.swift in Sources */,
 				E39C883E2548AB0A00B852BE /* AttributedProfile.swift in Sources */,
 				E33CA725254B1D8D00A28175 /* BorderedTextField.swift in Sources */,
-				E39648062537FEF200F803F4 /* LabelTableViewCell.swift in Sources */,
 				E3F8D9AC253BF7AD003E7CC7 /* UIViewController+showInputDialog.swift in Sources */,
 				E3F8D9CD253F6571003E7CC7 /* ClozeViewModel.swift in Sources */,
 				E39647D92537FC9900F803F4 /* Cloze.swift in Sources */,
