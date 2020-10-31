@@ -253,7 +253,6 @@ extension OptionViewController: NoteViewControllerDelegate {
     
     func editNote(old: AttributedNote, new: Note) {
         if let old = old as? TypedAttributedOption, let new = new as? TypedOption {
-            print("EDITING")
             self.viewModel.edit(from: old, to: new)
         }
     }

@@ -367,9 +367,7 @@ extension FlashcardViewController: UITextViewDelegate {
     }
     
     func textViewDidChange(_ textView: UITextView) {
-        print("text view did change")
         if let textView = textView as? EditTextView, let fieldView = fieldViews.first(where: { $0.textView == textView }), let fieldName = fieldView.titleLabel.text {
-            print("updating field with name \(fieldName)")
             flashcard.updateField(name: fieldName, to: textView.text)
         }
         

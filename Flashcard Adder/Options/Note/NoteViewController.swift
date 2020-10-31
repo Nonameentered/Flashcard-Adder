@@ -94,7 +94,6 @@ class NoteViewController: UIViewController {
 
     @objc func edit() {
         if let initialNote = initialNote, let note = noteView.note {
-            print("EDITED NOTE")
             delegate?.editNote(old: initialNote, new: note)
             dismiss(animated: true, completion: nil)
         }

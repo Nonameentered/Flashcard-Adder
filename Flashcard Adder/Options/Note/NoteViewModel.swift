@@ -51,7 +51,6 @@ struct NoteViewModel: OptionViewModel {
     }
     
     mutating func makeDefault(_ item: AttributedNote) {
-        print("MAKING \(item) DEFAUlt")
         if item.source.acceptsCloze {
             makeClozeDefault(item)
         } else {

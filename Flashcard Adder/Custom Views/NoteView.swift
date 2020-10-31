@@ -112,7 +112,6 @@ class NoteView: UIStackView {
     }
     
     @objc func removeFieldSelected() {
-        print(fieldViews.count)
         if fieldViews.count > 2 {
             if let lastView = fieldViews.last {
                 lastView.removeFromSuperview()
