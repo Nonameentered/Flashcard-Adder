@@ -76,6 +76,8 @@ extension OptionViewModel where AttributedSourceType: AttributedOption, Attribut
     }
     
     mutating func edit(from oldItem: AttributedSourceType, to newItem: AttributedSourceType.sourceType) {
+        print(oldItem)
+        print(newItem)
         let newAttributedItem = AttributedSourceType(source: newItem, selected: selected)
         if all.firstIndex(of: newAttributedItem) == nil, let replaceIndex = all.firstIndex(of: oldItem) {
             all[replaceIndex] = newAttributedItem

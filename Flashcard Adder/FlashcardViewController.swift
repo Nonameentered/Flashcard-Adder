@@ -129,7 +129,7 @@ class FlashcardViewController: UIViewController {
                 } else if count == 1 {
                     self.stackView.insertArrangedSubview(view, at: 2)
                 } else {
-                    self.stackView.insertArrangedSubview(view, at: self.stackView.arrangedSubviews.count - 1)
+                    self.stackView.insertArrangedSubview(view, at: self.stackView.arrangedSubviews.count - 2)
                 }
             }
         }
@@ -269,8 +269,6 @@ class FlashcardViewController: UIViewController {
     @IBAction func unwindToFlashcardView(sender: UIStoryboardSegue) {
         if let sourceViewController = sender.source as? ClozeViewController {
             createCloze(clozeText: sourceViewController.viewModel.cloze, hintText: sourceViewController.viewModel.hint, savedRange: sourceViewController.viewModel.savedRange)
-        } else if let sourceViewController = sender.source as? NoteTypeViewController {
-            flashcard.updateNoteType(to: sourceViewController.viewModel.selectedNote)
         }
     }
     

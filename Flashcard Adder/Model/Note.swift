@@ -13,11 +13,7 @@ struct Note: Option {
     static let typeNamePlural = "Note Types"
     
     static func == (lhs: Note, rhs: Note) -> Bool {
-        lhs.name == rhs.name && lhs.fields == lhs.fields
-    }
-    
-    static func ~= (lhs: Note, rhs: Note) -> Bool {
-        lhs.name == rhs.name && lhs.fields ~= lhs.fields
+        lhs.name == rhs.name && lhs.fields == rhs.fields
     }
     
     let name: String

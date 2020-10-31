@@ -18,7 +18,6 @@
 		E33CA725254B1D8D00A28175 /* BorderedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E33CA723254B1D8D00A28175 /* BorderedTextField.swift */; };
 		E343E6B6254DF9D200765215 /* NoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E343E6B5254DF9D200765215 /* NoteView.swift */; };
 		E343E6B9254E033500765215 /* NoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E343E6B5254DF9D200765215 /* NoteView.swift */; };
-		E357B363251D2FB500354BCA /* OldAddNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E357B35D251D2FB500354BCA /* OldAddNoteViewController.swift */; };
 		E357B364251D2FB500354BCA /* FlashcardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E357B35E251D2FB500354BCA /* FlashcardViewController.swift */; };
 		E357B365251D2FB500354BCA /* ClozeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E357B35F251D2FB500354BCA /* ClozeViewController.swift */; };
 		E357B36C251D305B00354BCA /* UIViewController+HideKeyboardWheNTappedAround.swift in Sources */ = {isa = PBXBuildFile; fileRef = E357B36B251D305B00354BCA /* UIViewController+HideKeyboardWheNTappedAround.swift */; };
@@ -34,7 +33,6 @@
 		E369F9342515B71100A51A0D /* EditTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E369F9272515B71000A51A0D /* EditTextView.swift */; };
 		E369F9362515B71100A51A0D /* BigButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E369F9282515B71100A51A0D /* BigButton.swift */; };
 		E369F9382515B71100A51A0D /* Flashcard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E369F9292515B71100A51A0D /* Flashcard.swift */; };
-		E39595A7253906E70073FD2B /* NoteTypeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39595A6253906E70073FD2B /* NoteTypeViewModel.swift */; };
 		E39647B22537FC3700F803F4 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E39647B12537FC3700F803F4 /* Media.xcassets */; };
 		E39647BB2537FC3700F803F4 /* Action Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = E39647AF2537FC3700F803F4 /* Action Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		E39647C22537FC5A00F803F4 /* UIViewController+HideKeyboardWheNTappedAround.swift in Sources */ = {isa = PBXBuildFile; fileRef = E357B36B251D305B00354BCA /* UIViewController+HideKeyboardWheNTappedAround.swift */; };
@@ -52,8 +50,6 @@
 		E39647E42537FC9E00F803F4 /* String+CountInstances.swift in Sources */ = {isa = PBXBuildFile; fileRef = E306FAA625218D750012337D /* String+CountInstances.swift */; };
 		E39647E82537FCB100F803F4 /* ClozeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E357B35F251D2FB500354BCA /* ClozeViewController.swift */; };
 		E39647EE2537FCC300F803F4 /* FlashcardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E357B35E251D2FB500354BCA /* FlashcardViewController.swift */; };
-		E39647F22537FCC600F803F4 /* OldAddNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E357B35D251D2FB500354BCA /* OldAddNoteViewController.swift */; };
-		E39647F62537FCCA00F803F4 /* NoteTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D010F225355454006FB811 /* NoteTypeViewController.swift */; };
 		E39647FE2537FEAF00F803F4 /* EditTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E369F9272515B71000A51A0D /* EditTextView.swift */; };
 		E39648022537FEEF00F803F4 /* BigButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E369F9282515B71100A51A0D /* BigButton.swift */; };
 		E39648062537FEF200F803F4 /* LabelTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E357B36F251D32BF00354BCA /* LabelTableViewCell.swift */; };
@@ -83,12 +79,8 @@
 		E39C88632548C76400B852BE /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39C88622548C76400B852BE /* Section.swift */; };
 		E39C88642548C76400B852BE /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39C88622548C76400B852BE /* Section.swift */; };
 		E3ABE99D2544CA0B00148D6F /* HeaderSupplementaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3ABE99C2544CA0B00148D6F /* HeaderSupplementaryView.swift */; };
-		E3B7B56925390C5E00E38EC4 /* NoteTypeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39595A6253906E70073FD2B /* NoteTypeViewModel.swift */; };
 		E3B7B56E253912D800E38EC4 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B7B56D253912D800E38EC4 /* Logger.swift */; };
 		E3B7B56F253912D800E38EC4 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B7B56D253912D800E38EC4 /* Logger.swift */; };
-		E3B7B57225391C0500E38EC4 /* NoteType.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3D010E525354A4D006FB811 /* NoteType.storyboard */; };
-		E3D010E625354A4D006FB811 /* NoteType.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3D010E525354A4D006FB811 /* NoteType.storyboard */; };
-		E3D010F325355454006FB811 /* NoteTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D010F225355454006FB811 /* NoteTypeViewController.swift */; };
 		E3D011102537B9D7006FB811 /* String+MatchingStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D0110F2537B9D7006FB811 /* String+MatchingStrings.swift */; };
 		E3D011182537C4A8006FB811 /* Cloze.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D011162537C4A8006FB811 /* Cloze.swift */; };
 		E3F376F42548FDCF00A05F40 /* NoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F376F32548FDCF00A05F40 /* NoteViewController.swift */; };
@@ -145,7 +137,6 @@
 		E33CA71C254B161D00A28175 /* FieldStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldStackView.swift; sourceTree = "<group>"; };
 		E33CA723254B1D8D00A28175 /* BorderedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderedTextField.swift; sourceTree = "<group>"; };
 		E343E6B5254DF9D200765215 /* NoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteView.swift; sourceTree = "<group>"; };
-		E357B35D251D2FB500354BCA /* OldAddNoteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OldAddNoteViewController.swift; path = "Flashcard Adder/Note/OldAddNoteViewController.swift"; sourceTree = SOURCE_ROOT; };
 		E357B35E251D2FB500354BCA /* FlashcardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FlashcardViewController.swift; path = "Flashcard Adder/FlashcardViewController.swift"; sourceTree = SOURCE_ROOT; };
 		E357B35F251D2FB500354BCA /* ClozeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ClozeViewController.swift; path = "Flashcard Adder/Cloze/ClozeViewController.swift"; sourceTree = SOURCE_ROOT; };
 		E357B36B251D305B00354BCA /* UIViewController+HideKeyboardWheNTappedAround.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+HideKeyboardWheNTappedAround.swift"; sourceTree = "<group>"; };
@@ -164,7 +155,6 @@
 		E369F9282515B71100A51A0D /* BigButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BigButton.swift; sourceTree = "<group>"; };
 		E369F9292515B71100A51A0D /* Flashcard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Flashcard.swift; sourceTree = "<group>"; };
 		E388BB1A254359F300B549CD /* Action Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Action Extension.entitlements"; sourceTree = "<group>"; };
-		E39595A6253906E70073FD2B /* NoteTypeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteTypeViewModel.swift; sourceTree = "<group>"; };
 		E39647A82537F80900F803F4 /* Flashcard Adder.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Flashcard Adder.entitlements"; sourceTree = "<group>"; };
 		E39647AF2537FC3700F803F4 /* Action Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Action Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E39647B12537FC3700F803F4 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
@@ -183,8 +173,6 @@
 		E39C88622548C76400B852BE /* Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
 		E3ABE99C2544CA0B00148D6F /* HeaderSupplementaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderSupplementaryView.swift; sourceTree = "<group>"; };
 		E3B7B56D253912D800E38EC4 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
-		E3D010E525354A4D006FB811 /* NoteType.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NoteType.storyboard; sourceTree = "<group>"; };
-		E3D010F225355454006FB811 /* NoteTypeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteTypeViewController.swift; sourceTree = "<group>"; };
 		E3D0110F2537B9D7006FB811 /* String+MatchingStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+MatchingStrings.swift"; sourceTree = "<group>"; };
 		E3D011162537C4A8006FB811 /* Cloze.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cloze.swift; sourceTree = "<group>"; };
 		E3F376F32548FDCF00A05F40 /* NoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteViewController.swift; sourceTree = "<group>"; };
@@ -262,7 +250,6 @@
 			children = (
 				E39C88432548AB8300B852BE /* Options */,
 				E39647A82537F80900F803F4 /* Flashcard Adder.entitlements */,
-				E3A7AFAA253BEF8000CE1035 /* Note */,
 				E3F8D9D0253F6579003E7CC7 /* Cloze */,
 				E3359E3125300E090039F537 /* Extensions */,
 				E369F93D2515B95C00A51A0D /* Model */,
@@ -350,17 +337,6 @@
 				E39C88582548B34300B852BE /* NoteViewModel.swift */,
 				E39C885D2548B37500B852BE /* AttributedNote.swift */,
 				E3F376F32548FDCF00A05F40 /* NoteViewController.swift */,
-			);
-			path = Note;
-			sourceTree = "<group>";
-		};
-		E3A7AFAA253BEF8000CE1035 /* Note */ = {
-			isa = PBXGroup;
-			children = (
-				E357B35D251D2FB500354BCA /* OldAddNoteViewController.swift */,
-				E39595A6253906E70073FD2B /* NoteTypeViewModel.swift */,
-				E3D010F225355454006FB811 /* NoteTypeViewController.swift */,
-				E3D010E525354A4D006FB811 /* NoteType.storyboard */,
 			);
 			path = Note;
 			sourceTree = "<group>";
@@ -477,7 +453,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				E3359E0825300CC80039F537 /* CreateFlashcard.storyboard in Resources */,
-				E3D010E625354A4D006FB811 /* NoteType.storyboard in Resources */,
 				E3359E3B25301A4D0039F537 /* LaunchScreen.storyboard in Resources */,
 				E359182D25106E3D002F1A35 /* Assets.xcassets in Resources */,
 				E359182925106E3D002F1A35 /* Main.storyboard in Resources */,
@@ -490,7 +465,6 @@
 			files = (
 				E39647B22537FC3700F803F4 /* Media.xcassets in Resources */,
 				E39647CA2537FC6B00F803F4 /* CreateFlashcard.storyboard in Resources */,
-				E3B7B57225391C0500E38EC4 /* NoteType.storyboard in Resources */,
 				E39647C62537FC6400F803F4 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -510,12 +484,10 @@
 				E357B36C251D305B00354BCA /* UIViewController+HideKeyboardWheNTappedAround.swift in Sources */,
 				E3F8D9B0253C0074003E7CC7 /* UIColor+DarkerLighterExtensions.swift in Sources */,
 				E39C885E2548B37500B852BE /* AttributedNote.swift in Sources */,
-				E357B363251D2FB500354BCA /* OldAddNoteViewController.swift in Sources */,
 				E3D011102537B9D7006FB811 /* String+MatchingStrings.swift in Sources */,
 				E369F9342515B71100A51A0D /* EditTextView.swift in Sources */,
 				E39C88592548B34300B852BE /* NoteViewModel.swift in Sources */,
 				E39C882D2547B3EA00B852BE /* ProfileViewModel.swift in Sources */,
-				E39595A7253906E70073FD2B /* NoteTypeViewModel.swift in Sources */,
 				E306FAAC25218DF60012337D /* UIView+FirstResponder.swift in Sources */,
 				E3D011182537C4A8006FB811 /* Cloze.swift in Sources */,
 				E3F8D9CC253F6571003E7CC7 /* ClozeViewModel.swift in Sources */,
@@ -548,7 +520,6 @@
 				E39C882425475D6800B852BE /* OptionViewController.swift in Sources */,
 				E39C88632548C76400B852BE /* Section.swift in Sources */,
 				E369F9302515B71100A51A0D /* Deck.swift in Sources */,
-				E3D010F325355454006FB811 /* NoteTypeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -576,11 +547,9 @@
 				E3B7B56F253912D800E38EC4 /* Logger.swift in Sources */,
 				E39647DC2537FC9900F803F4 /* Profile.swift in Sources */,
 				E39647DE2537FC9900F803F4 /* Field.swift in Sources */,
-				E39647F22537FCC600F803F4 /* OldAddNoteViewController.swift in Sources */,
 				E39C88462548AC3600B852BE /* AttributedOption.swift in Sources */,
 				E39647E82537FCB100F803F4 /* ClozeViewController.swift in Sources */,
 				E39C884D2548AC4F00B852BE /* OptionViewModel.swift in Sources */,
-				E39647F62537FCCA00F803F4 /* NoteTypeViewController.swift in Sources */,
 				E39C88132546180300B852BE /* Array+Moved.swift in Sources */,
 				E343E6B9254E033500765215 /* NoteView.swift in Sources */,
 				E3F8D9C3253C93E8003E7CC7 /* Setting.swift in Sources */,
@@ -590,7 +559,6 @@
 				E39648062537FEF200F803F4 /* LabelTableViewCell.swift in Sources */,
 				E3F8D9AC253BF7AD003E7CC7 /* UIViewController+showInputDialog.swift in Sources */,
 				E3F8D9CD253F6571003E7CC7 /* ClozeViewModel.swift in Sources */,
-				E3B7B56925390C5E00E38EC4 /* NoteTypeViewModel.swift in Sources */,
 				E39647D92537FC9900F803F4 /* Cloze.swift in Sources */,
 				E39647FE2537FEAF00F803F4 /* EditTextView.swift in Sources */,
 				E3F8D9B7253C92F1003E7CC7 /* SettingsListViewController.swift in Sources */,

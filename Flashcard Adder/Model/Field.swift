@@ -16,10 +16,6 @@ struct Field: Codable, Hashable {
         lhs.name == rhs.name && lhs.text == rhs.text && lhs.fieldType == rhs.fieldType
     }
     
-    static func ~= (lhs: Field, rhs: Field) -> Bool {
-        lhs.name == rhs.name && lhs.text == rhs.text
-    }
-    
     enum FieldType: String, Codable {
         case cloze, tag, normal
     }
