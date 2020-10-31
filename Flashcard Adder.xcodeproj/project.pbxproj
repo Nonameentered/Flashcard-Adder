@@ -16,6 +16,8 @@
 		E33CA71E254B161E00A28175 /* FieldStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E33CA71C254B161D00A28175 /* FieldStackView.swift */; };
 		E33CA724254B1D8D00A28175 /* BorderedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E33CA723254B1D8D00A28175 /* BorderedTextField.swift */; };
 		E33CA725254B1D8D00A28175 /* BorderedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E33CA723254B1D8D00A28175 /* BorderedTextField.swift */; };
+		E343E6B6254DF9D200765215 /* NoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E343E6B5254DF9D200765215 /* NoteView.swift */; };
+		E343E6B9254E033500765215 /* NoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E343E6B5254DF9D200765215 /* NoteView.swift */; };
 		E357B363251D2FB500354BCA /* OldAddNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E357B35D251D2FB500354BCA /* OldAddNoteViewController.swift */; };
 		E357B364251D2FB500354BCA /* FlashcardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E357B35E251D2FB500354BCA /* FlashcardViewController.swift */; };
 		E357B365251D2FB500354BCA /* ClozeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E357B35F251D2FB500354BCA /* ClozeViewController.swift */; };
@@ -142,6 +144,7 @@
 		E3359E3A25301A4D0039F537 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E33CA71C254B161D00A28175 /* FieldStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldStackView.swift; sourceTree = "<group>"; };
 		E33CA723254B1D8D00A28175 /* BorderedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderedTextField.swift; sourceTree = "<group>"; };
+		E343E6B5254DF9D200765215 /* NoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteView.swift; sourceTree = "<group>"; };
 		E357B35D251D2FB500354BCA /* OldAddNoteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OldAddNoteViewController.swift; path = "Flashcard Adder/Note/OldAddNoteViewController.swift"; sourceTree = SOURCE_ROOT; };
 		E357B35E251D2FB500354BCA /* FlashcardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FlashcardViewController.swift; path = "Flashcard Adder/FlashcardViewController.swift"; sourceTree = SOURCE_ROOT; };
 		E357B35F251D2FB500354BCA /* ClozeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ClozeViewController.swift; path = "Flashcard Adder/Cloze/ClozeViewController.swift"; sourceTree = SOURCE_ROOT; };
@@ -287,6 +290,7 @@
 				E3ABE99C2544CA0B00148D6F /* HeaderSupplementaryView.swift */,
 				E33CA71C254B161D00A28175 /* FieldStackView.swift */,
 				E33CA723254B1D8D00A28175 /* BorderedTextField.swift */,
+				E343E6B5254DF9D200765215 /* NoteView.swift */,
 			);
 			path = "Custom Views";
 			sourceTree = "<group>";
@@ -498,6 +502,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E343E6B6254DF9D200765215 /* NoteView.swift in Sources */,
 				E3F376F42548FDCF00A05F40 /* NoteViewController.swift in Sources */,
 				E39C88512548AC7900B852BE /* OptionViewModelDelegate.swift in Sources */,
 				E39C88452548AC3600B852BE /* AttributedOption.swift in Sources */,
@@ -577,6 +582,7 @@
 				E39C884D2548AC4F00B852BE /* OptionViewModel.swift in Sources */,
 				E39647F62537FCCA00F803F4 /* NoteTypeViewController.swift in Sources */,
 				E39C88132546180300B852BE /* Array+Moved.swift in Sources */,
+				E343E6B9254E033500765215 /* NoteView.swift in Sources */,
 				E3F8D9C3253C93E8003E7CC7 /* Setting.swift in Sources */,
 				E39C88522548AC7900B852BE /* OptionViewModelDelegate.swift in Sources */,
 				E39C883E2548AB0A00B852BE /* AttributedProfile.swift in Sources */,

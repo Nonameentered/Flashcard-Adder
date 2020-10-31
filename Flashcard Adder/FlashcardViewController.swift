@@ -10,25 +10,6 @@ import os.log
 import UIKit
 
 class FlashcardViewController: UIViewController {
-    @IBOutlet var frontLabel: UILabel! {
-        didSet {
-            frontLabel.text = flashcard.fieldNames[0]
-        }
-    }
-
-    @IBOutlet var frontTextView: EditTextView! {
-        didSet {
-            frontTextView.text = flashcard.originalText
-        }
-    }
-
-    @IBOutlet var backLabel: UILabel! {
-        didSet {
-            backLabel.text = flashcard.fieldNames[1]
-        }
-    }
-
-    @IBOutlet var backTextView: EditTextView!
     @IBOutlet var referenceSpaceTextView: EditTextView! {
         didSet {
             referenceSpaceTextView.text = flashcard.referenceText
@@ -56,7 +37,28 @@ class FlashcardViewController: UIViewController {
             profileButton.setTitle("Profile: " + flashcard.profileName, for: .normal)
         }
     }
+
+    @IBOutlet var stackView: UIStackView!
+    @IBOutlet var referenceSpaceStackView: UIStackView!
+    @IBOutlet weak var clozeStackView: UIStackView!
     
+    var fieldViews: [FieldStackView] = [] {
+        didSet {
+            for view in fieldViews {
+                view.textView.delegate = self
+            }
+        }
+    }
+    
+    var fieldTextViews: [EditTextView] {
+        fieldViews.map { $0.textView }
+    }
+    var frontTextView: EditTextView {
+        fieldViews[0].textView
+    }
+    var backTextView: EditTextView {
+        fieldViews[1].textView
+    }
     var flashcard = Flashcard()
     
     // MARK: - Lifecycle
@@ -64,6 +66,7 @@ class FlashcardViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setUpFieldViews()
         NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground), name: UIApplication.didBecomeActiveNotification, object: nil)
         
         #if Main
@@ -72,8 +75,8 @@ class FlashcardViewController: UIViewController {
         navigationItem.leftBarButtonItems = [cancelButton, resetButton]
         #endif
         hideKeyboardWhenTappedAround()
-        frontTextView.delegate = self
-        backTextView.delegate = self
+//        frontTextView.delegate = self
+//        backTextView.delegate = self
         referenceSpaceTextView.delegate = self
         flashcard.delegate = self
         
@@ -112,6 +115,25 @@ class FlashcardViewController: UIViewController {
     }
     
     @objc func willEnterForeground() {}
+    
+    // MARK: View Modifications
+    
+    func setUpFieldViews() {
+        DispatchQueue.main.async {
+            self.fieldViews.forEach { $0.removeFromSuperview() }
+            self.fieldViews = self.flashcard.fields.map { FieldStackView(fieldName: $0.name, text: $0.text, axis: .vertical) }
+            
+            for (count, view) in self.fieldViews.enumerated() {
+                if count == 0 {
+                    self.stackView.insertArrangedSubview(view, at: 0)
+                } else if count == 1 {
+                    self.stackView.insertArrangedSubview(view, at: 2)
+                } else {
+                    self.stackView.insertArrangedSubview(view, at: self.stackView.arrangedSubviews.count - 1)
+                }
+            }
+        }
+    }
     
     // MARK: Keyboard/Menu Modifiers
 
@@ -347,11 +369,13 @@ extension FlashcardViewController: UITextViewDelegate {
     }
     
     func textViewDidChange(_ textView: UITextView) {
-        if textView == frontTextView {
-            flashcard.updateField(name: frontLabel.text ?? "", to: frontTextView.text)
-        } else if textView == backTextView {
-            flashcard.updateField(name: backLabel.text ?? "", to: backTextView.text)
-        } else if textView == referenceSpaceTextView {
+        print("text view did change")
+        if let textView = textView as? EditTextView, let fieldView = fieldViews.first(where: { $0.textView == textView }), let fieldName = fieldView.titleLabel.text {
+            print("updating field with name \(fieldName)")
+            flashcard.updateField(name: fieldName, to: textView.text)
+        }
+        
+        if textView == referenceSpaceTextView {
             flashcard.referenceText = referenceSpaceTextView.text
         }
         
@@ -376,8 +400,7 @@ extension FlashcardViewController: FlashcardDelegate {
     
     func noteTypeDidChange(flashcard: Flashcard, from: Note, to: Note) {
         typeButton.setTitle("Type: " + flashcard.noteTypeName, for: .normal)
-        frontLabel.text = to.fields[0].name
-        backLabel.text = to.fields[1].name
+        setUpFieldViews()
     }
     
     func deckDidChange(flashcard: Flashcard, from: Deck, to: Deck) {

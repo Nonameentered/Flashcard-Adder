@@ -32,21 +32,25 @@ struct Flashcard: Codable {
     }
     
     var noteTypeName: String {
-        return note.name
+        note.name
     }
     
     var deckName: String {
-        return deck.name
+        deck.name
     }
     
     var profileName: String {
-        return profile.name
+        profile.name
     }
     
     var fieldNames: [String] {
-        return note.fields.map {
+        note.fields.map {
             $0.name
         }
+    }
+    
+    var fields: [Field] {
+        note.fields
     }
     
     var isValid: Bool {
@@ -118,16 +122,18 @@ struct Flashcard: Codable {
     }
     
     mutating func updateNoteType(to noteType: Note) {
-        let oldNote = note
-        note = noteType
-        
-        for (count, _) in noteType.fields.enumerated() {
-            if count < oldNote.fields.count, !oldNote.fields[count].text.isEmpty {
-                note.fields[count].text = oldNote.fields[count].text
+        if noteType != note {
+            let oldNote = note
+            note = noteType
+            
+            for (count, _) in noteType.fields.enumerated() {
+                if count < oldNote.fields.count, !oldNote.fields[count].text.isEmpty {
+                    note.fields[count].text = oldNote.fields[count].text
+                }
             }
+            
+            delegate?.noteTypeDidChange(flashcard: self, from: oldNote, to: note)
         }
-        
-        delegate?.noteTypeDidChange(flashcard: self, from: oldNote, to: note)
     }
     
     mutating func updateDeck(to deck: Deck) {
