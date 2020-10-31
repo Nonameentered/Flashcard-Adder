@@ -141,11 +141,11 @@ class FlashcardViewController: UIViewController {
         return [
             UIKeyCommand(title: "Create Cloze", action: #selector(clozeSelected), input: "c", modifierFlags: [.command, .shift]),
             UIKeyCommand(title: "Editable Cloze", action: #selector(clozeWithHint), input: "v", modifierFlags: [.command, .shift]),
-            UIKeyCommand(title: "Cloze Back Text with Editable Hint", action: #selector(makeHintCloze), input: "f", modifierFlags: [.command, .shift]),
+            UIKeyCommand(title: "Cloze Back Text", action: #selector(makeHintCloze), input: "f", modifierFlags: [.command, .shift]),
             UIKeyCommand(title: "Sequential Cloze", action: #selector(sequentialCloze), input: "e", modifierFlags: [.command]),
             UIKeyCommand(title: "Repetitive Cloze", action: #selector(repetitiveCloze), input: "s", modifierFlags: [.command]),
             UIKeyCommand(title: "Editable Cloze", action: #selector(clozeWithHint), input: "d", modifierFlags: [.command]),
-            UIKeyCommand(title: "Cloze Back Text with Editable Hint", action: #selector(makeHintCloze), input: "w", modifierFlags: [.command]),
+            UIKeyCommand(title: "Cloze Back Text", action: #selector(makeHintCloze), input: "w", modifierFlags: [.command]),
             UIKeyCommand(title: "Add Note", action: #selector(addCard), input: "\r", modifierFlags: []),
             UIKeyCommand(title: "New Line", action: #selector(newLine), input: "\r", modifierFlags: [.shift])
         ]
