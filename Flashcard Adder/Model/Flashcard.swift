@@ -79,8 +79,6 @@ struct Flashcard: Codable {
         updateField(index: 0, to: self.originalText)
         updateField(index: 1, to: "")
         
-        setFieldDelegates()
-        
         delegate?.flashcardDidCreate(flashcard: self)
     }
     
@@ -160,24 +158,5 @@ struct Flashcard: Codable {
     
     mutating func updateField(index: Int, to text: String) {
         note.fields[index].text = text
-    }
-    
-    // Currently Unused. I hope this can replace the Cloze section in AnkiViewController eventually
-    @available(*, unavailable)
-    mutating func insertCloze(sequential: Bool = true, cloze: Cloze, textRange: Range<String>) {
-        if note.acceptsCloze {
-            updateNoteType(to: FlashcardSettings.shared.defaultClozeNoteType)
-        }
-    }
-}
-
-extension Flashcard: FieldDelegate {
-    // Currently Unused
-    func clozeDidCreate(_ field: Field, changeNoteType: Bool) {
-        print("CLOZE")
-    }
-    
-    private mutating func setFieldDelegates() {
-        note.fields = note.fields.map { var newField = $0; newField.delegate = self; return newField }
     }
 }
