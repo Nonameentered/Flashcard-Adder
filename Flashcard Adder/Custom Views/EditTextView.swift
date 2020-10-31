@@ -23,7 +23,7 @@ class EditTextView: UITextView {
     private func setUpView() {
         backgroundColor = UIColor(named: "backgroundColor")
         textColor = UIColor(named: "textColor")
-        font = UIFont(name: "AvenirNext-Regular", size: 16)! // Move to settings
+        font = UIFont(name: "AvenirNext-Regular", size: 16)! // TODO: Move to settings
 
         layer.cornerRadius = 5
         layer.borderWidth = 1

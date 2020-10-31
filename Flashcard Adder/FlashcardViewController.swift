@@ -75,8 +75,6 @@ class FlashcardViewController: UIViewController {
         navigationItem.leftBarButtonItems = [cancelButton, resetButton]
         #endif
         hideKeyboardWhenTappedAround()
-//        frontTextView.delegate = self
-//        backTextView.delegate = self
         referenceSpaceTextView.delegate = self
         flashcard.delegate = self
         

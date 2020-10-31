@@ -7,6 +7,7 @@
 
 import Foundation
 
+// Taken from Ian Bytchek here: https://stackoverflow.com/a/50205000/14362235
 extension Array where Element: Equatable {
     func moved(_ element: Element, to newIndex: Index) -> Array? where Element: Equatable {
         if let oldIndex: Int = firstIndex(of: element) { return moved(from: oldIndex, to: newIndex) }

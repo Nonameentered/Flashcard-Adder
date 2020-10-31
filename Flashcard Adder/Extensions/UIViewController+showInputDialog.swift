@@ -7,7 +7,7 @@
 
 import UIKit
 
-// Slightly modified (variable name change) from @Gunhan on https://stackoverflow.com/a/48065833/14362235
+// Slightly modified from @Gunhan on https://stackoverflow.com/a/48065833/14362235
 extension UIViewController {
     func showInputDialog(title: String? = nil,
                          message: String? = nil,

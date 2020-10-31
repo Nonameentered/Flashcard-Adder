@@ -59,6 +59,7 @@ final class FlashcardSettings {
         FlashcardSettings.store.set(nil, forKey: Key.defaultDeck.rawValue)
         FlashcardSettings.store.set(nil, forKey: Key.noteTypes.rawValue)
         FlashcardSettings.store.set(nil, forKey: Key.decks.rawValue)
+        FlashcardSettings.store.set(nil, forKey: Key.ankiProfiles.rawValue)
         FlashcardSettings.store.synchronize()
     }
     
