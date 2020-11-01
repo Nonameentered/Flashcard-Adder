@@ -10,12 +10,7 @@ import UIKit
 class FieldStackView: UIStackView {
     var titleLabel: UILabel!
     var textView: EditTextView!
-    var starButton: UIButton!
-    var isSelected: Bool! {
-        didSet {
-            starButton.tintColor = isSelected ? UIColor.systemYellow : UIColor.systemGray
-        }
-    }
+    var starButton: StarButton? = nil
     
     init(fieldName: String, text: String? = nil, axis: NSLayoutConstraint.Axis = .horizontal, oneLine: Bool = true, addStar: Bool = false) {
         super.init(frame: .zero)
@@ -43,16 +38,14 @@ class FieldStackView: UIStackView {
         
         addArrangedSubview(titleLabel)
         if addStar {
-            starButton = UIButton(type: .system, primaryAction: UIAction { _ in
-                self.isSelected = !self.isSelected
-            })
-            starButton.setImage(UIImage(systemName: "starButton.fill")?.withRenderingMode(.alwaysTemplate), for: .normal)
-            isSelected = false
-            let buttonFieldStack = UIStackView(arrangedSubviews: [starButton, textView])
-            buttonFieldStack.axis = .horizontal
-            buttonFieldStack.distribution = UIStackView.Distribution.fillProportionally
-            buttonFieldStack.spacing = 10
-            addArrangedSubview(buttonFieldStack)
+            starButton = StarButton()
+            if let starButton = starButton {
+                let buttonFieldStack = UIStackView(arrangedSubviews: [starButton, textView])
+                buttonFieldStack.axis = .horizontal
+                buttonFieldStack.distribution = UIStackView.Distribution.fillProportionally
+                buttonFieldStack.spacing = 10
+                addArrangedSubview(buttonFieldStack)
+            }
         } else {
             addArrangedSubview(textView)
         }
