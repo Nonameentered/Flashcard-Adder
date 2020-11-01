@@ -119,7 +119,7 @@ class FlashcardViewController: UIViewController {
     func setUpFieldViews() {
         DispatchQueue.main.async {
             self.fieldViews.forEach { $0.removeFromSuperview() }
-            self.fieldViews = self.flashcard.fields.map { FieldStackView(fieldName: $0.name, text: $0.text, axis: .vertical, oneLine: false) }
+            self.fieldViews = self.flashcard.fields.map { FieldStackView(fieldName: $0.name, text: $0.text, axis: .vertical, oneLine: false, addStar: true) }
             
             for (count, view) in self.fieldViews.enumerated() {
                 if count == 0 {

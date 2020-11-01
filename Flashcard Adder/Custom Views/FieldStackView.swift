@@ -10,24 +10,31 @@ import UIKit
 class FieldStackView: UIStackView {
     var titleLabel: UILabel!
     var textView: EditTextView!
-    init(fieldName: String, text: String? = nil, axis: NSLayoutConstraint.Axis = .horizontal, oneLine: Bool = true) {
+    var starButton: UIButton!
+    var isSelected: Bool! {
+        didSet {
+            starButton.tintColor = isSelected ? UIColor.systemYellow : UIColor.systemGray
+        }
+    }
+    
+    init(fieldName: String, text: String? = nil, axis: NSLayoutConstraint.Axis = .horizontal, oneLine: Bool = true, addStar: Bool = false) {
         super.init(frame: .zero)
-        setUpView(fieldName: fieldName, axis: axis, oneLine: oneLine)
+        setUpView(fieldName: fieldName, axis: axis, oneLine: oneLine, addStar: addStar)
         if text != nil {
             textView.text = text
         }
     }
-    
+
     @available(*, unavailable)
     required init(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    private func setUpView(fieldName: String, axis: NSLayoutConstraint.Axis, oneLine: Bool) {
+
+    private func setUpView(fieldName: String, axis: NSLayoutConstraint.Axis, oneLine: Bool, addStar: Bool) {
         titleLabel = UILabel()
         titleLabel.text = fieldName
         textView = EditTextView()
-        
+
         // This makes sure everything stays on line when on a horizontal axis
         if oneLine {
             textView.textContainer.maximumNumberOfLines = 1
@@ -35,10 +42,21 @@ class FieldStackView: UIStackView {
         }
         
         addArrangedSubview(titleLabel)
-        addArrangedSubview(textView)
+        if addStar {
+            starButton = UIButton(type: .system, primaryAction: UIAction { _ in
+                self.isSelected = !self.isSelected
+            })
+            starButton.setImage(UIImage(systemName: "starButton.fill")?.withRenderingMode(.alwaysTemplate), for: .normal)
+            isSelected = false
+            let buttonFieldStack = UIStackView(arrangedSubviews: [starButton, textView])
+            buttonFieldStack.axis = .horizontal
+            buttonFieldStack.distribution = UIStackView.Distribution.fillProportionally
+            buttonFieldStack.spacing = 10
+            addArrangedSubview(buttonFieldStack)
+        } else {
+            addArrangedSubview(textView)
+        }
         self.axis = axis
         spacing = 10
     }
 }
-
-
