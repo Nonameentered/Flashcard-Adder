@@ -11,13 +11,10 @@ class StarButton: UIButton {
     
     init() {
         super.init(frame: .zero)
-        let largeConfig = UIImage.SymbolConfiguration(pointSize: 30, weight: .regular, scale: .default)
-        setImage(UIImage(systemName: "star", withConfiguration: largeConfig)?.withRenderingMode(.alwaysOriginal).withTintColor(.systemGray), for: .normal)
-        setImage(UIImage(systemName: "star.fill", withConfiguration: largeConfig)?.withRenderingMode(.alwaysOriginal).withTintColor(.systemYellow), for: .selected)
-//        tintColor = .systemGray
-//        print(isSelected)
+        let config = UIImage.SymbolConfiguration(pointSize: 30, weight: .light, scale: .default)
+        setImage(UIImage(systemName: "star", withConfiguration: config), for: .normal)
+        setImage(UIImage(systemName: "star.fill", withConfiguration: config)?.withRenderingMode(.alwaysOriginal).withTintColor(.systemYellow), for: .selected)
         addTarget(self, action: #selector(setSelected), for: .touchUpInside)
-        
     }
     
     required init?(coder: NSCoder) {
@@ -26,6 +23,5 @@ class StarButton: UIButton {
     
     @objc func setSelected() {
         isSelected = !isSelected
-//        tintColor = isSelected ? UIColor.systemYellow : UIColor.systemGray
     }
 }
