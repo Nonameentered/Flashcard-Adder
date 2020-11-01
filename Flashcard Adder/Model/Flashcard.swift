@@ -16,7 +16,6 @@ protocol FlashcardDelegate {
 }
 
 struct Flashcard: Codable {
-    let originalText: String
     var note: Note
     var deck: Deck
     var profile: Profile
@@ -24,7 +23,6 @@ struct Flashcard: Codable {
     var delegate: FlashcardDelegate?
     
     private enum CodingKeys: String, CodingKey {
-        case originalText
         case note
         case deck
         case profile
