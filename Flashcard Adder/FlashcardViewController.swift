@@ -314,21 +314,26 @@ extension FlashcardViewController {
             
             let clozeString = Cloze(subject: subject).clozeString(with: clozeCounter)
             
-            frontTextView.replace(textRange, withText: clozeString)
+            cloze(textRange: textRange, clozeString: clozeString)
         }
-        
-        flashcard.updateNoteType(to: FlashcardSettings.shared.defaultClozeNoteType)
     }
     
     func createCloze(clozeText: String, hintText: String, savedRange: UITextRange?) {
         let clozeCounter = (Cloze.highestCurrentCloze(text: frontTextView.text) ?? 0) + 1
-        let cloze = Cloze(subject: clozeText, hint: hintText).clozeString(with: clozeCounter)
+        let clozeString = Cloze(subject: clozeText, hint: hintText).clozeString(with: clozeCounter)
         
         if let textRange = savedRange {
-            frontTextView.replace(textRange, withText: cloze)
+            cloze(textRange: textRange, clozeString: clozeString)
+        }
+    }
+    
+    func cloze(textRange: UITextRange, clozeString: String) {
+        frontTextView.replace(textRange, withText: clozeString)
+        if !flashcard.note.acceptsCloze {
+            flashcard.updateNoteType(to: FlashcardSettings.shared.defaultClozeNoteType)
         }
         
-        flashcard.updateNoteType(to: FlashcardSettings.shared.defaultClozeNoteType)
+        frontTextView.becomeFirstResponder()
     }
     
     @objc func clozeWithHint(_ sender: Any) {
