@@ -119,7 +119,6 @@ class NoteView: UIStackView {
                 if lastView.textView.isFirstResponder {
                     fieldViews.last?.textView.becomeFirstResponder()
                 }
-                
             }
         }
     }
