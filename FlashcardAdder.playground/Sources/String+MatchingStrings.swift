@@ -22,3 +22,13 @@ public extension String {
         }
     }
 }
+
+
+public extension String {
+    var replaceNewlinesWithSpaces: Self {
+        self.replacingOccurrences(of: "-\\n", with: "", options: .regularExpression).replacingOccurrences(of: "\\n", with: " ", options: .regularExpression)
+    }
+    var newThing: Self {
+        self
+    }
+}

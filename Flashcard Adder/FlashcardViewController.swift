@@ -135,6 +135,7 @@ class FlashcardViewController: UIViewController {
     
     // MARK: Keyboard/Menu Modifiers
 
+    //TODO: FIX THIS STUFF
     override var keyCommands: [UIKeyCommand]? {
         return [
             UIKeyCommand(title: "Create Cloze", action: #selector(clozeSelected), input: "c", modifierFlags: [.command, .shift]),
@@ -179,6 +180,19 @@ class FlashcardViewController: UIViewController {
         if let firstResponder = view.window?.firstResponder as? UITextView {
             firstResponder.text = firstResponder.text + "\n"
         }
+    }
+    
+    @IBAction func cleanUpFrontPressed(_ sender: Any) {
+        cleanUp(textView: frontTextView)
+    }
+    @IBAction func cleanUpReferencePressed(_ sender: Any) {
+        cleanUp(textView: referenceSpaceTextView)
+    }
+    
+    func cleanUp(textView: UITextView) {
+        textView.text = textView.text.cleanedOfNewLines
+        updateFlashcardField(with: textView)
+        textView.becomeFirstResponder()
     }
     
     @IBAction func addCard(_ sender: Any) {
@@ -370,6 +384,10 @@ extension FlashcardViewController: UITextViewDelegate {
     }
     
     func textViewDidChange(_ textView: UITextView) {
+        updateFlashcardField(with: textView)
+    }
+    
+    func updateFlashcardField(with textView: UITextView) {
         if let textView = textView as? EditTextView, let fieldView = fieldViews.first(where: { $0.textView == textView }), let fieldName = fieldView.titleLabel.text {
             flashcard.updateField(name: fieldName, to: textView.text)
         }

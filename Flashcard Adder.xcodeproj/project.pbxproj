@@ -18,6 +18,8 @@
 		E33CA725254B1D8D00A28175 /* BorderedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E33CA723254B1D8D00A28175 /* BorderedTextField.swift */; };
 		E343E6B6254DF9D200765215 /* NoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E343E6B5254DF9D200765215 /* NoteView.swift */; };
 		E343E6B9254E033500765215 /* NoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E343E6B5254DF9D200765215 /* NoteView.swift */; };
+		E343E6D3254E2DAD00765215 /* String+CleanedOfNewLines.swift in Sources */ = {isa = PBXBuildFile; fileRef = E343E6D2254E2DAD00765215 /* String+CleanedOfNewLines.swift */; };
+		E343E6D4254E2DAD00765215 /* String+CleanedOfNewLines.swift in Sources */ = {isa = PBXBuildFile; fileRef = E343E6D2254E2DAD00765215 /* String+CleanedOfNewLines.swift */; };
 		E357B364251D2FB500354BCA /* FlashcardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E357B35E251D2FB500354BCA /* FlashcardViewController.swift */; };
 		E357B365251D2FB500354BCA /* ClozeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E357B35F251D2FB500354BCA /* ClozeViewController.swift */; };
 		E357B36C251D305B00354BCA /* UIViewController+HideKeyboardWheNTappedAround.swift in Sources */ = {isa = PBXBuildFile; fileRef = E357B36B251D305B00354BCA /* UIViewController+HideKeyboardWheNTappedAround.swift */; };
@@ -129,6 +131,7 @@
 		E33CA71C254B161D00A28175 /* FieldStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldStackView.swift; sourceTree = "<group>"; };
 		E33CA723254B1D8D00A28175 /* BorderedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderedTextField.swift; sourceTree = "<group>"; };
 		E343E6B5254DF9D200765215 /* NoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteView.swift; sourceTree = "<group>"; };
+		E343E6D2254E2DAD00765215 /* String+CleanedOfNewLines.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+CleanedOfNewLines.swift"; sourceTree = "<group>"; };
 		E357B35E251D2FB500354BCA /* FlashcardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FlashcardViewController.swift; path = "Flashcard Adder/FlashcardViewController.swift"; sourceTree = SOURCE_ROOT; };
 		E357B35F251D2FB500354BCA /* ClozeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ClozeViewController.swift; path = "Flashcard Adder/Cloze/ClozeViewController.swift"; sourceTree = SOURCE_ROOT; };
 		E357B36B251D305B00354BCA /* UIViewController+HideKeyboardWheNTappedAround.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+HideKeyboardWheNTappedAround.swift"; sourceTree = "<group>"; };
@@ -204,6 +207,7 @@
 			children = (
 				E306FAAB25218DF60012337D /* UIView+FirstResponder.swift */,
 				E306FAA625218D750012337D /* String+CountInstances.swift */,
+				E343E6D2254E2DAD00765215 /* String+CleanedOfNewLines.swift */,
 				E3D0110F2537B9D7006FB811 /* String+MatchingStrings.swift */,
 				E357B36B251D305B00354BCA /* UIViewController+HideKeyboardWheNTappedAround.swift */,
 				E3F8D9AA253BF7AD003E7CC7 /* UIViewController+showInputDialog.swift */,
@@ -469,6 +473,7 @@
 				E3F8D9CC253F6571003E7CC7 /* ClozeViewModel.swift in Sources */,
 				E3F8D9A1253BF209003E7CC7 /* DeckViewModel.swift in Sources */,
 				E39C88102545EDB300B852BE /* Array+Moved.swift in Sources */,
+				E343E6D3254E2DAD00765215 /* String+CleanedOfNewLines.swift in Sources */,
 				E3B7B56E253912D800E38EC4 /* Logger.swift in Sources */,
 				E357B364251D2FB500354BCA /* FlashcardViewController.swift in Sources */,
 				E369F92A2515B71100A51A0D /* Note.swift in Sources */,
@@ -529,6 +534,7 @@
 				E33CA725254B1D8D00A28175 /* BorderedTextField.swift in Sources */,
 				E3F8D9AC253BF7AD003E7CC7 /* UIViewController+showInputDialog.swift in Sources */,
 				E3F8D9CD253F6571003E7CC7 /* ClozeViewModel.swift in Sources */,
+				E343E6D4254E2DAD00765215 /* String+CleanedOfNewLines.swift in Sources */,
 				E39647D92537FC9900F803F4 /* Cloze.swift in Sources */,
 				E39647FE2537FEAF00F803F4 /* EditTextView.swift in Sources */,
 				E39647DB2537FC9900F803F4 /* Note.swift in Sources */,
