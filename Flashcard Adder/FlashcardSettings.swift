@@ -41,7 +41,7 @@ final class FlashcardSettings {
     }
     
     enum Key: String, Codable {
-        case defaultAnkiProfile, defaultNoteType, defaultClozeNoteType, defaultDeck, noteTypes, decks, ankiProfiles
+        case defaultAnkiProfile, defaultNoteType, defaultClozeNoteType, defaultDeck, noteTypes, decks, ankiProfiles, savedFlashcard
     }
     
     static func registerDefaults() {
@@ -66,6 +66,7 @@ final class FlashcardSettings {
         FlashcardSettings.store.set(nil, forKey: Key.noteTypes.rawValue)
         FlashcardSettings.store.set(nil, forKey: Key.decks.rawValue)
         FlashcardSettings.store.set(nil, forKey: Key.ankiProfiles.rawValue)
+        FlashcardSettings.store.set(nil, forKey: Key.savedFlashcard.rawValue)
         FlashcardSettings.store.synchronize()
     }
     
@@ -144,6 +145,22 @@ final class FlashcardSettings {
             FlashcardSettings.setCodable(for: Key.ankiProfiles.rawValue, newValue)
             FlashcardSettings.store.synchronize()
             Logger.settings.info("Set anki profiles \(newValue)")
+        }
+    }
+    
+    var savedFlashcard: Flashcard? {
+        get {
+            return FlashcardSettings.codable(for: Key.savedFlashcard.rawValue)
+        }
+        set {
+            FlashcardSettings.setCodable(for: Key.savedFlashcard.rawValue, newValue)
+            FlashcardSettings.store.synchronize()
+            if newValue != nil {
+                Logger.settings.info("Set saved flashcard")
+            } else {
+                Logger.settings.info("Empty saved flashcard")
+            }
+            
         }
     }
 }

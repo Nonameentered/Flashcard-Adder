@@ -70,7 +70,8 @@ class FlashcardViewController: UIViewController {
         super.viewDidLoad()
         
         setUpFieldViews()
-        NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground), name: UIApplication.didBecomeActiveNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(didEnterForeground), name: UIApplication.didBecomeActiveNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(willResignActive), name: UIApplication.willResignActiveNotification, object: nil)
         
         #if Main
         navigationItem.leftBarButtonItems = [resetButton]
@@ -110,12 +111,17 @@ class FlashcardViewController: UIViewController {
         enableCustomMenu()
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        view.endEditing(true)
+    @objc func didEnterForeground() {
+        if let savedFlashcard = FlashcardSettings.shared.savedFlashcard {
+            flashcard = savedFlashcard
+            setUpFieldViews()
+            FlashcardSettings.shared.savedFlashcard = nil
+        }
     }
     
-    @objc func willEnterForeground() {}
+    @objc func willResignActive() {
+        FlashcardSettings.shared.savedFlashcard = flashcard
+    }
     
     // MARK: View Modifications
     
@@ -133,6 +139,8 @@ class FlashcardViewController: UIViewController {
                     self.stackView.insertArrangedSubview(view, at: self.stackView.arrangedSubviews.count - 2)
                 }
             }
+            self.referenceSpaceTextView.text = self.flashcard.referenceText
+            self.updateAddButtonState()
             self.frontTextView.becomeFirstResponder()
         }
     }
@@ -462,7 +470,6 @@ extension FlashcardViewController: OptionViewControllerDelegate {
 
 extension FlashcardViewController: FieldStackViewDelegate {
     func didToggle(view: FieldStackView, starState: Bool) {
-        print("DID TOGGLEEEE \(view) to \(starState)")
         if let name = view.titleLabel.text {
             flashcard.toggleFrozenField(name: name, to: starState)
         }
