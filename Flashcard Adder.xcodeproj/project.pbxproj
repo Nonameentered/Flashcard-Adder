@@ -317,11 +317,11 @@
 				E39C882325475D6800B852BE /* OptionViewController.swift */,
 				E3F8D999253BF1A1003E7CC7 /* OptionViewControllerDelegate.swift */,
 				E39C88502548AC7900B852BE /* OptionViewModelDelegate.swift */,
+				E39C884B2548AC4F00B852BE /* OptionViewModel.swift */,
+				E39C88622548C76400B852BE /* Section.swift */,
 				E39C88572548B33400B852BE /* Note */,
 				E39C882225475D4A00B852BE /* Profile */,
 				E3F8D998253BF162003E7CC7 /* Deck */,
-				E39C884B2548AC4F00B852BE /* OptionViewModel.swift */,
-				E39C88622548C76400B852BE /* Section.swift */,
 			);
 			path = Options;
 			sourceTree = "<group>";
