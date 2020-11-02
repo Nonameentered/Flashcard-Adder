@@ -46,6 +46,7 @@ class FieldStackView: UIStackView {
         addArrangedSubview(titleLabel)
         starButton = StarButton(action: UIAction { _ in
             self.delegate?.didToggle(view: self, starState: self.starButton.isSelected)
+            self.textView.becomeFirstResponder()
         })
         let buttonFieldStack = UIStackView(arrangedSubviews: [starButton, textView])
         buttonFieldStack.axis = .horizontal
