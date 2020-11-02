@@ -15,7 +15,7 @@ class OptionViewController<ViewModel: OptionViewModel>: UIViewController, UIColl
     var viewModel: ViewModel
     
     typealias TypedAttributedOption = ViewModel.AttributedSourceType
-    typealias TypedOption = TypedAttributedOption.sourceType
+    typealias TypedOption = TypedAttributedOption.SourceType
     typealias TypedSession = Section<TypedAttributedOption>
     typealias DataSource = UICollectionViewDiffableDataSource<TypedSession, TypedAttributedOption>
 
