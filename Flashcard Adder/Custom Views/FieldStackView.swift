@@ -10,13 +10,18 @@ import UIKit
 class FieldStackView: UIStackView {
     var titleLabel: UILabel!
     var textView: EditTextView!
-    var starButton: StarButton? = nil
+    var starButton: StarButton!
+    var delegate: FieldStackViewDelegate?
     
-    init(fieldName: String, text: String? = nil, axis: NSLayoutConstraint.Axis = .horizontal, oneLine: Bool = true, addStar: Bool = false) {
+    init(fieldName: String, text: String? = nil, axis: NSLayoutConstraint.Axis = .vertical, oneLine: Bool = true, showStar: Bool = true, isFrozen: Bool? = nil, delegate: FieldStackViewDelegate? = nil) {
+        self.delegate = delegate
         super.init(frame: .zero)
-        setUpView(fieldName: fieldName, axis: axis, oneLine: oneLine, addStar: addStar)
-        if text != nil {
+        setUpView(fieldName: fieldName, axis: axis, oneLine: oneLine)
+        if let text = text {
             textView.text = text
+        }
+        if let isFrozen = isFrozen {
+            starButton.isSelected = isFrozen
         }
     }
 
@@ -25,7 +30,9 @@ class FieldStackView: UIStackView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    private func setUpView(fieldName: String, axis: NSLayoutConstraint.Axis, oneLine: Bool, addStar: Bool) {
+    private func setUpView(fieldName: String, axis: NSLayoutConstraint.Axis, oneLine: Bool) {
+        self.axis = axis
+        spacing = 10
         titleLabel = UILabel()
         titleLabel.text = fieldName
         textView = EditTextView()
@@ -37,19 +44,17 @@ class FieldStackView: UIStackView {
         }
         
         addArrangedSubview(titleLabel)
-        if addStar {
-            starButton = StarButton()
-            if let starButton = starButton {
-                let buttonFieldStack = UIStackView(arrangedSubviews: [starButton, textView])
-                buttonFieldStack.axis = .horizontal
-                buttonFieldStack.distribution = UIStackView.Distribution.fillProportionally
-                buttonFieldStack.spacing = 10
-                addArrangedSubview(buttonFieldStack)
-            }
-        } else {
-            addArrangedSubview(textView)
-        }
-        self.axis = axis
-        spacing = 10
+        starButton = StarButton(action: UIAction { _ in
+            self.delegate?.didToggle(view: self, starState: self.starButton.isSelected)
+        })
+        let buttonFieldStack = UIStackView(arrangedSubviews: [starButton, textView])
+        buttonFieldStack.axis = .horizontal
+        buttonFieldStack.distribution = UIStackView.Distribution.fillProportionally
+        buttonFieldStack.spacing = 10
+        addArrangedSubview(buttonFieldStack)
     }
+}
+
+protocol FieldStackViewDelegate {
+    func didToggle(view: FieldStackView, starState: Bool)
 }

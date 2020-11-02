@@ -33,4 +33,10 @@ struct Note: Option {
             $0.fieldType == .cloze
         }
     }
+    
+    func copyRespectingFrozen() -> Note {
+        Note(name: name, fields: fields.map {
+            Field(name: $0.name, text: $0.isFrozen ? $0.text : "", fieldType: $0.fieldType, isFrozen: $0.isFrozen)
+        })
+    }
 }

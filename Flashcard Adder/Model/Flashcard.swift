@@ -63,19 +63,15 @@ struct Flashcard: Codable {
         }
     }
     
-    init(originalText: String? = nil, note: Note? = nil, deck: Deck? = nil, profile: Profile? = nil, referenceText: String? = nil, delegate: FlashcardDelegate? = nil) {
+    init(note: Note? = nil, deck: Deck? = nil, profile: Profile? = nil, referenceText: String? = nil, delegate: FlashcardDelegate? = nil) {
         #if Action
         FlashcardSettings.registerDefaults()
         #endif
-        self.originalText = originalText ?? ""
         self.note = note ?? FlashcardSettings.shared.defaultNoteType
         self.deck = deck ?? FlashcardSettings.shared.defaultDeck
         self.profile = profile ?? FlashcardSettings.shared.defaultAnkiProfile
         self.referenceText = referenceText ?? ""
         self.delegate = delegate
-        
-        updateField(index: 0, to: self.originalText)
-        updateField(index: 1, to: "")
         
         delegate?.flashcardDidCreate(flashcard: self)
     }
@@ -83,7 +79,7 @@ struct Flashcard: Codable {
     // Creates a new flashcard following previous settings
     // Revise to allow frozen fields/other options
     init(previous: Flashcard, delegate: FlashcardDelegate? = nil) {
-        self.init(originalText: "", note: previous.note, deck: previous.deck, profile: previous.profile, referenceText: previous.referenceText, delegate: delegate)
+        self.init(note: previous.note.copyRespectingFrozen(), deck: previous.deck, profile: previous.profile, referenceText: previous.referenceText, delegate: delegate)
     }
     
     // Not a computed property because it calls the mutating function checkNoteType
@@ -125,6 +121,7 @@ struct Flashcard: Codable {
             for (count, _) in noteType.fields.enumerated() {
                 if count < oldNote.fields.count, !oldNote.fields[count].text.isEmpty {
                     note.fields[count].text = oldNote.fields[count].text
+                    note.fields[count].isFrozen = oldNote.fields[count].isFrozen
                 }
             }
             
@@ -156,5 +153,13 @@ struct Flashcard: Codable {
     
     mutating func updateField(index: Int, to text: String) {
         note.fields[index].text = text
+    }
+    
+    mutating func toggleFrozenField(name: String, to isFrozen: Bool) {
+        if let index = fieldNames.firstIndex(of: name) {
+            note.fields[index].isFrozen = isFrozen
+        } else {
+            Logger.flashcard.error("Field \(name) does not exist.")
+        }
     }
 }

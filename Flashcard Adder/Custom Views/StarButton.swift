@@ -9,12 +9,13 @@ import UIKit
 
 class StarButton: UIButton {
     
-    init() {
+    init(action: UIAction) {
         super.init(frame: .zero)
         let config = UIImage.SymbolConfiguration(pointSize: 30, weight: .light, scale: .default)
         setImage(UIImage(systemName: "star", withConfiguration: config), for: .normal)
-        setImage(UIImage(systemName: "star.fill", withConfiguration: config)?.withRenderingMode(.alwaysOriginal).withTintColor(.systemYellow), for: .selected)
+        setImage(UIImage(systemName: "star.fill", withConfiguration: config), for: .selected)
         addTarget(self, action: #selector(setSelected), for: .touchUpInside)
+        addAction(action, for: .touchUpInside)
     }
     
     required init?(coder: NSCoder) {
@@ -25,3 +26,4 @@ class StarButton: UIButton {
         isSelected = !isSelected
     }
 }
+

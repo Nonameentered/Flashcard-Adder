@@ -119,7 +119,7 @@ class FlashcardViewController: UIViewController {
     func setUpFieldViews() {
         DispatchQueue.main.async {
             self.fieldViews.forEach { $0.removeFromSuperview() }
-            self.fieldViews = self.flashcard.fields.map { FieldStackView(fieldName: $0.name, text: $0.text, axis: .vertical, oneLine: false, addStar: true) }
+            self.fieldViews = self.flashcard.fields.map { FieldStackView(fieldName: $0.name, text: $0.text, oneLine: false, isFrozen: $0.isFrozen, delegate: self) }
             
             for (count, view) in self.fieldViews.enumerated() {
                 if count == 0 {
@@ -135,7 +135,6 @@ class FlashcardViewController: UIViewController {
     
     // MARK: Keyboard/Menu Modifiers
 
-    //TODO: FIX THIS STUFF
     override var keyCommands: [UIKeyCommand]? {
         return [
             UIKeyCommand(title: "Create Cloze", action: #selector(clozeSelected), input: "c", modifierFlags: [.command, .shift]),
@@ -175,6 +174,10 @@ class FlashcardViewController: UIViewController {
         flashcard = Flashcard(delegate: self)
     }
 
+    @IBAction func clearReferencePressed(_ sender: Any) {
+        referenceSpaceTextView.text = ""
+        updateFlashcardText(with: referenceSpaceTextView)
+    }
     /// Adds a new line to the currently active text view, if a text view is active
     @objc func newLine() {
         if let firstResponder = view.window?.firstResponder as? UITextView {
@@ -191,7 +194,7 @@ class FlashcardViewController: UIViewController {
     
     func cleanUp(textView: UITextView) {
         textView.text = textView.text.cleanedOfNewLines
-        updateFlashcardField(with: textView)
+        updateFlashcardText(with: textView)
         textView.becomeFirstResponder()
     }
     
@@ -365,6 +368,7 @@ extension FlashcardViewController: UITextViewDelegate {
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         if textView == frontTextView || textView == backTextView || textView == referenceSpaceTextView, text == "\t" || text == "\n" {
             if text == "\t" {
+                //TODO: FIx this
                 if textView == frontTextView {
                     backTextView.becomeFirstResponder()
                 }
@@ -384,10 +388,10 @@ extension FlashcardViewController: UITextViewDelegate {
     }
     
     func textViewDidChange(_ textView: UITextView) {
-        updateFlashcardField(with: textView)
+        updateFlashcardText(with: textView)
     }
     
-    func updateFlashcardField(with textView: UITextView) {
+    func updateFlashcardText(with textView: UITextView) {
         if let textView = textView as? EditTextView, let fieldView = fieldViews.first(where: { $0.textView == textView }), let fieldName = fieldView.titleLabel.text {
             flashcard.updateField(name: fieldName, to: textView.text)
         }
@@ -446,4 +450,17 @@ extension FlashcardViewController: OptionViewControllerDelegate {
     func noteChanged(_ note: Note) {
         flashcard.updateNoteType(to: note)
     }
+}
+
+// MARK: FlashcardDelegate
+
+extension FlashcardViewController: FieldStackViewDelegate {
+    func didToggle(view: FieldStackView, starState: Bool) {
+        print("DID TOGGLEEEE \(view) to \(starState)")
+        if let name = view.titleLabel.text {
+            flashcard.toggleFrozenField(name: name, to: starState)
+        }
+    }
+    
+
 }
