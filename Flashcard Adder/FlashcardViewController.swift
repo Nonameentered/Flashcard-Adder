@@ -156,8 +156,7 @@ class FlashcardViewController: UIViewController {
             UIKeyCommand(title: "Repetitive Cloze", action: #selector(repetitiveCloze), input: "s", modifierFlags: [.command]),
             UIKeyCommand(title: "Editable Cloze", action: #selector(clozeWithHint), input: "d", modifierFlags: [.command]),
             UIKeyCommand(title: "Cloze Back Text", action: #selector(makeHintCloze), input: "w", modifierFlags: [.command]),
-            UIKeyCommand(title: "Add Note", action: #selector(addCard), input: "\r", modifierFlags: []),
-            UIKeyCommand(title: "New Line", action: #selector(newLine), input: "\r", modifierFlags: [.shift])
+            UIKeyCommand(title: "Add Note", action: #selector(addCard), input: "\r", modifierFlags: [.command])
         ]
     }
     
@@ -189,13 +188,6 @@ class FlashcardViewController: UIViewController {
     @IBAction func clearReferencePressed(_ sender: Any) {
         referenceSpaceTextView.text = ""
         updateFlashcardText(with: referenceSpaceTextView)
-    }
-
-    /// Adds a new line to the currently active text view, if a text view is active
-    @objc func newLine() {
-        if let firstResponder = view.window?.firstResponder as? UITextView {
-            firstResponder.text = firstResponder.text + "\n"
-        }
     }
     
     @IBAction func cleanUpFrontPressed(_ sender: Any) {
@@ -393,8 +385,6 @@ extension FlashcardViewController: UITextViewDelegate {
                 fieldViews[0].textView.becomeFirstResponder()
             }
             return false
-        } else if text == "\n" {
-            return true
         } else {
             return true
         }
