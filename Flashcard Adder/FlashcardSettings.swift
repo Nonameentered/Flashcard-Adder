@@ -5,7 +5,7 @@
 //  Created by Matthew Shu on 9/16/20.
 //
 
-import Foundation
+import UIKit
 import os.log
 
 final class FlashcardSettings {
@@ -27,7 +27,13 @@ final class FlashcardSettings {
     }
     
     enum Colors {
-        static let backgroundColor = "backgroundColor"
+        static let backgroundColor = UIColor(named: "backgroundColor")
+        static let textColor = UIColor(named: "textColor")
+        static let tintColor = UIColor(named: "tintColor")
+    }
+    
+    enum Fonts {
+        static let regularFont = UIFont(name: "AvenirNext-Regular", size: 16)!
     }
     
     enum ElementKind {

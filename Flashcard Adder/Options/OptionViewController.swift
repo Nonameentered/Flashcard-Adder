@@ -145,7 +145,7 @@ class OptionViewController<ViewModel: OptionViewModel>: UIViewController, UIColl
 extension OptionViewController {
     private func createLayout() -> UICollectionViewLayout {
         var config = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
-        config.backgroundColor = UIColor(named: FlashcardSettings.Colors.backgroundColor)
+        config.backgroundColor = FlashcardSettings.Colors.backgroundColor
 
         config.headerMode = .supplementary
         config.leadingSwipeActionsConfigurationProvider = { [unowned self] indexPath -> UISwipeActionsConfiguration in

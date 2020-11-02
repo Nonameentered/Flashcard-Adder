@@ -24,11 +24,11 @@ class BigButton: UIButton {
         if let title = title {
             setTitle(title, for: .normal)
         }
-        backgroundColor = UIColor(named: "backgroundColor")
-        setTitleColor(UIColor(named: "tintColor"), for: .normal)
+        backgroundColor = FlashcardSettings.Colors.backgroundColor
+        setTitleColor(FlashcardSettings.Colors.tintColor, for: .normal)
         layer.cornerRadius = 5
         layer.borderWidth = 1
-        layer.borderColor = UIColor(named: "tintColor")!.cgColor
+        layer.borderColor = FlashcardSettings.Colors.tintColor!.cgColor
         
         adjustsImageWhenDisabled = true
         adjustsImageWhenHighlighted = true
@@ -39,10 +39,10 @@ extension UIButton {
     static func createStandardButton(withTitle: String) -> UIButton {
         let button = UIButton(type: .system)
         button.setTitle(withTitle, for: .normal)
-        button.backgroundColor = UIColor(named: "backgroundColor")
+        button.backgroundColor = FlashcardSettings.Colors.backgroundColor
         button.layer.cornerRadius = 5
         button.layer.borderWidth = 1
-        button.layer.borderColor = UIColor(named: "tintColor")!.cgColor
+        button.layer.borderColor = FlashcardSettings.Colors.tintColor!.cgColor
         button.adjustsImageWhenDisabled = true
         button.adjustsImageWhenHighlighted = true
         return button

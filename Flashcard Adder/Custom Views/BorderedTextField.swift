@@ -18,11 +18,11 @@ class BorderedTextField: UITextField {
     }
     
     private func setUpField() {
-        backgroundColor = UIColor(named: "backgroundColor")
-        textColor = UIColor(named: "textColor")
+        backgroundColor = FlashcardSettings.Colors.backgroundColor
+        textColor = FlashcardSettings.Colors.textColor
 
         layer.cornerRadius = 5
         layer.borderWidth = 1
-        layer.borderColor = UIColor(named: "tintColor")!.cgColor
+        layer.borderColor = FlashcardSettings.Colors.tintColor!.cgColor
     }
 }

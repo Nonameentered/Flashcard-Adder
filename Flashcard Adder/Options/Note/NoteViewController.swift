@@ -63,7 +63,7 @@ class NoteViewController: UIViewController {
     func setUpView() {
         noteView = NoteView(initialNote: initialNote?.source, axis: .vertical)
         noteView.delegate = self
-        view.backgroundColor = UIColor(named: FlashcardSettings.Colors.backgroundColor)
+        view.backgroundColor = FlashcardSettings.Colors.backgroundColor
         view.addSubview(scrollView)
         let frameGuide = scrollView.frameLayoutGuide
         let contentGuide = scrollView.contentLayoutGuide

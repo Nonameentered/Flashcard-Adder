@@ -21,13 +21,13 @@ class EditTextView: UITextView {
     }
     
     private func setUpView() {
-        backgroundColor = UIColor(named: "backgroundColor")
-        textColor = UIColor(named: "textColor")
-        font = UIFont(name: "AvenirNext-Regular", size: 16)! // TODO: Move to settings
+        backgroundColor = FlashcardSettings.Colors.backgroundColor
+        textColor = FlashcardSettings.Colors.textColor
+        font = FlashcardSettings.Fonts.regularFont
 
         layer.cornerRadius = 5
         layer.borderWidth = 1
-        layer.borderColor = UIColor(named: "tintColor")!.cgColor
+        layer.borderColor = FlashcardSettings.Colors.tintColor!.cgColor
         isScrollEnabled = false
     }
 }
