@@ -40,7 +40,7 @@ class FlashcardViewController: UIViewController {
 
     @IBOutlet var stackView: UIStackView!
     @IBOutlet var referenceSpaceStackView: UIStackView!
-    @IBOutlet weak var clozeStackView: UIStackView!
+    @IBOutlet var clozeStackView: UIStackView!
     
     var fieldViews: [FieldStackView] = [] {
         didSet {
@@ -53,12 +53,15 @@ class FlashcardViewController: UIViewController {
     var fieldTextViews: [EditTextView] {
         fieldViews.map { $0.textView }
     }
+
     var frontTextView: EditTextView {
         fieldViews[0].textView
     }
+
     var backTextView: EditTextView {
         fieldViews[1].textView
     }
+
     var flashcard = Flashcard()
     
     // MARK: - Lifecycle
@@ -130,6 +133,7 @@ class FlashcardViewController: UIViewController {
                     self.stackView.insertArrangedSubview(view, at: self.stackView.arrangedSubviews.count - 2)
                 }
             }
+            self.frontTextView.becomeFirstResponder()
         }
     }
     
@@ -178,6 +182,7 @@ class FlashcardViewController: UIViewController {
         referenceSpaceTextView.text = ""
         updateFlashcardText(with: referenceSpaceTextView)
     }
+
     /// Adds a new line to the currently active text view, if a text view is active
     @objc func newLine() {
         if let firstResponder = view.window?.firstResponder as? UITextView {
@@ -188,6 +193,7 @@ class FlashcardViewController: UIViewController {
     @IBAction func cleanUpFrontPressed(_ sender: Any) {
         cleanUp(textView: frontTextView)
     }
+
     @IBAction func cleanUpReferencePressed(_ sender: Any) {
         cleanUp(textView: referenceSpaceTextView)
     }
@@ -366,22 +372,22 @@ extension FlashcardViewController {
 
 extension FlashcardViewController: UITextViewDelegate {
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        if textView == frontTextView || textView == backTextView || textView == referenceSpaceTextView, text == "\t" || text == "\n" {
-            if text == "\t" {
-                //TODO: FIx this
-                if textView == frontTextView {
-                    backTextView.becomeFirstResponder()
-                }
-                
-                if textView == backTextView {
+        if text == "\t" {
+            if let textView = textView as? EditTextView, let index = fieldViews.firstIndex(where: { $0.textView == textView }) {
+                let newIndex = index + 1
+                if fieldViews.indices.contains(newIndex) {
+                    fieldViews[newIndex].textView.becomeFirstResponder()
+                } else {
                     referenceSpaceTextView.becomeFirstResponder()
                 }
-                
-                if textView == referenceSpaceTextView {
-                    frontTextView.becomeFirstResponder()
-                }
+            }
+            
+            if textView == referenceSpaceTextView {
+                fieldViews[0].textView.becomeFirstResponder()
             }
             return false
+        } else if text == "\n" {
+            return true
         } else {
             return true
         }
@@ -461,6 +467,4 @@ extension FlashcardViewController: FieldStackViewDelegate {
             flashcard.toggleFrozenField(name: name, to: starState)
         }
     }
-    
-
 }
