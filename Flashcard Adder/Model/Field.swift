@@ -12,6 +12,10 @@ struct Field: Codable, Hashable {
         lhs.name == rhs.name && lhs.text == rhs.text && lhs.fieldType == rhs.fieldType && lhs.isFrozen == rhs.isFrozen
     }
     
+    static func ~= (lhs: Field, rhs: Field) -> Bool {
+        lhs.name == rhs.name && lhs.fieldType == rhs.fieldType
+    }
+    
     enum FieldType: String, Codable {
         case cloze, tag, normal
     }
@@ -41,5 +45,20 @@ struct Field: Codable, Hashable {
         hasher.combine(text)
         hasher.combine(fieldType)
         hasher.combine(isFrozen)
+    }
+}
+
+extension Array where Element == Field {
+    static func ~= (lhs: Array<Field>, rhs: Array<Field>) -> Bool {
+        if rhs.count == lhs.count {
+            for (ele1, ele2) in zip(lhs, rhs) {
+                if !(ele1 ~= ele2) {
+                    return false
+                }
+            }
+            return true
+        } else {
+            return false
+        }
     }
 }

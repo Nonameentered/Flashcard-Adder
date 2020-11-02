@@ -16,6 +16,10 @@ struct Note: Option {
         lhs.name == rhs.name && lhs.fields == rhs.fields
     }
     
+    static func ~= (lhs: Note, rhs: Note) -> Bool {
+        lhs.name == rhs.name && lhs.fields ~= rhs.fields
+    }
+    
     let name: String
     var fields: [Field]
     
@@ -38,5 +42,9 @@ struct Note: Option {
         Note(name: name, fields: fields.map {
             Field(name: $0.name, text: $0.isFrozen ? $0.text : "", fieldType: $0.fieldType, isFrozen: $0.isFrozen)
         })
+    }
+    
+    func cleanedCopyWithoutText() -> Note {
+        Note(name: self.name, fields: self.fields.map { Field(name: $0.name, text: "", fieldType: $0.fieldType, isFrozen: $0.isFrozen) } )
     }
 }

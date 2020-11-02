@@ -10,6 +10,10 @@ import Foundation
 struct AttributedNote: AttributedOption {
     let source: Note
     let selected: Note
+    var isSelected: Bool {
+        // ~= is to account for how text can be different in selected note
+        return source ~= selected
+    }
     var isDefault: Bool {
         isDefaultCloze || isDefaultNormal
     }
@@ -21,7 +25,7 @@ struct AttributedNote: AttributedOption {
     }
     
     static func == (lhs: Self, rhs: Self) -> Bool {
-        lhs.source == rhs.source && lhs.isDefault == rhs.isDefault && lhs.isSelected == rhs.isSelected && lhs.isDefaultCloze == rhs.isDefaultCloze && lhs.isDefaultNormal == rhs.isDefaultNormal
+       return lhs.source == rhs.source && lhs.isDefault == rhs.isDefault && lhs.isSelected == rhs.isSelected && lhs.isDefaultCloze == rhs.isDefaultCloze && lhs.isDefaultNormal == rhs.isDefaultNormal
     }
 
     func hash(into hasher: inout Hasher) {
