@@ -382,9 +382,8 @@ extension FlashcardViewController: UITextViewDelegate {
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         if text == "\t" {
             if let textView = textView as? EditTextView, let index = fieldViews.firstIndex(where: { $0.textView == textView }) {
-                let newIndex = index + 1
-                if fieldViews.indices.contains(newIndex) {
-                    fieldViews[newIndex].textView.becomeFirstResponder()
+                if let fieldView = fieldViews[safe: index + 1] {
+                    fieldView.textView.becomeFirstResponder()
                 } else {
                     referenceSpaceTextView.becomeFirstResponder()
                 }

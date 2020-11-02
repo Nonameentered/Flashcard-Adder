@@ -29,6 +29,8 @@
 		E359182D25106E3D002F1A35 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E359182C25106E3D002F1A35 /* Assets.xcassets */; };
 		E35CE634254F23B0001E4CEE /* StarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35CE633254F23B0001E4CEE /* StarButton.swift */; };
 		E35CE635254F23B0001E4CEE /* StarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35CE633254F23B0001E4CEE /* StarButton.swift */; };
+		E35CE63B255050EC001E4CEE /* Collection+SafeSubscript.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35CE63A255050EC001E4CEE /* Collection+SafeSubscript.swift */; };
+		E35CE63C255050EC001E4CEE /* Collection+SafeSubscript.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35CE63A255050EC001E4CEE /* Collection+SafeSubscript.swift */; };
 		E369F92A2515B71100A51A0D /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = E369F9222515B71000A51A0D /* Note.swift */; };
 		E369F92E2515B71100A51A0D /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = E369F9242515B71000A51A0D /* Profile.swift */; };
 		E369F9302515B71100A51A0D /* Deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = E369F9252515B71000A51A0D /* Deck.swift */; };
@@ -144,6 +146,7 @@
 		E359182C25106E3D002F1A35 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E359183125106E3D002F1A35 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E35CE633254F23B0001E4CEE /* StarButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarButton.swift; sourceTree = "<group>"; };
+		E35CE63A255050EC001E4CEE /* Collection+SafeSubscript.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+SafeSubscript.swift"; sourceTree = "<group>"; };
 		E369F9222515B71000A51A0D /* Note.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
 		E369F9242515B71000A51A0D /* Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		E369F9252515B71000A51A0D /* Deck.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Deck.swift; sourceTree = "<group>"; };
@@ -216,6 +219,7 @@
 				E3F8D9AA253BF7AD003E7CC7 /* UIViewController+showInputDialog.swift */,
 				E3F8D9AF253C0074003E7CC7 /* UIColor+DarkerLighterExtensions.swift */,
 				E39C880F2545EDB300B852BE /* Array+Moved.swift */,
+				E35CE63A255050EC001E4CEE /* Collection+SafeSubscript.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -478,6 +482,7 @@
 				E3F8D9A1253BF209003E7CC7 /* DeckViewModel.swift in Sources */,
 				E39C88102545EDB300B852BE /* Array+Moved.swift in Sources */,
 				E343E6D3254E2DAD00765215 /* String+CleanedOfNewLines.swift in Sources */,
+				E35CE63B255050EC001E4CEE /* Collection+SafeSubscript.swift in Sources */,
 				E3B7B56E253912D800E38EC4 /* Logger.swift in Sources */,
 				E357B364251D2FB500354BCA /* FlashcardViewController.swift in Sources */,
 				E369F92A2515B71100A51A0D /* Note.swift in Sources */,
@@ -548,6 +553,7 @@
 				E39647EE2537FCC300F803F4 /* FlashcardViewController.swift in Sources */,
 				E39C885F2548B37500B852BE /* AttributedNote.swift in Sources */,
 				E39C88642548C76400B852BE /* Section.swift in Sources */,
+				E35CE63C255050EC001E4CEE /* Collection+SafeSubscript.swift in Sources */,
 				E39C88082544D07700B852BE /* HeaderSupplementaryView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
