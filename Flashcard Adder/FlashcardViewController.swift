@@ -19,6 +19,7 @@ class FlashcardViewController: UIViewController {
     @IBOutlet var resetButton: UIBarButtonItem!
     @IBOutlet var addButton: UIBarButtonItem!
     @IBOutlet var cancelButton: UIBarButtonItem!
+    @IBOutlet var saveButton: UIBarButtonItem!
     @IBOutlet var clozeButton: BigButton!
     @IBOutlet var deckButton: BigButton! {
         didSet {
@@ -75,16 +76,12 @@ class FlashcardViewController: UIViewController {
         
         #if Main
         navigationItem.leftBarButtonItems = [resetButton]
+        navigationItem.rightBarButtonItems = [addButton]
         #elseif Action
+        navigationItem.title = "Add"
         navigationItem.leftBarButtonItems = [cancelButton, resetButton]
-        #endif
-        hideKeyboardWhenTappedAround()
-        referenceSpaceTextView.delegate = self
-        flashcard.delegate = self
+        navigationItem.rightBarButtonItems = [addButton, saveButton]
         
-        updateAddButtonState()
-        
-        #if Action
         // By default on iPad, the action extension modal popup is insanely small. This resizes it to be like "Save to Files" and some other extensions
         // https://developer.apple.com/forums/thread/15674
         preferredContentSize = CGSize(width: 540, height: 620)
@@ -104,6 +101,11 @@ class FlashcardViewController: UIViewController {
             }
         }
         #endif
+        hideKeyboardWhenTappedAround()
+        referenceSpaceTextView.delegate = self
+        flashcard.delegate = self
+        
+        updateAddButtonState()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -112,15 +114,19 @@ class FlashcardViewController: UIViewController {
     }
     
     @objc func didEnterForeground() {
+        #if Main
         if let savedFlashcard = FlashcardSettings.shared.savedFlashcard {
             flashcard = savedFlashcard
             setUpFieldViews()
             FlashcardSettings.shared.savedFlashcard = nil
         }
+        #endif
     }
     
     @objc func willResignActive() {
+        #if Main
         FlashcardSettings.shared.savedFlashcard = flashcard
+        #endif
     }
     
     // MARK: View Modifications
@@ -202,6 +208,13 @@ class FlashcardViewController: UIViewController {
         textView.text = textView.text.cleanedOfNewLines
         updateFlashcardText(with: textView)
         textView.becomeFirstResponder()
+    }
+    
+    @IBAction func save(_ sender: Any) {
+        FlashcardSettings.shared.savedFlashcard = flashcard
+        #if Action
+        extensionContext!.completeRequest(returningItems: nil, completionHandler: nil)
+        #endif
     }
     
     @IBAction func addCard(_ sender: Any) {

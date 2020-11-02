@@ -216,11 +216,18 @@
                                 </connections>
                             </barButtonItem>
                         </leftBarButtonItems>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Xom-8b-YND">
-                            <connections>
-                                <action selector="addCard:" destination="3If-2Y-L1j" id="0eq-XL-C50"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="add" id="Xom-8b-YND">
+                                <connections>
+                                    <action selector="addCard:" destination="3If-2Y-L1j" id="0eq-XL-C50"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem systemItem="save" id="oyM-lg-Wfz">
+                                <connections>
+                                    <action selector="save:" destination="3If-2Y-L1j" id="CnQ-D3-fbh"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="addButton" destination="Xom-8b-YND" id="yIe-WC-5DF"/>
@@ -232,6 +239,7 @@
                         <outlet property="referenceSpaceStackView" destination="9o8-Q3-QNs" id="XGY-HT-yvY"/>
                         <outlet property="referenceSpaceTextView" destination="OaF-DK-Adf" id="0bG-n9-1bi"/>
                         <outlet property="resetButton" destination="Kln-y1-UeD" id="dWG-iZ-tgX"/>
+                        <outlet property="saveButton" destination="oyM-lg-Wfz" id="qnX-D3-4Qb"/>
                         <outlet property="stackView" destination="0R3-Ji-DLb" id="eQM-fJ-keh"/>
                         <outlet property="typeButton" destination="0T8-r4-qJy" id="GNN-CA-CTc"/>
                     </connections>
@@ -246,7 +254,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Ozp-L6-Lkg" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="gXH-6r-9za">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
