@@ -15,8 +15,8 @@ struct ProfileViewModel: OptionViewModel {
     }
 
     var selected: Profile
-    var delegate: OptionViewModelDelegate?
-    let controllerDelegate: OptionViewControllerDelegate
+    weak var delegate: OptionViewModelDelegate?
+    weak var controllerDelegate: OptionViewControllerDelegate?
 
     init(selected: Profile, controllerDelegate: OptionViewControllerDelegate) {
         self.selected = selected
@@ -29,7 +29,7 @@ struct ProfileViewModel: OptionViewModel {
         all = FlashcardSettings.shared.ankiProfiles.map {
             AttributedProfile(source: $0, selected: selected)
         }
-        controllerDelegate.profileChanged(selected)
+        controllerDelegate?.profileChanged(selected)
     }
 
     mutating func makeDefault(_ item: AttributedProfile) {

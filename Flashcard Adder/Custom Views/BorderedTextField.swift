@@ -12,11 +12,11 @@ class BorderedTextField: UITextField {
         super.init(frame: .zero)
         setUpField()
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     private func setUpField() {
         backgroundColor = FlashcardSettings.Colors.backgroundColor
         textColor = FlashcardSettings.Colors.textColor

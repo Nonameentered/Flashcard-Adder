@@ -11,8 +11,8 @@ class FieldStackView: UIStackView {
     var titleLabel: UILabel!
     var textView: EditTextView!
     var starButton: StarButton!
-    var delegate: FieldStackViewDelegate?
-    
+    weak var delegate: FieldStackViewDelegate?
+
     init(fieldName: String, text: String? = nil, axis: NSLayoutConstraint.Axis = .vertical, oneLine: Bool = true, showStar: Bool = true, isFrozen: Bool? = nil, delegate: FieldStackViewDelegate? = nil) {
         self.delegate = delegate
         super.init(frame: .zero)
@@ -42,7 +42,7 @@ class FieldStackView: UIStackView {
             textView.textContainer.maximumNumberOfLines = 1
             textView.textContainer.lineBreakMode = .byTruncatingTail
         }
-        
+
         addArrangedSubview(titleLabel)
         starButton = StarButton(action: UIAction { _ in
             self.delegate?.didToggle(view: self, starState: self.starButton.isSelected)
@@ -56,6 +56,6 @@ class FieldStackView: UIStackView {
     }
 }
 
-protocol FieldStackViewDelegate {
+protocol FieldStackViewDelegate: AnyObject {
     func didToggle(view: FieldStackView, starState: Bool)
 }

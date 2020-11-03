@@ -23,7 +23,7 @@ struct AttributedNote: AttributedOption {
     var isDefaultNormal: Bool {
         source == FlashcardSettings.shared.defaultNoteType
     }
-    
+
     static func == (lhs: Self, rhs: Self) -> Bool {
        return lhs.source == rhs.source && lhs.isDefault == rhs.isDefault && lhs.isSelected == rhs.isSelected && lhs.isDefaultCloze == rhs.isDefaultCloze && lhs.isDefaultNormal == rhs.isDefaultNormal
     }

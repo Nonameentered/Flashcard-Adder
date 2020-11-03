@@ -19,7 +19,7 @@ class EditTextView: UITextView {
         super.init(coder: aDecoder)
         setUpView()
     }
-    
+
     private func setUpView() {
         backgroundColor = FlashcardSettings.Colors.backgroundColor
         textColor = FlashcardSettings.Colors.textColor

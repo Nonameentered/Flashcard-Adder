@@ -11,12 +11,12 @@ import os.log
 final class FlashcardSettings {
     static let shared = FlashcardSettings()
     private init() {}
-    
+
     static var store: UserDefaults = {
         let suiteName = "group.com.technaplex.Flashcard-Adder"
         return UserDefaults(suiteName: suiteName)!
     }()
-    
+
     enum Segues {
         static let goToAddNote = "goToAddNote"
         static let unwindToSelectNote = "unwindToSelectNote"
@@ -25,25 +25,25 @@ final class FlashcardSettings {
         static let goToClozeWithEdit = "goToClozeWithEdit"
         static let goToClozeWithBackText = "goToClozeWithBackText"
     }
-    
+
     enum Colors {
         static let backgroundColor = UIColor(named: "backgroundColor")
         static let textColor = UIColor(named: "textColor")
         static let tintColor = UIColor(named: "tintColor")
     }
-    
+
     enum Fonts {
         static let regularFont = UIFont(name: "AvenirNext-Regular", size: 16)!
     }
-    
+
     enum ElementKind {
         static let sectionHeader = "section-header-element-kind"
     }
-    
+
     enum Key: String, Codable {
         case defaultAnkiProfile, defaultNoteType, defaultClozeNoteType, defaultDeck, noteTypes, decks, ankiProfiles, savedFlashcard
     }
-    
+
     static func registerDefaults() {
         let defaults: [String: Any] = [Key.defaultAnkiProfile.rawValue: encodeCodable(for: Profile(name: "User 1"))!,
                                        Key.defaultNoteType.rawValue: encodeCodable(for: Note(name: "Basic", fields: [Field(name: "Front"), Field(name: "Back")]))!,
@@ -56,7 +56,7 @@ final class FlashcardSettings {
         Logger.settings.info("Register defaults")
         FlashcardSettings.store.synchronize()
     }
-    
+
     // Provided for developer convenience since UserDefaults don't always seem to be deleted when apps are deleted
     static func flushSettings() {
         FlashcardSettings.store.set(nil, forKey: Key.defaultAnkiProfile.rawValue)
@@ -69,18 +69,18 @@ final class FlashcardSettings {
         FlashcardSettings.store.set(nil, forKey: Key.savedFlashcard.rawValue)
         FlashcardSettings.store.synchronize()
     }
-    
+
     var defaultAnkiProfile: Profile {
         get {
             return FlashcardSettings.codable(for: Key.defaultAnkiProfile.rawValue)!
         }
         set {
             FlashcardSettings.setCodable(for: Key.defaultAnkiProfile.rawValue, newValue)
-            
+
             FlashcardSettings.store.synchronize()
         }
     }
-    
+
     var defaultNoteType: Note {
         get {
             return FlashcardSettings.codable(for: Key.defaultNoteType.rawValue)!
@@ -88,33 +88,33 @@ final class FlashcardSettings {
         set {
             FlashcardSettings.setCodable(for: Key.defaultNoteType.rawValue, newValue)
             Logger.settings.info("Set default note type")
-            
+
             FlashcardSettings.store.synchronize()
         }
     }
-    
+
     var defaultClozeNoteType: Note {
         get {
             return FlashcardSettings.codable(for: Key.defaultClozeNoteType.rawValue)!
         }
         set {
             FlashcardSettings.setCodable(for: Key.defaultClozeNoteType.rawValue, newValue)
-            
+
             FlashcardSettings.store.synchronize()
         }
     }
-    
+
     var defaultDeck: Deck {
         get {
             return FlashcardSettings.codable(for: Key.defaultDeck.rawValue)!
         }
         set {
             FlashcardSettings.setCodable(for: Key.defaultDeck.rawValue, newValue)
-            
+
             FlashcardSettings.store.synchronize()
         }
     }
-    
+
     var noteTypes: [Note] {
         get {
             return FlashcardSettings.codable(for: Key.noteTypes.rawValue)!
@@ -125,7 +125,7 @@ final class FlashcardSettings {
             Logger.settings.info("Set note types")
         }
     }
-    
+
     var decks: [Deck] {
         get {
             return FlashcardSettings.codable(for: Key.decks.rawValue)!
@@ -136,7 +136,7 @@ final class FlashcardSettings {
             Logger.settings.info("Set decks \(newValue)")
         }
     }
-    
+
     var ankiProfiles: [Profile] {
         get {
             return FlashcardSettings.codable(for: Key.ankiProfiles.rawValue)!
@@ -147,7 +147,7 @@ final class FlashcardSettings {
             Logger.settings.info("Set anki profiles \(newValue)")
         }
     }
-    
+
     var savedFlashcard: Flashcard? {
         get {
             return FlashcardSettings.codable(for: Key.savedFlashcard.rawValue)
@@ -160,7 +160,7 @@ final class FlashcardSettings {
             } else {
                 Logger.settings.info("Empty saved flashcard")
             }
-            
+
         }
     }
 }
@@ -169,7 +169,7 @@ private extension FlashcardSettings {
     static func string(for key: String) -> String? {
         return FlashcardSettings.store.string(forKey: key)
     }
-    
+
     static func setString(for key: String, _ value: String?) {
         FlashcardSettings.store.set(value, forKey: key)
     }
@@ -181,18 +181,18 @@ private extension FlashcardSettings {
     static func setBool(for key: String, _ flag: Bool) {
         FlashcardSettings.store.set(flag, forKey: key)
     }
-    
+
     static func encodeCodable<T: Codable>(for value: T) -> Data? {
         let encoder = JSONEncoder()
         Logger.settings.error("Encoding codable")
         return try? encoder.encode(value)
     }
-    
+
     static func decodeCodable<T: Codable>(for value: Data) -> T? {
         let decoder = JSONDecoder()
         return try? decoder.decode(T.self, from: value)
     }
-    
+
     static func codable<T: Codable>(for key: String) -> T? {
         if let savedCodable = FlashcardSettings.store.object(forKey: key) as? Data {
             return decodeCodable(for: savedCodable)
@@ -200,7 +200,7 @@ private extension FlashcardSettings {
         Logger.settings.error("Failed to save codable for key \(key)")
         return nil
     }
-    
+
     static func setCodable<T: Codable>(for key: String, _ value: T) {
         FlashcardSettings.store.set(encodeCodable(for: value), forKey: key)
     }

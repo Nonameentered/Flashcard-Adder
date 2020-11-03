@@ -33,7 +33,7 @@ extension HeaderSupplementaryView {
             label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: inset),
             label.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -inset),
             label.topAnchor.constraint(equalTo: topAnchor, constant: inset),
-            label.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -inset),
+            label.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -inset)
         ])
         label.font = UIFont.preferredFont(forTextStyle: .callout)
     }

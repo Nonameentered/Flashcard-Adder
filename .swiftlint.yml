@@ -1,0 +1,10 @@
+disabled_rules:
+  - line_length
+  - todo
+
+identifier_name:
+  excluded:
+    - to
+
+file_length:
+  warning: 500

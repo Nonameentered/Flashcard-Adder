@@ -15,24 +15,23 @@ protocol OptionViewModel {
     var usual: [AttributedSourceType] { get }
     var selected: AttributedSourceType.SourceType { get set }
     var delegate: OptionViewModelDelegate? { get set }
-    var controllerDelegate: OptionViewControllerDelegate { get }
-    
-    
+    var controllerDelegate: OptionViewControllerDelegate? { get set }
+
     init(selected: AttributedSourceType.SourceType, controllerDelegate: OptionViewControllerDelegate)
-    
+
     mutating func generateAll()
     mutating func makeDefault(_ item: AttributedSourceType)
-    
+
     mutating func select(_ item: AttributedSourceType.SourceType)
     mutating func add(_ item: AttributedSourceType.SourceType)
     mutating func delete(_ item: AttributedSourceType)
     mutating func move(_ item: AttributedSourceType, to indexPath: IndexPath)
     mutating func edit(from oldItem: AttributedSourceType, to newItem: AttributedSourceType.SourceType)
-    
+
 }
 
 extension OptionViewModel where AttributedSourceType: AttributedOption, AttributedSourceType.SourceType: Option {
-    
+
     var sections: [Section<AttributedSourceType>] {
         [Section(title: "Default \(AttributedSourceType.SourceType.typeNamePlural)", items: usual), Section(title: "Other \(AttributedSourceType.SourceType.typeNamePlural)", items: main)]
     }
@@ -43,12 +42,12 @@ extension OptionViewModel where AttributedSourceType: AttributedOption, Attribut
     var usual: [AttributedSourceType] {
         all.filter { $0.isDefault }
     }
-    
+
     mutating func select(_ item: AttributedSourceType.SourceType) {
         selected = item
         generateAll()
     }
-    
+
     mutating func add(_ item: AttributedSourceType.SourceType) {
         let attributedItem = AttributedSourceType(source: item, selected: selected)
         if all.firstIndex(of: attributedItem) == nil {
@@ -56,12 +55,12 @@ extension OptionViewModel where AttributedSourceType: AttributedOption, Attribut
         }
         delegate?.updateList(animatingDifferences: true)
     }
-    
+
     mutating func delete(_ item: AttributedSourceType) {
         all.removeAll { $0.source == item.source }
         delegate?.updateList(animatingDifferences: true)
     }
-    
+
     mutating func move(_ item: AttributedSourceType, to indexPath: IndexPath) {
         if indexPath.section == 0 {
             makeDefault(item)
@@ -72,12 +71,12 @@ extension OptionViewModel where AttributedSourceType: AttributedOption, Attribut
             delegate?.updateList(animatingDifferences: true)
         }
     }
-    
+
     mutating func edit(from oldItem: AttributedSourceType, to newItem: AttributedSourceType.SourceType) {
         let newAttributedItem = AttributedSourceType(source: newItem, selected: selected)
         if all.firstIndex(of: newAttributedItem) == nil, let replaceIndex = all.firstIndex(of: oldItem) {
             all[replaceIndex] = newAttributedItem
-            
+
             if oldItem.isSelected {
                 select(newItem)
             }

@@ -7,6 +7,6 @@
 
 import Foundation
 
-protocol OptionViewModelDelegate {
+protocol OptionViewModelDelegate: AnyObject {
     func updateList(animatingDifferences: Bool)
 }

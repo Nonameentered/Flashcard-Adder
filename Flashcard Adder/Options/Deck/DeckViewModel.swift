@@ -14,23 +14,23 @@ struct DeckViewModel: OptionViewModel {
             FlashcardSettings.shared.decks = all.map { $0.source }
         }
     }
-    
+
     var selected: Deck
-    var delegate: OptionViewModelDelegate?
-    let controllerDelegate: OptionViewControllerDelegate
-    
+    weak var delegate: OptionViewModelDelegate?
+    weak var controllerDelegate: OptionViewControllerDelegate?
+
     init(selected: Deck, controllerDelegate: OptionViewControllerDelegate) {
         self.selected = selected
         self.controllerDelegate = controllerDelegate
         all = [] // Maybe make the manager a different object?
         generateAll()
     }
-    
+
     mutating func generateAll() {
         all = FlashcardSettings.shared.decks.map { AttributedDeck(source: $0, selected: selected) }
-        controllerDelegate.deckChanged(selected)
+        controllerDelegate?.deckChanged(selected)
     }
-    
+
     mutating func makeDefault(_ item: AttributedDeck) {
         FlashcardSettings.shared.defaultDeck = item.source
         delegate?.updateList(animatingDifferences: false)

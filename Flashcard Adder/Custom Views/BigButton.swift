@@ -14,12 +14,12 @@ class BigButton: UIButton {
         setUpView(title: title)
         translatesAutoresizingMaskIntoConstraints = false
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setUpView()
     }
-    
+
     private func setUpView(title: String? = nil) {
         if let title = title {
             setTitle(title, for: .normal)
@@ -29,7 +29,7 @@ class BigButton: UIButton {
         layer.cornerRadius = 5
         layer.borderWidth = 1
         layer.borderColor = FlashcardSettings.Colors.tintColor!.cgColor
-        
+
         adjustsImageWhenDisabled = true
         adjustsImageWhenHighlighted = true
     }

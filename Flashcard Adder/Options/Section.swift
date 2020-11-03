@@ -10,7 +10,7 @@ import Foundation
 struct Section<Attributed: AttributedOption>: Hashable {
     var title: String
     var items: [Attributed]
-    
+
     init(title: String, items: [Attributed]) {
         self.title = title
         self.items = items

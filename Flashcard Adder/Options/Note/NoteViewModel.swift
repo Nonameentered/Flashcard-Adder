@@ -13,43 +13,43 @@ struct NoteViewModel: OptionViewModel {
             FlashcardSettings.shared.noteTypes = all.map { $0.source }
         }
     }
-    
+
     var selected: Note
-    
-    var delegate: OptionViewModelDelegate?
-    
-    let controllerDelegate: OptionViewControllerDelegate
-    
+
+    weak var delegate: OptionViewModelDelegate?
+
+    weak var controllerDelegate: OptionViewControllerDelegate?
+
     var main: [AttributedNote] {
         all.filter { !$0.isDefault }
     }
-    
+
     var usual: [AttributedNote] {
         all.filter { $0.isDefaultNormal }
     }
-    
+
     var usualCloze: [AttributedNote] {
         all.filter { $0.isDefaultCloze }
     }
-    
+
     var sections: [Section<AttributedNote>] {
-        [Section(title: "Default Note", items: usual), Section(title: "Default Cloze Note", items: usualCloze), Section(title: "Other \(AttributedNote.sourceType.typeNamePlural)", items: main)]
+        [Section(title: "Default \(AttributedNote.SourceType.typeName)", items: usual), Section(title: "Default Cloze Note", items: usualCloze), Section(title: "Other \(AttributedNote.SourceType.typeNamePlural)", items: main)]
     }
-    
+
     init(selected: Note, controllerDelegate: OptionViewControllerDelegate) {
         self.selected = selected
         self.controllerDelegate = controllerDelegate
         all = []
         generateAll()
     }
-    
+
     mutating func generateAll() {
         all = FlashcardSettings.shared.noteTypes.map {
             AttributedNote(source: $0, selected: selected)
         }
-        controllerDelegate.noteChanged(selected)
+        controllerDelegate?.noteChanged(selected)
     }
-    
+
     mutating func makeDefault(_ item: AttributedNote) {
         if item.source.acceptsCloze {
             makeClozeDefault(item)
@@ -57,17 +57,17 @@ struct NoteViewModel: OptionViewModel {
             makeNormalDefault(item)
         }
     }
-    
+
     mutating func makeNormalDefault(_ item: AttributedNote) {
         FlashcardSettings.shared.defaultNoteType = item.source
         delegate?.updateList(animatingDifferences: false)
     }
-    
+
     mutating func makeClozeDefault(_ item: AttributedNote) {
         FlashcardSettings.shared.defaultClozeNoteType = item.source
         delegate?.updateList(animatingDifferences: false)
     }
-    
+
     mutating func move(_ item: AttributedNote, to indexPath: IndexPath) {
         if indexPath.section == 0 || indexPath.section == 1 {
             makeDefault(item)

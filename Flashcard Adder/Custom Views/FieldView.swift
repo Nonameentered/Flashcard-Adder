@@ -14,11 +14,11 @@ class FieldStackView: UIStackView {
         super.init(frame: .zero)
         setUpView(fieldName: fieldName, axis: axis)
     }
-    
+
     required init(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     private func setUpView(fieldName: String, axis: NSLayoutConstraint.Axis) {
         titleLabel = UILabel()
         titleLabel.text = fieldName
@@ -35,16 +35,16 @@ class FieldStackView: UIStackView {
 class NoteView: UIStackView {
     var titleView: FieldStackView
     var fieldViews: [FieldStackView]
-    
+
     init() {
         super.init(frame: .zero)
-        
+
     }
-    
+
     required init(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     private func setUpView(fieldName: String, axis: NSLayoutConstraint.Axis) {
         titleLabel = UILabel()
         titleLabel.text = fieldName

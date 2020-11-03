@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol NoteViewDelegate {
+protocol NoteViewDelegate: AnyObject {
     func noteUpdated()
 }
 
@@ -46,18 +46,18 @@ class NoteView: UIStackView {
         }
     }
 
-    var delegate: NoteViewDelegate?
-    
+    weak var delegate: NoteViewDelegate?
+
     init(initialNote: Note? = nil, axis: NSLayoutConstraint.Axis = .vertical) {
         super.init(frame: .zero)
         setUpView(initialNote: initialNote, axis: axis)
     }
-    
+
     @available(*, unavailable)
     required init(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     private func setUpView(initialNote: Note?, axis: NSLayoutConstraint.Axis) {
         translatesAutoresizingMaskIntoConstraints = false
         self.axis = axis
@@ -68,7 +68,7 @@ class NoteView: UIStackView {
         buttonStackView.axis = .horizontal
         buttonStackView.distribution = .fillEqually
         buttonStackView.spacing = 10
-        
+
         addArrangedSubview(buttonStackView)
         if let initialNote = initialNote {
             titleView = FieldStackView(fieldName: "Note Name", text: initialNote.name)
@@ -76,7 +76,7 @@ class NoteView: UIStackView {
             fieldViews = initialNote.fields.enumerated().map { (index, element) -> FieldStackView in
                 return FieldStackView(fieldName: "Field \(index + 1) Name", text: element.name)
             }
-            
+
         } else {
             titleView = FieldStackView(fieldName: "Note Name")
             isCloze = false
@@ -90,7 +90,7 @@ class NoteView: UIStackView {
             fieldViews = [FieldStackView(fieldName: "Field 1 Name"), FieldStackView(fieldName: "Field 2 Name")]
         }
         addArrangedSubview(titleView)
-        
+
         titleView.textView.delegate = self
         for view in fieldViews {
             view.textView.delegate = self
@@ -98,7 +98,7 @@ class NoteView: UIStackView {
         }
         titleView.textView.becomeFirstResponder()
     }
-    
+
     private func addFieldView() {
         let fieldView = FieldStackView(fieldName: "Field \(fieldViews.count + 1) Name")
         fieldView.textView.delegate = self
@@ -106,11 +106,11 @@ class NoteView: UIStackView {
         addArrangedSubview(fieldView) // Could probably be done in property observer
         fieldView.textView.becomeFirstResponder()
     }
-    
+
     @objc func addFieldSelected() {
         addFieldView()
     }
-    
+
     @objc func removeFieldSelected() {
         if fieldViews.count > 2 {
             if let lastView = fieldViews.last {
@@ -122,7 +122,7 @@ class NoteView: UIStackView {
             }
         }
     }
-    
+
     @objc func clozeButtonSelected() {
         isCloze = !isCloze
     }
@@ -132,7 +132,7 @@ extension NoteView: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
         delegate?.noteUpdated()
     }
-    
+
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         if text == "\t" || text == "\n" {
             if text == "\t" {

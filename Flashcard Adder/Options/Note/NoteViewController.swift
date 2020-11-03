@@ -7,15 +7,15 @@
 
 import UIKit
 
-protocol NoteViewControllerDelegate {
+protocol NoteViewControllerDelegate: AnyObject {
     func addNote(note: Note)
     func editNote(old: AttributedNote, new: Note)
 }
 
 class NoteViewController: UIViewController {
     let initialNote: AttributedNote?
-    var delegate: NoteViewControllerDelegate?
-    
+    weak var delegate: NoteViewControllerDelegate?
+
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -41,7 +41,7 @@ class NoteViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         setUpView()
         setUpNavBar()
     }
@@ -59,7 +59,7 @@ class NoteViewController: UIViewController {
             navigationItem.title = "Edit Note"
         }
     }
-    
+
     func setUpView() {
         noteView = NoteView(initialNote: initialNote?.source, axis: .vertical)
         noteView.delegate = self
@@ -77,10 +77,10 @@ class NoteViewController: UIViewController {
             contentGuide.trailingAnchor.constraint(equalTo: noteView.trailingAnchor, constant: 8),
             contentGuide.bottomAnchor.constraint(equalTo: noteView.bottomAnchor, constant: 20),
             contentGuide.topAnchor.constraint(equalTo: noteView.topAnchor, constant: -20.0),
-            contentGuide.widthAnchor.constraint(equalTo: frameGuide.widthAnchor),
+            contentGuide.widthAnchor.constraint(equalTo: frameGuide.widthAnchor)
             ])
     }
-    
+
     @objc func cancel() {
         dismiss(animated: true, completion: nil)
     }

@@ -13,7 +13,7 @@ class OptionViewController<ViewModel: OptionViewModel>: UIViewController, UIColl
     lazy var dataSource = makeDataSource()
     var collectionView: UICollectionView!
     var viewModel: ViewModel
-    
+
     typealias TypedAttributedOption = ViewModel.AttributedSourceType
     typealias TypedOption = TypedAttributedOption.SourceType
     typealias TypedSession = Section<TypedAttributedOption>
@@ -100,8 +100,8 @@ class OptionViewController<ViewModel: OptionViewModel>: UIViewController, UIColl
             dismiss(animated: true, completion: nil)
         }
     }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize{
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         return CGSize(width: collectionView.bounds.width, height: collectionView.bounds.height)
     }
 
@@ -189,7 +189,6 @@ extension OptionViewController {
         collectionView.register(HeaderSupplementaryView.self, forSupplementaryViewOfKind: FlashcardSettings.ElementKind.sectionHeader, withReuseIdentifier: HeaderSupplementaryView.reuseIdentifier)
     }
 
-    
     private func makeCellRegistration() -> UICollectionView.CellRegistration<UICollectionViewListCell, TypedAttributedOption> {
         UICollectionView.CellRegistration { cell, _, option in
             var content = cell.defaultContentConfiguration()
@@ -200,8 +199,7 @@ extension OptionViewController {
     }
 
     private func makeDataSource() -> UICollectionViewDiffableDataSource<TypedSession, TypedAttributedOption> {
-        let dataSource = UICollectionViewDiffableDataSource<TypedSession, TypedAttributedOption>(collectionView: collectionView) {
-            (collectionView: UICollectionView, indexPath: IndexPath, item: TypedAttributedOption) -> UICollectionViewCell? in
+        let dataSource = UICollectionViewDiffableDataSource<TypedSession, TypedAttributedOption>(collectionView: collectionView) { (collectionView: UICollectionView, indexPath: IndexPath, item: TypedAttributedOption) -> UICollectionViewCell? in
             collectionView.dequeueConfiguredReusableCell(using: self.makeCellRegistration(), for: indexPath, item: item)
         }
 
@@ -238,12 +236,11 @@ extension OptionViewController: NoteViewControllerDelegate {
             self.viewModel.add(note)
         }
     }
-    
+
     func editNote(old: AttributedNote, new: Note) {
         if let old = old as? TypedAttributedOption, let new = new as? TypedOption {
             self.viewModel.edit(from: old, to: new)
         }
     }
-    
-    
+
 }

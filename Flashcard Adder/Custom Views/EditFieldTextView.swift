@@ -21,7 +21,7 @@ class EditTextView: UITextView {
 
         setUpView()
     }
-    
+
     private func setUpView() {
         backgroundColor = UIColor(named: "backgroundColor")
         textColor = UIColor(named: "textColor")
@@ -30,6 +30,6 @@ class EditTextView: UITextView {
         layer.borderWidth = 1
         layer.borderColor = UIColor(named: "tintColor")!.cgColor
         isScrollEnabled = false
-        
+
     }
 }

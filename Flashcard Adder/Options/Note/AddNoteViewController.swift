@@ -8,7 +8,7 @@
 import UIKit
 
 class NoteViewController: UIViewController {
-    
+
     init(viewModel: Note) {
         self.viewModel = viewModel
 
@@ -24,7 +24,6 @@ class NoteViewController: UIViewController {
 
         // Do any additional setup after loading the view.
     }
-    
 
     /*
     // MARK: - Navigation

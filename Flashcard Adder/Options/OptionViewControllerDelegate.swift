@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol OptionViewControllerDelegate {
+protocol OptionViewControllerDelegate: AnyObject {
     func profileChanged(_ profile: Profile)
     func deckChanged(_ deck: Deck)
     func noteChanged(_ note: Note)

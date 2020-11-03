@@ -10,7 +10,7 @@ import Foundation
 public struct Cloze: Codable {
     let subject: String
     let hint: String?
-    
+
     func clozeString(with count: Int) -> String {
         if let hint = hint {
             return "{{c\(count)::\(subject)::\(hint)}}"
@@ -18,7 +18,7 @@ public struct Cloze: Codable {
             return "{{c\(count)::\(subject)}}"
         }
     }
-    
+
     func clozeString(with count: String) -> String {
         if let hint = hint {
             return "{{c\(count)::\(subject)::\(hint)}}"
@@ -26,7 +26,7 @@ public struct Cloze: Codable {
             return "{{c\(count)::\(subject)}}"
         }
     }
-    
+
     static let identifier = "{{c"
     public static let regexIdentifier = "\\{\\{c([0-9]+)"
 }
