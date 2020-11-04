@@ -9,6 +9,14 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Information-->
+        <scene sceneID="bnN-D5-MHm">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Information" id="9uY-7M-Q0g" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="t9w-6t-YUN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="952" y="-630"/>
+        </scene>
         <!--Add Flashcard-->
         <scene sceneID="wen-h2-j7Y">
             <objects>
@@ -205,6 +213,11 @@
                     </view>
                     <navigationItem key="navigationItem" title="Add Flashcard" id="0Ao-he-2ej">
                         <leftBarButtonItems>
+                            <barButtonItem title="Information" image="info.circle" catalog="system" id="zP3-jK-gFI">
+                                <connections>
+                                    <segue destination="9uY-7M-Q0g" kind="presentation" id="r7U-yq-1xM"/>
+                                </connections>
+                            </barButtonItem>
                             <barButtonItem systemItem="cancel" id="1cc-OY-mBu">
                                 <connections>
                                     <action selector="cancel:" destination="3If-2Y-L1j" id="nFk-pi-Evz"/>
@@ -235,6 +248,7 @@
                         <outlet property="clozeButton" destination="P9m-sB-3KC" id="DcP-Q4-jAw"/>
                         <outlet property="clozeStackView" destination="0EI-hI-uPa" id="OF6-Yx-VT0"/>
                         <outlet property="deckButton" destination="6BP-p0-NXP" id="L6t-h0-OTT"/>
+                        <outlet property="infoButton" destination="zP3-jK-gFI" id="uZW-ch-hh2"/>
                         <outlet property="profileButton" destination="fsA-yi-W11" id="gzI-Jl-DUq"/>
                         <outlet property="referenceSpaceStackView" destination="9o8-Q3-QNs" id="XGY-HT-yvY"/>
                         <outlet property="referenceSpaceTextView" destination="OaF-DK-Adf" id="0bG-n9-1bi"/>
@@ -254,7 +268,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Ozp-L6-Lkg" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="gXH-6r-9za">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -437,6 +451,7 @@
         <segue reference="Wrh-ab-CCK"/>
     </inferredMetricsTieBreakers>
     <resources>
+        <image name="info.circle" catalog="system" width="128" height="121"/>
         <namedColor name="backgroundColor">
             <color red="0.94099998474121094" green="0.97299998998641968" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

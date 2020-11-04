@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="yJz-FQ-plD">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Info-->
+        <scene sceneID="OlT-Zy-1PW">
+            <objects>
+                <tableViewController id="QAj-E7-uxG" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="0bI-8n-xcF">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <sections>
+                            <tableViewSection id="DgA-aI-wTb">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="about" id="kqV-fI-h5X">
+                                        <rect key="frame" x="20" y="18" width="374" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="kqV-fI-h5X" id="ANY-fs-fuR">
+                                            <rect key="frame" x="0.0" y="0.0" width="343" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ruw-E8-AkI">
+                                                    <rect key="frame" x="20" y="11" width="363" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Ruw-E8-AkI" firstAttribute="top" secondItem="ANY-fs-fuR" secondAttribute="topMargin" id="Fe0-F4-CRB"/>
+                                                <constraint firstAttribute="trailing" secondItem="Ruw-E8-AkI" secondAttribute="trailing" id="QaB-Qd-LyF"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="Ruw-E8-AkI" secondAttribute="bottom" constant="1" id="R1W-iU-O0H"/>
+                                                <constraint firstItem="Ruw-E8-AkI" firstAttribute="leading" secondItem="ANY-fs-fuR" secondAttribute="leadingMargin" id="zPa-Zq-RYS"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" name="backgroundColor"/>
+                                        <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <connections>
+                                            <segue destination="t5I-OV-P7d" kind="show" id="RXP-qy-yA9"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="credits" id="c6R-eR-CeZ" userLabel="Credits">
+                                        <rect key="frame" x="20" y="62" width="374" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="c6R-eR-CeZ" id="asw-fN-G0n">
+                                            <rect key="frame" x="0.0" y="0.0" width="343" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Privacy Policy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Hb-fb-zyx">
+                                                    <rect key="frame" x="20" y="11" width="363" height="22"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="3Hb-fb-zyx" firstAttribute="top" secondItem="asw-fN-G0n" secondAttribute="topMargin" id="4AY-I5-1rF"/>
+                                                <constraint firstAttribute="trailing" secondItem="3Hb-fb-zyx" secondAttribute="trailing" id="5wt-Ka-fE5"/>
+                                                <constraint firstItem="3Hb-fb-zyx" firstAttribute="leading" secondItem="asw-fN-G0n" secondAttribute="leadingMargin" id="LSl-Kp-ozz"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="3Hb-fb-zyx" secondAttribute="bottom" id="Zx2-Nl-0oh"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" name="backgroundColor"/>
+                                        <connections>
+                                            <segue destination="JKa-Bc-Rug" kind="show" id="uIC-fz-mX6"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="credits" id="uFC-9w-kvt" userLabel="Credits">
+                                        <rect key="frame" x="20" y="106" width="374" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="uFC-9w-kvt" id="dHB-ek-cML">
+                                            <rect key="frame" x="0.0" y="0.0" width="343" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Acknowledgements" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hQE-jm-sHm">
+                                                    <rect key="frame" x="20" y="11" width="363" height="22"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottomMargin" secondItem="hQE-jm-sHm" secondAttribute="bottom" id="BaJ-me-3kb"/>
+                                                <constraint firstItem="hQE-jm-sHm" firstAttribute="leading" secondItem="dHB-ek-cML" secondAttribute="leadingMargin" id="NWS-n1-RJ8"/>
+                                                <constraint firstAttribute="trailing" secondItem="hQE-jm-sHm" secondAttribute="trailing" id="XF5-Xg-Rv3"/>
+                                                <constraint firstItem="hQE-jm-sHm" firstAttribute="top" secondItem="dHB-ek-cML" secondAttribute="topMargin" id="coC-AG-Wwo"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" name="backgroundColor"/>
+                                        <connections>
+                                            <segue destination="U8U-Uf-AYa" kind="show" id="0Oc-iw-z6s"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="hideEmptyRows" value="YES"/>
+                        </userDefinedRuntimeAttributes>
+                        <connections>
+                            <outlet property="dataSource" destination="QAj-E7-uxG" id="YCD-Gb-qKx"/>
+                            <outlet property="delegate" destination="QAj-E7-uxG" id="tjy-ic-fvb"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Info" id="2o6-rq-Hhw">
+                        <barButtonItem key="leftBarButtonItem" title="Done" id="HWZ-0Z-a4C">
+                            <connections>
+                                <action selector="done:" destination="QAj-E7-uxG" id="gxX-vK-OtI"/>
+                                <segue destination="PQc-mG-N40" kind="unwind" unwindAction="unwindToFlashcardViewWithSender:" id="TUS-gF-b4o"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="X6X-mP-NUL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="PQc-mG-N40" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="4994" y="-1200"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="9S8-9D-eds">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="yJz-FQ-plD" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="7Qe-uA-Kjp">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" name="backgroundColor"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="QAj-E7-uxG" kind="relationship" relationship="rootViewController" id="5qJ-cm-vz2"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yDt-OK-wgz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3991.1999999999998" y="-1198.5221674876848"/>
+        </scene>
+        <!--About-->
+        <scene sceneID="wzl-KW-bMv">
+            <objects>
+                <viewController title="About" id="t5I-OV-P7d" userLabel="About" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="bSM-Ei-vEC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Flashcard Adder is designed and developed by Technaplex. Learn more about our other apps at https://www.technaplex.com." translatesAutoresizingMaskIntoConstraints="NO" id="IKF-sV-lvX">
+                                <rect key="frame" x="15" y="103" width="384" height="759"/>
+                                <color key="textColor" name="textColor"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                            </textView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="m0b-m8-z7i"/>
+                        <color key="backgroundColor" name="backgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="m0b-m8-z7i" firstAttribute="trailing" secondItem="IKF-sV-lvX" secondAttribute="trailing" constant="15" id="38n-p5-LIa"/>
+                            <constraint firstItem="IKF-sV-lvX" firstAttribute="bottom" secondItem="m0b-m8-z7i" secondAttribute="bottom" id="IGf-xh-MeB"/>
+                            <constraint firstItem="IKF-sV-lvX" firstAttribute="leading" secondItem="m0b-m8-z7i" secondAttribute="leading" constant="15" id="dLB-rJ-V6B"/>
+                            <constraint firstItem="IKF-sV-lvX" firstAttribute="top" secondItem="m0b-m8-z7i" secondAttribute="top" constant="15" id="ldq-EZ-t1C"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="About" id="Phg-gZ-7sN"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qUI-wO-uGq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5799" y="-1719"/>
+        </scene>
+        <!--Credits-->
+        <scene sceneID="RhF-5l-UQ1">
+            <objects>
+                <viewController title="Credits" id="JKa-Bc-Rug" userLabel="Credits" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="UEW-yX-n4E">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QhU-Ux-B31">
+                                <rect key="frame" x="15" y="103" width="384" height="759"/>
+                                <attributedString key="attributedText">
+                                    <fragment>
+                                        <string key="content">This privacy policy applies to the Flashcard Adder app. To summarize, we only collect opt-in crash log data provided by Apple and has no access to any personally identifiable data entered in the app.
+
+</string>
+                                        <attributes>
+                                            <color key="NSColor" name="textColor"/>
+                                            <font key="NSFont" size="16" name="AvenirNext-Regular"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content="1.0 Information Collection and Usage">
+                                        <attributes>
+                                            <color key="NSColor" name="textColor"/>
+                                            <font key="NSFont" size="16" name="AvenirNext-Bold"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">
+To assist in improving Flashcard Adder, we keep copies of crash logs collected by Apple. This information is collected on an opt-in basis and requires user consent before crash logs are sent to both us and Apple. Access to crash logs makes it easier to diagnose and squash bugs.
+</string>
+                                        <attributes>
+                                            <color key="NSColor" name="textColor"/>
+                                            <font key="NSFont" size="16" name="AvenirNext-Regular"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content="1.1 Information you provide to us">
+                                        <attributes>
+                                            <color key="NSColor" name="textColor"/>
+                                            <font key="NSFont" size="16" name="AvenirNext-Bold"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">
+No personally identifiable information is collected in our log data. Nothing you type in our app is visible to us unless you voluntarily choose to share it to us when contacting us for any comments or support.
+
+</string>
+                                        <attributes>
+                                            <color key="NSColor" name="textColor"/>
+                                            <font key="NSFont" size="16" name="AvenirNext-Regular"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content="2.0 Questions and Comments? Contact Us">
+                                        <attributes>
+                                            <color key="NSColor" name="textColor"/>
+                                            <font key="NSFont" size="16" name="AvenirNext-Bold"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">
+If you have any comments or questions about our privacy policy, feel free to contact us at technaplex@gmail.com
+</string>
+                                        <attributes>
+                                            <color key="NSColor" name="textColor"/>
+                                            <font key="NSFont" size="16" name="AvenirNext-Regular"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                            </textView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="yIL-Nk-5wv"/>
+                        <color key="backgroundColor" name="backgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="QhU-Ux-B31" firstAttribute="leading" secondItem="yIL-Nk-5wv" secondAttribute="leading" constant="15" id="4NF-JG-O6c"/>
+                            <constraint firstItem="QhU-Ux-B31" firstAttribute="top" secondItem="yIL-Nk-5wv" secondAttribute="top" constant="15" id="RcT-Fu-B9U"/>
+                            <constraint firstItem="yIL-Nk-5wv" firstAttribute="trailing" secondItem="QhU-Ux-B31" secondAttribute="trailing" constant="15" id="SuS-nC-44e"/>
+                            <constraint firstItem="QhU-Ux-B31" firstAttribute="bottom" secondItem="yIL-Nk-5wv" secondAttribute="bottom" id="kKZ-Zy-fEc"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Privacy Policy" id="crW-3J-KZp"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="T9O-KA-g5p" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6696" y="-1218"/>
+        </scene>
+        <!--About-->
+        <scene sceneID="mFg-gp-j6P">
+            <objects>
+                <viewController title="About" id="U8U-Uf-AYa" userLabel="About" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="96Q-Nh-NOg">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2ha-dm-wEn">
+                                <rect key="frame" x="15" y="103" width="384" height="759"/>
+                                <attributedString key="attributedText">
+                                    <fragment>
+                                        <string key="content">Fastlane
+</string>
+                                        <attributes>
+                                            <color key="NSColor" name="textColor"/>
+                                            <font key="NSFont" size="16" name="AvenirNext-Bold"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">The MIT License (MIT)
+
+Copyright (c) 2015-2020 The Fastlane Authors
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</string>
+                                        <attributes>
+                                            <color key="NSColor" name="textColor"/>
+                                            <font key="NSFont" size="16" name="AvenirNext-Regular"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                            </textView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Io-Ix-MNk"/>
+                        <color key="backgroundColor" name="backgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="2ha-dm-wEn" firstAttribute="leading" secondItem="6Io-Ix-MNk" secondAttribute="leading" constant="15" id="A8b-aL-jfE"/>
+                            <constraint firstItem="2ha-dm-wEn" firstAttribute="bottom" secondItem="6Io-Ix-MNk" secondAttribute="bottom" id="FZ2-GA-B2w"/>
+                            <constraint firstItem="6Io-Ix-MNk" firstAttribute="trailing" secondItem="2ha-dm-wEn" secondAttribute="trailing" constant="15" id="fcr-YH-zOs"/>
+                            <constraint firstItem="2ha-dm-wEn" firstAttribute="top" secondItem="6Io-Ix-MNk" secondAttribute="top" constant="15" id="fqh-aL-qp8"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="About" id="E6b-nH-1of"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="s9s-Be-tpk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6193" y="-444"/>
+        </scene>
+    </scenes>
+    <resources>
+        <namedColor name="backgroundColor">
+            <color red="0.94099998474121094" green="0.97299998998641968" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="textColor">
+            <color red="0.23499999940395355" green="0.23499999940395355" blue="0.23499999940395355" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="textColor">
+            <color red="0.23499999940395355" green="0.23499999940395355" blue="0.23499999940395355" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

@@ -20,6 +20,7 @@ class FlashcardViewController: UIViewController {
     @IBOutlet var addButton: UIBarButtonItem!
     @IBOutlet var cancelButton: UIBarButtonItem!
     @IBOutlet var saveButton: UIBarButtonItem!
+    @IBOutlet var infoButton: UIBarButtonItem!
     @IBOutlet var clozeButton: BigButton!
     @IBOutlet var deckButton: BigButton! {
         didSet {
@@ -75,7 +76,7 @@ class FlashcardViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(willResignActive), name: UIApplication.willResignActiveNotification, object: nil)
 
         #if Main
-        navigationItem.leftBarButtonItems = [resetButton]
+        navigationItem.leftBarButtonItems = [infoButton, resetButton]
         navigationItem.rightBarButtonItems = [addButton]
         #elseif Action
         navigationItem.title = "Add"
