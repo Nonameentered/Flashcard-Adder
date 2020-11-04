@@ -133,7 +133,7 @@ final class FlashcardSettings {
         set {
             FlashcardSettings.setCodable(for: Key.decks.rawValue, newValue)
             FlashcardSettings.store.synchronize()
-            Logger.settings.info("Set decks \(newValue)")
+            Logger.settings.info("Set decks")
         }
     }
 
@@ -144,7 +144,7 @@ final class FlashcardSettings {
         set {
             FlashcardSettings.setCodable(for: Key.ankiProfiles.rawValue, newValue)
             FlashcardSettings.store.synchronize()
-            Logger.settings.info("Set anki profiles \(newValue)")
+            Logger.settings.info("Set anki profiles")
         }
     }
 
@@ -197,7 +197,7 @@ private extension FlashcardSettings {
         if let savedCodable = FlashcardSettings.store.object(forKey: key) as? Data {
             return decodeCodable(for: savedCodable)
         }
-        Logger.settings.error("Failed to save codable for key \(key)")
+        Logger.settings.error("Failed to save codable for key \(key, privacy: .public)")
         return nil
     }
 
