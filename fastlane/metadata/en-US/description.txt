@@ -1,0 +1,19 @@
+Flashcard Adder is a free tool for creating flashcards that works with the AnkiMobile Flashcards app. Flashcard Adder brings feature enhancements not found in the built-in add screen of AnkiMobile and is developed independently of AnkiMobile. Features include:
+
+Sticky Fields
+Easily preserve or clear fields after adding a card.
+
+Action Extension
+Use Flashcard Adder's action extension to quickly add flashcards or save work in progress flashcards into the main app.
+
+Automatic Note Switching
+Flashcard Adder automatically detects clozes and allows pain-free transition between normal and cloze note types.
+
+Text Clean-Up
+Flashcard Adder cleans errant new lines and spacing commonly present when copying text from pdf files.
+
+Cloze Options
+Convenience buttons and keyboard shortcuts to create different configurations of clozes.
+
+Persistent Reference Space
+Park useful reference material in a dedicated field separate from the flashcard.

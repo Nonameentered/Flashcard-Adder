@@ -1,0 +1,27 @@
+{
+  "device_frame_version": "latest",
+  "default": {
+    "keyword": {
+    },
+    "title": {
+      "font_size": 128,
+      "color": "#3B3B3B",
+      "text": "Flashcard Adder"
+    },
+    "background": "./background_light.png",
+    "padding": 50,
+    "show_complete_frame": true,
+    "stack_title" : false,
+    "frame": "BLACK",
+    "use_platform": "IOS"
+  },
+  "data": [
+    {
+      "filter": "home",
+      "keyword": {
+        "color": "#d21559",
+        "text": "Flashcard Adder"
+      }
+    }
+  ]
+}

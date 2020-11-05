@@ -1,3 +1,5 @@
+excluded:
+  - "Flashcard Adder UITests"
 disabled_rules:
   - line_length
   - todo

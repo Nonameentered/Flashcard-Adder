@@ -20,6 +20,8 @@
 		E343E6B9254E033500765215 /* NoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E343E6B5254DF9D200765215 /* NoteView.swift */; };
 		E343E6D3254E2DAD00765215 /* String+CleanedOfNewLines.swift in Sources */ = {isa = PBXBuildFile; fileRef = E343E6D2254E2DAD00765215 /* String+CleanedOfNewLines.swift */; };
 		E343E6D4254E2DAD00765215 /* String+CleanedOfNewLines.swift in Sources */ = {isa = PBXBuildFile; fileRef = E343E6D2254E2DAD00765215 /* String+CleanedOfNewLines.swift */; };
+		E351F5C225526A38009F8403 /* Flashcard_Adder_UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E351F5C125526A38009F8403 /* Flashcard_Adder_UITests.swift */; };
+		E351F5E025526AEC009F8403 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E351F5DF25526AEC009F8403 /* SnapshotHelper.swift */; };
 		E357B364251D2FB500354BCA /* FlashcardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E357B35E251D2FB500354BCA /* FlashcardViewController.swift */; };
 		E357B365251D2FB500354BCA /* ClozeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E357B35F251D2FB500354BCA /* ClozeViewController.swift */; };
 		E357B36C251D305B00354BCA /* UIViewController+HideKeyboardWheNTappedAround.swift in Sources */ = {isa = PBXBuildFile; fileRef = E357B36B251D305B00354BCA /* UIViewController+HideKeyboardWheNTappedAround.swift */; };
@@ -104,6 +106,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		E351F5C425526A38009F8403 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E359181625106E3D002F1A35 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E359181D25106E3D002F1A35;
+			remoteInfo = "Flashcard Adder";
+		};
 		E39647B92537FC3700F803F4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E359181625106E3D002F1A35 /* Project object */;
@@ -138,6 +147,10 @@
 		E33CA723254B1D8D00A28175 /* BorderedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderedTextField.swift; sourceTree = "<group>"; };
 		E343E6B5254DF9D200765215 /* NoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteView.swift; sourceTree = "<group>"; };
 		E343E6D2254E2DAD00765215 /* String+CleanedOfNewLines.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+CleanedOfNewLines.swift"; sourceTree = "<group>"; };
+		E351F5BF25526A38009F8403 /* Flashcard Adder UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Flashcard Adder UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E351F5C125526A38009F8403 /* Flashcard_Adder_UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Flashcard_Adder_UITests.swift; sourceTree = "<group>"; };
+		E351F5C325526A38009F8403 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E351F5DF25526AEC009F8403 /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = "<group>"; };
 		E357B35E251D2FB500354BCA /* FlashcardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FlashcardViewController.swift; path = "Flashcard Adder/FlashcardViewController.swift"; sourceTree = SOURCE_ROOT; };
 		E357B35F251D2FB500354BCA /* ClozeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ClozeViewController.swift; path = "Flashcard Adder/Cloze/ClozeViewController.swift"; sourceTree = SOURCE_ROOT; };
 		E357B36B251D305B00354BCA /* UIViewController+HideKeyboardWheNTappedAround.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+HideKeyboardWheNTappedAround.swift"; sourceTree = "<group>"; };
@@ -187,6 +200,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		E351F5BC25526A38009F8403 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E359181B25106E3D002F1A35 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -227,12 +247,23 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		E351F5C025526A38009F8403 /* Flashcard Adder UITests */ = {
+			isa = PBXGroup;
+			children = (
+				E351F5DF25526AEC009F8403 /* SnapshotHelper.swift */,
+				E351F5C125526A38009F8403 /* Flashcard_Adder_UITests.swift */,
+				E351F5C325526A38009F8403 /* Info.plist */,
+			);
+			path = "Flashcard Adder UITests";
+			sourceTree = "<group>";
+		};
 		E359181525106E3D002F1A35 = {
 			isa = PBXGroup;
 			children = (
 				E301AEE625217DA7006A9742 /* FlashcardAdder.playground */,
 				E359182025106E3D002F1A35 /* Flashcard Adder */,
 				E39647B02537FC3700F803F4 /* Action Extension */,
+				E351F5C025526A38009F8403 /* Flashcard Adder UITests */,
 				E359181F25106E3D002F1A35 /* Products */,
 				E30172872515ACBB0031A354 /* Frameworks */,
 			);
@@ -243,6 +274,7 @@
 			children = (
 				E359181E25106E3D002F1A35 /* Flashcard Adder.app */,
 				E39647AF2537FC3700F803F4 /* Action Extension.appex */,
+				E351F5BF25526A38009F8403 /* Flashcard Adder UITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -365,6 +397,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		E351F5BE25526A38009F8403 /* Flashcard Adder UITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E351F5C625526A38009F8403 /* Build configuration list for PBXNativeTarget "Flashcard Adder UITests" */;
+			buildPhases = (
+				E351F5BB25526A38009F8403 /* Sources */,
+				E351F5BC25526A38009F8403 /* Frameworks */,
+				E351F5BD25526A38009F8403 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E351F5C525526A38009F8403 /* PBXTargetDependency */,
+			);
+			name = "Flashcard Adder UITests";
+			productName = "Flashcard Adder UITests";
+			productReference = E351F5BF25526A38009F8403 /* Flashcard Adder UITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		E359181D25106E3D002F1A35 /* Flashcard Adder */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = E359183425106E3D002F1A35 /* Build configuration list for PBXNativeTarget "Flashcard Adder" */;
@@ -381,8 +431,6 @@
 				E39647BA2537FC3700F803F4 /* PBXTargetDependency */,
 			);
 			name = "Flashcard Adder";
-			packageProductDependencies = (
-			);
 			productName = "Flashcard Adder";
 			productReference = E359181E25106E3D002F1A35 /* Flashcard Adder.app */;
 			productType = "com.apple.product-type.application";
@@ -410,14 +458,21 @@
 		E359181625106E3D002F1A35 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1200;
+				LastSwiftUpdateCheck = 1210;
 				LastUpgradeCheck = 1200;
 				TargetAttributes = {
+					E351F5BE25526A38009F8403 = {
+						CreatedOnToolsVersion = 12.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = E359181D25106E3D002F1A35;
+					};
 					E359181D25106E3D002F1A35 = {
 						CreatedOnToolsVersion = 12.0;
+						ProvisioningStyle = Automatic;
 					};
 					E39647AE2537FC3700F803F4 = {
 						CreatedOnToolsVersion = 12.0.1;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -436,11 +491,19 @@
 			targets = (
 				E359181D25106E3D002F1A35 /* Flashcard Adder */,
 				E39647AE2537FC3700F803F4 /* Action Extension */,
+				E351F5BE25526A38009F8403 /* Flashcard Adder UITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		E351F5BD25526A38009F8403 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E359181C25106E3D002F1A35 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -487,6 +550,15 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		E351F5BB25526A38009F8403 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E351F5C225526A38009F8403 /* Flashcard_Adder_UITests.swift in Sources */,
+				E351F5E025526AEC009F8403 /* SnapshotHelper.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E359181A25106E3D002F1A35 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -588,6 +660,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		E351F5C525526A38009F8403 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E359181D25106E3D002F1A35 /* Flashcard Adder */;
+			targetProxy = E351F5C425526A38009F8403 /* PBXContainerItemProxy */;
+		};
 		E39647BA2537FC3700F803F4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = E39647AE2537FC3700F803F4 /* Action Extension */;
@@ -607,6 +684,46 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		E351F5C725526A38009F8403 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = SM7F898GQH;
+				INFOPLIST_FILE = "Flashcard Adder UITests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.technaplex.Flashcard-Adder-UITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Flashcard Adder";
+			};
+			name = Debug;
+		};
+		E351F5C825526A38009F8403 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = SM7F898GQH;
+				INFOPLIST_FILE = "Flashcard Adder UITests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.technaplex.Flashcard-Adder-UITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Flashcard Adder";
+			};
+			name = Release;
+		};
 		E359183225106E3D002F1A35 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -731,6 +848,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Flashcard Adder/Flashcard Adder.entitlements";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_TEAM = SM7F898GQH;
 				INFOPLIST_FILE = "Flashcard Adder/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -742,6 +860,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
 		};
@@ -753,6 +872,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Flashcard Adder/Flashcard Adder.entitlements";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_TEAM = SM7F898GQH;
 				INFOPLIST_FILE = "Flashcard Adder/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -764,6 +884,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
 		};
@@ -814,6 +935,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		E351F5C625526A38009F8403 /* Build configuration list for PBXNativeTarget "Flashcard Adder UITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E351F5C725526A38009F8403 /* Debug */,
+				E351F5C825526A38009F8403 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		E359181925106E3D002F1A35 /* Build configuration list for PBXProject "Flashcard Adder" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

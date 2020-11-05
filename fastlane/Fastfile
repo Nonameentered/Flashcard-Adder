@@ -1,0 +1,46 @@
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:ios)
+
+platform :ios do
+  desc "Create app on Apple Developer and App Store Connect sites"
+  lane :create_app do
+    produce(
+      app_group: "on"
+    )
+  end
+  desc "Take screenshots"
+  lane :screenshots do
+    snapshot
+  end
+  desc "Frame screenshots"
+  lane :frame do
+    frame_screenshots
+  end
+  desc "Create ipa"
+  lane :build do
+    enable_automatic_code_signing
+    increment_build_number
+    gym
+  end
+  desc "Take screenshots, build and upload to App Store"
+  lane :deploy do
+    
+    screenshots
+    frame
+    build
+    deliver
+  end
+  desc "Upload beta to testflight"
+  lane :beta do
+    # Variant 2: Ask for a multi-line input
+    #   The user confirms their input by typing `END` and Enter
+    changelog = prompt(
+    text: "Changelog: ",
+    multi_line_end_keyword: "END"
+    )
+    build
+    upload_to_testflight(changelog: changelog)
+  end
+end
