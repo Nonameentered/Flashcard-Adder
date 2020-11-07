@@ -445,10 +445,9 @@ extension FlashcardViewController: FlashcardDelegate {
     }
 
     func flashcardDidCreate(flashcard: Flashcard) {
-        frontTextView.text = flashcard.note.fields[0].text
-        backTextView.text = flashcard.note.fields[1].text
         typeButton.setTitle("Type: " + flashcard.noteTypeName, for: .normal)
         deckButton.setTitle("Deck: " + flashcard.deckName, for: .normal)
+        setUpFieldViews()
     }
 }
 
