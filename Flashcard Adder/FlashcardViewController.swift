@@ -281,16 +281,16 @@ class FlashcardViewController: UIViewController {
         switch segueIdentifier {
         case FlashcardSettings.Segues.goToClozeWithEdit:
             if let textRange = frontTextView.selectedTextRange {
-                viewModel = ClozeViewModel(cloze: frontTextView.text(in: textRange)?.trimmingCharacters(in: .whitespacesAndNewlines), referenceSpaceText: flashcard.referenceText, savedRange: textRange, beginWithHint: true)
+                viewModel = ClozeViewModel(cloze: frontTextView.text(in: textRange)?.trimmingCharacters(in: .whitespacesAndNewlines), referenceSpaceText: flashcard.referenceText, savedRange: textRange)
             } else {
-                viewModel = ClozeViewModel(referenceSpaceText: flashcard.referenceText, beginWithHint: true)
+                viewModel = ClozeViewModel(referenceSpaceText: flashcard.referenceText)
             }
             Logger.flashcard.info("Showing Cloze View with Editable Selection")
         case FlashcardSettings.Segues.goToClozeWithBackText:
             if let textRange = frontTextView.selectedTextRange {
                 viewModel = ClozeViewModel(cloze: backTextView.text.trimmingCharacters(in: .whitespacesAndNewlines), hint: frontTextView.text(in: textRange)?.trimmingCharacters(in: .whitespacesAndNewlines), referenceSpaceText: flashcard.referenceText, savedRange: textRange, beginWithHint: false)
             } else {
-                viewModel = ClozeViewModel(referenceSpaceText: flashcard.referenceText, beginWithHint: false)
+                viewModel = ClozeViewModel(referenceSpaceText: flashcard.referenceText)
             }
             Logger.flashcard.info("Showing Cloze View with Back Text")
         default:

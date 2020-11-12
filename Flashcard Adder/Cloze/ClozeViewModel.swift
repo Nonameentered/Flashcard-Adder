@@ -14,12 +14,12 @@ struct ClozeViewModel {
     let beginWithHint: Bool
     let savedRange: UITextRange?
 
-    init(cloze: String? = nil, hint: String? = nil, referenceSpaceText: String? = nil, savedRange: UITextRange? = nil, beginWithHint: Bool) {
+    init(cloze: String? = nil, hint: String? = nil, referenceSpaceText: String? = nil, savedRange: UITextRange? = nil, beginWithHint: Bool? = nil) {
         self.cloze = cloze ?? ""
         self.hint = hint ?? ""
         self.referenceSpaceText = referenceSpaceText ?? ""
         self.savedRange = savedRange
-        self.beginWithHint = beginWithHint
+        self.beginWithHint = beginWithHint ?? !(cloze?.isEmpty ?? true)
     }
 
     mutating func update(cloze: String? = nil, hint: String? = nil, referenceSpaceText: String? = nil) {

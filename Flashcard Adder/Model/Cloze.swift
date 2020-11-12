@@ -12,15 +12,11 @@ struct Cloze: Codable {
     let hint: String?
 
     func clozeString(with count: Int) -> String {
-        if let hint = hint {
-            return "{{c\(count)::\(subject)::\(hint)}}"
-        } else {
-            return "{{c\(count)::\(subject)}}"
-        }
+        return clozeString(with: String(count))
     }
 
     func clozeString(with count: String) -> String {
-        if let hint = hint {
+        if let hint = hint, !hint.isEmpty {
             return "{{c\(count)::\(subject)::\(hint)}}"
         } else {
             return "{{c\(count)::\(subject)}}"
