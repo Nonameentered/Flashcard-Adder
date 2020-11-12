@@ -5,8 +5,8 @@
 //  Created by Matthew Shu on 9/16/20.
 //
 
-import UIKit
 import os.log
+import UIKit
 
 final class FlashcardSettings {
     static let shared = FlashcardSettings()
@@ -41,7 +41,7 @@ final class FlashcardSettings {
     }
 
     enum Key: String, Codable {
-        case defaultAnkiProfile, defaultNoteType, defaultClozeNoteType, defaultDeck, noteTypes, decks, ankiProfiles, savedFlashcard
+        case defaultAnkiProfile, defaultNoteType, defaultClozeNoteType, defaultDeck, noteTypes, decks, ankiProfiles, savedFlashcard, referenceSpaceText
     }
 
     static func registerDefaults() {
@@ -51,7 +51,8 @@ final class FlashcardSettings {
                                        Key.defaultDeck.rawValue: encodeCodable(for: Deck(name: "Default"))!,
                                        Key.noteTypes.rawValue: encodeCodable(for: [Note(name: "Basic", fields: [Field(name: "Front"), Field(name: "Back")]), Note(name: "Cloze", fields: [Field(name: "Text", fieldType: .cloze), Field(name: "Extra")])])!,
                                        Key.decks.rawValue: encodeCodable(for: [Deck(name: "Default")])!,
-                                       Key.ankiProfiles.rawValue: encodeCodable(for: [Profile(name: "User 1")])!]
+                                       Key.ankiProfiles.rawValue: encodeCodable(for: [Profile(name: "User 1")])!,
+                                       Key.referenceSpaceText.rawValue: ""]
         FlashcardSettings.store.register(defaults: defaults)
         Logger.settings.info("Register defaults")
         FlashcardSettings.store.synchronize()
@@ -67,6 +68,7 @@ final class FlashcardSettings {
         FlashcardSettings.store.set(nil, forKey: Key.decks.rawValue)
         FlashcardSettings.store.set(nil, forKey: Key.ankiProfiles.rawValue)
         FlashcardSettings.store.set(nil, forKey: Key.savedFlashcard.rawValue)
+        FlashcardSettings.store.set(nil, forKey: Key.referenceSpaceText.rawValue)
         FlashcardSettings.store.synchronize()
     }
 
@@ -160,7 +162,17 @@ final class FlashcardSettings {
             } else {
                 Logger.settings.info("Empty saved flashcard")
             }
+        }
+    }
 
+    var referenceSpaceText: String {
+        get {
+            return FlashcardSettings.string(for: Key.referenceSpaceText.rawValue)!
+        }
+        set {
+            FlashcardSettings.setString(for: Key.referenceSpaceText.rawValue, newValue)
+            FlashcardSettings.store.synchronize()
+            Logger.settings.info("Set reference space text")
         }
     }
 }

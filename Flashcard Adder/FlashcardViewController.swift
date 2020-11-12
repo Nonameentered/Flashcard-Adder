@@ -12,7 +12,7 @@ import UIKit
 class FlashcardViewController: UIViewController {
     @IBOutlet var referenceSpaceTextView: EditTextView! {
         didSet {
-            referenceSpaceTextView.text = flashcard.referenceText
+            referenceSpaceTextView.text = FlashcardSettings.shared.referenceSpaceText
         }
     }
 
@@ -96,7 +96,8 @@ class FlashcardViewController: UIViewController {
                     DispatchQueue.main.async {
                         self.frontTextView.text = result
                         self.flashcard.note.fields[0].text = result
-                        self.referenceSpaceTextView.text = result
+                        self.referenceSpaceTextView.text = result + "\n\n" + FlashcardSettings.shared.referenceSpaceText
+                        FlashcardSettings.shared.referenceSpaceText = self.referenceSpaceTextView.text
                     }
                 }
             }
@@ -119,7 +120,6 @@ class FlashcardViewController: UIViewController {
         if let savedFlashcard = FlashcardSettings.shared.savedFlashcard {
             flashcard = savedFlashcard
             setUpFieldViews()
-            FlashcardSettings.shared.savedFlashcard = nil
         }
         #endif
     }
@@ -127,6 +127,7 @@ class FlashcardViewController: UIViewController {
     @objc func willResignActive() {
         #if Main
         FlashcardSettings.shared.savedFlashcard = flashcard
+        FlashcardSettings.shared.referenceSpaceText = referenceSpaceTextView.text
         #endif
     }
 
@@ -146,7 +147,7 @@ class FlashcardViewController: UIViewController {
                     self.stackView.insertArrangedSubview(view, at: self.stackView.arrangedSubviews.count - 2)
                 }
             }
-            self.referenceSpaceTextView.text = self.flashcard.referenceText
+            self.referenceSpaceTextView.text = FlashcardSettings.shared.referenceSpaceText
             self.updateAddButtonState()
             self.frontTextView.becomeFirstResponder()
         }
@@ -281,16 +282,16 @@ class FlashcardViewController: UIViewController {
         switch segueIdentifier {
         case FlashcardSettings.Segues.goToClozeWithEdit:
             if let textRange = frontTextView.selectedTextRange {
-                viewModel = ClozeViewModel(cloze: frontTextView.text(in: textRange)?.trimmingCharacters(in: .whitespacesAndNewlines), referenceSpaceText: flashcard.referenceText, savedRange: textRange)
+                viewModel = ClozeViewModel(cloze: frontTextView.text(in: textRange)?.trimmingCharacters(in: .whitespacesAndNewlines), referenceSpaceText: FlashcardSettings.shared.referenceSpaceText, savedRange: textRange)
             } else {
-                viewModel = ClozeViewModel(referenceSpaceText: flashcard.referenceText)
+                viewModel = ClozeViewModel(referenceSpaceText: FlashcardSettings.shared.referenceSpaceText)
             }
             Logger.flashcard.info("Showing Cloze View with Editable Selection")
         case FlashcardSettings.Segues.goToClozeWithBackText:
             if let textRange = frontTextView.selectedTextRange {
-                viewModel = ClozeViewModel(cloze: backTextView.text.trimmingCharacters(in: .whitespacesAndNewlines), hint: frontTextView.text(in: textRange)?.trimmingCharacters(in: .whitespacesAndNewlines), referenceSpaceText: flashcard.referenceText, savedRange: textRange, beginWithHint: false)
+                viewModel = ClozeViewModel(cloze: backTextView.text.trimmingCharacters(in: .whitespacesAndNewlines), hint: frontTextView.text(in: textRange)?.trimmingCharacters(in: .whitespacesAndNewlines), referenceSpaceText: FlashcardSettings.shared.referenceSpaceText, savedRange: textRange, beginWithHint: false)
             } else {
-                viewModel = ClozeViewModel(referenceSpaceText: flashcard.referenceText)
+                viewModel = ClozeViewModel(referenceSpaceText: FlashcardSettings.shared.referenceSpaceText)
             }
             Logger.flashcard.info("Showing Cloze View with Back Text")
         default:
@@ -413,7 +414,7 @@ extension FlashcardViewController: UITextViewDelegate {
         }
 
         if textView == referenceSpaceTextView {
-            flashcard.referenceText = referenceSpaceTextView.text
+            FlashcardSettings.shared.referenceSpaceText = referenceSpaceTextView.text
         }
 
         updateAddButtonState()
