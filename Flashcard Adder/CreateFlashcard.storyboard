@@ -26,13 +26,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e8d-Za-QWB">
-                                <rect key="frame" x="10" y="44" width="300" height="436"/>
+                                <rect key="frame" x="0.0" y="44" width="320" height="436"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="0R3-Ji-DLb">
-                                        <rect key="frame" x="0.0" y="20" width="300" height="274.5"/>
+                                        <rect key="frame" x="0.0" y="20" width="320" height="274.5"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="0EI-hI-uPa" userLabel="Cloze">
-                                                <rect key="frame" x="0.0" y="0.0" width="300" height="76"/>
+                                                <rect key="frame" x="10" y="0.0" width="300" height="76"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="lc3-KY-vIa" userLabel="Cloze Stack View">
                                                         <rect key="frame" x="0.0" y="0.0" width="300" height="35"/>
@@ -101,7 +101,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="gtH-cC-tJP" userLabel="Type Deck Stack View">
-                                                <rect key="frame" x="0.0" y="86" width="300" height="35"/>
+                                                <rect key="frame" x="10" y="86" width="300" height="35"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0T8-r4-qJy" customClass="BigButton" customModule="Action_Extension" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="93.5" height="35"/>
@@ -139,7 +139,7 @@
                                                 </constraints>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="9o8-Q3-QNs" userLabel="Reference">
-                                                <rect key="frame" x="0.0" y="131" width="300" height="143.5"/>
+                                                <rect key="frame" x="10" y="131" width="300" height="143.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Persistent Reference Space" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rPZ-tX-IBu">
                                                         <rect key="frame" x="0.0" y="30" width="300" height="20.5"/>
@@ -189,6 +189,7 @@
                                                 <directionalEdgeInsets key="directionalLayoutMargins" top="30" leading="0.0" bottom="8" trailing="0.0"/>
                                             </stackView>
                                         </subviews>
+                                        <directionalEdgeInsets key="directionalLayoutMargins" top="0.0" leading="10" bottom="0.0" trailing="10"/>
                                     </stackView>
                                 </subviews>
                                 <constraints>
@@ -206,8 +207,8 @@
                         <color key="backgroundColor" name="backgroundColor"/>
                         <constraints>
                             <constraint firstItem="e8d-Za-QWB" firstAttribute="top" secondItem="JFr-h4-uX9" secondAttribute="top" id="0Br-Qt-ao3"/>
-                            <constraint firstItem="JFr-h4-uX9" firstAttribute="trailing" secondItem="e8d-Za-QWB" secondAttribute="trailing" constant="10" id="bDI-tb-wKJ"/>
-                            <constraint firstItem="e8d-Za-QWB" firstAttribute="leading" secondItem="JFr-h4-uX9" secondAttribute="leading" constant="10" id="ccT-qA-yT7"/>
+                            <constraint firstItem="JFr-h4-uX9" firstAttribute="trailing" secondItem="e8d-Za-QWB" secondAttribute="trailing" id="bDI-tb-wKJ"/>
+                            <constraint firstItem="e8d-Za-QWB" firstAttribute="leading" secondItem="JFr-h4-uX9" secondAttribute="leading" id="ccT-qA-yT7"/>
                             <constraint firstItem="JFr-h4-uX9" firstAttribute="bottom" secondItem="e8d-Za-QWB" secondAttribute="bottom" id="feT-5m-b4c"/>
                         </constraints>
                     </view>
