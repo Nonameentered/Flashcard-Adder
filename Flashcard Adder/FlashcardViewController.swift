@@ -70,7 +70,10 @@ class FlashcardViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        
+        
+        
         setUpFieldViews()
         NotificationCenter.default.addObserver(self, selector: #selector(didEnterForeground), name: UIApplication.didBecomeActiveNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(willResignActive), name: UIApplication.willResignActiveNotification, object: nil)
@@ -117,7 +120,7 @@ class FlashcardViewController: UIViewController {
 
     @objc func didEnterForeground() {
         #if Main
-        if let savedFlashcard = FlashcardSettings.shared.savedFlashcard {
+        if let savedFlashcard = FlashcardSettings.shared.savedFlashcard, savedFlashcard != flashcard {
             flashcard = savedFlashcard
             flashcard.delegate = self
             setUpFieldViews()

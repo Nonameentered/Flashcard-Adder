@@ -15,18 +15,20 @@ protocol FlashcardDelegate: AnyObject {
     func flashcardDidCreate(flashcard: Flashcard)
 }
 
-struct Flashcard: Codable {
+struct Flashcard: Codable, Equatable {
+    static func == (lhs: Flashcard, rhs: Flashcard) -> Bool {
+        lhs.note == rhs.note && lhs.deck == rhs.deck && lhs.profile == rhs.profile
+    }
+
     var note: Note
     var deck: Deck
     var profile: Profile
-    var referenceText: String
     weak var delegate: FlashcardDelegate?
 
     private enum CodingKeys: String, CodingKey {
         case note
         case deck
         case profile
-        case referenceText
     }
 
     var noteTypeName: String {
@@ -63,14 +65,13 @@ struct Flashcard: Codable {
         }
     }
 
-    init(note: Note? = nil, deck: Deck? = nil, profile: Profile? = nil, referenceText: String? = nil, delegate: FlashcardDelegate? = nil) {
+    init(note: Note? = nil, deck: Deck? = nil, profile: Profile? = nil, delegate: FlashcardDelegate? = nil) {
         #if Action
         FlashcardSettings.registerDefaults()
         #endif
         self.note = note ?? FlashcardSettings.shared.defaultNoteType
         self.deck = deck ?? FlashcardSettings.shared.defaultDeck
         self.profile = profile ?? FlashcardSettings.shared.defaultAnkiProfile
-        self.referenceText = referenceText ?? ""
         self.delegate = delegate
 
         delegate?.flashcardDidCreate(flashcard: self)
@@ -79,7 +80,7 @@ struct Flashcard: Codable {
     // Creates a new flashcard following previous settings
     // Revise to allow frozen fields/other options
     init(previous: Flashcard, delegate: FlashcardDelegate? = nil) {
-        self.init(note: previous.note.copyRespectingFrozen(), deck: previous.deck, profile: previous.profile, referenceText: previous.referenceText, delegate: delegate)
+        self.init(note: previous.note.copyRespectingFrozen(), deck: previous.deck, profile: previous.profile, delegate: delegate)
     }
 
     // Not a computed property because it calls the mutating function checkNoteType
