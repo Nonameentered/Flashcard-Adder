@@ -119,6 +119,7 @@ class FlashcardViewController: UIViewController {
         #if Main
         if let savedFlashcard = FlashcardSettings.shared.savedFlashcard {
             flashcard = savedFlashcard
+            flashcard.delegate = self
             setUpFieldViews()
         }
         #endif
