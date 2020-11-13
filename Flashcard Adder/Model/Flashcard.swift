@@ -94,7 +94,9 @@ struct Flashcard: Codable {
         ankiUrlString = note.fields.reduce(ankiUrlString) { fieldString, field -> String in
             "\(fieldString)&fld\(field.name)=\(field.text)"
         }
+        #if Main
         ankiUrlString.append("&x-success=ankiadd://")
+        #endif
         if let encodedAnkiUrlString = ankiUrlString.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed) {
             Logger.flashcard.error("Encoded anki url:\(encodedAnkiUrlString)")
             return URL(string: encodedAnkiUrlString)
