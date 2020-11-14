@@ -2,7 +2,7 @@
 # For more information, check out the docs
 # https://docs.fastlane.tools/actions/deliver/
 
-price_tier(0)
+price_tier(false)
 submission_information({
     export_compliance_encryption_updated: false,
     export_compliance_uses_encryption: false,
@@ -14,5 +14,5 @@ app_rating_config_path("./fastlane/metadata/app_store_rating_config.json")
 
 ipa("./fastlane/builds/Flashcard Adder.ipa")
 
-submit_for_review(true)
+submit_for_review(false)
 automatic_release(false)
