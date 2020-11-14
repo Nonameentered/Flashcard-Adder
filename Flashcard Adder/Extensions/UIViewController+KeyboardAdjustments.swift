@@ -63,7 +63,7 @@ private extension StoryboardKeyboardAdjustingViewController {
             // We can do this because our scroll view's frame is already in our view's coordinate system
             // Modified from original code: added 30 to deal with button overlap issue when keyboard is not on
             let keyboardOverlap = scrollView.frame.maxY - endRect.origin.y + 30
-            
+
             // Set the scroll view's content inset to avoid the keyboard
             // Don't forget the scroll indicator too!
             scrollView.contentInset.bottom = keyboardOverlap
