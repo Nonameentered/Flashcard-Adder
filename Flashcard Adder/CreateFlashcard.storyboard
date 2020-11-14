@@ -270,7 +270,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Ozp-L6-Lkg" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="gXH-6r-9za">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -312,7 +312,7 @@
                                 <rect key="frame" x="0.0" y="56" width="320" height="404"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="4AU-Fx-xzx">
-                                        <rect key="frame" x="0.0" y="20" width="320" height="292.5"/>
+                                        <rect key="frame" x="0.0" y="20" width="320" height="405"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="Myz-uA-adP" userLabel="Front">
                                                 <rect key="frame" x="10" y="0.0" width="300" height="105.5"/>
@@ -381,8 +381,26 @@
                                                     </textView>
                                                 </subviews>
                                             </stackView>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="fcO-xY-NQs" userLabel="Back">
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="1R8-cG-v7P" userLabel="Number">
                                                 <rect key="frame" x="10" y="190" width="300" height="102.5"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cloze Number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="arV-aN-uft">
+                                                        <rect key="frame" x="0.0" y="30" width="300" height="20.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ccO-I8-wAR" customClass="EditTextView" customModule="Action_Extension" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="56.5" width="300" height="38"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
+                                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences" keyboardType="numberPad"/>
+                                                    </textView>
+                                                </subviews>
+                                                <directionalEdgeInsets key="directionalLayoutMargins" top="30" leading="0.0" bottom="8" trailing="0.0"/>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="fcO-xY-NQs" userLabel="Reference">
+                                                <rect key="frame" x="10" y="302.5" width="300" height="102.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reference Space" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="duh-8E-LMJ">
                                                         <rect key="frame" x="0.0" y="30" width="300" height="20.5"/>
@@ -438,6 +456,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="addButton" destination="Ar8-Yd-M1G" id="0yI-bD-aPc"/>
+                        <outlet property="clozeNumberTextView" destination="ccO-I8-wAR" id="d1v-ZL-C0C"/>
                         <outlet property="clozeTextView" destination="07p-D7-PVM" id="Nbh-Ge-7lc"/>
                         <outlet property="hintTextView" destination="m5P-VR-HoQ" id="ezK-fi-6Gx"/>
                         <outlet property="referenceSpaceTextView" destination="nZf-Ij-16q" id="Q49-ej-Rrv"/>

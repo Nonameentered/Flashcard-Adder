@@ -10,6 +10,7 @@ import UIKit
 class ClozeViewController: StoryboardKeyboardAdjustingViewController, UITextViewDelegate {
     @IBOutlet var clozeTextView: EditTextView!
     @IBOutlet var hintTextView: EditTextView!
+    @IBOutlet var clozeNumberTextView: EditTextView!
     @IBOutlet var addButton: UIBarButtonItem!
 
     @IBOutlet var referenceSpaceTextView: EditTextView!
@@ -35,6 +36,7 @@ class ClozeViewController: StoryboardKeyboardAdjustingViewController, UITextView
         clozeTextView.text = viewModel.cloze
         hintTextView.text = viewModel.hint
         referenceSpaceTextView.text = viewModel.referenceSpaceText
+        clozeNumberTextView.text = viewModel.clozeNumber
         if viewModel.beginWithHint {
             hintTextView.becomeFirstResponder()
         } else {
@@ -97,6 +99,10 @@ class ClozeViewController: StoryboardKeyboardAdjustingViewController, UITextView
         }
 
         if textView == hintTextView {
+            clozeNumberTextView.becomeFirstResponder()
+        }
+
+        if textView == clozeNumberTextView {
             clozeTextView.becomeFirstResponder()
         }
 
@@ -111,12 +117,15 @@ class ClozeViewController: StoryboardKeyboardAdjustingViewController, UITextView
                 }
 
                 if textView == hintTextView {
+                    clozeNumberTextView.becomeFirstResponder()
+                }
+
+                if textView == hintTextView {
                     clozeTextView.becomeFirstResponder()
                 }
             } else if text == "\n" {
                 addCloze()
             }
-
             return false
         } else {
             return true

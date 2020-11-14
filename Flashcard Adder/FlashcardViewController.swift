@@ -280,19 +280,20 @@ class FlashcardViewController: StoryboardKeyboardAdjustingViewController {
         -> ClozeViewController? {
         var viewModel: ClozeViewModel!
 
+        let clozeNumber = getClozeNumber(sequential: true)
         switch segueIdentifier {
         case FlashcardSettings.Segues.goToClozeWithEdit:
             if let textRange = frontTextView.selectedTextRange {
-                viewModel = ClozeViewModel(cloze: frontTextView.text(in: textRange)?.trimmingCharacters(in: .whitespacesAndNewlines), referenceSpaceText: FlashcardSettings.shared.referenceSpaceText, savedRange: textRange)
+                viewModel = ClozeViewModel(clozeNumber: clozeNumber, cloze: frontTextView.text(in: textRange)?.trimmingCharacters(in: .whitespacesAndNewlines), referenceSpaceText: FlashcardSettings.shared.referenceSpaceText, savedRange: textRange)
             } else {
-                viewModel = ClozeViewModel(referenceSpaceText: FlashcardSettings.shared.referenceSpaceText)
+                viewModel = ClozeViewModel(clozeNumber: clozeNumber, referenceSpaceText: FlashcardSettings.shared.referenceSpaceText)
             }
             Logger.flashcard.info("Showing Cloze View with Editable Selection")
         case FlashcardSettings.Segues.goToClozeWithBackText:
             if let textRange = frontTextView.selectedTextRange {
-                viewModel = ClozeViewModel(cloze: backTextView.text.trimmingCharacters(in: .whitespacesAndNewlines), hint: frontTextView.text(in: textRange)?.trimmingCharacters(in: .whitespacesAndNewlines), referenceSpaceText: FlashcardSettings.shared.referenceSpaceText, savedRange: textRange, beginWithHint: false)
+                viewModel = ClozeViewModel(clozeNumber: clozeNumber, cloze: backTextView.text.trimmingCharacters(in: .whitespacesAndNewlines), hint: frontTextView.text(in: textRange)?.trimmingCharacters(in: .whitespacesAndNewlines), referenceSpaceText: FlashcardSettings.shared.referenceSpaceText, savedRange: textRange, beginWithHint: false)
             } else {
-                viewModel = ClozeViewModel(referenceSpaceText: FlashcardSettings.shared.referenceSpaceText)
+                viewModel = ClozeViewModel(clozeNumber: clozeNumber, referenceSpaceText: FlashcardSettings.shared.referenceSpaceText)
             }
             Logger.flashcard.info("Showing Cloze View with Back Text")
         default:
@@ -304,7 +305,7 @@ class FlashcardViewController: StoryboardKeyboardAdjustingViewController {
 
     @IBAction func unwindToFlashcardView(sender: UIStoryboardSegue) {
         if let sourceViewController = sender.source as? ClozeViewController {
-            createCloze(clozeText: sourceViewController.viewModel.cloze, hintText: sourceViewController.viewModel.hint, savedRange: sourceViewController.viewModel.savedRange)
+            createCloze(clozeText: sourceViewController.viewModel.cloze, hintText: sourceViewController.viewModel.hint, savedRange: sourceViewController.viewModel.savedRange, clozeNumber: sourceViewController.viewModel.clozeNumber)
         }
     }
 
@@ -340,13 +341,7 @@ extension FlashcardViewController {
 
     // Maybe put this in Field instead, with Flashcard as a delegate
     func determineCloze(sequential: Bool) {
-        let clozeCounter: Int
-        if sequential {
-            clozeCounter = (Cloze.highestCurrentCloze(text: frontTextView.text) ?? 0) + 1
-        } else {
-            clozeCounter = Cloze.highestCurrentCloze(text: frontTextView.text) ?? 1
-        }
-
+        let clozeCounter = getClozeNumber(sequential: sequential)
         if let textRange = frontTextView.selectedTextRange {
             let subject = frontTextView.text(in: textRange)?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
 
@@ -356,12 +351,19 @@ extension FlashcardViewController {
         }
     }
 
-    func createCloze(clozeText: String, hintText: String, savedRange: UITextRange?) {
-        let clozeCounter = (Cloze.highestCurrentCloze(text: frontTextView.text) ?? 0) + 1
-        let clozeString = Cloze(subject: clozeText, hint: hintText).clozeString(with: clozeCounter)
+    func createCloze(clozeText: String, hintText: String, savedRange: UITextRange?, clozeNumber: String) {
+        let clozeString = Cloze(subject: clozeText, hint: hintText).clozeString(with: clozeNumber)
 
         if let textRange = savedRange {
             cloze(textRange: textRange, clozeString: clozeString)
+        }
+    }
+
+    func getClozeNumber(sequential: Bool) -> String {
+        if sequential {
+            return String((Cloze.highestCurrentCloze(text: frontTextView.text) ?? 0) + 1)
+        } else {
+            return String(Cloze.highestCurrentCloze(text: frontTextView.text) ?? 1)
         }
     }
 
