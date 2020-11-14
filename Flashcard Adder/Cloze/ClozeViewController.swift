@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ClozeViewController: UIViewController, UITextViewDelegate {
+class ClozeViewController: StoryboardKeyboardAdjustingViewController, UITextViewDelegate {
     @IBOutlet var clozeTextView: EditTextView!
     @IBOutlet var hintTextView: EditTextView!
     @IBOutlet var addButton: UIBarButtonItem!

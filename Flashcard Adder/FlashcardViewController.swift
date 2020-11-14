@@ -9,7 +9,7 @@ import MobileCoreServices
 import os.log
 import UIKit
 
-class FlashcardViewController: UIViewController {
+class FlashcardViewController: StoryboardKeyboardAdjustingViewController {
     @IBOutlet var referenceSpaceTextView: EditTextView! {
         didSet {
             referenceSpaceTextView.text = FlashcardSettings.shared.referenceSpaceText
@@ -70,10 +70,7 @@ class FlashcardViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-        
-        
+
         setUpFieldViews()
         NotificationCenter.default.addObserver(self, selector: #selector(didEnterForeground), name: UIApplication.didBecomeActiveNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(willResignActive), name: UIApplication.willResignActiveNotification, object: nil)

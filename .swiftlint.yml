@@ -10,3 +10,6 @@ identifier_name:
 
 file_length:
   warning: 500
+
+type_name:
+  max_length: 50

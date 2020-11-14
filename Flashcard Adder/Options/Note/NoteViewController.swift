@@ -12,16 +12,9 @@ protocol NoteViewControllerDelegate: AnyObject {
     func editNote(old: AttributedNote, new: Note)
 }
 
-class NoteViewController: UIViewController {
+class NoteViewController: ProgrammaticKeyboardAdjustingViewController {
     let initialNote: AttributedNote?
     weak var delegate: NoteViewControllerDelegate?
-
-    private lazy var scrollView: UIScrollView = {
-        let scrollView = UIScrollView()
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.addSubview(noteView)
-        return scrollView
-    }()
     var noteView: NoteView!
     var addButton: UIBarButtonItem!
 
@@ -63,6 +56,7 @@ class NoteViewController: UIViewController {
     func setUpView() {
         noteView = NoteView(initialNote: initialNote?.source, axis: .vertical)
         noteView.delegate = self
+        scrollView.addSubview(noteView)
         view.backgroundColor = FlashcardSettings.Colors.backgroundColor
         view.addSubview(scrollView)
         let frameGuide = scrollView.frameLayoutGuide
@@ -78,7 +72,7 @@ class NoteViewController: UIViewController {
             contentGuide.bottomAnchor.constraint(equalTo: noteView.bottomAnchor, constant: 20),
             contentGuide.topAnchor.constraint(equalTo: noteView.topAnchor, constant: -20.0),
             contentGuide.widthAnchor.constraint(equalTo: frameGuide.widthAnchor)
-            ])
+        ])
     }
 
     @objc func cancel() {

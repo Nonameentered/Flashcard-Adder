@@ -42,6 +42,8 @@
 		E369F9382515B71100A51A0D /* Flashcard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E369F9292515B71100A51A0D /* Flashcard.swift */; };
 		E375D0D0255234570022AC2F /* Information.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E375D0CF255234570022AC2F /* Information.storyboard */; };
 		E375D0DC25523D030022AC2F /* Information.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E375D0CF255234570022AC2F /* Information.storyboard */; };
+		E3836151255F3A94005A4419 /* UIViewController+KeyboardAdjustments.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3836150255F3A94005A4419 /* UIViewController+KeyboardAdjustments.swift */; };
+		E3836152255F3A94005A4419 /* UIViewController+KeyboardAdjustments.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3836150255F3A94005A4419 /* UIViewController+KeyboardAdjustments.swift */; };
 		E39647B22537FC3700F803F4 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E39647B12537FC3700F803F4 /* Media.xcassets */; };
 		E39647BB2537FC3700F803F4 /* Action Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = E39647AF2537FC3700F803F4 /* Action Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		E39647C22537FC5A00F803F4 /* UIViewController+HideKeyboardWheNTappedAround.swift in Sources */ = {isa = PBXBuildFile; fileRef = E357B36B251D305B00354BCA /* UIViewController+HideKeyboardWheNTappedAround.swift */; };
@@ -170,6 +172,7 @@
 		E369F9282515B71100A51A0D /* BigButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BigButton.swift; sourceTree = "<group>"; };
 		E369F9292515B71100A51A0D /* Flashcard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Flashcard.swift; sourceTree = "<group>"; };
 		E375D0CF255234570022AC2F /* Information.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Information.storyboard; sourceTree = "<group>"; };
+		E3836150255F3A94005A4419 /* UIViewController+KeyboardAdjustments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIViewController+KeyboardAdjustments.swift"; path = "Extensions/UIViewController+KeyboardAdjustments.swift"; sourceTree = "<group>"; };
 		E388BB1A254359F300B549CD /* Action Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Action Extension.entitlements"; sourceTree = "<group>"; };
 		E39647A82537F80900F803F4 /* Flashcard Adder.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Flashcard Adder.entitlements"; sourceTree = "<group>"; };
 		E39647AF2537FC3700F803F4 /* Action Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Action Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -288,6 +291,7 @@
 				E369F93C2515B94F00A51A0D /* Custom Views */,
 				E3359E3125300E090039F537 /* Extensions */,
 				E357B35E251D2FB500354BCA /* FlashcardViewController.swift */,
+				E3836150255F3A94005A4419 /* UIViewController+KeyboardAdjustments.swift */,
 				E369F9262515B71000A51A0D /* FlashcardSettings.swift */,
 				E3B7B56D253912D800E38EC4 /* Logger.swift */,
 				E359182125106E3D002F1A35 /* AppDelegate.swift */,
@@ -595,6 +599,7 @@
 				E3ABE99D2544CA0B00148D6F /* HeaderSupplementaryView.swift in Sources */,
 				E39C883D2548AB0A00B852BE /* AttributedProfile.swift in Sources */,
 				E33CA724254B1D8D00A28175 /* BorderedTextField.swift in Sources */,
+				E3836151255F3A94005A4419 /* UIViewController+KeyboardAdjustments.swift in Sources */,
 				E39C881725461B9200B852BE /* Option.swift in Sources */,
 				E359182225106E3D002F1A35 /* AppDelegate.swift in Sources */,
 				E39C88382548AAF600B852BE /* AttributedDeck.swift in Sources */,
@@ -653,6 +658,7 @@
 				E39C885F2548B37500B852BE /* AttributedNote.swift in Sources */,
 				E39C88642548C76400B852BE /* Section.swift in Sources */,
 				E35CE63C255050EC001E4CEE /* Collection+SafeSubscript.swift in Sources */,
+				E3836152255F3A94005A4419 /* UIViewController+KeyboardAdjustments.swift in Sources */,
 				E39C88082544D07700B852BE /* HeaderSupplementaryView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -847,7 +853,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = FlashcardAdder;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Flashcard Adder/Flashcard Adder.entitlements";
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_TEAM = SM7F898GQH;
@@ -872,7 +878,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = FlashcardAdder;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Flashcard Adder/Flashcard Adder.entitlements";
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_TEAM = SM7F898GQH;
@@ -895,7 +901,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = Monochrome;
 				CODE_SIGN_ENTITLEMENTS = "Action Extension/Action Extension.entitlements";
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SM7F898GQH;
 				INFOPLIST_FILE = "Action Extension/Info.plist";
@@ -918,7 +924,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = Monochrome;
 				CODE_SIGN_ENTITLEMENTS = "Action Extension/Action Extension.entitlements";
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SM7F898GQH;
 				INFOPLIST_FILE = "Action Extension/Info.plist";
