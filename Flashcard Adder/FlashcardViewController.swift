@@ -159,11 +159,11 @@ class FlashcardViewController: StoryboardKeyboardAdjustingViewController {
     override var keyCommands: [UIKeyCommand]? {
         return [
             UIKeyCommand(title: "Create Cloze", action: #selector(clozeSelected), input: "c", modifierFlags: [.command, .shift]),
-            UIKeyCommand(title: "Editable Cloze", action: #selector(clozeWithHint), input: "v", modifierFlags: [.command, .shift]),
+            UIKeyCommand(title: "Editable Cloze", action: #selector(clozeWithEdit), input: "v", modifierFlags: [.command, .shift]),
             UIKeyCommand(title: "Cloze Back Text", action: #selector(makeHintCloze), input: "f", modifierFlags: [.command, .shift]),
             UIKeyCommand(title: "Sequential Cloze", action: #selector(sequentialCloze), input: "e", modifierFlags: [.command]),
             UIKeyCommand(title: "Repetitive Cloze", action: #selector(repetitiveCloze), input: "s", modifierFlags: [.command]),
-            UIKeyCommand(title: "Editable Cloze", action: #selector(clozeWithHint), input: "d", modifierFlags: [.command]),
+            UIKeyCommand(title: "Editable Cloze", action: #selector(clozeWithEdit), input: "d", modifierFlags: [.command]),
             UIKeyCommand(title: "Cloze Back Text", action: #selector(makeHintCloze), input: "w", modifierFlags: [.command]),
             UIKeyCommand(title: "Add Note", action: #selector(addCard), input: "\r", modifierFlags: [.command])
         ]
@@ -172,7 +172,7 @@ class FlashcardViewController: StoryboardKeyboardAdjustingViewController {
     func enableCustomMenu() {
         let sequential = UIMenuItem(title: "Sequential", action: #selector(sequentialCloze))
         let repetitive = UIMenuItem(title: "Repetitive", action: #selector(repetitiveCloze))
-        let edit = UIMenuItem(title: "Edit", action: #selector(clozeWithHint))
+        let edit = UIMenuItem(title: "Edit", action: #selector(clozeWithEdit))
         let hint = UIMenuItem(title: "Hint", action: #selector(makeHintCloze))
 
         UIMenuController.shared.menuItems = [sequential, repetitive, edit, hint]
@@ -376,12 +376,12 @@ extension FlashcardViewController {
         frontTextView.becomeFirstResponder()
     }
 
-    @objc func clozeWithHint(_ sender: Any) {
-        performSegue(withIdentifier: "editableCloze", sender: sender)
+    @objc func clozeWithEdit(_ sender: Any) {
+        performSegue(withIdentifier: FlashcardSettings.Segues.goToClozeWithEdit, sender: sender)
     }
 
     @objc func makeHintCloze(sender: UIMenuController) {
-        performSegue(withIdentifier: "clozeBackText", sender: sender)
+        performSegue(withIdentifier: FlashcardSettings.Segues.goToClozeWithBackText, sender: sender)
     }
 }
 

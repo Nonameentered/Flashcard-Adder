@@ -18,12 +18,9 @@ final class FlashcardSettings {
     }()
 
     enum Segues {
-        static let goToAddNote = "goToAddNote"
-        static let unwindToSelectNote = "unwindToSelectNote"
-        static let unwindToFlashcardFromNoteList = "unwindToFlashcardFromNoteList"
-        static let unwindToFlashcardFromDeckList = "unwindToFlashcardFromDeckList"
         static let goToClozeWithEdit = "goToClozeWithEdit"
         static let goToClozeWithBackText = "goToClozeWithBackText"
+        static let unwindToFlashcardFromCloze = "unwindToFlashcardFromCloze"
     }
 
     enum Colors {

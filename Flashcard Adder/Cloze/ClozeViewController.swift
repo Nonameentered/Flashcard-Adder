@@ -81,7 +81,7 @@ class ClozeViewController: StoryboardKeyboardAdjustingViewController, UITextView
     }
 
     @objc func addCloze() {
-        performSegue(withIdentifier: "unwindToFlashcardFromCloze", sender: true)
+        performSegue(withIdentifier: FlashcardSettings.Segues.unwindToFlashcardFromCloze, sender: true)
     }
 
     func textViewDidChange(_ textView: UITextView) {
