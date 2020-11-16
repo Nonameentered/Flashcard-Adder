@@ -1,6 +1,6 @@
 # Flashcard Adder
 
-Flashcard adder provides an alternative interface for adding flashcards into supported flashcard software. The app currently supports use with AnkiMobile. 
+Flashcard Adder provides an alternative interface for adding flashcards into supported flashcard software. The app currently supports use with AnkiMobile. 
 
 Visit our [app website](https://flashcard.technaplex.com/) to learn more or [download now on the App Store](https://apps.apple.com/us/app/flashcard-adder/id1538603552)!
 
