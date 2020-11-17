@@ -11,18 +11,17 @@ platform :ios do
     )
   end
   desc "Create ipa"
-  lane :build_ipa do
+  lane :build do
     enable_automatic_code_signing
     increment_build_number
     gym
   end
-  desc "Build app and take screenshots"
-  lane :build do
+  desc "Take screenshots"
+  lane :screenshots do
     snapshot
     frame_screenshots
-    build_ipa
   end
-  desc "Take screenshots, build and upload to App Store"
+  desc "Build and upload to App Store"
   lane :deploy do
     build
     deliver

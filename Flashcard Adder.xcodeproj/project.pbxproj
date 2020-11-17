@@ -855,14 +855,14 @@
 				CODE_SIGN_ENTITLEMENTS = "Flashcard Adder/Flashcard Adder.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = SM7F898GQH;
 				INFOPLIST_FILE = "Flashcard Adder/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.1.1;
 				OTHER_SWIFT_FLAGS = "-D Main";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.technaplex.Flashcard-Adder";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -881,14 +881,14 @@
 				CODE_SIGN_ENTITLEMENTS = "Flashcard Adder/Flashcard Adder.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = SM7F898GQH;
 				INFOPLIST_FILE = "Flashcard Adder/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.1.1;
 				OTHER_SWIFT_FLAGS = "-D Main";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.technaplex.Flashcard-Adder";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -905,6 +905,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Action Extension/Action Extension.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = SM7F898GQH;
 				INFOPLIST_FILE = "Action Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -912,7 +913,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.1.1;
 				OTHER_SWIFT_FLAGS = "-D Action";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.technaplex.Flashcard-Adder.Action-Extension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -929,6 +930,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Action Extension/Action Extension.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = SM7F898GQH;
 				INFOPLIST_FILE = "Action Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -936,7 +938,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.1.1;
 				OTHER_SWIFT_FLAGS = "-D Action";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.technaplex.Flashcard-Adder.Action-Extension";
 				PRODUCT_NAME = "$(TARGET_NAME)";

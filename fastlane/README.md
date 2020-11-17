@@ -21,21 +21,21 @@ or alternatively using `brew install fastlane`
 fastlane ios create_app
 ```
 Create app on Apple Developer and App Store Connect sites
-### ios build_ipa
-```
-fastlane ios build_ipa
-```
-Create ipa
 ### ios build
 ```
 fastlane ios build
 ```
-Build app and take screenshots
+Create ipa
+### ios screenshots
+```
+fastlane ios screenshots
+```
+Take screenshots
 ### ios deploy
 ```
 fastlane ios deploy
 ```
-Take screenshots, build and upload to App Store
+Build and upload to App Store
 ### ios beta
 ```
 fastlane ios beta
