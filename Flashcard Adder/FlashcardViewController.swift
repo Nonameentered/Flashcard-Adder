@@ -48,10 +48,6 @@ class FlashcardViewController: StoryboardKeyboardAdjustingViewController {
         stackView.subviews.compactMap { $0 as? FieldStackView }
     }
 
-    var fieldTextViews: [EditTextView] {
-        fieldViews.map { $0.textView }
-    }
-
     var frontTextView: EditTextView {
         fieldViews[0].textView
     }
