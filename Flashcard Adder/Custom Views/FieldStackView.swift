@@ -13,7 +13,7 @@ class FieldStackView: UIStackView {
     var starButton: StarButton!
     weak var delegate: FieldStackViewDelegate?
 
-    init(fieldName: String, text: String? = nil, axis: NSLayoutConstraint.Axis = .vertical, oneLine: Bool = true, showStar: Bool = true, isFrozen: Bool? = nil, delegate: FieldStackViewDelegate? = nil) {
+    init(fieldName: String, text: String? = nil, axis: NSLayoutConstraint.Axis = .vertical, oneLine: Bool = true, showStar: Bool = true, isFrozen: Bool? = nil, delegate: FieldStackViewDelegate? = nil, textViewDelegate: UITextViewDelegate? = nil) {
         self.delegate = delegate
         super.init(frame: .zero)
         setUpView(fieldName: fieldName, axis: axis, oneLine: oneLine)
@@ -23,6 +23,7 @@ class FieldStackView: UIStackView {
         if let isFrozen = isFrozen {
             starButton.isSelected = isFrozen
         }
+        self.textView.delegate = textViewDelegate
     }
 
     @available(*, unavailable)

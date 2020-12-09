@@ -44,12 +44,8 @@ class FlashcardViewController: StoryboardKeyboardAdjustingViewController {
     @IBOutlet var referenceSpaceStackView: UIStackView!
     @IBOutlet var clozeStackView: UIStackView!
 
-    var fieldViews: [FieldStackView] = [] {
-        didSet {
-            for view in fieldViews {
-                view.textView.delegate = self
-            }
-        }
+    var fieldViews: [FieldStackView] {
+        stackView.subviews.compactMap { $0 as? FieldStackView }
     }
 
     var fieldTextViews: [EditTextView] {
@@ -136,18 +132,28 @@ class FlashcardViewController: StoryboardKeyboardAdjustingViewController {
 
     func setUpFieldViews() {
         DispatchQueue.main.async {
-            self.fieldViews.forEach { $0.removeFromSuperview() }
-            self.fieldViews = self.flashcard.fields.map { FieldStackView(fieldName: $0.name, text: $0.text, oneLine: false, isFrozen: $0.isFrozen, delegate: self) }
-
-            for (count, view) in self.fieldViews.enumerated() {
-                if count == 0 {
-                    self.stackView.insertArrangedSubview(view, at: 0)
-                } else if count == 1 {
-                    self.stackView.insertArrangedSubview(view, at: 2)
+            for (index, field) in self.flashcard.fields.enumerated() {
+                if index < self.fieldViews.count {
+                    Logger.flashcard.info("\(field.text)")
+                    let fieldView = self.fieldViews[index]
+                    // Hack that preserves undo/redo (unlike text = "stuff" )
+                    // TODO: Convert to extension
+                    if let fieldTextView = fieldView.textView, let textRange = fieldTextView.textRange(from: fieldTextView.beginningOfDocument, to: fieldTextView.endOfDocument) {
+                        fieldTextView.replace(textRange, withText: field.text)
+                    }
+                    fieldView.titleLabel.text = field.name
                 } else {
-                    self.stackView.insertArrangedSubview(view, at: self.stackView.arrangedSubviews.count - 2)
+                    let view = FieldStackView(fieldName: field.name, text: field.text, oneLine: false, isFrozen: field.isFrozen, delegate: self, textViewDelegate: self)
+                    if index == 0 {
+                        self.stackView.insertArrangedSubview(view, at: 0)
+                    } else if index == 1 {
+                        self.stackView.insertArrangedSubview(view, at: 2)
+                    } else {
+                        self.stackView.insertArrangedSubview(view, at: self.stackView.arrangedSubviews.count - 2)
+                    }
                 }
             }
+            self.fieldViews.suffix(from: self.flashcard.fields.count).forEach({ $0.removeFromSuperview() })
             self.referenceSpaceTextView.text = FlashcardSettings.shared.referenceSpaceText
             self.updateAddButtonState()
             self.frontTextView.becomeFirstResponder()
