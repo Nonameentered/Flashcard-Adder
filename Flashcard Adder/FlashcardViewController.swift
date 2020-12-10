@@ -65,7 +65,7 @@ class FlashcardViewController: StoryboardKeyboardAdjustingViewController {
         #if Main
         navigationItem.leftBarButtonItems = [infoButton, resetButton]
         navigationItem.rightBarButtonItems = [addButton]
-        
+
         // These notifications are only used in the main app
         NotificationCenter.default.addObserver(self, selector: #selector(didEnterForeground), name: UIApplication.didBecomeActiveNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(willResignActive), name: UIApplication.willResignActiveNotification, object: nil)
@@ -100,7 +100,7 @@ class FlashcardViewController: StoryboardKeyboardAdjustingViewController {
         hideKeyboardWhenTappedAround()
         referenceSpaceTextView.delegate = self
         flashcard.delegate = self
-        
+
         setUpFieldViews()
         updateAddButtonState()
     }

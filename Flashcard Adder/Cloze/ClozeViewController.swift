@@ -92,7 +92,7 @@ class ClozeViewController: StoryboardKeyboardAdjustingViewController, UITextView
 
     func updateState() {
         addButton.isEnabled = !clozeTextView.text.isEmpty
-        viewModel.update(cloze: clozeTextView.text, hint: hintTextView.text,  referenceSpaceText: referenceSpaceTextView.text, clozeNumber: clozeNumberTextView.text)
+        viewModel.update(cloze: clozeTextView.text, hint: hintTextView.text, referenceSpaceText: referenceSpaceTextView.text, clozeNumber: clozeNumberTextView.text)
     }
 
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
