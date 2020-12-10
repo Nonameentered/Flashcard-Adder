@@ -133,6 +133,7 @@ class FlashcardViewController: StoryboardKeyboardAdjustingViewController {
                         fieldTextView.replace(textRange, withText: field.text)
                     }
                     fieldView.titleLabel.text = field.name
+                    fieldView.starButton.isSelected = field.isFrozen
                 } else {
                     let view = FieldStackView(fieldName: field.name, text: field.text, oneLine: false, isFrozen: field.isFrozen, delegate: self, textViewDelegate: self)
                     if index == 0 {
