@@ -32,6 +32,8 @@ class ClozeViewController: StoryboardKeyboardAdjustingViewController, UITextView
 
         clozeTextView.delegate = self
         hintTextView.delegate = self
+        referenceSpaceTextView.delegate = self
+        clozeNumberTextView.delegate = self
 
         clozeTextView.text = viewModel.cloze
         hintTextView.text = viewModel.hint
@@ -90,27 +92,11 @@ class ClozeViewController: StoryboardKeyboardAdjustingViewController, UITextView
 
     func updateState() {
         addButton.isEnabled = !clozeTextView.text.isEmpty
-        viewModel.update(cloze: clozeTextView.text, hint: hintTextView.text, referenceSpaceText: referenceSpaceTextView.text)
-    }
-
-    func textViewShouldReturn(_ textView: UITextView) -> Bool {
-        if textView == clozeTextView {
-            hintTextView.becomeFirstResponder()
-        }
-
-        if textView == hintTextView {
-            clozeNumberTextView.becomeFirstResponder()
-        }
-
-        if textView == clozeNumberTextView {
-            clozeTextView.becomeFirstResponder()
-        }
-
-        return true
+        viewModel.update(cloze: clozeTextView.text, hint: hintTextView.text,  referenceSpaceText: referenceSpaceTextView.text, clozeNumber: clozeNumberTextView.text)
     }
 
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        if text == "\t" || text == "\n", textView == clozeTextView || textView == hintTextView {
+        if text == "\t" || text == "\n" {
             if text == "\t" {
                 if textView == clozeTextView {
                     hintTextView.becomeFirstResponder()
@@ -120,7 +106,11 @@ class ClozeViewController: StoryboardKeyboardAdjustingViewController, UITextView
                     clozeNumberTextView.becomeFirstResponder()
                 }
 
-                if textView == hintTextView {
+                if textView == clozeNumberTextView {
+                    referenceSpaceTextView.becomeFirstResponder()
+                }
+
+                if textView == referenceSpaceTextView {
                     clozeTextView.becomeFirstResponder()
                 }
             } else if text == "\n" {
