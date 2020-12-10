@@ -10,11 +10,7 @@ import os.log
 import UIKit
 
 class FlashcardViewController: StoryboardKeyboardAdjustingViewController {
-    @IBOutlet var referenceSpaceTextView: EditTextView! {
-        didSet {
-            referenceSpaceTextView.text = FlashcardSettings.shared.referenceSpaceText
-        }
-    }
+    @IBOutlet var referenceSpaceTextView: EditTextView!
 
     @IBOutlet var resetButton: UIBarButtonItem!
     @IBOutlet var addButton: UIBarButtonItem!
