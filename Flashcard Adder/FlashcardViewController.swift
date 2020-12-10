@@ -62,14 +62,13 @@ class FlashcardViewController: StoryboardKeyboardAdjustingViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        setUpFieldViews()
-        NotificationCenter.default.addObserver(self, selector: #selector(didEnterForeground), name: UIApplication.didBecomeActiveNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(willResignActive), name: UIApplication.willResignActiveNotification, object: nil)
-
         #if Main
         navigationItem.leftBarButtonItems = [infoButton, resetButton]
         navigationItem.rightBarButtonItems = [addButton]
+        
+        // These notifications are only used in the main app
+        NotificationCenter.default.addObserver(self, selector: #selector(didEnterForeground), name: UIApplication.didBecomeActiveNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(willResignActive), name: UIApplication.willResignActiveNotification, object: nil)
         #elseif Action
         navigationItem.title = "Add"
         navigationItem.leftBarButtonItems = [cancelButton, resetButton]
@@ -98,25 +97,22 @@ class FlashcardViewController: StoryboardKeyboardAdjustingViewController {
         hideKeyboardWhenTappedAround()
         referenceSpaceTextView.delegate = self
         flashcard.delegate = self
-
+        
+        setUpFieldViews()
         updateAddButtonState()
     }
 
     @objc func didEnterForeground() {
-        #if Main
         if let savedFlashcard = FlashcardSettings.shared.savedFlashcard, savedFlashcard != flashcard {
             flashcard = savedFlashcard
             flashcard.delegate = self
             setUpFieldViews()
         }
-        #endif
     }
 
     @objc func willResignActive() {
-        #if Main
         FlashcardSettings.shared.savedFlashcard = flashcard
         FlashcardSettings.shared.referenceSpaceText = referenceSpaceTextView.text
-        #endif
     }
 
     // MARK: View Modifications
