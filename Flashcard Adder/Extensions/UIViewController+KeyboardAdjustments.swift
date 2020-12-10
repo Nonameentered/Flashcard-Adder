@@ -7,7 +7,8 @@
 
 import UIKit
 
-// https://medium.com/flawless-app-stories/keyboard-handling-in-ios-swift-5-8b60d602a8f
+// Architecture follows https://medium.com/flawless-app-stories/keyboard-handling-in-ios-swift-5-8b60d602a8f
+// With some adjustments, keyboardWillShowOrHide uses Paul Hudson's alternative implemention.
 class StoryboardKeyboardAdjustingViewController: UIViewController {
     @IBOutlet var scrollView: UIScrollView!
 
@@ -54,28 +55,20 @@ private extension StoryboardKeyboardAdjustingViewController {
         NotificationCenter.default.removeObserver(self)
     }
 
-    @objc func keyboardWillShowOrHide(notification: NSNotification) {
-        // Pull a bunch of info out of the notification
-        if let scrollView = scrollView, let userInfo = notification.userInfo, let endValue = userInfo[UIResponder.keyboardFrameEndUserInfoKey], let durationValue = userInfo[UIResponder.keyboardAnimationDurationUserInfoKey], let curveValue = userInfo[UIResponder.keyboardAnimationCurveUserInfoKey] {
-            // Transform the keyboard's frame into our view's coordinate system
-            let endRect = view.convert((endValue as AnyObject).cgRectValue, from: view.window)
+    // From Paul Hudson's HackWithSwift site https://www.hackingwithswift.com/example-code/uikit/how-to-adjust-a-uiscrollview-to-fit-the-keyboard
+    @objc func keyboardWillShowOrHide(notification: Notification) {
+        guard let keyboardValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
 
-            // Find out how much the keyboard overlaps the scroll view
-            // We can do this because our scroll view's frame is already in our view's coordinate system
-            // Modified from original code: added 30 to deal with button overlap issue when keyboard is not on
-            let keyboardOverlap = scrollView.frame.maxY - endRect.origin.y + 30
+        let keyboardScreenEndFrame = keyboardValue.cgRectValue
+        let keyboardViewEndFrame = view.convert(keyboardScreenEndFrame, from: view.window)
 
-            // Set the scroll view's content inset to avoid the keyboard
-            // Don't forget the scroll indicator too!
-            scrollView.contentInset.bottom = keyboardOverlap
-            scrollView.verticalScrollIndicatorInsets.bottom = keyboardOverlap
-
-            let duration = (durationValue as AnyObject).doubleValue
-            let options = UIView.AnimationOptions(rawValue: UInt((curveValue as AnyObject).integerValue << 16))
-            UIView.animate(withDuration: duration!, delay: 0, options: options, animations: {
-                self.view.layoutIfNeeded()
-            }, completion: nil)
+        if notification.name == UIResponder.keyboardWillHideNotification {
+            scrollView.contentInset = .zero
+        } else {
+            scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardViewEndFrame.height - view.safeAreaInsets.bottom, right: 0)
         }
+
+        scrollView.scrollIndicatorInsets = scrollView.contentInset
     }
 }
 
