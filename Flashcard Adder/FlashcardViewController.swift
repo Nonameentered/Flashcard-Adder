@@ -85,10 +85,13 @@ class FlashcardViewController: StoryboardKeyboardAdjustingViewController {
             textItemProvider.loadItem(forTypeIdentifier: kUTTypeText as String, options: nil) { result, _ in
                 if let result = result as? String {
                     DispatchQueue.main.async {
+                        if let savedFlashcard = FlashcardSettings.shared.savedFlashcard {
+                            self.flashcard = Flashcard(previous: savedFlashcard, delegate: self)
+                        }
                         self.frontTextView.text = result
-                        self.flashcard.note.fields[0].text = result
+                        self.updateFlashcardText(with: self.frontTextView)
                         self.referenceSpaceTextView.text = result + "\n\n" + FlashcardSettings.shared.referenceSpaceText
-                        FlashcardSettings.shared.referenceSpaceText = self.referenceSpaceTextView.text
+                        self.updateFlashcardText(with: self.referenceSpaceTextView)
                     }
                 }
             }
