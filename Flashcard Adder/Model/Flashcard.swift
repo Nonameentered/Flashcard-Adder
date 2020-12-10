@@ -93,7 +93,7 @@ struct Flashcard: Codable, Equatable {
         checkNoteType()
         var ankiUrlString = "anki://x-callback-url/addnote?profile=\(profile.name)&type=\(note.name)&deck=\(deck.name)"
         ankiUrlString = note.fields.reduce(ankiUrlString) { fieldString, field -> String in
-            "\(fieldString)&fld\(field.name)=\(field.text)"
+            "\(fieldString)&fld\(field.name)=\(field.text.replacingOccurrences(of: "\n", with: "<br>"))"
         }
         #if Main
         ankiUrlString.append("&x-success=ankiadd://")
