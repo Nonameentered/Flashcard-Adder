@@ -91,6 +91,8 @@
 		E3ABE99D2544CA0B00148D6F /* HeaderSupplementaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3ABE99C2544CA0B00148D6F /* HeaderSupplementaryView.swift */; };
 		E3B7B56E253912D800E38EC4 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B7B56D253912D800E38EC4 /* Logger.swift */; };
 		E3B7B56F253912D800E38EC4 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B7B56D253912D800E38EC4 /* Logger.swift */; };
+		E3CB216C2581BAEC00C1FF2E /* UITextView+CleanUpErrantNewLines.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CB216B2581BAEC00C1FF2E /* UITextView+CleanUpErrantNewLines.swift */; };
+		E3CB216D2581BAEC00C1FF2E /* UITextView+CleanUpErrantNewLines.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CB216B2581BAEC00C1FF2E /* UITextView+CleanUpErrantNewLines.swift */; };
 		E3D011102537B9D7006FB811 /* String+MatchingStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D0110F2537B9D7006FB811 /* String+MatchingStrings.swift */; };
 		E3D011182537C4A8006FB811 /* Cloze.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D011162537C4A8006FB811 /* Cloze.swift */; };
 		E3F376F42548FDCF00A05F40 /* NoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F376F32548FDCF00A05F40 /* NoteViewController.swift */; };
@@ -192,6 +194,7 @@
 		E39C88622548C76400B852BE /* Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
 		E3ABE99C2544CA0B00148D6F /* HeaderSupplementaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderSupplementaryView.swift; sourceTree = "<group>"; };
 		E3B7B56D253912D800E38EC4 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		E3CB216B2581BAEC00C1FF2E /* UITextView+CleanUpErrantNewLines.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView+CleanUpErrantNewLines.swift"; sourceTree = "<group>"; };
 		E3D0110F2537B9D7006FB811 /* String+MatchingStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+MatchingStrings.swift"; sourceTree = "<group>"; };
 		E3D011162537C4A8006FB811 /* Cloze.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cloze.swift; sourceTree = "<group>"; };
 		E3F376F32548FDCF00A05F40 /* NoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteViewController.swift; sourceTree = "<group>"; };
@@ -246,6 +249,7 @@
 				E3F8D9AF253C0074003E7CC7 /* UIColor+DarkerLighterExtensions.swift */,
 				E39C880F2545EDB300B852BE /* Array+Moved.swift */,
 				E35CE63A255050EC001E4CEE /* Collection+SafeSubscript.swift */,
+				E3CB216B2581BAEC00C1FF2E /* UITextView+CleanUpErrantNewLines.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -586,6 +590,7 @@
 				E39C88102545EDB300B852BE /* Array+Moved.swift in Sources */,
 				E343E6D3254E2DAD00765215 /* String+CleanedOfNewLines.swift in Sources */,
 				E35CE63B255050EC001E4CEE /* Collection+SafeSubscript.swift in Sources */,
+				E3CB216C2581BAEC00C1FF2E /* UITextView+CleanUpErrantNewLines.swift in Sources */,
 				E3B7B56E253912D800E38EC4 /* Logger.swift in Sources */,
 				E357B364251D2FB500354BCA /* FlashcardViewController.swift in Sources */,
 				E369F92A2515B71100A51A0D /* Note.swift in Sources */,
@@ -640,6 +645,7 @@
 				E39647DE2537FC9900F803F4 /* Field.swift in Sources */,
 				E39C88462548AC3600B852BE /* AttributedOption.swift in Sources */,
 				E39647E82537FCB100F803F4 /* ClozeViewController.swift in Sources */,
+				E3CB216D2581BAEC00C1FF2E /* UITextView+CleanUpErrantNewLines.swift in Sources */,
 				E39C884D2548AC4F00B852BE /* OptionViewModel.swift in Sources */,
 				E39C88132546180300B852BE /* Array+Moved.swift in Sources */,
 				E343E6B9254E033500765215 /* NoteView.swift in Sources */,

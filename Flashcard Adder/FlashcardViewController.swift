@@ -102,11 +102,6 @@ class FlashcardViewController: StoryboardKeyboardAdjustingViewController {
         updateAddButtonState()
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-        enableCustomMenu()
-    }
-
     @objc func didEnterForeground() {
         #if Main
         if let savedFlashcard = FlashcardSettings.shared.savedFlashcard, savedFlashcard != flashcard {
@@ -171,13 +166,18 @@ class FlashcardViewController: StoryboardKeyboardAdjustingViewController {
         ]
     }
 
-    func enableCustomMenu() {
-        let sequential = UIMenuItem(title: "Sequential", action: #selector(sequentialCloze))
-        let repetitive = UIMenuItem(title: "Repetitive", action: #selector(repetitiveCloze))
-        let edit = UIMenuItem(title: "Edit", action: #selector(clozeWithEdit))
-        let hint = UIMenuItem(title: "Hint", action: #selector(makeHintCloze))
+    func determineCustomMenu(for textView: UITextView) {
+        if textView == frontTextView {
+            let sequential = UIMenuItem(title: "Sequential", action: #selector(sequentialCloze))
+            let repetitive = UIMenuItem(title: "Repetitive", action: #selector(repetitiveCloze))
+            let edit = UIMenuItem(title: "Edit", action: #selector(clozeWithEdit))
+            let hint = UIMenuItem(title: "Hint", action: #selector(makeHintCloze))
 
-        UIMenuController.shared.menuItems = [sequential, repetitive, edit, hint]
+            UIMenuController.shared.menuItems = [sequential, repetitive, edit, hint]
+        } else {
+            let cleanUp = UIMenuItem(title: "Clean Up", action: #selector(cleanUpActive))
+            UIMenuController.shared.menuItems = [cleanUp]
+        }
     }
 
     // MARK: - Actions
@@ -202,17 +202,23 @@ class FlashcardViewController: StoryboardKeyboardAdjustingViewController {
     }
 
     @IBAction func cleanUpFrontPressed(_ sender: Any) {
-        cleanUp(textView: frontTextView)
+        cleanUp(frontTextView)
     }
 
     @IBAction func cleanUpReferencePressed(_ sender: Any) {
-        cleanUp(textView: referenceSpaceTextView)
+        cleanUp(referenceSpaceTextView)
     }
 
-    func cleanUp(textView: UITextView) {
-        textView.text = textView.text.cleanedOfNewLines
+    func cleanUp(_ textView: UITextView) {
+        textView.cleanUpErrantNewLines()
         updateFlashcardText(with: textView)
         textView.becomeFirstResponder()
+    }
+
+    @objc func cleanUpActive() {
+        if let activeTextView = view.window?.firstResponder as? UITextView {
+            cleanUp(activeTextView)
+        }
     }
 
     @IBAction func save(_ sender: Any) {
@@ -409,6 +415,9 @@ extension FlashcardViewController: UITextViewDelegate {
         }
     }
 
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        determineCustomMenu(for: textView)
+    }
     func textViewDidChange(_ textView: UITextView) {
         updateFlashcardText(with: textView)
     }

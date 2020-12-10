@@ -7,6 +7,7 @@
 
 import UIKit
 
+// Taken from Thomas Miller here: https://stackoverflow.com/a/1823360/14362235
 extension UIView {
     var firstResponder: UIView? {
         guard !isFirstResponder else { return self }
