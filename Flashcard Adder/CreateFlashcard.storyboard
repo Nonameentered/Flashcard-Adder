@@ -255,7 +255,7 @@
                         <outlet property="referenceSpaceTextView" destination="OaF-DK-Adf" id="0bG-n9-1bi"/>
                         <outlet property="resetButton" destination="Kln-y1-UeD" id="dWG-iZ-tgX"/>
                         <outlet property="saveButton" destination="oyM-lg-Wfz" id="qnX-D3-4Qb"/>
-                        <outlet property="scrollView" destination="e8d-Za-QWB" id="8yL-TY-BPy"/>
+                        <outlet property="scrollView" destination="e8d-Za-QWB" id="pOa-Un-wRF"/>
                         <outlet property="stackView" destination="0R3-Ji-DLb" id="eQM-fJ-keh"/>
                         <outlet property="typeButton" destination="0T8-r4-qJy" id="GNN-CA-CTc"/>
                     </connections>
@@ -270,7 +270,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Ozp-L6-Lkg" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="gXH-6r-9za">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -460,12 +460,13 @@
                         <outlet property="clozeTextView" destination="07p-D7-PVM" id="Nbh-Ge-7lc"/>
                         <outlet property="hintTextView" destination="m5P-VR-HoQ" id="ezK-fi-6Gx"/>
                         <outlet property="referenceSpaceTextView" destination="nZf-Ij-16q" id="Q49-ej-Rrv"/>
+                        <outlet property="scrollView" destination="oKC-Z8-D6o" id="bNb-sU-Uk1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pX5-lF-iEH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="cxe-3T-owy" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2242" y="945"/>
+            <point key="canvasLocation" x="3099.375" y="1060"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
