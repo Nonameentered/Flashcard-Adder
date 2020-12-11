@@ -43,7 +43,11 @@ class FlashcardViewController: StoryboardKeyboardAdjustingViewController {
     var fieldViews: [FieldStackView] {
         stackView.subviews.compactMap { $0 as? FieldStackView }
     }
-
+    
+    var fieldTextViews: [EditTextView] {
+        fieldViews.map { $0.textView }
+    }
+    
     var frontTextView: EditTextView {
         fieldViews[0].textView
     }
@@ -86,14 +90,13 @@ class FlashcardViewController: StoryboardKeyboardAdjustingViewController {
                 if let result = result as? String {
                     DispatchQueue.main.async {
                         if let savedFlashcard = FlashcardSettings.shared.savedFlashcard {
-                            self.flashcard = Flashcard(previous: savedFlashcard)
+                            self.flashcard = savedFlashcard
 
                         }
                         self.flashcard.delegate = self
 
                         self.setUpFieldViews {
-                            self.frontTextView.text = result
-                            self.updateFlashcardText(with: self.frontTextView)
+                            self.addTextToEmptyFieldOrFirst(result)
                             self.referenceSpaceTextView.text = result + "\n\n" + FlashcardSettings.shared.referenceSpaceText
                             self.updateFlashcardText(with: self.referenceSpaceTextView)
                         }
@@ -225,6 +228,16 @@ class FlashcardViewController: StoryboardKeyboardAdjustingViewController {
     @objc func cleanUpActive() {
         if let activeTextView = view.window?.firstResponder as? UITextView {
             cleanUp(activeTextView)
+        }
+    }
+
+    func addTextToEmptyFieldOrFirst(_ text: String) {
+        if let textView = fieldTextViews.first(where: {$0.text.isEmpty}) {
+            textView.text = text
+            self.updateFlashcardText(with: textView)
+        } else {
+            self.frontTextView.text = text
+            self.updateFlashcardText(with: self.frontTextView)
         }
     }
 
