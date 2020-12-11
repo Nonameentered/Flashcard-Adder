@@ -142,6 +142,8 @@ class FlashcardViewController: StoryboardKeyboardAdjustingViewController {
             }
             self.fieldViews.suffix(from: self.flashcard.fields.count).forEach({ $0.removeFromSuperview() })
             self.referenceSpaceTextView.text = FlashcardSettings.shared.referenceSpaceText
+            self.typeButton.setTitle("Type: " + self.flashcard.noteTypeName, for: .normal)
+            self.deckButton.setTitle("Deck: " + self.flashcard.deckName, for: .normal)
             self.updateAddButtonState()
             self.frontTextView.becomeFirstResponder()
         }
@@ -242,6 +244,7 @@ class FlashcardViewController: StoryboardKeyboardAdjustingViewController {
         }
         #elseif Action
 
+        FlashcardSettings.shared.savedFlashcard = Flashcard(previous: flashcard, delegate: self)
         // Inspired by Slide for Reddit https://github.com/ccrama/Slide-iOS/blob/develop/Open%20in%20Slide/ActionViewController.swift
         // And help from https://stackoverflow.com/a/40675306/14362235
         // Not sure how the cancelRequest dismisses it, but it does so we're good
@@ -456,8 +459,8 @@ extension FlashcardViewController: FlashcardDelegate {
     }
 
     func flashcardDidCreate(flashcard: Flashcard) {
-        typeButton.setTitle("Type: " + flashcard.noteTypeName, for: .normal)
-        deckButton.setTitle("Deck: " + flashcard.deckName, for: .normal)
+//        typeButton.setTitle("Type: " + flashcard.noteTypeName, for: .normal)
+//        deckButton.setTitle("Deck: " + flashcard.deckName, for: .normal)
         setUpFieldViews()
     }
 }
