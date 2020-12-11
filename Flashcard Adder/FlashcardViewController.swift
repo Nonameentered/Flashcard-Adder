@@ -168,7 +168,8 @@ class FlashcardViewController: StoryboardKeyboardAdjustingViewController {
             UIKeyCommand(title: "Repetitive Cloze", action: #selector(repetitiveCloze), input: "s", modifierFlags: [.command]),
             UIKeyCommand(title: "Editable Cloze", action: #selector(clozeWithEdit), input: "d", modifierFlags: [.command]),
             UIKeyCommand(title: "Cloze Back Text", action: #selector(makeHintCloze), input: "w", modifierFlags: [.command]),
-            UIKeyCommand(title: "Add Note", action: #selector(addCard), input: "\r", modifierFlags: [.command])
+            UIKeyCommand(title: "Add Note", action: #selector(addCard), input: "\r", modifierFlags: [.command]),
+            UIKeyCommand(title: "Clean Up Current Field", action: #selector(cleanUpActive), input: "u", modifierFlags: [.command])
         ]
     }
 
