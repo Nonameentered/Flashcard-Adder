@@ -1,13 +1,22 @@
 # Flashcard Adder
 
-Flashcard Adder provides an alternative interface for adding flashcards into supported flashcard software. The app currently supports use with AnkiMobile. 
+Flashcard Adder provides an alternative interface for adding flashcards into AnkiMobile. 
 
-Visit our [app website](https://flashcard.technaplex.com/) to learn more or [download now on the App Store](https://apps.apple.com/us/app/flashcard-adder/id1538603552)!
+See [this post](https://www.matthewshu.com/productivity/2020/12/12/gap-year-updates-2-introducing-flashcard-adder-and-thoughts-on-notes.html) to learn more or [download now on the App Store](https://apps.apple.com/us/app/flashcard-adder/id1538603552).
 
-## Next Major Version
-- [ ] KAR³L Integration
-## Next Version
-- [ ] Fix keyboard shortcut crashes
+## 1.2.1
+* Add keyboard shortcut for text clean up
+* Action extension: Add text to next empty field. If not, default to first
+* Fix keyboard shortcut crashes
+* Add menu shortcut for text clean up in all fields
+* Fix cloze maker not using number in a add cloze view
+* Fix scroll view in action extension
+* Make starred persistence last across action extension and main app (clears existing saved flashcard)
+* Swipe up to dismiss keyboard in flashcard adder
+* Rework text view code to preserve undo/consistency (and likely performance) across reset, note type switch, etc
+* Don’t disable add button at start when in action extension
+* Preserve new lines when adding to Anki
+* Fix note type and deck not updating to the correct name in buttons
 
 ## 1.1
 * Adjust view for keyboard and fix scroll view stuff
