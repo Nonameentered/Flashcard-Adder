@@ -868,7 +868,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.3;
+				MARKETING_VERSION = 1.2.4;
 				OTHER_SWIFT_FLAGS = "-D Main";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.technaplex.Flashcard-Adder";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -894,7 +894,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.3;
+				MARKETING_VERSION = 1.2.4;
 				OTHER_SWIFT_FLAGS = "-D Main";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.technaplex.Flashcard-Adder";
 				PRODUCT_NAME = "$(TARGET_NAME)";
