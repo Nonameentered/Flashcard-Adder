@@ -32,11 +32,7 @@ final class FlashcardSettings {
     enum Fonts {
         static let regularFont = UIFont(name: "AvenirNext-Regular", size: 16)!
     }
-
-    enum ElementKind {
-        static let sectionHeader = "section-header-element-kind"
-    }
-
+    
     enum Key: String, Codable {
         case defaultAnkiProfile, defaultNoteType, defaultClozeNoteType, defaultDeck, noteTypes, decks, ankiProfiles, savedFlashcard, referenceSpaceText
     }

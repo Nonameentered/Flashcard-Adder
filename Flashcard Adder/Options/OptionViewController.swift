@@ -186,7 +186,7 @@ extension OptionViewController {
         collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         view.addSubview(collectionView)
         collectionView.delegate = self
-        collectionView.register(HeaderSupplementaryView.self, forSupplementaryViewOfKind: FlashcardSettings.ElementKind.sectionHeader, withReuseIdentifier: HeaderSupplementaryView.reuseIdentifier)
+        collectionView.register(HeaderSupplementaryView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeaderSupplementaryView.reuseIdentifier)
     }
 
     private func makeCellRegistration() -> UICollectionView.CellRegistration<UICollectionViewListCell, TypedAttributedOption> {
@@ -199,13 +199,14 @@ extension OptionViewController {
     }
 
     private func makeDataSource() -> UICollectionViewDiffableDataSource<TypedSession, TypedAttributedOption> {
+        let cellRegistration = self.makeCellRegistration()
         let dataSource = UICollectionViewDiffableDataSource<TypedSession, TypedAttributedOption>(collectionView: collectionView) { (collectionView: UICollectionView, indexPath: IndexPath, item: TypedAttributedOption) -> UICollectionViewCell? in
-            collectionView.dequeueConfiguredReusableCell(using: self.makeCellRegistration(), for: indexPath, item: item)
+            collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: item)
         }
 
         dataSource.supplementaryViewProvider = { collectionView, _, indexPath in
             let section = self.dataSource.snapshot().sectionIdentifiers[indexPath.section]
-            let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: FlashcardSettings.ElementKind.sectionHeader, withReuseIdentifier: HeaderSupplementaryView.reuseIdentifier, for: indexPath) as? HeaderSupplementaryView
+            let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeaderSupplementaryView.reuseIdentifier, for: indexPath) as? HeaderSupplementaryView
             headerView?.label.text = section.title
             return headerView
         }
